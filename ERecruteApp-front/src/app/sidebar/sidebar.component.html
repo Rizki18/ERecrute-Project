@@ -1,0 +1,69 @@
+<!-- START PAGE SIDEBAR -->
+<div class="page-sidebar">
+    <!-- START X-NAVIGATION -->
+    <ul class="x-navigation">
+        <li class="xn-logo">
+            <a href="index.html">E-Recrute</a>
+            <a href="#" class="x-navigation-control"></a>
+        </li>
+        <li class="xn-profile">
+            <a href="#" class="profile-mini">
+                <img src="../../assets/assets/images/users/user-profil.jpg" alt="User profil"/>
+            </a>
+            <div class="profile">
+                <div class="profile-image">
+                    <img src="../../assets/assets/images/users/user-profil.png" alt="User profil"/>
+                </div>
+                <div class="profile-data">
+                    <div class="profile-data-name">{{info.username}}</div>
+                    <div class="profile-data-title">{{authority}}</div>
+                </div>
+                <div class="profile-controls">
+                    <a href="pages-profile.html" class="profile-control-left"><span class="fa fa-info"></span></a>
+                    <a href="pages-messages.html" class="profile-control-right"><span class="fa fa-envelope"></span></a>
+                </div>
+            </div>                                                                        
+        </li>
+        <li class="xn-title">Navigation</li>
+        <li>
+            <a routerLink="admin"><span class="fa fa-desktop"></span> <span class="xn-text">Tableau de bord</span></a>
+        </li>
+        <li *ngIf="authority === 'admin'" class="xn-openable">
+            <a href="#"><span class="fa fa-files-o"></span> <span class="xn-text">Utilisateurs</span></a>
+            <ul>
+                <li><a href="admin">Liste Utilisateurs</a></li>
+                <li><a routerLink="nv-utilisateur">Nouveau Utilisateur</a></li>
+            </ul>
+        </li>
+        <li class="xn-openable">
+                <a href="#"><span class="fa fa-files-o"></span> <span class="xn-text">Profils</span></a>
+                <ul>
+                    <li><a href="profils.html">Liste Profils</a></li>
+                    <li><a href="nv-profil.html">Nouveau Profil</a></li>
+                    <li><a href="importer-profiles.html">Importer Profils</a></li>
+                </ul>
+        </li>
+        <li>
+            <a href="postes.html"><span class="fa fa-desktop"></span> <span class="xn-text">Postes</span></a>
+        </li>
+        <li class="xn-openable">
+            <a href="#"><span class="fa fa-file-text-o"></span> <span class="xn-text">Recrutements</span></a>
+            <ul>
+                <li><a href="recrutements.html">Liste Recrutements</a></li>
+                <li><a href="nv-recrutement.html">Nouveau Recrutement</a></li>
+                <li><a href="changer-poste.html">Changement Poste</a></li>
+                <li><a href="nv-depart.html">Nouvau Départ</a></li>
+            </ul>
+        </li>
+        <li class="xn-openable">
+            <a href="#"><span class="fa fa-file-text-o"></span> <span class="xn-text">CVthèque</span></a>
+            <ul>
+                <li><a href="cvs.html">Liste CVs</a></li>
+                <li><a href="nv-cv.html">Création CV</a></li>
+            </ul>
+        </li>
+        
+    </ul>
+    <!-- END X-NAVIGATION -->
+</div>
+<!-- END PAGE SIDEBAR -->
