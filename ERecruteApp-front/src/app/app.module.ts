@@ -21,6 +21,7 @@ import { AddUtilisateurComponent } from './add-utilisateur/add-utilisateur.compo
 
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
+import { CompetenceComponent } from './competence/competence.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
     AdminComponent,
     SidebarComponent,
     UtilisateursComponent,
-    AddUtilisateurComponent
+    AddUtilisateurComponent,
+    CompetenceComponent
   ],
   imports: [
     BrowserModule,
