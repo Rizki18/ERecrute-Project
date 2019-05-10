@@ -19,8 +19,11 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { UtilisateursComponent } from './utilisateurs/utilisateurs.component';
 import { AddUtilisateurComponent } from './add-utilisateur/add-utilisateur.component';
 
+import { CompetenceComponent } from './competence/competence.component';
+
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
+import { EditUtilisateurComponent } from './edit-utilisateur/edit-utilisateur.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +36,9 @@ import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
     AdminComponent,
     SidebarComponent,
     UtilisateursComponent,
-    AddUtilisateurComponent
+    AddUtilisateurComponent,
+    EditUtilisateurComponent,
+    CompetenceComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,7 @@
 package ma.hrpath.stage2019.erecrute.security.service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import ma.hrpath.stage2019.erecrute.model.Role;
@@ -15,4 +16,5 @@ public interface AccountService {
 	public User findUserByUsername(String username);
 	public List<User> retreiveUsers();
 	public void deleteUser(Long id);
+	public Optional<User> findUserById(Long id);
 }

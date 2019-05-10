@@ -1,0 +1,34 @@
+ 
+<div class="col-md-6"></div>
+<table class="table table-striped">
+    <thead></thead>
+    <tr>
+      <th>code</th>
+      <th>nom</th>  
+      <th>
+            <form #f="ngForm" (ngSubmit)="createCompetence(f.value)">   
+                    <tr>
+                        <td>
+                        <input required ngModel placeholder="Name" name="nomCompetence" class="form-control" [(ngModel)]="competence.nomCompetence">
+                        </td>
+                        <td>
+                        <button [disabled]="!f.valid" type="submit" class="btn btn-success" >Create</button>
+                        </td>
+                    </tr>
+            </form>
+      </th>      
+    </tr>
+    
+    <tbody>
+        <tr *ngFor="let competence of competences">
+            <td>{{competence.codeCompetance}}</td>
+            <td>
+            <input required ngModel value={{competence.nomCompetence}} name="nomCompetence" class="form-control" [(ngModel)]="competence.nomCompetence">
+            </td>            
+            <td>
+                    <button class="btn btn-danger" (click)="deleteCompetence(competence)"> Delete competence</button> 
+                    <button class="btn btn-success" (click)="editCompetence(competence)"> Edit competence</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

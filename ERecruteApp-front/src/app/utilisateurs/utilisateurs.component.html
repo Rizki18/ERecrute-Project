@@ -19,7 +19,7 @@
               <div class="panel-heading">
                   <h3 class="panel-title">Liste des utilisateurs</h3>
                   <ul class="panel-controls">
-                      <li href="nv-user"><button type="button" class="btn btn-info">Ajouter Utilisateur
+                      <li routerLink="/nv-user"><button type="button" class="btn btn-info">Ajouter Utilisateur
                           </button></li>
                   </ul>
               </div>
@@ -30,7 +30,6 @@
                               <th>Nom</th>
                               <th>email</th>
                               <th>Rôle</th>
-                              <th>Date d'enregistrement</th>
                               <th>Actions</th>
                           </tr>
                       </thead>
@@ -43,14 +42,11 @@
                                       {{role.name}}
                                   </p>
                                 </td>
-                              <td>date</td>
                               <td>
-                                  <button class="btn btn-default btn-rounded btn-sm"><span
-                                          class="fa fa-pencil"></span></button>
+                                  <button class="btn btn-default btn-rounded btn-sm"
+                                  (click)="editUser(utilisateur)">
+                                  <span class="fa fa-pencil"></span></button>
                                   <button class="btn btn-danger btn-rounded btn-sm"
-                                  (click)="deleteUser(utilisateur)"><span
-                                          class="fa fa-times"></span></button>
-                                  <button class="btn btn-default"
                                           mwlConfirmationPopover
                                           [popoverTitle]="popoverTitle"
                                           [popoverMessage]="popoverMessage"

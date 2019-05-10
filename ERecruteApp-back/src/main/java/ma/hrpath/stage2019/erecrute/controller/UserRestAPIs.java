@@ -1,6 +1,7 @@
 package ma.hrpath.stage2019.erecrute.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -45,12 +46,32 @@ public class UserRestAPIs {
 					HttpStatus.BAD_REQUEST);
 		}
 		
-		accountService.saveUser(new User(userName,signUpRequest.getUsername(),
+		accountService.saveUser(new User(signUpRequest.getName(),userName,
 				signUpRequest.getEmail(),signUpRequest.getPassword()));
 		System.out.println("*****ROLES: "+signUpRequest.getRole());
 		accountService.addRoleToUser(userName, signUpRequest.getRole());
 		
 		return new ResponseEntity<>(new ResponseMessage("User registered successfully!"), HttpStatus.OK);
+	}
+	
+	@RequestMapping(value="/admin/updateUser/{id}",method = RequestMethod.PUT)
+	public ResponseEntity<Object> updateStudent(@RequestBody SignUpForm signUpRequest, @PathVariable long id) {
+    
+		Optional<User> userOptional = accountService.findUserById(id);
+    
+		if (!userOptional.isPresent())
+			return ResponseEntity.notFound().build();
+    
+		User user = new User(signUpRequest.getName(),signUpRequest.getUsername(),
+				signUpRequest.getEmail(),signUpRequest.getPassword());
+		
+		user.setId(id);
+		
+		accountService.saveUser(user);
+		System.out.println("*****ROLES: "+signUpRequest.getRole());
+		accountService.addRoleToUser(signUpRequest.getUsername(), signUpRequest.getRole());
+    
+		return ResponseEntity.noContent().build();
 	}
 	
 	@RequestMapping(value="/admin/deleteUser/{id}",method = RequestMethod.DELETE)

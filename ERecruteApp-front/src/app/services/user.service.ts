@@ -13,10 +13,19 @@ export class User{
   ) {}
 }
 
+export class Competence{
+  constructor(
+    public codeCompetance:string,
+    public nomCompetence:string
+  ) {}
+}
+
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+  private user:User;
+
   private userUrl = 'http://localhost:8080/api/test/recruteur';
   private pmUrl = 'http://localhost:8080/api/test/responsable';
   private adminUrl = 'http://localhost:8080/api/test/admin';
@@ -35,6 +44,10 @@ export class UserService {
     return this.http.post(this.host+url,element);
   }
 
+  updateRessources(url,element) {
+    return this.http.post(this.host+url,element);
+  }
+
   public deleteRessources(url)
   {
     return this.http.delete(this.host+url);
@@ -50,5 +63,13 @@ export class UserService {
 
   getAdminBoard(): Observable<string> {
     return this.http.get(this.adminUrl, { responseType: 'text' });
+  }
+
+  setter(user:User){
+    this.user = user;
+  }
+
+  getter(user:User){
+    return this.user;
   }
 }

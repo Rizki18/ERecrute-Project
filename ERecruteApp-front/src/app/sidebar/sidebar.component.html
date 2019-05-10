@@ -26,13 +26,13 @@
         </li>
         <li class="xn-title">Navigation</li>
         <li>
-            <a routerLink="admin"><span class="fa fa-desktop"></span> <span class="xn-text">Tableau de bord</span></a>
+            <a routerLink="/admin"><span class="fa fa-desktop"></span> <span class="xn-text">Tableau de bord</span></a>
         </li>
         <li *ngIf="authority === 'admin'" class="xn-openable">
             <a href="#"><span class="fa fa-files-o"></span> <span class="xn-text">Utilisateurs</span></a>
             <ul>
-                <li><a href="utilisateurs">Liste Utilisateurs</a></li>
-                <li><a routerLink="nv-user">Nouveau Utilisateur</a></li>
+                <li><a routerLink="/utilisateurs">Liste Utilisateurs</a></li>
+                <li><a routerLink="/nv-user">Nouveau Utilisateur</a></li>
             </ul>
         </li>
         <li class="xn-openable">
