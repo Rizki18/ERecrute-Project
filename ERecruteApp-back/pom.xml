@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>ma.hrpath.stage2019</groupId>
-	<artifactId>Authentification-back</artifactId>
+	<artifactId>ERecrute-back</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Authentification-back</name>
 	<description>Authentifaction back-end spring secutrity with JWT</description>

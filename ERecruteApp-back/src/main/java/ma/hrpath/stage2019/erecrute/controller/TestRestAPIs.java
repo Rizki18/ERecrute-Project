@@ -1,4 +1,4 @@
-package ma.hrpath.stage2019.authentification.controller;
+package ma.hrpath.stage2019.erecrute.controller;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;

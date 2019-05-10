@@ -1,6 +1,7 @@
-package ma.hrpath.stage2019.authentification.controller;
+package ma.hrpath.stage2019.erecrute.controller;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.validation.Valid;
@@ -15,23 +16,19 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
-import ma.hrpath.stage2019.authentification.model.Role;
-import ma.hrpath.stage2019.authentification.model.RoleName;
-import ma.hrpath.stage2019.authentification.model.User;
-import ma.hrpath.stage2019.authentification.repository.RoleRepository;
-import ma.hrpath.stage2019.authentification.repository.UserRepository;
-import ma.hrpath.stage2019.authentification.security.jwt.JwtProvider;
-import ma.hrpath.stage2019.authentification.security.service.AccountService;
-import ma.hrpath.stage2019.authentification.security.service.AccountServiceImpl;
 import ma.hrpath.stage2019.erecrute.message.request.LoginForm;
 import ma.hrpath.stage2019.erecrute.message.request.SignUpForm;
 import ma.hrpath.stage2019.erecrute.message.response.JwtResponse;
 import ma.hrpath.stage2019.erecrute.message.response.ResponseMessage;
+import ma.hrpath.stage2019.erecrute.model.User;
+import ma.hrpath.stage2019.erecrute.security.jwt.JwtProvider;
+import ma.hrpath.stage2019.erecrute.security.service.AccountService;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -43,12 +40,6 @@ public class AuthRestAPIs {
 	
 	@Autowired
 	private AccountService accountService;
-	
-	@Autowired
-	UserRepository userRepository;
-
-	@Autowired
-	RoleRepository roleRepository;
 
 	@Autowired
 	PasswordEncoder encoder;
@@ -90,4 +81,6 @@ public class AuthRestAPIs {
 		
 		return new ResponseEntity<>(new ResponseMessage("User registered successfully!"), HttpStatus.OK);
 	}
+	
+	
 }

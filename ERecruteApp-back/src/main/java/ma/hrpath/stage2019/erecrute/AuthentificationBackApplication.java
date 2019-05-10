@@ -1,4 +1,4 @@
-package ma.hrpath.stage2019.authentification;
+package ma.hrpath.stage2019.erecrute;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

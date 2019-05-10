@@ -1,4 +1,4 @@
-package ma.hrpath.stage2019.authentification.security.service;
+package ma.hrpath.stage2019.erecrute.security.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -7,8 +7,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import ma.hrpath.stage2019.authentification.model.User;
-import ma.hrpath.stage2019.authentification.repository.UserRepository;
+import ma.hrpath.stage2019.erecrute.model.User;
+import ma.hrpath.stage2019.erecrute.repository.UserRepository;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {

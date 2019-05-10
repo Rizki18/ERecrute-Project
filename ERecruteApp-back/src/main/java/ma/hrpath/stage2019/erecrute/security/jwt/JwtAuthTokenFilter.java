@@ -1,4 +1,4 @@
-package ma.hrpath.stage2019.authentification.security.jwt;
+package ma.hrpath.stage2019.erecrute.security.jwt;
 
 import java.io.IOException;
 
@@ -16,7 +16,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import ma.hrpath.stage2019.authentification.security.service.UserDetailsServiceImpl;
+import ma.hrpath.stage2019.erecrute.security.service.UserDetailsServiceImpl;
 
 
 public class JwtAuthTokenFilter extends OncePerRequestFilter {

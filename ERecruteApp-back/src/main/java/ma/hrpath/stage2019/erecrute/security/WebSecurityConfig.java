@@ -1,4 +1,4 @@
-package ma.hrpath.stage2019.authentification.security;
+package ma.hrpath.stage2019.erecrute.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -16,8 +16,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
-import ma.hrpath.stage2019.authentification.security.jwt.JwtAuthEntryPoint;
-import ma.hrpath.stage2019.authentification.security.jwt.JwtAuthTokenFilter;
+import ma.hrpath.stage2019.erecrute.security.jwt.JwtAuthEntryPoint;
+import ma.hrpath.stage2019.erecrute.security.jwt.JwtAuthTokenFilter;
 
 
 @Configuration
@@ -60,7 +60,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors().and().csrf().disable().
                 authorizeRequests()
                 .antMatchers("/api/auth/**").permitAll()
-                //.antMatchers(HttpMethod.GET,"/api/test/admin").hasAuthority("ADMIN")
+                .antMatchers(HttpMethod.GET,"/admin/*").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
                 .and()
                 .exceptionHandling().authenticationEntryPoint(unauthorizedHandler).and()

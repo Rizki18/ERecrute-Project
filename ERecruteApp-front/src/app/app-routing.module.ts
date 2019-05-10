@@ -7,6 +7,8 @@ import { HomeComponent } from './home/home.component';
 import { RecruteurComponent } from './recruteur/recruteur.component';
 import { ResponsableComponent } from './responsable/responsable.component';
 import { AdminComponent } from './admin/admin.component';
+import { UtilisateursComponent } from './utilisateurs/utilisateurs.component';
+import { AddUtilisateurComponent } from './add-utilisateur/add-utilisateur.component';
 
 const routes: Routes = [
   {
@@ -32,6 +34,14 @@ const routes: Routes = [
 {
     path: 'signup',
     component: RegisterComponent
+},
+{
+    path: 'utilisateurs',
+    component: UtilisateursComponent
+},
+{
+    path: 'nv-user',
+    component: AddUtilisateurComponent
 },
 {
     path: '',

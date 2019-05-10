@@ -1,4 +1,4 @@
-package ma.hrpath.stage2019.authentification.security.jwt;
+package ma.hrpath.stage2019.erecrute.security.jwt;
 
 import java.io.IOException;
 

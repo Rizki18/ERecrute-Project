@@ -1,4 +1,4 @@
-package ma.hrpath.stage2019.authentification.model;
+package ma.hrpath.stage2019.erecrute.model;
 
 import java.util.HashSet;
 import java.util.Set;

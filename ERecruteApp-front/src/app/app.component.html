@@ -20,11 +20,62 @@
     </ul>
   </div>
 </nav-->
-<div *ngIf="authority === 'admin' || authority === 'responsable'" class="page-container">
-  <router-outlet></router-outlet>
-</div>
-<div *ngIf="!authority" class="login-container">
-    <app-login></app-login>
+<div *ngIf="authority === 'admin' || authority === 'responsable'|| authority === 'recruteur'" class="page-container">
+    <app-sidebar></app-sidebar>
+    <!-- PAGE CONTENT -->
+    <div class="page-content">
+      <!-- START X-NAVIGATION VERTICAL -->
+      <ul class="x-navigation x-navigation-horizontal x-navigation-panel">
+          <!-- TOGGLE NAVIGATION -->
+          <li class="xn-icon-button">
+              <a href="#" class="x-navigation-minimize"><span class="fa fa-dedent"></span></a>
+          </li>
+          <!-- END TOGGLE NAVIGATION -->
+          <!-- SEARCH -->
+          <li class="xn-search">
+              <form role="form">
+                  <input type="text" name="search" placeholder="Search..."/>
+              </form>
+          </li>   
+          <!-- END SEARCH -->
+          <!-- SIGN OUT -->
+          <li class="xn-icon-button pull-right">
+              <a href="#" class="mb-control" data-box="#mb-signout"><span class="fa fa-sign-out"></span></a>                        
+          </li> 
+          <!-- END SIGN OUT -->
+          
+      </ul>
+      <!-- END X-NAVIGATION VERTICAL --> 
+      <router-outlet></router-outlet>
+    </div>            
+    <!-- END PAGE CONTENT -->
+      <!-- MESSAGE BOX-->
+  <div class="message-box animated fadeIn" data-sound="alert" id="mb-signout">
+    <div class="mb-container">
+        <div class="mb-middle">
+            <div class="mb-title"><span class="fa fa-sign-out"></span> Log <strong>Out</strong> ?</div>
+            <div class="mb-content">
+                <p>Êtes-vous sûr de vouloir vous déconnecter?</p>                    
+                <p>Appuyez sur Non si vous souhaitez continuer à travailler. Appuyez sur Oui pour déconnecter l'utilisateur actuel.</p>
+            </div>
+            <div class="mb-footer">
+                <div class="pull-right">
+                    <button class="btn btn-success btn-lg" (click)="logout()">Oui</button>
+                    <button class="btn btn-default btn-lg mb-control-close">Non</button>
+                </div>
+            </div>
+        </div>
+    </div>
   </div>
-
-<!-- END SCRIPTS -->
+  <!-- END MESSAGE BOX-->
+  
+  <!-- START PRELOADS -->
+  <audio id="audio-alert" src="../assets/audio/alert.mp3" preload="auto"></audio>
+  <audio id="audio-fail" src="../assets/audio/fail.mp3" preload="auto"></audio>
+  <!-- END PRELOADS --> 
+  </div>
+  <div *ngIf="!authority" class="login-container">
+      <app-login></app-login>
+    </div>
+  
+  <!-- END SCRIPTS -->

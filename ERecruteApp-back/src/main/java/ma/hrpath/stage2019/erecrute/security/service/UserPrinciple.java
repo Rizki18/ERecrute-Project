@@ -1,8 +1,8 @@
-package ma.hrpath.stage2019.authentification.security.service;
+package ma.hrpath.stage2019.erecrute.security.service;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import ma.hrpath.stage2019.authentification.model.User;
+import ma.hrpath.stage2019.erecrute.model.User;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

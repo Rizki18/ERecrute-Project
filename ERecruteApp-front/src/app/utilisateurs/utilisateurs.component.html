@@ -1,0 +1,75 @@
+ <!-- START BREADCRUMB -->
+ <ul class="breadcrumb push-down-0">
+  <li><a href="#">Accueil</a></li>
+  <li class="active">Utilisateurs</li>
+</ul>
+<!-- END BREADCRUMB -->
+
+<div class="page-title">
+  <h2><span class="fa fa-arrow-circle-o-left"></span> Utilisateurs </h2>
+</div>
+
+<div class="page-content-wrap">
+
+  <div class="row">
+      <div class="col-md-12">
+
+          <!-- START DEFAULT DATATABLE -->
+          <div class="panel panel-default">
+              <div class="panel-heading">
+                  <h3 class="panel-title">Liste des utilisateurs</h3>
+                  <ul class="panel-controls">
+                      <li href="nv-user"><button type="button" class="btn btn-info">Ajouter Utilisateur
+                          </button></li>
+                  </ul>
+              </div>
+              <div class="panel-body">
+                  <table class="table datatable">
+                      <thead>
+                          <tr>
+                              <th>Nom</th>
+                              <th>email</th>
+                              <th>Rôle</th>
+                              <th>Date d'enregistrement</th>
+                              <th>Actions</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr *ngFor="let utilisateur of utilisateurs">
+                              <td>{{utilisateur.name}}</td>
+                              <td>{{utilisateur.email}}</td>
+                              <td >
+                                  <p *ngFor="let role of utilisateur.roles">
+                                      {{role.name}}
+                                  </p>
+                                </td>
+                              <td>date</td>
+                              <td>
+                                  <button class="btn btn-default btn-rounded btn-sm"><span
+                                          class="fa fa-pencil"></span></button>
+                                  <button class="btn btn-danger btn-rounded btn-sm"
+                                  (click)="deleteUser(utilisateur)"><span
+                                          class="fa fa-times"></span></button>
+                                  <button class="btn btn-default"
+                                          mwlConfirmationPopover
+                                          [popoverTitle]="popoverTitle"
+                                          [popoverMessage]="popoverMessage"
+                                          placement="left"
+                                          (confirm)="deleteUser(utilisateur)"
+                                          (cancel)="cancelClicked = true">
+                                          <span class="fa fa-times"></span>
+                                        </button>
+                              </td>
+                          </tr>
+                          
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+          <!-- END DEFAULT DATATABLE -->
+
+      </div>
+  </div>
+
+</div>
+<!-- PAGE CONTENT WRAPPER -->

@@ -1,7 +1,7 @@
-package ma.hrpath.stage2019.authentification.security.jwt;
+package ma.hrpath.stage2019.erecrute.security.jwt;
 
 import io.jsonwebtoken.*;
-import ma.hrpath.stage2019.authentification.security.service.UserPrinciple;
+import ma.hrpath.stage2019.erecrute.security.service.UserPrinciple;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

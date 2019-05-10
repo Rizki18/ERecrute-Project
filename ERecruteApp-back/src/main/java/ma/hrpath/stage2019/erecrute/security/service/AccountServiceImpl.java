@@ -1,6 +1,7 @@
-package ma.hrpath.stage2019.authentification.security.service;
+package ma.hrpath.stage2019.erecrute.security.service;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.transaction.Transactional;
@@ -11,12 +12,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import ma.hrpath.stage2019.authentification.model.Role;
-import ma.hrpath.stage2019.authentification.model.RoleName;
-import ma.hrpath.stage2019.authentification.model.User;
-import ma.hrpath.stage2019.authentification.repository.RoleRepository;
-import ma.hrpath.stage2019.authentification.repository.UserRepository;
 import ma.hrpath.stage2019.erecrute.message.response.ResponseMessage;
+import ma.hrpath.stage2019.erecrute.model.Role;
+import ma.hrpath.stage2019.erecrute.model.RoleName;
+import ma.hrpath.stage2019.erecrute.model.User;
+import ma.hrpath.stage2019.erecrute.repository.RoleRepository;
+import ma.hrpath.stage2019.erecrute.repository.UserRepository;
 
 @Service
 @Transactional
@@ -85,6 +86,16 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public User findUserByUsername(String username) {
 		return userRepository.findByUsername(username);
+	}
+
+	@Override
+	public List<User> retreiveUsers() {
+		return userRepository.findAll();
+	}
+
+	@Override
+	public void deleteUser(Long id) {
+		userRepository.deleteById(id);
 	}
 
 }
