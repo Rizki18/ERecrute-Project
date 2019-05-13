@@ -9,7 +9,10 @@ import { ResponsableComponent } from './responsable/responsable.component';
 import { AdminComponent } from './admin/admin.component';
 import { UtilisateursComponent } from './utilisateurs/utilisateurs.component';
 import { AddUtilisateurComponent } from './add-utilisateur/add-utilisateur.component';
+<<<<<<< HEAD
 import { EditUtilisateurComponent } from './edit-utilisateur/edit-utilisateur.component';
+=======
+>>>>>>> 9329eeca1c67666855b833434876047bfc34fab6
 import { CompetenceComponent } from './competence/competence.component';
 
 const routes: Routes = [

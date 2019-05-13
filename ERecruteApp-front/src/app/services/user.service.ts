@@ -27,6 +27,13 @@ export class Competence{
   ) {}
 }
 
+export class Competence{
+  constructor(
+    public codeCompetance:string,
+    public nomCompetence:string
+  ) {}
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -52,7 +59,11 @@ export class UserService {
   }
 
   updateRessources(url,element) {
+<<<<<<< HEAD
     return this.http.put(this.host+url,element);
+=======
+    return this.http.post(this.host+url,element);
+>>>>>>> 9329eeca1c67666855b833434876047bfc34fab6
   }
 
   public deleteRessources(url)
@@ -72,6 +83,7 @@ export class UserService {
     return this.http.get(this.adminUrl, { responseType: 'text' });
   }
 
+<<<<<<< HEAD
   setter(user:User,roles:Role[]){
     this.user = user;
     this.user.role = [];
@@ -86,6 +98,13 @@ export class UserService {
   }
 
   getter(){
+=======
+  setter(user:User){
+    this.user = user;
+  }
+
+  getter(user:User){
+>>>>>>> 9329eeca1c67666855b833434876047bfc34fab6
     return this.user;
   }
 }

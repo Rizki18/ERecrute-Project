@@ -22,6 +22,7 @@
     <tbody>
         <tr *ngFor="let competence of competences">
             <td>{{competence.codeCompetance}}</td>
+<<<<<<< HEAD
             <td *ngIf="mode==competence.codeCompetance">
             <input required ngModel value={{competence.nomCompetence}} name="nomCompetence" class="form-control" [(ngModel)]="competence.nomCompetence">
             </td>            
@@ -32,6 +33,14 @@
                     <button class="btn btn-danger" (click)="deleteCompetence(competence)"> Delete competence</button> 
                     <button *ngIf="mode!=competence.codeCompetance" class="btn btn-success" (click)="editCompetence(competence)"> Edit competence</button>
                     <button *ngIf="mode==competence.codeCompetance" class="btn btn-success" (click)="updateCompetence(competence)"> Update competence</button>
+=======
+            <td>
+            <input required ngModel value={{competence.nomCompetence}} name="nomCompetence" class="form-control" [(ngModel)]="competence.nomCompetence">
+            </td>            
+            <td>
+                    <button class="btn btn-danger" (click)="deleteCompetence(competence)"> Delete competence</button> 
+                    <button class="btn btn-success" (click)="editCompetence(competence)"> Edit competence</button>
+>>>>>>> 9329eeca1c67666855b833434876047bfc34fab6
             </td>
         </tr>
     </tbody>

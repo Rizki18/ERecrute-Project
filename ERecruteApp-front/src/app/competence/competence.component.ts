@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+<<<<<<< HEAD
 import { Router } from '@angular/router'
 
+=======
+>>>>>>> 9329eeca1c67666855b833434876047bfc34fab6
 import { UserService, Competence } from '../services/user.service';
 
 @Component({
@@ -11,10 +14,16 @@ import { UserService, Competence } from '../services/user.service';
 export class CompetenceComponent implements OnInit {
 
   private competences;
+<<<<<<< HEAD
   mode;
 
   constructor( 
     private service: UserService, private router:Router ){}
+=======
+
+  constructor( 
+    private service: UserService ){}
+>>>>>>> 9329eeca1c67666855b833434876047bfc34fab6
 
   ngOnInit() : void {
     this.getCompetence();
@@ -53,6 +62,7 @@ export class CompetenceComponent implements OnInit {
     this.competence.codeCompetance='';
     
   };
+<<<<<<< HEAD
   
   editCompetence(p): void {
   
@@ -61,13 +71,20 @@ export class CompetenceComponent implements OnInit {
   
   updateCompetence(p): void {
   
+=======
+  editCompetence(p): void {
+    
+>>>>>>> 9329eeca1c67666855b833434876047bfc34fab6
     this.service.createRessources("/admin/saveCompetence",p)
         .subscribe( data => {
           alert("Competence edit successfully.");
           this.getCompetence();
         });
+<<<<<<< HEAD
 
         this.router.navigate(['/edit-user']);
+=======
+>>>>>>> 9329eeca1c67666855b833434876047bfc34fab6
   };
 
 }
