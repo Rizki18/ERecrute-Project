@@ -91,7 +91,7 @@ export class UtilisateursComponent implements OnInit {
       user.password,
       roles);
 
-    this.userService.createRessources("/admin/saveUser",this.userInfo)
+    this.userService.updateRessources("/admin/updateUser/"+user.id,this.userInfo)
         .subscribe( data => {
           console.log(data);
         },

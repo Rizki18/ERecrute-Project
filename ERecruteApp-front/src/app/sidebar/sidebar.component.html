@@ -16,7 +16,19 @@
                 </div>
                 <div class="profile-data">
                     <div class="profile-data-name">{{info.username}}</div>
-                    <div class="profile-data-title">{{authority}}</div>
+                    <div class="profile-data-title">
+                            <ng-multiselect-dropdown
+                            [placeholder]="'Choisir rôle'"
+                            [data]="dropdownList"
+                            name="role"
+                            #role="ngModel"
+                            [(ngModel)]="selectedItems"
+                            [settings]="dropdownSettings"
+                            (onSelect)="onItemSelect($event)"
+                            (onSelectAll)="onSelectAll($event)"
+                          >
+                          </ng-multiselect-dropdown>
+                    </div>
                 </div>
                 <div class="profile-controls">
                     <a href="pages-profile.html" class="profile-control-left"><span class="fa fa-info"></span></a>
