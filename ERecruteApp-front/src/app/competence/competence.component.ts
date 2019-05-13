@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router'
+
 import { UserService, Competence } from '../services/user.service';
 
 @Component({
@@ -9,9 +11,10 @@ import { UserService, Competence } from '../services/user.service';
 export class CompetenceComponent implements OnInit {
 
   private competences;
+  mode;
 
   constructor( 
-    private service: UserService ){}
+    private service: UserService, private router:Router ){}
 
   ngOnInit() : void {
     this.getCompetence();
@@ -50,13 +53,21 @@ export class CompetenceComponent implements OnInit {
     this.competence.codeCompetance='';
     
   };
+  
   editCompetence(p): void {
-    
+  
+    this.mode = p.codeCompetance;
+  };
+  
+  updateCompetence(p): void {
+  
     this.service.createRessources("/admin/saveCompetence",p)
         .subscribe( data => {
           alert("Competence edit successfully.");
           this.getCompetence();
         });
+
+        this.router.navigate(['/edit-user']);
   };
 
 }

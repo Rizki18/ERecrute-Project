@@ -9,6 +9,7 @@ import { ResponsableComponent } from './responsable/responsable.component';
 import { AdminComponent } from './admin/admin.component';
 import { UtilisateursComponent } from './utilisateurs/utilisateurs.component';
 import { AddUtilisateurComponent } from './add-utilisateur/add-utilisateur.component';
+import { EditUtilisateurComponent } from './edit-utilisateur/edit-utilisateur.component';
 import { CompetenceComponent } from './competence/competence.component';
 
 const routes: Routes = [
@@ -43,6 +44,10 @@ const routes: Routes = [
 {
     path: 'nv-user',
     component: AddUtilisateurComponent
+},
+{
+    path: 'edit-user',
+    component: EditUtilisateurComponent
 },
 {
     path: '',

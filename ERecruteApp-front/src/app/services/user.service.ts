@@ -9,7 +9,14 @@ export class User{
     public password:string,
     public name:string,
     public email:string,
-    public roles:string
+    public role:string[]
+  ) {}
+}
+
+export class Role{
+  constructor(
+    public id:string,
+    public name:string
   ) {}
 }
 
@@ -45,7 +52,7 @@ export class UserService {
   }
 
   updateRessources(url,element) {
-    return this.http.post(this.host+url,element);
+    return this.http.put(this.host+url,element);
   }
 
   public deleteRessources(url)
@@ -65,11 +72,20 @@ export class UserService {
     return this.http.get(this.adminUrl, { responseType: 'text' });
   }
 
-  setter(user:User){
+  setter(user:User,roles:Role[]){
     this.user = user;
+    this.user.role = [];
+    for (let element of roles) {
+      if(element.name == "ROLE_ADMIN")
+        user.role.push("admin");
+      else if(element.name == "ROLE_RECRUTEUR")
+        user.role.push("recruteur");
+      else if(element.name == "ROLE_RESPONSABLE")
+        user.role.push("responsable");
+    }
   }
 
-  getter(user:User){
+  getter(){
     return this.user;
   }
 }
