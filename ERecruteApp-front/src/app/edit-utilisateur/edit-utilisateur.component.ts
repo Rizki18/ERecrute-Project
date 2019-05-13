@@ -1,10 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-<<<<<<< HEAD
 import { UserService, User } from '../services/user.service';
 
-=======
->>>>>>> 9329eeca1c67666855b833434876047bfc34fab6
 @Component({
   selector: 'app-edit-utilisateur',
   templateUrl: './edit-utilisateur.component.html',
@@ -12,7 +9,6 @@ import { UserService, User } from '../services/user.service';
 })
 export class EditUtilisateurComponent implements OnInit {
 
-<<<<<<< HEAD
   private user:User;
 
   dropdownList = [];
@@ -52,11 +48,6 @@ export class EditUtilisateurComponent implements OnInit {
       console.log(this.user);
        
     
-=======
-  constructor() { }
-
-  ngOnInit() {
->>>>>>> 9329eeca1c67666855b833434876047bfc34fab6
   }
 
 }

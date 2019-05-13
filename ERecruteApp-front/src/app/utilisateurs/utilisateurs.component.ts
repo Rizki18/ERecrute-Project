@@ -16,7 +16,6 @@ export class UtilisateursComponent implements OnInit {
   private utilisateurs;
   form: any = {};
   userInfo: UserInfo;
-<<<<<<< HEAD
 
   mode;
 
@@ -30,8 +29,6 @@ export class UtilisateursComponent implements OnInit {
   onSelectAll(items: any) {
     console.log(items);
   }
-=======
->>>>>>> 9329eeca1c67666855b833434876047bfc34fab6
 
   constructor(private userService: UserService, private router:Router) { }
 
@@ -56,7 +53,6 @@ export class UtilisateursComponent implements OnInit {
     });
   }
 
-<<<<<<< HEAD
   editUser(user:User,roles): void {
     this.mode = user.id;
     
@@ -104,12 +100,4 @@ export class UtilisateursComponent implements OnInit {
         });
   };
 
-=======
-  editUser(user:User): void {
-    this.userService.setter(user);
-    //this.form.role = user.roles;
-    this.router.navigate(['/nv-user']);
-  }
-
->>>>>>> 9329eeca1c67666855b833434876047bfc34fab6
 }
