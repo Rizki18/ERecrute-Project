@@ -3,6 +3,7 @@ package ma.hrpath.stage2019.erecrute.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -41,14 +42,16 @@ public class CritereRestAPIs {
 	
 	//Competence
 	@RequestMapping(value="/admin/saveCompetence",method = RequestMethod.POST)
+	@PreAuthorize("hasRole('ADMIN')")
 	public Competence saveCompetence(@RequestBody Competence p) {
 		return competenceRepository.save(p);
 	}
 	@RequestMapping(value="/admin/deleteCompetence/{codeCompetance}",method = RequestMethod.DELETE)
+	@PreAuthorize("hasRole('ADMIN')")
 	public void deleteCompetence(@PathVariable("codeCompetance") Long codeCompetance) {
 		competenceRepository.deleteById(codeCompetance);
 	}
-		@RequestMapping(value="/Competence")
+	@RequestMapping(value="/Competence")
 	public List<Competence> listCompetence(){
 		return competenceRepository.findAll();
 	}

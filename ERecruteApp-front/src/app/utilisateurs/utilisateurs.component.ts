@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router'
 import { UserService,User } from '../services/user.service';
+import { UserInfo } from '../add-utilisateur/user-info';
 
 @Component({
   selector: 'app-utilisateurs',
@@ -9,12 +10,14 @@ import { UserService,User } from '../services/user.service';
 })
 export class UtilisateursComponent implements OnInit {
 
-  public popoverTitle: string = 'Popover title';
-  public popoverMessage: string = 'Popover description';
+  public popoverTitle: string = 'Supprimer utilisateur';
+  public popoverMessage: string = 'êtes-vous sûr de vouloire supprimer ce utilisateur';
 
   private utilisateurs;
+  form: any = {};
+  userInfo: UserInfo;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private router:Router) { }
 
   ngOnInit() {
     this.getUtilisateurs();
@@ -34,6 +37,12 @@ export class UtilisateursComponent implements OnInit {
     .subscribe( data => {
       this.utilisateurs = this.utilisateurs.filter(u => u !== user);
     });
+  }
+
+  editUser(user:User): void {
+    this.userService.setter(user);
+    //this.form.role = user.roles;
+    this.router.navigate(['/nv-user']);
   }
 
 }

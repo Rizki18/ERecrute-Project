@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClientService, Competence } from '../services/http-client.service'
+import { UserService, Competence } from '../services/user.service';
+
 @Component({
   selector: 'app-competence',
   templateUrl: './competence.component.html',
@@ -10,7 +11,7 @@ export class CompetenceComponent implements OnInit {
   private competences;
 
   constructor( 
-    private service: HttpClientService ){}
+    private service: UserService ){}
 
   ngOnInit() : void {
     this.getCompetence();

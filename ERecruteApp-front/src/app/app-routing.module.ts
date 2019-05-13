@@ -10,6 +10,7 @@ import { AdminComponent } from './admin/admin.component';
 import { UtilisateursComponent } from './utilisateurs/utilisateurs.component';
 import { AddUtilisateurComponent } from './add-utilisateur/add-utilisateur.component';
 import { CompetenceComponent } from './competence/competence.component';
+
 const routes: Routes = [
   {
     path: 'home',
@@ -32,10 +33,6 @@ const routes: Routes = [
     component: LoginComponent
 },
 {
-    path: 'competence',
-    component:CompetenceComponent
-},
-{
     path: 'signup',
     component: RegisterComponent
 },
@@ -51,6 +48,10 @@ const routes: Routes = [
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
+},
+{
+    path: 'competence',
+    component: CompetenceComponent
 }
 ];
 

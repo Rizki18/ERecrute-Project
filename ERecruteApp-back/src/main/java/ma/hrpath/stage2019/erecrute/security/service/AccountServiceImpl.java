@@ -2,6 +2,7 @@ package ma.hrpath.stage2019.erecrute.security.service;
 
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import javax.transaction.Transactional;
@@ -86,6 +87,11 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public User findUserByUsername(String username) {
 		return userRepository.findByUsername(username);
+	}
+	
+	@Override
+	public Optional<User> findUserById(Long id) {
+		return userRepository.findById(id);
 	}
 
 	@Override
