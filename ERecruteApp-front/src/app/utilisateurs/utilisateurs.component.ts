@@ -82,6 +82,8 @@ export class UtilisateursComponent implements OnInit {
   }
 
   updateUser(user,roles): void {
+    
+    this.mode = -1;
     console.log(user);
     console.log(roles);
     this.userInfo = new UserInfo(

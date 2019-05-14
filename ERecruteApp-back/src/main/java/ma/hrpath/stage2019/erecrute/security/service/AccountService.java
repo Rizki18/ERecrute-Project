@@ -17,4 +17,5 @@ public interface AccountService {
 	public List<User> retreiveUsers();
 	public void deleteUser(Long id);
 	public Optional<User> findUserById(Long id);
+	User updateUser(User user);
 }

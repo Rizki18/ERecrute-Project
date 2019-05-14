@@ -16,13 +16,6 @@ export class SidebarComponent implements OnInit {
   selectedItems = [];
   dropdownSettings = {};
  
-  onItemSelect(item: any) {
-    console.log(item);
-  }
-  onSelectAll(items: any) {
-    console.log(items);
-  }
- 
   constructor(private token: TokenStorageService) { }
  
   ngOnInit() {
@@ -41,20 +34,33 @@ export class SidebarComponent implements OnInit {
     this.info.authorities.every(role => {
       if (role === 'ROLE_ADMIN') {
         this.dropdownList.push("admin");
-        this.selectedItems.push("admin");
+        return true;
+      } else if (role === 'ROLE_RESPONSABLE') {
+        this.dropdownList.push("responsable");
+        return true;
+      }
+      this.dropdownList.push("recruteur");
+      return true;
+    });
+
+    this.info.authorities.every(role => {
+      if (role === 'ROLE_ADMIN') {
+        this.selectedItems = ["admin"];
         this.authority = 'admin';
         return false;
       } else if (role === 'ROLE_RESPONSABLE') {
-        this.dropdownList.push("responsable");
-        this.selectedItems.push("responsable");
+        this.selectedItems = ["responsable"];
         this.authority = 'responsable';
         return false;
       }
-      this.dropdownList.push("recruteur");
-      this.selectedItems.push("recruteur");
+      this.selectedItems = ["recruteur"];
       this.authority = 'recruteur';
       return true;
     });
+  }
+
+  onItemSelect(item: any) {
+    this.authority = item;
   }
 
 }

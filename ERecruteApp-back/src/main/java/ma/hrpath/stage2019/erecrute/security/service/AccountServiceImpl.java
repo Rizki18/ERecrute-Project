@@ -36,6 +36,11 @@ public class AccountServiceImpl implements AccountService {
 		user.setPassword(encoder.encode(user.getPassword()));
 		return userRepository.save(user);
 	}
+	
+	@Override
+	public User updateUser(User user) {
+		return userRepository.save(user);
+	}
 
 	@Override
 	public Role saveRole(Role role) {
