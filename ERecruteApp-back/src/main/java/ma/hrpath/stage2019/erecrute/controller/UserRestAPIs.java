@@ -67,7 +67,7 @@ public class UserRestAPIs {
 		
 		user.setId(id);
 		
-		accountService.saveUser(user);
+		accountService.updateUser(user);
 		System.out.println("*****ROLES: "+signUpRequest.getRole());
 		accountService.addRoleToUser(signUpRequest.getUsername(), signUpRequest.getRole());
     

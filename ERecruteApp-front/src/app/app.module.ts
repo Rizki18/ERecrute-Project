@@ -24,6 +24,7 @@ import { CompetenceComponent } from './competence/competence.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { EditUtilisateurComponent } from './edit-utilisateur/edit-utilisateur.component';
+import { CriteresComponent } from './criteres/criteres.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { EditUtilisateurComponent } from './edit-utilisateur/edit-utilisateur.co
     UtilisateursComponent,
     AddUtilisateurComponent,
     EditUtilisateurComponent,
-    CompetenceComponent
+    CompetenceComponent,
+    CriteresComponent
   ],
   imports: [
     BrowserModule,

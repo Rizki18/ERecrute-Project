@@ -61,13 +61,14 @@ export class CompetenceComponent implements OnInit {
   
   updateCompetence(p): void {
   
+    this.mode = -1;
+
     this.service.createRessources("/admin/saveCompetence",p)
         .subscribe( data => {
-          alert("Competence edit successfully.");
+          //alert("Competence edit successfully.");
           this.getCompetence();
         });
 
-        this.router.navigate(['/edit-user']);
   };
 
 }

@@ -10,7 +10,7 @@ import { AdminComponent } from './admin/admin.component';
 import { UtilisateursComponent } from './utilisateurs/utilisateurs.component';
 import { AddUtilisateurComponent } from './add-utilisateur/add-utilisateur.component';
 import { EditUtilisateurComponent } from './edit-utilisateur/edit-utilisateur.component';
-import { CompetenceComponent } from './competence/competence.component';
+import { CriteresComponent } from './criteres/criteres.component';
 
 const routes: Routes = [
   {
@@ -55,8 +55,8 @@ const routes: Routes = [
     pathMatch: 'full'
 },
 {
-    path: 'competence',
-    component: CompetenceComponent
+    path: 'criteres',
+    component: CriteresComponent
 }
 ];
 
