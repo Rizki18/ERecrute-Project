@@ -1,0 +1,38 @@
+
+<div class="col-md-6"></div>
+<table class="table table-striped">
+    <thead></thead>
+    <tr>
+      <th>code</th>
+      <th>Type Contrat</th>  
+      <th>
+            <form #f="ngForm" (ngSubmit)="createTypeContrat(f.value)">   
+                    <tr>
+                        <td>
+                        <input required ngModel placeholder="Type Contrat" name="libelleContrat" class="form-control" [(ngModel)]="typecontrat.libelleContrat">
+                        </td>
+                        <td>
+                        <button [disabled]="!f.valid" type="submit"  class="btn btn-success" >Create</button>
+                        </td>
+                    </tr>
+            </form>
+      </th>      
+    </tr>
+    
+    <tbody>
+        <tr *ngFor="let contrat of TypeContrat">
+            <td>{{contrat.codeTypeContrat}}</td>
+            <td *ngIf="mode==contrat.codeTypeContrat">
+            <input required ngModel value={{contrat.libelleContrat}} name="libelleContrat" class="form-control" [(ngModel)]="contrat.libelleContrat">
+            </td>            
+            <td *ngIf="mode!=contrat.codeTypeContrat">
+                {{contrat.libelleContrat}}
+            </td>
+            <td>
+                    <button class="btn btn-danger" (click)="deleteTypeContrat(contrat)"> Delete Type Contrat</button> 
+                    <button *ngIf="mode!=contrat.codeTypeContrat" class="btn btn-success" (click)="editTypeContrat(contrat)"> Edit Type Contrat</button>
+                    <button *ngIf="mode==contrat.codeTypeContrat" class="btn btn-success" (click)="updateTypeContrat(contrat)"> Update Type Contrat</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

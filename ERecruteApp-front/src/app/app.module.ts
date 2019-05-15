@@ -27,6 +27,12 @@ import { EditUtilisateurComponent } from './edit-utilisateur/edit-utilisateur.co
 import { CriteresComponent } from './criteres/criteres.component';
 import { CvComponent } from './cv/cv.component';
 import { CvthequeComponent } from './cvtheque/cvtheque.component';
+import { LanguesComponent } from './langues/langues.component';
+import { SecteurActiviteComponent } from './secteur-activite/secteur-activite.component';
+import { SituationFamilialeComponent } from './situation-familiale/situation-familiale.component';
+import { TypeProfilComponent } from './type-profil/type-profil.component';
+import { TypeContratComponent } from './type-contrat/type-contrat.component';
+import { ProfilComponent } from './profil/profil.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +51,12 @@ import { CvthequeComponent } from './cvtheque/cvtheque.component';
     CriteresComponent,
     CvComponent,
     CvthequeComponent
+    LanguesComponent,
+    SecteurActiviteComponent,
+    SituationFamilialeComponent,
+    TypeProfilComponent,
+    TypeContratComponent,
+    ProfilComponent
   ],
   imports: [
     BrowserModule,

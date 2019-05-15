@@ -13,6 +13,7 @@ import { EditUtilisateurComponent } from './edit-utilisateur/edit-utilisateur.co
 import { CriteresComponent } from './criteres/criteres.component';
 import { CvComponent } from './cv/cv.component';
 import { CvthequeComponent } from './cvtheque/cvtheque.component';
+import { ProfilComponent } from './profil/profil.component';
 
 const routes: Routes = [
   {
@@ -67,6 +68,11 @@ const routes: Routes = [
 {
     path: 'cvtheque',
     component: CvthequeComponent
+}
+,
+{
+    path: 'profil',
+    component: ProfilComponent
 }
 ];
 

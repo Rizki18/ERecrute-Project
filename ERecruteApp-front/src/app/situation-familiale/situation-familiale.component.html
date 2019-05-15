@@ -1,0 +1,38 @@
+
+<div class="col-md-6"></div>
+<table class="table table-striped">
+    <thead></thead>
+    <tr>
+      <th>code</th>
+      <th>Situation Familiale</th>  
+      <th>
+            <form #f="ngForm" (ngSubmit)="createSituationFamiliale(f.value)">   
+                    <tr>
+                        <td>
+                        <input required ngModel placeholder="Situation Familiale" name="civilite" class="form-control" [(ngModel)]="situationfamiliale.civilite">
+                        </td>
+                        <td>
+                        <button [disabled]="!f.valid" type="submit"  class="btn btn-success" >Create</button>
+                        </td>
+                    </tr>
+            </form>
+      </th>      
+    </tr>
+    
+    <tbody>
+        <tr *ngFor="let situation of SituationFamiliale">
+            <td>{{situation.codeSituationFamiliale}}</td>
+            <td *ngIf="mode==situation.codeSituationFamiliale">
+            <input required ngModel value={{situation.civilite}} name="civilite" class="form-control" [(ngModel)]="situation.civilite">
+            </td>            
+            <td *ngIf="mode!=situation.codeSituationFamiliale">
+                {{situation.civilite}}
+            </td>
+            <td>
+                    <button class="btn btn-danger" (click)="deleteSituationFamiliale(situation)"> Delete Situation Familiale</button> 
+                    <button *ngIf="mode!=situation.codeSituationFamiliale" class="btn btn-success" (click)="editSituationFamiliale(situation)"> Edit SituationFamiliale</button>
+                    <button *ngIf="mode==situation.codeSituationFamiliale" class="btn btn-success" (click)="updateSituationFamiliale(situation)"> Update SituationFamiliale</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -1,0 +1,38 @@
+
+<div class="col-md-6"></div>
+<table class="table table-striped">
+    <thead></thead>
+    <tr>
+      <th>code</th>
+      <th>Secteur d'activitee</th>  
+      <th>
+            <form #f="ngForm" (ngSubmit)="createSecteurActivite(f.value)">   
+                    <tr>
+                        <td>
+                        <input required ngModel placeholder="Secteur d'activite" name="libelleSecteur" class="form-control" [(ngModel)]="secteuractivite.libelleSecteur">
+                        </td>
+                        <td>
+                        <button [disabled]="!f.valid" type="submit"  class="btn btn-success" >Create</button>
+                        </td>
+                    </tr>
+            </form>
+      </th>      
+    </tr>
+    
+    <tbody>
+        <tr *ngFor="let secteur of SecteurActivite">
+            <td>{{secteur.codeSecteur}}</td>
+            <td *ngIf="mode==secteur.codeSecteur">
+            <input required ngModel value={{secteur.libelleSecteur}} name="langue" class="form-control" [(ngModel)]="secteur.libelleSecteur">
+            </td>            
+            <td *ngIf="mode!=secteur.codeSecteur">
+                {{secteur.libelleSecteur}}
+            </td>
+            <td>
+                    <button class="btn btn-danger" (click)="deleteSecteurActivite(secteur)"> Delete secteur d'activitee</button> 
+                    <button *ngIf="mode!=secteur.codeSecteur" class="btn btn-success" (click)="editSecteurActivite(secteur)"> Edit secteur d'activitee</button>
+                    <button *ngIf="mode==secteur.codeSecteur" class="btn btn-success" (click)="updateSecteurActivite(secteur)"> Update secteur d'activitee</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
