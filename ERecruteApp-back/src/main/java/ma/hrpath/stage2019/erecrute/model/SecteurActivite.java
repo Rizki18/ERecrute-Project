@@ -1,16 +1,22 @@
 package ma.hrpath.stage2019.erecrute.model;
 
 import java.io.Serializable;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class SecteurActivite implements Serializable {
 	@Id @GeneratedValue
 	private Long codeSecteur;
 	private String libelleSecteur;
+	
+	@OneToMany(mappedBy = "sa", cascade = CascadeType.ALL)
+	private Set<CV_SA> m_cvs;
 
 	public SecteurActivite() {
 		super();

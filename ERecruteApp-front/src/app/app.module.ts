@@ -25,6 +25,8 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { EditUtilisateurComponent } from './edit-utilisateur/edit-utilisateur.component';
 import { CriteresComponent } from './criteres/criteres.component';
+import { CvComponent } from './cv/cv.component';
+import { CvthequeComponent } from './cvtheque/cvtheque.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +42,9 @@ import { CriteresComponent } from './criteres/criteres.component';
     AddUtilisateurComponent,
     EditUtilisateurComponent,
     CompetenceComponent,
-    CriteresComponent
+    CriteresComponent,
+    CvComponent,
+    CvthequeComponent
   ],
   imports: [
     BrowserModule,

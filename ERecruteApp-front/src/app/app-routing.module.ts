@@ -11,6 +11,8 @@ import { UtilisateursComponent } from './utilisateurs/utilisateurs.component';
 import { AddUtilisateurComponent } from './add-utilisateur/add-utilisateur.component';
 import { EditUtilisateurComponent } from './edit-utilisateur/edit-utilisateur.component';
 import { CriteresComponent } from './criteres/criteres.component';
+import { CvComponent } from './cv/cv.component';
+import { CvthequeComponent } from './cvtheque/cvtheque.component';
 
 const routes: Routes = [
   {
@@ -57,6 +59,14 @@ const routes: Routes = [
 {
     path: 'criteres',
     component: CriteresComponent
+},
+{
+    path: 'cv',
+    component: CvComponent
+},
+{
+    path: 'cvtheque',
+    component: CvthequeComponent
 }
 ];
 

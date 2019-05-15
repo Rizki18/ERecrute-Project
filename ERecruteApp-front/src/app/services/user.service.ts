@@ -27,6 +27,15 @@ export class Competence{
   ) {}
 }
 
+export class CV{
+  constructor(
+    public codeCV:string,
+    public modele:string,
+    public nomCV:string,
+    public posteDesire:string
+  ) {}
+}
+
 @Injectable({
   providedIn: 'root'
 })

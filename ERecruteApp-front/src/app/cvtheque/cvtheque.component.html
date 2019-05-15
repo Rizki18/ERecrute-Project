@@ -1,0 +1,40 @@
+  
+
+<!-- START BREADCRUMB -->
+<ul class="breadcrumb">
+  <li><a href="#">Accueil</a></li>
+  <li class="active">CVThèque</li>
+
+</ul>
+<!-- END BREADCRUMB -->
+
+<!-- PAGE CONTENT WRAPPER -->
+<div class="page-content-wrap">
+  <div class="row">
+          <div class="col-md-12">
+                  <form class="form-horizontal" #f="ngForm" (ngSubmit)="createCv(f.value)">
+                          <div class="panel panel-colorful">
+                                  <div class="panel-body">
+                                      <h2>Nouveau CV</h2>
+                                      <p>Donnez un nom au cv pour vous y retrouver et indiquez le poste désiré par ce profil.</p>
+                                      <div class="form-group">
+                                          <label class="col-md-3 col-xs-12 control-label">Nom CV</label>
+                                          <div class="col-md-6 col-xs-12">  
+                                             <input required ngModel [(ngModel)]="cv.nomCV" name="nomCV" type="text" class="form-control" placeholder="exemples: Recherche CDI,Entreprise visée..."/>
+                                          </div>
+                                      </div>
+                                      <div class="form-group">
+                                          <label class="col-md-3 col-xs-12 control-label">Poste désiré</label>
+                                          <div class="col-md-6 col-xs-12">
+                                              <input required ngModel [(ngModel)]="cv.posteDesire" name="posteDesire" type="text" class="form-control" placeholder="exemples: Chef de produit ..."/>
+                                          </div>  
+                                      </div>                                
+                                  </div>
+                                  <div class="panel-footer"> 
+                                      <button [disabled]="!f.valid" type="submit" class="btn btn-success pull-right">Créer le CV</button>
+                                  </div>
+                              </div>
+                  </form>
+          </div>
+  </div>
+</div>

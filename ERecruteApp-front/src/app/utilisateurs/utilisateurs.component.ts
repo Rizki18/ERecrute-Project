@@ -38,7 +38,7 @@ export class UtilisateursComponent implements OnInit {
   }
 
   getUtilisateurs() {
-    this.userService.getRessources("/utilisateurs")
+    this.userService.getRessources("/admin/utilisateurs")
     .subscribe(data=>{
       this.utilisateurs = data;
     },err=>{

@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,12 +28,14 @@ public class UserRestAPIs {
 	@Autowired
 	private AccountService accountService;
 	
-	@RequestMapping(value="/utilisateurs")
+	@RequestMapping(value="/admin/utilisateurs")
+	@PreAuthorize("hasRole('ADMIN')")
 	public List<User> listutilisateurs(){
 		return accountService.retreiveUsers();
 	}
 	
 	@RequestMapping(value="/admin/saveUser",method = RequestMethod.POST)
+	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpForm signUpRequest) {
 		String userName = signUpRequest.getUsername();
 		
@@ -55,6 +58,7 @@ public class UserRestAPIs {
 	}
 	
 	@RequestMapping(value="/admin/updateUser/{id}",method = RequestMethod.PUT)
+	@PreAuthorize("hasRole('ADMIN')")
 	public ResponseEntity<Object> updateStudent(@RequestBody SignUpForm signUpRequest, @PathVariable long id) {
     
 		Optional<User> userOptional = accountService.findUserById(id);
@@ -75,6 +79,7 @@ public class UserRestAPIs {
 	}
 	
 	@RequestMapping(value="/admin/deleteUser/{id}",method = RequestMethod.DELETE)
+	@PreAuthorize("hasRole('ADMIN')")
 	public void delete(@PathVariable("id") Long id) {
 		accountService.deleteUser(id);
 	}
