@@ -9,25 +9,25 @@ import javax.persistence.Id;
 @Entity
 public class TypeProfil implements Serializable{
 	@Id @GeneratedValue
-	private Long codeTyprProfil;
+	private Long codeTypeProfil;
 	private String libelleProfil;
 
 	public TypeProfil() {
 		super();
 	}
 
-	public TypeProfil(Long codeTyprProfil, String libelleProfil) {
+	public TypeProfil(Long codeTypeProfil, String libelleProfil) {
 		super();
-		this.codeTyprProfil = codeTyprProfil;
+		this.codeTypeProfil = codeTypeProfil;
 		this.libelleProfil = libelleProfil;
 	}
 
-	public Long getCodeTyprProfil() {
-		return codeTyprProfil;
+	public Long getCodeTypeProfil() {
+		return codeTypeProfil;
 	}
 
-	public void setCodeTyprProfil(Long codeTyprProfil) {
-		this.codeTyprProfil = codeTyprProfil;
+	public void setCodeTypeProfil(Long codeTypeProfil) {
+		this.codeTypeProfil = codeTypeProfil;
 	}
 
 	public String getLibelleProfil() {
@@ -40,7 +40,7 @@ public class TypeProfil implements Serializable{
 
 	@Override
 	public String toString() {
-		return "TypeProfil [codeTyprProfil=" + codeTyprProfil + ", libelleProfil=" + libelleProfil + "]";
+		return "TypeProfil [codeTypeProfil=" + codeTypeProfil + ", libelleProfil=" + libelleProfil + "]";
 	}
 
 	public void finalize() throws Throwable {

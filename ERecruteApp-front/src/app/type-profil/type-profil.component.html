@@ -1,0 +1,38 @@
+
+<div class="col-md-6"></div>
+<table class="table table-striped">
+    <thead></thead>
+    <tr>
+      <th>code</th>
+      <th>Type Profil</th>  
+      <th>
+            <form #f="ngForm" (ngSubmit)="createTypeProfil(f.value)">   
+                    <tr>
+                        <td>
+                        <input required ngModel placeholder="Type Profil" name="libelleProfil" class="form-control" [(ngModel)]="typeprofil.libelleProfil">
+                        </td>
+                        <td>
+                        <button [disabled]="!f.valid" type="submit"  class="btn btn-success" >Create</button>
+                        </td>
+                    </tr>
+            </form>
+      </th>      
+    </tr>
+    
+    <tbody>
+        <tr *ngFor="let profil of TypeProfil">
+            <td>{profil.codeTypeProfil}}</td>
+            <td *ngIf="mode==profil.codeTypeProfil">
+            <input required ngModel value={{profil.libelleProfil}} name="libelleProfil" class="form-control" [(ngModel)]="profil.libelleProfil">
+            </td>            
+            <td *ngIf="mode!=profil.codeTypeProfil">
+                {{profil.libelleProfil}}
+            </td>
+            <td>
+                    <button class="btn btn-danger" (click)="deleteTypeProfil(profil)"> Delete Type Profil</button> 
+                    <button *ngIf="mode!=profil.codeTypeProfil" class="btn btn-success" (click)="editTypeProfil(profil)"> Edit Type Profil</button>
+                    <button *ngIf="mode==profil.codeTypeProfil" class="btn btn-success" (click)="updateTypeProfil(profil)"> Update Type Profil</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

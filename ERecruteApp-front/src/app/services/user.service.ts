@@ -26,7 +26,36 @@ export class Competence{
     public nomCompetence:string
   ) {}
 }
-
+export class Langues{
+  constructor(
+    public codeLangue:string,
+    public langue:string
+  ) {}
+}
+export class SecteurActivite{
+  constructor(
+    public codeSecteur:string,
+    public libelleSecteur:string
+  ) {}
+}
+export class SituationFamiliale{
+  constructor(
+    public codeSituationFamiliale:string,
+    public civilite:string
+  ) {}
+}
+export class TypeProfil{
+  constructor(
+    public codeTypeProfil:string,
+    public libelleProfil:string
+  ) {}
+}
+export class TypeContrat{
+  constructor(
+    public codeTypeContrat:string,
+    public libelleContrat:string
+  ) {}
+}
 @Injectable({
   providedIn: 'root'
 })

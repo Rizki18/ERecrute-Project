@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import ma.hrpath.stage2019.erecrute.model.Competence;
+import ma.hrpath.stage2019.erecrute.model.Langues;
 import ma.hrpath.stage2019.erecrute.model.SecteurActivite;
 import ma.hrpath.stage2019.erecrute.model.SituationFamiliale;
 import ma.hrpath.stage2019.erecrute.model.TypeContrat;
@@ -46,14 +47,29 @@ public class CritereRestAPIs {
 	public List<Competence> listCompetence(){
 		return CritereService.retreiveCompetence();
 	}
-
+	
+	//Langues
+	@RequestMapping(value="/admin/saveLangues",method = RequestMethod.POST)
+	@PreAuthorize("hasRole('ADMIN')")
+	public Langues saveLangues(@RequestBody Langues p) {
+		return CritereService.saveLangues(p);
+	}
+	@RequestMapping(value="/admin/deleteLangues/{codeLAngues}",method = RequestMethod.DELETE)
+	@PreAuthorize("hasRole('ADMIN')")
+	public void deleteLangues(@PathVariable("codeLangues") Long codeLangue) {
+		CritereService.deleteLangues(codeLangue);
+	}
+	@RequestMapping(value="/Langues")
+	public List<Langues> listLangues(){
+		return CritereService.retreiveLangues();
+	}
 	
 	//SecteurActivite
 	@RequestMapping(value="/admin/saveSecteur",method = RequestMethod.POST)
 	public SecteurActivite saveSecteurActivite(@RequestBody SecteurActivite p) {
 		return CritereService.saveSecteurActivite(p);
 	}
-	@RequestMapping(value="/admin/Secteur/{codeSecteur}",method = RequestMethod.DELETE)
+	@RequestMapping(value="/admin/deleteSecteur/{codeSecteur}",method = RequestMethod.DELETE)
 	public void deleteSecteur(@PathVariable("codeSecteur") Long id) {
 		CritereService.deleteSecteurActivite(id);
 	}
@@ -66,7 +82,7 @@ public class CritereRestAPIs {
 	public SituationFamiliale saveSituationFamiliale(@RequestBody SituationFamiliale p) {
 		return CritereService.saveSituationFamiliale(p);
 	}
-	@RequestMapping(value="/admin/SituationFamiliale/{id}",method = RequestMethod.DELETE)
+	@RequestMapping(value="/admin/deleteSituationFamiliale/{id}",method = RequestMethod.DELETE)
 	public void deleteSituationFamiliale(@PathVariable("id") Long id) {
 		CritereService.deleteSituationFamiliale(id);
 	}
@@ -79,7 +95,7 @@ public class CritereRestAPIs {
 	public TypeContrat saveTypeContrat(@RequestBody TypeContrat p) {
 		return CritereService.saveTypeContrat(p);
 	}
-	@RequestMapping(value="/admin/TypeContrat/{id}",method = RequestMethod.DELETE)
+	@RequestMapping(value="/admin/deleteTypeContrat/{id}",method = RequestMethod.DELETE)
 	public void deleteTypeContrat(@PathVariable("id") Long id) {
 		CritereService.deleteTypeContrat(id);
 	}
@@ -92,7 +108,7 @@ public class CritereRestAPIs {
 	public TypeProfil saveTypeProfil(@RequestBody TypeProfil p) {
 		return CritereService.saveTypeProfil(p);
 	}
-	@RequestMapping(value="/admin/TypeProfil/{id}",method = RequestMethod.DELETE)
+	@RequestMapping(value="/admin/deleteTypeProfil/{id}",method = RequestMethod.DELETE)
 	public void deleteTypeProfil(@PathVariable("id") Long id) {
 		CritereService.deleteTypeProfil(id);
 	}

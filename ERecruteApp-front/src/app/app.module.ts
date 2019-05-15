@@ -25,6 +25,11 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { EditUtilisateurComponent } from './edit-utilisateur/edit-utilisateur.component';
 import { CriteresComponent } from './criteres/criteres.component';
+import { LanguesComponent } from './langues/langues.component';
+import { SecteurActiviteComponent } from './secteur-activite/secteur-activite.component';
+import { SituationFamilialeComponent } from './situation-familiale/situation-familiale.component';
+import { TypeProfilComponent } from './type-profil/type-profil.component';
+import { TypeContratComponent } from './type-contrat/type-contrat.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +45,12 @@ import { CriteresComponent } from './criteres/criteres.component';
     AddUtilisateurComponent,
     EditUtilisateurComponent,
     CompetenceComponent,
-    CriteresComponent
+    CriteresComponent,
+    LanguesComponent,
+    SecteurActiviteComponent,
+    SituationFamilialeComponent,
+    TypeProfilComponent,
+    TypeContratComponent
   ],
   imports: [
     BrowserModule,
