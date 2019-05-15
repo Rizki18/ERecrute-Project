@@ -23,10 +23,10 @@
         <tr *ngFor="let contrat of TypeContrat">
             <td>{{contrat.codeTypeContrat}}</td>
             <td *ngIf="mode==contrat.codeTypeContrat">
-            <input required ngModel value={{contrat.libelleContart}} name="langue" class="form-control" [(ngModel)]="contrat.libelleContart">
+            <input required ngModel value={{contrat.libelleContrat}} name="libelleContrat" class="form-control" [(ngModel)]="contrat.libelleContrat">
             </td>            
             <td *ngIf="mode!=contrat.codeTypeContrat">
-                {{contrat.libelleContart}}
+                {{contrat.libelleContrat}}
             </td>
             <td>
                     <button class="btn btn-danger" (click)="deleteTypeContrat(contrat)"> Delete Type Contrat</button> 

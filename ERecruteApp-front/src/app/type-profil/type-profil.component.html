@@ -21,7 +21,7 @@
     
     <tbody>
         <tr *ngFor="let profil of TypeProfil">
-            <td>{profil.codeTypeProfil}}</td>
+            <td>{{profil.codeTypeProfil}}</td>
             <td *ngIf="mode==profil.codeTypeProfil">
             <input required ngModel value={{profil.libelleProfil}} name="libelleProfil" class="form-control" [(ngModel)]="profil.libelleProfil">
             </td>            
@@ -34,5 +34,5 @@
                     <button *ngIf="mode==profil.codeTypeProfil" class="btn btn-success" (click)="updateTypeProfil(profil)"> Update Type Profil</button>
             </td>
         </tr>
-    </tbody>
+   </tbody>
 </table>

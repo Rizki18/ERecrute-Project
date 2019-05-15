@@ -8,6 +8,7 @@ import { UserService, TypeProfil } from '../services/user.service';
   styleUrls: ['./type-profil.component.css']
 })
 export class TypeProfilComponent implements OnInit {
+
   private TypeProfil;
   mode;
 
@@ -35,7 +36,7 @@ export class TypeProfilComponent implements OnInit {
       this.TypeProfil = this.TypeProfil.filter(u => u !== typeprofil);
     });
   }
-  typeprofil: TypeProfil = new TypeProfil("","");
+  typeprofil: TypeProfilComponent["TypeProfil"] = new TypeProfil("","");
   
   
   createTypeProfil(p): void {
@@ -57,7 +58,7 @@ export class TypeProfilComponent implements OnInit {
     this.mode = p.codeTypeProfil;
   };
   
-  updateTypeProfilt(p): void {
+  updateTypeProfil(p): void {
   
     this.mode = -1;
 

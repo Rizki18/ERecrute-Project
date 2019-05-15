@@ -23,7 +23,7 @@
         <tr *ngFor="let situation of SituationFamiliale">
             <td>{{situation.codeSituationFamiliale}}</td>
             <td *ngIf="mode==situation.codeSituationFamiliale">
-            <input required ngModel value={{situation.civilite}} name="langue" class="form-control" [(ngModel)]="situation.civilite">
+            <input required ngModel value={{situation.civilite}} name="civilite" class="form-control" [(ngModel)]="situation.civilite">
             </td>            
             <td *ngIf="mode!=situation.codeSituationFamiliale">
                 {{situation.civilite}}
