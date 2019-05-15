@@ -50,7 +50,7 @@ import { ProfilComponent } from './profil/profil.component';
     CompetenceComponent,
     CriteresComponent,
     CvComponent,
-    CvthequeComponent
+    CvthequeComponent,
     LanguesComponent,
     SecteurActiviteComponent,
     SituationFamilialeComponent,
