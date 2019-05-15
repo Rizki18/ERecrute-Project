@@ -11,6 +11,7 @@ import { UtilisateursComponent } from './utilisateurs/utilisateurs.component';
 import { AddUtilisateurComponent } from './add-utilisateur/add-utilisateur.component';
 import { EditUtilisateurComponent } from './edit-utilisateur/edit-utilisateur.component';
 import { CriteresComponent } from './criteres/criteres.component';
+import { ProfilComponent } from './profil/profil.component';
 
 const routes: Routes = [
   {
@@ -57,6 +58,10 @@ const routes: Routes = [
 {
     path: 'criteres',
     component: CriteresComponent
+},
+{
+    path: 'profil',
+    component: ProfilComponent
 }
 ];
 

@@ -30,6 +30,7 @@ import { SecteurActiviteComponent } from './secteur-activite/secteur-activite.co
 import { SituationFamilialeComponent } from './situation-familiale/situation-familiale.component';
 import { TypeProfilComponent } from './type-profil/type-profil.component';
 import { TypeContratComponent } from './type-contrat/type-contrat.component';
+import { ProfilComponent } from './profil/profil.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { TypeContratComponent } from './type-contrat/type-contrat.component';
     SecteurActiviteComponent,
     SituationFamilialeComponent,
     TypeProfilComponent,
-    TypeContratComponent
+    TypeContratComponent,
+    ProfilComponent
   ],
   imports: [
     BrowserModule,
