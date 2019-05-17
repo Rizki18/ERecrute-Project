@@ -24,6 +24,7 @@ public class ProfilServiceImpl implements ProfilService {
 	public Profil saveProfil(Profil Profil) {
 		return ProfilRepository.save(Profil);
 	}
+	
 	@Override
 	public Profil updateProfil(Profil Profil) {
 		return ProfilRepository.save(Profil);
@@ -38,6 +39,10 @@ public class ProfilServiceImpl implements ProfilService {
 	@Override
 	public Optional<Profil> findProfilById(long Profil) {
 		return ProfilRepository.findById(Profil) ;
+	}
+	@Override
+	public Profil findProfilByMaxId() {
+		return ProfilRepository.MaxID();
 	}
 	@Override
 	public boolean findProfilByCIN(String Profil) {
@@ -55,7 +60,6 @@ public class ProfilServiceImpl implements ProfilService {
 	public Formation saveFormation(Formation Formation) {
 		return FormationRepository.save(Formation);
 	}
-
 	@Override
 	public void deleteFormation(long Formation) {
 		FormationRepository.deleteById(Formation);

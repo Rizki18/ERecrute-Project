@@ -66,6 +66,38 @@ export class TypeContrat{
     public libelleContrat:string
   ) {}
 }
+export class Profil{
+  constructor(
+   public  codeProfil:string,
+   public  adresse:string,
+	 public  cimr:string,
+	 public  cin:string,
+	 public  civilite:string,
+	 public  cnss:string,
+   public  dateNaissance:string,
+	 public  email:string,
+	 public  nom:string,
+	 public  permisConduite:string,
+	 public  photo:string,
+	 public  prenom:string,
+	 public  rib:string,
+	 public  tel:string
+  ){
+    
+  }
+}
+export class Formation{
+  constructor(
+  public  id_formation:string,
+  public  dateDebut:string,
+	public  dateFin:string,
+	public  details:string,
+	public  etablissement:string,
+	public  intitule:string,
+	public  lieu:string,
+  public  codeProfil:string
+  ){}
+}
 @Injectable({
   providedIn: 'root'
 })
