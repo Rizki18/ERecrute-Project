@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router'
+import { UserService, Profil, Formation } from '../services/user.service';
+import { Profile } from 'selenium-webdriver/firefox';
 
 @Component({
   selector: 'app-profil',
@@ -7,9 +10,77 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfilComponent implements OnInit {
 
-  constructor() { }
+  private Profil ;
+  private Formation;
 
-  ngOnInit() {
+  constructor( 
+    private service: UserService, private router:Router ){}
+    
+  ngOnInit() : void {
+      
+    }
+  
+  profil: ProfilComponent["Profil"] = new Profil("","","","","","","","","","","","","","");
+  
+  createProfil(p): void {
+    this.service.createRessources("/admin/saveProfil",p)
+        .subscribe( data => {
+          alert("Profil added successfully.");
+        }); 
+  };
+  createProfilFormation(p)
+  {
+    this.service.createRessources("/admin/saveProfil",p)
+        .subscribe( data => {
+          alert("Profil  added successfully.");
+          this.createFormation(p);
+        });
+  };
+  formation: ProfilComponent["Formation"] = new Formation("","","","","","","","");
+  
+  createFormation(p): void {
+      this.service.createRessources("/admin/saveFormation",p)
+        .subscribe( data => {
+          alert("formation added successfully.");
+         // this.getFormation();
+        });
+    
+  };
+ /* 
+    getProfil() {
+    this.service.getRessources("/Profil")
+    .subscribe(data=>{
+      this.Profil = data;
+    },err=>{
+      console.log(err);
+    });
+  }  
+  deleteProfil(profil:Profil): void {
+  
+    console.log("/admin/deleteProfil/"+ profil.codeProfil);
+    this.service.deleteRessources("/admin/deleteProfil/"+ profil.codeProfil)
+    .subscribe( data => {
+      this.Profil = this.Profil.filter(u => u !== profil);
+    });
   }
+  editProfil(p): void {
+  
+    this.mode = p.codeProfil;
+  };
+  
+  updateProfil(p): void {
+  
+    this.mode = -1;
+
+    this.service.createRessources("/admin/saveProfil",p)
+        .subscribe( data => {
+          //alert("Profil edit successfully.");
+          this.getProfil();
+        });
+
+  };
+  */
 
 }
+
+

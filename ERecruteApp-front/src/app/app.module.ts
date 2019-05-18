@@ -34,6 +34,7 @@ import { SituationFamilialeComponent } from './situation-familiale/situation-fam
 import { TypeProfilComponent } from './type-profil/type-profil.component';
 import { TypeContratComponent } from './type-contrat/type-contrat.component';
 import { ProfilComponent } from './profil/profil.component';
+import { AddProfilComponent } from './add-profil/add-profil.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { ProfilComponent } from './profil/profil.component';
     SituationFamilialeComponent,
     TypeProfilComponent,
     TypeContratComponent,
-    ProfilComponent
+    ProfilComponent,
+    AddProfilComponent
   ],
   imports: [
     BrowserModule,
