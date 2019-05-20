@@ -32,16 +32,23 @@ public class ProfilRestAPIs {
 	@Autowired
 	private ProfilService profilService;
 	
-	@RequestMapping(value="/profils")
+	@RequestMapping(value="/profil")
 	public List<Profil> listProfils(){
 		return profilService.retreiveProfil();
 	}
-			
+	
 	@RequestMapping(value="/admin/saveProfil",method = RequestMethod.POST)
 	@PreAuthorize("hasRole('ADMIN')")
 	public Profil saveProfil(@RequestBody Profil p) {
 		return profilService.saveProfil(p);	}
 	
+	@RequestMapping(value="/admin/saveProfilFormation",method = RequestMethod.POST)
+	@PreAuthorize("hasRole('ADMIN')")
+	public void saveProfilFormation(@RequestBody Profil p,@RequestBody Formation f) {
+		profilService.saveProfil(p);
+		f.setProfil(profilService.findProfilByMaxId());
+		profilService.saveFormation(f);
+	}
 	
 	@RequestMapping(value="/admin/deleteProfil/{id}",method = RequestMethod.DELETE)
 	public void deleteProfile(@PathVariable("id") Long id) {
@@ -56,7 +63,9 @@ public class ProfilRestAPIs {
 	@RequestMapping(value="/admin/saveFormation",method = RequestMethod.POST)
 	@PreAuthorize("hasRole('ADMIN')")
 	public Formation saveFomation(@RequestBody Formation p) {
-		return profilService.saveFormation(p);	}
+		p.setProfil(profilService.findProfilByMaxId());
+		return profilService.saveFormation(p);
+	}
 	/*
 	@RequestMapping(value="/admin/updateFormation/{id}",method = RequestMethod.PUT)
 	public ResponseEntity<Object> updateStudent(@RequestBody SignUpForm signUpRequest, @PathVariable long id) {

@@ -14,6 +14,7 @@ import { CriteresComponent } from './criteres/criteres.component';
 import { CvComponent } from './cv/cv.component';
 import { CvthequeComponent } from './cvtheque/cvtheque.component';
 import { ProfilComponent } from './profil/profil.component';
+import { AddProfilComponent } from './add-profil/add-profil.component';
 
 const routes: Routes = [
   {
@@ -60,6 +61,10 @@ const routes: Routes = [
 {
     path: 'criteres',
     component: CriteresComponent
+},
+{
+    path: 'addProfil',
+    component: AddProfilComponent
 },
 {
     path: 'cv',

@@ -5,6 +5,7 @@ import java.sql.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -12,7 +13,7 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Formation implements Serializable {
 
-	@Id @GeneratedValue
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id_formation;
 	private Date dateDebut;
 	private Date dateFin;
@@ -37,6 +38,30 @@ public class Formation implements Serializable {
 		this.etablissement = etablissement;
 		this.intitule = intitule;
 		this.lieu = lieu;
+	}
+
+	public Formation(Long id_formation, Date dateDebut, Date dateFin, String details, String etablissement,
+			String intitule, String lieu, ma.hrpath.stage2019.erecrute.model.Profil profil) {
+		super();
+		this.id_formation = id_formation;
+		this.dateDebut = dateDebut;
+		this.dateFin = dateFin;
+		this.details = details;
+		this.etablissement = etablissement;
+		this.intitule = intitule;
+		this.lieu = lieu;
+		Profil = profil;
+	}
+
+	public Profil getProfil() {
+		return Profil;
+	}
+
+	public void setProfil(Profil profil) {
+		Profil = profil;
+	}
+	public void setIdProfil(long codeProfil) {
+		Profil.setCodeProfil(codeProfil); 
 	}
 
 	public Date getDateDebut() {
