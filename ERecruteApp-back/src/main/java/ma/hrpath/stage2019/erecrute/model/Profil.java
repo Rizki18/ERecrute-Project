@@ -38,6 +38,8 @@ public class Profil implements Serializable  {
 	private String tel;
 	@OneToMany(mappedBy = "Profil", cascade = CascadeType.ALL)
     private Set<Formation> m_Formation;
+	@OneToMany(mappedBy = "Profil", cascade = CascadeType.ALL)
+    private Set<CV> m_CV;
 
 
 	public Profil ()
@@ -186,6 +188,12 @@ public class Profil implements Serializable  {
 	}
 
 
+	public Set<CV> getM_CV() {
+		return m_CV;
+	}
+	public void setM_CV(Set<CV> m_CV) {
+		this.m_CV = m_CV;
+	}
 	@Override
 	public String toString() {
 		return "Profil [codeProfil=" + codeProfil + ", adresse=" + adresse + ", cimr=" + cimr + ", cin=" + cin

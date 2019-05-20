@@ -32,7 +32,8 @@ export class CV{
     public codeCV:string,
     public modele:string,
     public nomCV:string,
-    public posteDesire:string
+    public posteDesire:string,
+    public profil:string
   ) {}
 }
 

@@ -9,11 +9,14 @@ import { Router } from '@angular/router'
 })
 export class CvthequeComponent implements OnInit {
 
-  cv:CV = new CV("","","","");
+  private cvs;
+  cv:CV = new CV("","","","","");
+  mode = -1;
 
   constructor(private service: UserService, private router:Router) { }
 
   ngOnInit() {
+    this.getCVs();
   }
 
   createCv(cv): void {
@@ -21,8 +24,9 @@ export class CvthequeComponent implements OnInit {
     
     this.service.createRessources("/admin/saveCv",cv)
         .subscribe( data => {
+          
           alert("CV added successfully.");
-          this.router.navigate(['/cv']);
+          //this.router.navigate(['/cv/'+cv.codeCV]);
           //this.getCompetence();
         });
 
@@ -31,5 +35,18 @@ export class CvthequeComponent implements OnInit {
     this.cv.posteDesire ='';
     
   };
+
+  addCV(){
+    this.mode = 1;
+  }
+
+  getCVs() {
+    this.service.getRessources("/cvs")
+    .subscribe(data=>{
+      this.cvs = data;
+    },err=>{
+      console.log(err);
+    })
+  }
 
 }

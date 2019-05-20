@@ -6,6 +6,7 @@ import java.util.Optional;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import ma.hrpath.stage2019.erecrute.repository.ProfilRepository;
 import ma.hrpath.stage2019.erecrute.repository.FormationRepository;
@@ -37,8 +38,9 @@ public class ProfilServiceImpl implements ProfilService {
 	}
 
 	@Override
-	public Optional<Profil> findProfilById(long Profil) {
-		return ProfilRepository.findById(Profil) ;
+	public Profil findProfilById(long Profil) {
+		Profil profil = ProfilRepository.findById(Profil).orElse(null); ;
+		return profil;
 	}
 	@Override
 	public Profil findProfilByMaxId() {

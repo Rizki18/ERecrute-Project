@@ -1,14 +1,14 @@
-var site_settings = '<div class="ts-button">'
+/*var site_settings = '<div class="ts-button">'
         +'<span class="fa fa-cogs fa-spin"></span>'
     +'</div>'
     +'<div class="ts-body">'
-	    +'<div class="ts-title">Themes</div>'
+        +'<div class="ts-title">Themes</div>'
         +'<div class="ts-themes">'
-            +'<a href="#" class="active" data-theme="assets/css/theme-default.css"><img src="assets/img/themes/default.jpg"/></a>'            
-            +'<a href="#" data-theme="assets/css/theme-brown.css"><img src="assets/img/themes/brown.jpg"/></a>'
-            +'<a href="#" data-theme="assets/css/theme-blue.css"><img src="assets/img/themes/blue.jpg"/></a>'                        
-            +'<a href="#" data-theme="assets/css/theme-white.css"><img src="assets/img/themes/light.jpg"/></a>'            
-            +'<a href="#" data-theme="assets/css/theme-black.css"><img src="assets/img/themes/black.jpg"/></a>'
+          +'<a href="#" class="active" data-theme="assets/css/theme-default.css"><img src="assets/img/themes/default.jpg"/></a>'            
+          +'<a href="#" data-theme="assets/css/theme-brown.css"><img src="assets/img/themes/brown.jpg"/></a>'
+          +'<a href="#" data-theme="assets/css/theme-blue.css"><img src="assets/img/themes/blue.jpg"/></a>'                        
+          +'<a href="#" data-theme="assets/css/theme-white.css"><img src="assets/img/themes/light.jpg"/></a>'            
+          +'<a href="#" data-theme="assets/css/theme-black.css"><img src="assets/img/themes/black.jpg"/></a>'
         +'</div>'
 		+'<div class="ts-title">Layout</div>'
         +'<div class="ts-row">'
@@ -44,7 +44,7 @@ var settings_block = document.createElement('div');
     settings_block.className = "theme-settings";
     settings_block.innerHTML = site_settings;
     document.body.appendChild(settings_block);
-
+*/
 $(document).ready(function(){
 
     /* Default settings */

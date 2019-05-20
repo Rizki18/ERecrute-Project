@@ -16,22 +16,20 @@
         <div class="pull-right">
             <button class="btn btn-default content-frame-left-toggle"><span class="fa fa-bars"></span></button>
         </div>
-        <input type="button" value="Télécharger CV" (click)="captureScreen()"/>
+        <input type="button" class="pull-right btn btn-info" value="Télécharger CV" (click)="captureScreen()"/>
    
-        <div class="pull-right" style="width: 100px; margin-right: 5px;">
-            
-
-            <select class="form-control select">
-                <option>défault</option>
-                <option>Work</option>
-                <option>Home</option>
-                <option>Friends</option>
-                <option>Closed</option>
-            </select>
+        <div class="pull-right" style="width: 200px; margin-right: 5px;">
+                <div class="ts-themes">
+                    <a href="#" class="active" data-theme="assets/css/theme-default.css" style="margin-right: 5px;"><img src="assets/img/themes/default.jpg"/></a>            
+                    <a href="#" data-theme="assets/css/theme-brown.css" style="margin-right: 5px;"><img src="assets/img/themes/brown.jpg"/></a>
+                    <a href="#" data-theme="assets/css/theme-blue.css" style="margin-right: 5px;"><img src="assets/img/themes/blue.jpg"/></a>                       
+                    <a href="#" data-theme="assets/css/theme-white.css" style="margin-right: 5px;"><img src="assets/img/themes/light.jpg"/></a>            
+                    <a href="#" data-theme="assets/css/theme-black.css" style="margin-right: 5px;"><img src="assets/img/themes/black.jpg"/></a>
+                </div>
         </div>
 
     </div>
-    <div id="impression" class="content-frame-left">
+    <div class="content-frame-left">
         <div class="form-group">
             <h4>Ajouter nouveau block:</h4>
             <textarea class="form-control push-down-10" id="new_task" rows="4"
@@ -286,7 +284,7 @@
 <!-- END CONTENT FRAME -->
 
 <!-- MODALS -->
-<div id="impression" class="modal fade" id="taskEdit" tabindex="-1" role="dialog" aria-labelledby="taskEditModalHead"
+<div class="modal fade" id="taskEdit" tabindex="-1" role="dialog" aria-labelledby="taskEditModalHead"
     aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
