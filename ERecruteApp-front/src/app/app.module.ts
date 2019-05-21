@@ -23,7 +23,6 @@ import { CompetenceComponent } from './competence/competence.component';
 
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
-
 import { EditUtilisateurComponent } from './edit-utilisateur/edit-utilisateur.component';
 import { CriteresComponent } from './criteres/criteres.component';
 import { CvComponent } from './cv/cv.component';
@@ -69,7 +68,7 @@ import { AddProfilComponent } from './add-profil/add-profil.component';
     NgMultiSelectDropDownModule.forRoot(),
     ConfirmationPopoverModule.forRoot({
       confirmButtonType: 'danger' // set defaults here
-    }),
+    })
   ],
   providers: [httpInterceptorProviders],
   bootstrap: [AppComponent]
