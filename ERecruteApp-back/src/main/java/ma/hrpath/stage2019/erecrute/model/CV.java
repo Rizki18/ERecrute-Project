@@ -14,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class CV implements Serializable{
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,6 +25,7 @@ public class CV implements Serializable{
 	private String posteDesire;
 	@ManyToOne
     @JoinColumn(name = "Profil")
+	@JsonIgnore
     private Profil Profil;
 	
 	//private Profil m_Profil;

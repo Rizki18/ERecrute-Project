@@ -29,10 +29,11 @@ public class CVThequeRestAPIs {
 	
 	@RequestMapping(value="/admin/saveCv",method = RequestMethod.POST)
 	public CV saveCv(@RequestBody CvForm cv) {
-		//System.out.println(cv);
+		System.out.println(cv);
 		CV newCV = new CV(cv.getModele(),cv.getNomCV(),cv.getPosteDesire());
 		Profil profil = profilService.findProfilById(Long.valueOf(cv.getProfil()));
 		newCV.setProfil(profil);
+		System.out.println(newCV);
 		return cvThequeService.saveCV(newCV);
 	}
 	

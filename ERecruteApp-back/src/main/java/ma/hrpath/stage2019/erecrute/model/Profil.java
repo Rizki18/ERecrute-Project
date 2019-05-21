@@ -14,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 
@@ -37,8 +39,10 @@ public class Profil implements Serializable  {
 	private String rib;
 	private String tel;
 	@OneToMany(mappedBy = "Profil", cascade = CascadeType.ALL)
+	@JsonIgnore
     private Set<Formation> m_Formation;
 	@OneToMany(mappedBy = "Profil", cascade = CascadeType.ALL)
+	@JsonIgnore
     private Set<CV> m_CV;
 
 
