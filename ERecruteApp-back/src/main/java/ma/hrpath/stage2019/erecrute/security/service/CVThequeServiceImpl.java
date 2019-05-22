@@ -1,5 +1,8 @@
 package ma.hrpath.stage2019.erecrute.security.service;
 
+import java.util.List;
+import java.util.Optional;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +23,18 @@ public class CVThequeServiceImpl implements CVThequeService{
 		cv.setModele("default");
 		System.out.println(cv);
 		return cvRepository.save(cv);
+	}
+
+	@Override
+	public List<CV> retreiveCVs() {
+		// TODO Auto-generated method stub
+		return cvRepository.findAll();
+	}
+	
+	@Override
+	public Optional<CV> retreiveCvById(Long id) {
+		// TODO Auto-generated method stub
+		return cvRepository.findById(id);
 	}
 
 }

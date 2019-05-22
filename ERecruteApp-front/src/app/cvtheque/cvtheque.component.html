@@ -1,40 +1,120 @@
-  
-
 <!-- START BREADCRUMB -->
 <ul class="breadcrumb">
-  <li><a href="#">Accueil</a></li>
-  <li class="active">CVThèque</li>
+    <li><a href="#">Accueil</a></li>
+    <li class="active">CVThèque</li>
 
 </ul>
 <!-- END BREADCRUMB -->
 
 <!-- PAGE CONTENT WRAPPER -->
 <div class="page-content-wrap">
-  <div class="row">
-          <div class="col-md-12">
-                  <form class="form-horizontal" #f="ngForm" (ngSubmit)="createCv(f.value)">
-                          <div class="panel panel-colorful">
-                                  <div class="panel-body">
-                                      <h2>Nouveau CV</h2>
-                                      <p>Donnez un nom au cv pour vous y retrouver et indiquez le poste désiré par ce profil.</p>
-                                      <div class="form-group">
-                                          <label class="col-md-3 col-xs-12 control-label">Nom CV</label>
-                                          <div class="col-md-6 col-xs-12">  
-                                             <input required ngModel [(ngModel)]="cv.nomCV" name="nomCV" type="text" class="form-control" placeholder="exemples: Recherche CDI,Entreprise visée..."/>
-                                          </div>
-                                      </div>
-                                      <div class="form-group">
-                                          <label class="col-md-3 col-xs-12 control-label">Poste désiré</label>
-                                          <div class="col-md-6 col-xs-12">
-                                              <input required ngModel [(ngModel)]="cv.posteDesire" name="posteDesire" type="text" class="form-control" placeholder="exemples: Chef de produit ..."/>
-                                          </div>  
-                                      </div>                                
-                                  </div>
-                                  <div class="panel-footer"> 
-                                      <button [disabled]="!f.valid" type="submit" class="btn btn-success pull-right">Créer le CV</button>
-                                  </div>
-                              </div>
-                  </form>
-          </div>
-  </div>
+    
+
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <p>Use search to find contacts. You can search by: name, address, phone. Or use the advanced search.
+                    </p>
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <span class="fa fa-search"></span>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="Who are you looking for?" />
+                                    <div class="input-group-btn">
+                                        <button class="btn btn-primary">Search</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <button class="btn btn-success btn-block" (click)="addCV()"><span class="fa fa-plus"></span> Nouveau CV</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row" *ngIf="mode==1">
+        <div class="col-md-12">
+            <form class="form-horizontal" #f="ngForm" (ngSubmit)="createCv(f.value)">
+                <div class="panel panel-colorful">
+                    <div class="panel-body">
+                        <h2>Nouveau CV</h2>
+                        <p>Donnez un nom au cv pour vous y retrouver et indiquez le poste désiré par ce profil.</p>
+                        <div class="form-group">
+                            <label class="col-md-3 col-xs-12 control-label">Nom CV</label>
+                            <div class="col-md-6 col-xs-12">
+                                <input required ngModel [(ngModel)]="cv.nomCV" name="nomCV" type="text"
+                                    class="form-control" placeholder="exemples: Recherche CDI,Entreprise visée..." />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 col-xs-12 control-label">Poste désiré</label>
+                            <div class="col-md-6 col-xs-12">
+                                <input required ngModel [(ngModel)]="cv.posteDesire" name="posteDesire" type="text"
+                                    class="form-control" placeholder="exemples: Chef de produit ..." />
+                                <input ngModel [(ngModel)]="cv.profil" name="profil" type="text"
+                                    value="1" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <button [disabled]="!f.valid" type="submit" class="btn btn-success pull-right">Créer le
+                            CV</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3" *ngFor="let cv of cvs">
+            <!-- CONTACT ITEM -->
+            <div class="panel panel-default" >
+           
+                    <div class="panel-body profile">
+                        <div class="profile-image">
+                            <img src="assets/assets/images/users/no-image.jpg" alt="Samuel Leroy Jackson" />
+                        </div>
+                        <div class="profile-data">
+                            <div class="profile-data-name">{{cv.nomCV}}</div>
+                            <div class="profile-data-title">{{cv.posteDesire}}</div>
+                        </div>
+                        <div class="profile-controls">
+                            <a [routerLink]="['/cv', cv.codeCV]" class="profile-control-left"><span
+                                    class="fa fa-pencil"></span></a>
+                            <a href="#" class="profile-control-right"><span class="fa fa-times"></span></a>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        <div class="contact-info">
+                            <p><small>Créé par : </small><br />Recruteur</p>
+                            <p><small>Date de création : </small><br />jj/mm/aaaa</p>
+                        </div>
+                    </div>
+             
+            </div>
+            <!-- END CONTACT ITEM -->
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="pagination pagination-sm pull-right push-down-10 push-up-10">
+                <li class="disabled"><a href="#">«</a></li>
+                <li class="active"><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">»</a></li>
+            </ul>
+        </div>
+    </div>
+
 </div>

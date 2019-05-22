@@ -67,7 +67,7 @@ const routes: Routes = [
     component: AddProfilComponent
 },
 {
-    path: 'cv',
+    path: 'cv/:id',
     component: CvComponent
 },
 {
