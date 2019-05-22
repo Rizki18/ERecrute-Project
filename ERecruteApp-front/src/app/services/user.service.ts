@@ -104,11 +104,11 @@ export class Formation{
 export class UserService {
   private user:User;
 
-  private userUrl = 'http://localhost:8080/api/test/recruteur';
-  private pmUrl = 'http://localhost:8080/api/test/responsable';
-  private adminUrl = 'http://localhost:8080/api/test/admin';
+  private userUrl = 'http://localhost:8081/api/test/recruteur';
+  private pmUrl = 'http://localhost:8081/api/test/responsable';
+  private adminUrl = 'http://localhost:8081/api/test/admin';
 
-  public host:string = "http://localhost:8080"
+  public host:string = "http://localhost:8081"
 
   constructor( private http:HttpClient) { }
 
