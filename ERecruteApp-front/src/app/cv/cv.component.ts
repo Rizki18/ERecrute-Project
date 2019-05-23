@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -8,10 +9,40 @@ import { UserService } from '../services/user.service';
 })
 export class CvComponent implements OnInit {
 
-  constructor( private service: UserService) { }
+  profil;
+  cv;
+
+  constructor( private service: UserService, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.route.params.subscribe(params => {
+
+      this.getCV("/cv/"+params['id']);
+      //this.getProfil("/cv/"+params['id']+"/profil");
+
+    });
   }
+
+  getCV(url) {
+    this.service.getRessources(url)
+    .subscribe(data=>{
+      this.cv = data;
+      console.log(this.cv);
+    },err=>{
+      console.log(err);
+    })
+  }
+/*
+  getProfil(url) {
+    this.service.getRessources(url)
+    .subscribe(data=>{
+      this.profil = data;
+    },err=>{
+      console.log(err);
+    })
+  }
+*/
+
 
   
 
