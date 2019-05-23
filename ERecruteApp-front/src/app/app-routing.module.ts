@@ -71,7 +71,7 @@ const routes: Routes = [
     component: CvComponent
 },
 {
-    path: 'cvtheque',
+    path: 'cvtheque/:id',
     component: CvthequeComponent
 }
 ,

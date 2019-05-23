@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router'
 import { UserService, CV } from '../services/user.service';
-import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-cvtheque',
@@ -13,10 +13,14 @@ export class CvthequeComponent implements OnInit {
   cv:CV = new CV("","","","","");
   mode = -1;
 
-  constructor(private service: UserService, private router:Router) { }
+  constructor(private service: UserService, private route:ActivatedRoute) { }
 
   ngOnInit() {
-    this.getCVs();
+    this.route.params.subscribe(params => {
+      console.log(params['id']) //log the value of id
+      this.getCVsProfil(params['id']);
+    });
+    
   }
 
   createCv(cv): void {
@@ -40,8 +44,9 @@ export class CvthequeComponent implements OnInit {
     this.mode = 1;
   }
 
-  getCVs() {
-    this.service.getRessources("/cvs")
+  getCVsProfil(id) {
+    
+    this.service.getRessources("/profil/"+id+"/cvs")
     .subscribe(data=>{
       this.cvs = data;
     },err=>{

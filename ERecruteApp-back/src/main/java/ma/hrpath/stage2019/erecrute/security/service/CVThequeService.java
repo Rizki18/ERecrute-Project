@@ -10,5 +10,7 @@ public interface CVThequeService {
 
 	public List<CV> retreiveCVs();
 
-	Optional<CV> retreiveCvById(Long id);
+	CV retreiveCvById(Long id);
+
+	public List<CV> retreiveCVsProfil(Long id);
 }
