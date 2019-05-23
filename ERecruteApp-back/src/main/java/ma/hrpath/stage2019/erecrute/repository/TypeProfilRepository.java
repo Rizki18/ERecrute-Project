@@ -6,4 +6,5 @@ import ma.hrpath.stage2019.erecrute.model.TypeProfil;
 
 public interface TypeProfilRepository extends JpaRepository<TypeProfil,Long>{
 
+	TypeProfil findBylibelleProfil(String name);
 }

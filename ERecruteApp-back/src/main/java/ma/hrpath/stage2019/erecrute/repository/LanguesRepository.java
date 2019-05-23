@@ -6,5 +6,7 @@ import ma.hrpath.stage2019.erecrute.model.Langues;
 
 
 public interface LanguesRepository extends JpaRepository<Langues, Long>{
+	Langues findBylangue(String langue);
+	
 
 }

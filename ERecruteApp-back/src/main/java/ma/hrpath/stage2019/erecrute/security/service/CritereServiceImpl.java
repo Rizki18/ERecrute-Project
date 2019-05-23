@@ -1,5 +1,6 @@
 package ma.hrpath.stage2019.erecrute.security.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -53,8 +54,24 @@ public class CritereServiceImpl implements CritereService {
 		return false;
 	}
 	@Override
+	public Langues findLanguesByNAme(String name) {
+		return languesRepository.findBylangue(name);
+			
+	}
+	@Override
 	public List<Langues> retreiveLangues() {
 		return languesRepository.findAll();
+	}
+	
+	@Override
+	public List<String> retreiveLanguesName() {
+		List<Langues> comp= languesRepository.findAll();
+		List<String> l = new ArrayList();
+		for(Langues c : comp)
+		{
+			l.add(c.getLangue());
+		}
+		return l;
 	}
 	
     /**Compétances**/
@@ -73,11 +90,28 @@ public class CritereServiceImpl implements CritereService {
 		return competenceRepository.findAll();
 	}
 	@Override
+	public List<String> retreiveCompetenceName() {
+		
+		List<Competence> comp= competenceRepository.findAll();
+		List<String> l = new ArrayList();
+		for(Competence c : comp)
+		{
+			l.add(c.getNomCompetence());
+		}
+		return l;
+	}
+	@Override
 	public boolean findCompetenceById(long competence) {
 		if(competenceRepository.findById(competence) != null)
 			return true;
 		return false;
 	}
+	@Override
+	public Competence findCompetenceByNAme(String name)
+	{
+		return competenceRepository.findBynomCompetence(name);
+	}
+	
 	/**SecteurActivite**/
 	@Override
 	public void deleteSecteurActivite(long SA) {
@@ -98,7 +132,22 @@ public class CritereServiceImpl implements CritereService {
 	public List<SecteurActivite> retreiveSecteurActivite() {
 		return secteurActiviteRepository.findAll();
 	}
-
+	@Override
+	public SecteurActivite findSecteurActiviteByNAme(String name)
+	{
+		return secteurActiviteRepository.findBylibelleSecteur(name);
+	}
+	
+	@Override
+	public List<String> retreiveSecteurActiviteName() {
+		List<SecteurActivite> comp= secteurActiviteRepository.findAll();
+		List<String> l = new ArrayList();
+		for(SecteurActivite c : comp)
+		{
+			l.add(c.getLibelleSecteur());
+		}
+		return l;
+	}
 	/**SituationFamiliale**/
 	@Override
 	public SituationFamiliale saveSituationFamiliale(SituationFamiliale SF) {
@@ -119,8 +168,23 @@ public class CritereServiceImpl implements CritereService {
 	public List<SituationFamiliale> retreiveSituationFamiliale() {
 		return situationFamilialeRepository.findAll();
 	}
+	@Override
+	public SituationFamiliale findSituationFamilialeByNAme(String name)
+	{
+		return situationFamilialeRepository.findBycivilite(name);
+	}
 	
-
+	@Override
+	public List<String> retreiveSituationFamilialeName() {
+		List<SituationFamiliale> comp= situationFamilialeRepository.findAll();
+		List<String> l = new ArrayList();
+		for(SituationFamiliale c : comp)
+		{
+			l.add(c.getCivilite());
+		}
+		return l;
+	}
+	
 	/**TypeContrat**/
 	@Override
 	public TypeContrat saveTypeContrat(TypeContrat TC) {
@@ -145,6 +209,22 @@ public class CritereServiceImpl implements CritereService {
 		return typeContratRepository.findAll();
 	}
 
+	@Override
+	public TypeContrat findTypeContratByNAme(String name)
+	{
+		return typeContratRepository.findBylibelleContrat(name);
+	}
+	
+	@Override
+	public List<String> retreiveTypeContratName() {
+		List<TypeContrat> comp= typeContratRepository.findAll();
+		List<String> l = new ArrayList();
+		for(TypeContrat c : comp)
+		{
+			l.add(c.getLibelleContrat());
+		}
+		return l;
+	}
 	/**TypeProfil**/
 	@Override
 	public TypeProfil saveTypeProfil(TypeProfil TP) {
@@ -164,6 +244,22 @@ public class CritereServiceImpl implements CritereService {
 	@Override
 	public List<TypeProfil> retreiveTypeProfil() {
 		return typeProfilRepository.findAll();
+	}
+	@Override
+	public TypeProfil findTypeProfilByNAme(String name)
+	{
+		return typeProfilRepository.findBylibelleProfil(name);
+	}
+	
+	@Override
+	public List<String> retreiveTypeProfilName() {
+		List<TypeProfil> comp= typeProfilRepository.findAll();
+		List<String> l = new ArrayList();
+		for(TypeProfil c : comp)
+		{
+			l.add(c.getLibelleProfil());
+		}
+		return l;
 	}
 
 }

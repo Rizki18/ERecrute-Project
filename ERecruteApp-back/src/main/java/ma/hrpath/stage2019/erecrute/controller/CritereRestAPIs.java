@@ -47,7 +47,15 @@ public class CritereRestAPIs {
 	public List<Competence> listCompetence(){
 		return CritereService.retreiveCompetence();
 	}
-	
+	@RequestMapping(value="/CompetenceName")
+	public List<String> listCompetenceName(){
+		return CritereService.retreiveCompetenceName();
+	}
+
+	@RequestMapping(value="/CompetenceByName")
+	public Competence CompetenceName(@PathVariable("nomCompetence") String name){
+		return CritereService.findCompetenceByNAme(name);
+	}
 	//Langues
 	@RequestMapping(value="/admin/saveLangues",method = RequestMethod.POST)
 	@PreAuthorize("hasRole('ADMIN')")
@@ -63,7 +71,15 @@ public class CritereRestAPIs {
 	public List<Langues> listLangues(){
 		return CritereService.retreiveLangues();
 	}
-	
+	@RequestMapping(value="/LangueName")
+	public List<String> listLangueName(){
+		return CritereService.retreiveLanguesName();
+	}
+
+	@RequestMapping(value="/LangueByName")
+	public Langues LangueName(@PathVariable("langue") String name){
+		return CritereService.findLanguesByNAme(name);
+	}
 	//SecteurActivite
 	@RequestMapping(value="/admin/saveSecteur",method = RequestMethod.POST)
 	public SecteurActivite saveSecteurActivite(@RequestBody SecteurActivite p) {
@@ -76,6 +92,15 @@ public class CritereRestAPIs {
 		@RequestMapping(value="/Secteur")
 	public List<SecteurActivite> listSecteurActivite(){
 		return CritereService.retreiveSecteurActivite();
+	}
+	@RequestMapping(value="/SecteurName")
+	public List<String> listSecteurName(){
+		return CritereService.retreiveSecteurActiviteName();
+	}
+
+	@RequestMapping(value="/SecteurByName")
+	public SecteurActivite SecteurName(@PathVariable("libelleSecteur") String name){
+		return CritereService.findSecteurActiviteByNAme(name);
 	}
 	//SituationFamiliale
 	@RequestMapping(value="/admin/saveSituationFamiliale",method = RequestMethod.POST)
@@ -90,6 +115,15 @@ public class CritereRestAPIs {
 	public List<SituationFamiliale> listSituationFamiliale(){
 		return CritereService.retreiveSituationFamiliale();
 	}
+	@RequestMapping(value="/SituationFamilialeName")
+	public List<String> listSituationFamilialeName(){
+		return CritereService.retreiveSituationFamilialeName();
+	}
+
+	@RequestMapping(value="/SituationFamilialeByName")
+	public SituationFamiliale SituationFamilialeName(@PathVariable("civilite") String name){
+		return CritereService.findSituationFamilialeByNAme(name);
+	}
 	//TypeContrat
 	@RequestMapping(value="/admin/saveTypeContrat",method = RequestMethod.POST)
 	public TypeContrat saveTypeContrat(@RequestBody TypeContrat p) {
@@ -103,6 +137,15 @@ public class CritereRestAPIs {
 	public List<TypeContrat> listTypeContrat(){
 		return CritereService.retreiveTypeContrat();
 	}
+	@RequestMapping(value="/TypeContratName")
+	public List<String> listTypeContratName(){
+		return CritereService.retreiveTypeContratName();
+	}
+
+	@RequestMapping(value="/TypeContratByName")
+	public TypeContrat TypeContratName(@PathVariable("libelleContrat") String name){
+		return CritereService.findTypeContratByNAme(name);
+	}
 	//TypeProfil
 	@RequestMapping(value="/admin/saveTypeProfil",method = RequestMethod.POST)
 	public TypeProfil saveTypeProfil(@RequestBody TypeProfil p) {
@@ -115,5 +158,14 @@ public class CritereRestAPIs {
 	@RequestMapping(value="/TypeProfil")
 	public List<TypeProfil> listTypeProfil(){
 		return CritereService.retreiveTypeProfil();
+	}
+	@RequestMapping(value="/TypeProfilName")
+	public List<String> listTypeProfilName(){
+		return CritereService.retreiveTypeProfilName();
+	}
+
+	@RequestMapping(value="/TypeProfilByName")
+	public TypeProfil TypeProfilName(@PathVariable("libelleProfil") String name){
+		return CritereService.findTypeProfilByNAme(name);
 	}
 }	

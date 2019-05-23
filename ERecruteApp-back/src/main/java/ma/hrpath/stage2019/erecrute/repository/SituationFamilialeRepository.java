@@ -6,4 +6,5 @@ import ma.hrpath.stage2019.erecrute.model.SituationFamiliale;
 
 public interface SituationFamilialeRepository extends JpaRepository<SituationFamiliale,Long> {
 
+	SituationFamiliale findBycivilite(String name);
 }

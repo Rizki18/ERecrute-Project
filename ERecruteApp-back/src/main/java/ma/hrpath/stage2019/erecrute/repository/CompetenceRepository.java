@@ -6,4 +6,5 @@ import ma.hrpath.stage2019.erecrute.model.Competence;
 
 public interface CompetenceRepository extends JpaRepository<Competence,Long> {
 
+	Competence findBynomCompetence(String nom);
 }
