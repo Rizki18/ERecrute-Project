@@ -17,7 +17,7 @@ export class ProfilComponent implements OnInit {
     private service: UserService, private router:Router ){}
     
   ngOnInit() : void {
-      
+      this.getProfil();
     }
   
   profil: ProfilComponent["Profil"] = new Profil("","","","","","","","","","","","","","");
@@ -46,15 +46,17 @@ export class ProfilComponent implements OnInit {
         });
     
   };
- /* 
+ 
     getProfil() {
-    this.service.getRessources("/Profil")
+    this.service.getRessources("/profil")
     .subscribe(data=>{
       this.Profil = data;
+      alert("test");
     },err=>{
       console.log(err);
     });
   }  
+  /*
   deleteProfil(profil:Profil): void {
   
     console.log("/admin/deleteProfil/"+ profil.codeProfil);
