@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ma.hrpath.stage2019.erecrute.message.request.SignUpForm;
 import ma.hrpath.stage2019.erecrute.message.response.ResponseMessage;
+import ma.hrpath.stage2019.erecrute.model.CV;
 import ma.hrpath.stage2019.erecrute.model.Competence;
 import ma.hrpath.stage2019.erecrute.model.Formation;
 import ma.hrpath.stage2019.erecrute.model.Profil;
@@ -58,6 +59,11 @@ public class ProfilRestAPIs {
 	@RequestMapping(value="/formation")
 	public List<Formation> listFormation(){
 		return profilService.retreiveFormation();
+	}
+	
+	@RequestMapping(value="/profil/{id}/formations")
+	public List<Formation> listFormations(@PathVariable("id") Long id){
+		return profilService.retreiveFormationsProfil(id);
 	}
 		
 	@RequestMapping(value="/admin/saveFormation",method = RequestMethod.POST)

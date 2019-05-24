@@ -184,22 +184,14 @@
                             </ul>
                         </div>
                         <div class="panel-body">
-                            <div class="task-warning">
+                            <div class="task-warning" *ngFor="let formation of formations">
                                 <div class="task-header">
-                                    <div class="pull-left">2015</div>
+                                    <div class="pull-left">De {{formation.dateDebut}} à {{formation.dateFin}}</div>
                                 </div>
-                                <div class="task-text">In mauris nunc, blandit a turpis in, vehicula viverra metus.
-                                    Quisque dictum purus lorem, in rhoncus justo dapibus eget. Aenean pretium non mauris
-                                    et porttitor.</div>
-
-                            </div>
-                            <div class="task-warning">
-                                <div class="task-header">
-                                    <div class="pull-left">Depuis 2015</div>
+                                <div class="task-text">
+                                    {{formation.intitule}} / {{formation.etablissement}}, {{formation.lieu}}
+                                    {{formation.details}}
                                 </div>
-                                <div class="task-text">In mauris nunc, blandit a turpis in, vehicula viverra metus.
-                                    Quisque dictum purus lorem, in rhoncus justo dapibus eget. Aenean pretium non mauris
-                                    et porttitor.</div>
 
                             </div>
                         </div>
@@ -210,8 +202,7 @@
                             <ul class="panel-controls">
                                 <li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li>
                                 <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span
-                                            class="fa fa-cog"></span></a>
+                                    <button id="Mbtn">modal</button>
                                     <ul class="dropdown-menu">
                                         <li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span>
                                                 Collapse</a></li>
@@ -307,7 +298,7 @@
 <!-- END CONTENT FRAME -->
 
 <!-- MODALS -->
-<div class="modal fade" id="taskEdit" tabindex="-1" role="dialog" aria-labelledby="taskEditModalHead"
+<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="taskEditModalHead"
     aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -338,3 +329,41 @@
     </div>
 </div>
 <!-- END MODALS -->
+
+<div id="Modal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <p>Some text in the Modal..</p>
+        </div>
+      
+      </div>
+
+<script>
+    // Get the modal
+var modal = document.getElementById("Modal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("Mbtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>

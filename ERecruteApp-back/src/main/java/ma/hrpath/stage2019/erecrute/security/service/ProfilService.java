@@ -19,4 +19,5 @@ public interface ProfilService {
 	public List<Formation> retreiveFormation();
 	public Profil updateProfil(Profil Profil);
 	public Profil findProfilByMaxId();
+	public List<Formation> retreiveFormationsProfil(Long id);
 }

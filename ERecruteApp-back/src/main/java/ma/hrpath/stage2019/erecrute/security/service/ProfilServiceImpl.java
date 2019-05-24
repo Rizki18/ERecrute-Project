@@ -80,4 +80,10 @@ public class ProfilServiceImpl implements ProfilService {
 		return FormationRepository.findAll();
 	}
 
+	@Override
+	public List<Formation> retreiveFormationsProfil(Long id) {
+		// TODO Auto-generated method stub
+		return FormationRepository.findByProfil(id);
+	}
+
 }

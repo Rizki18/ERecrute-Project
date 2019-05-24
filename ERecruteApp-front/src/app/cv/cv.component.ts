@@ -11,6 +11,7 @@ export class CvComponent implements OnInit {
 
   profil;
   cv;
+  formations;
 
   constructor( private service: UserService, private route: ActivatedRoute) { }
 
@@ -18,7 +19,7 @@ export class CvComponent implements OnInit {
     this.route.params.subscribe(params => {
 
       this.getCV("/cv/"+params['id']);
-      //this.getProfil("/cv/"+params['id']+"/profil");
+      this.getFormations("/profil/"+1+"/formations");
 
     });
   }
@@ -32,16 +33,17 @@ export class CvComponent implements OnInit {
       console.log(err);
     })
   }
-/*
-  getProfil(url) {
+
+  getFormations(url) {
     this.service.getRessources(url)
     .subscribe(data=>{
-      this.profil = data;
+      this.formations = data;
+      console.log(this.formations);
     },err=>{
       console.log(err);
     })
   }
-*/
+
 
 
   
