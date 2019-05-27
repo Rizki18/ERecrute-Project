@@ -12,18 +12,21 @@ export class CvthequeComponent implements OnInit {
   private cvs;
   cv:CV = new CV("","","","","");
   mode = -1;
+  codeProfil;
 
   constructor(private service: UserService, private route:ActivatedRoute) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       console.log(params['id']) //log the value of id
+      this.codeProfil = params['id'];
       this.getCVsProfil(params['id']);
     });
     
   }
 
   createCv(cv): void {
+    cv.profil = this.codeProfil;
     console.log(cv);
     
     this.service.createRessources("/admin/saveCv",cv)

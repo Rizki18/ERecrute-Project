@@ -29,9 +29,8 @@ public class Formation implements Serializable {
 		super();
 	}
 
-	public Formation(Long id,Date dateDebut, Date dateFin, String details, String etablissement, String intitule, String lieu) {
+	public Formation(Date dateDebut, Date dateFin, String details, String etablissement, String intitule, String lieu) {
 		super();
-		this.id_formation=id;
 		this.dateDebut = dateDebut;
 		this.dateFin = dateFin;
 		this.details = details;

@@ -1,16 +1,20 @@
 package ma.hrpath.stage2019.erecrute.model;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
@@ -28,10 +32,16 @@ public class CV implements Serializable{
 	@JsonIgnore
     private Profil Profil;
 	
-	//private Profil m_Profil;
-	
 	@OneToMany(mappedBy = "cv", cascade = CascadeType.ALL)
+	@JsonIgnore
 	private Set<CV_SA> m_secteurActivites;
+	
+	@ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "cv_exps", 
+    	joinColumns = @JoinColumn(name = "cv_id"), 
+    	inverseJoinColumns = @JoinColumn(name = "exp_id"))
+	@JsonIgnore
+	private Set<Experience> exps = new HashSet<>();
 	
 	public CV() {
 		super();
@@ -93,20 +103,27 @@ public class CV implements Serializable{
 		this.m_secteurActivites = m_secteurActivites;
 	}
 
-	public Set<CV_SA> getSecteurActivites() {
-		return m_secteurActivites;
-	}
-
 	public void setSecteurActivites(CV_SA ... secteurActivites) {
 		for(CV_SA secteurActivite : secteurActivites) secteurActivite.setCv(this);
         this.m_secteurActivites = Stream.of(secteurActivites).collect(Collectors.toSet());
 	}
 
+	public Set<Experience> getExps() {
+		return exps;
+	}
+
+	public void setExps(Set<Experience> exps) {
+		this.exps = exps;
+	}
+	
+	public void addExp(Experience exp) {
+		this.exps.add(exp);
+	}
 
 	@Override
 	public String toString() {
 		return "CV [codeCV=" + codeCV + ", modele=" + modele + ", nomCV=" + nomCV + ", posteDesire=" + posteDesire
-				+ "]";
+				+ ", Profil=" + Profil + ", m_secteurActivites=" + m_secteurActivites + ", exps=" + exps + "]";
 	}
 
 	public void finalize() throws Throwable {

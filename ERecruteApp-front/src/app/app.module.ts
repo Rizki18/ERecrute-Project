@@ -21,6 +21,7 @@ import { AddUtilisateurComponent } from './add-utilisateur/add-utilisateur.compo
 
 import { CompetenceComponent } from './competence/competence.component';
 
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { EditUtilisateurComponent } from './edit-utilisateur/edit-utilisateur.component';
@@ -65,6 +66,7 @@ import { AddProfilComponent } from './add-profil/add-profil.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    NgbModule,
     NgMultiSelectDropDownModule.forRoot(),
     ConfirmationPopoverModule.forRoot({
       confirmButtonType: 'danger' // set defaults here

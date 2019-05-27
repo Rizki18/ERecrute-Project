@@ -6,12 +6,13 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
 public class SecteurActivite implements Serializable {
-	@Id @GeneratedValue
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codeSecteur;
 	private String libelleSecteur;
 	
@@ -22,9 +23,8 @@ public class SecteurActivite implements Serializable {
 		super();
 	}
 
-	public SecteurActivite(Long codeSecteur, String libelleSecteur) {
+	public SecteurActivite(String libelleSecteur) {
 		super();
-		this.codeSecteur = codeSecteur;
 		this.libelleSecteur = libelleSecteur;
 	}
 

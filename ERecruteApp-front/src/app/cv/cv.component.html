@@ -169,22 +169,17 @@
                         <div class="panel-heading">
                             <h3 class="panel-title">Diplômes et Formations</h3>
                             <ul class="panel-controls">
-                                <li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span
-                                            class="fa fa-cog"></span></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span>
-                                                Collapse</a></li>
-                                        <li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span>
-                                                Refresh</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#" class="panel-remove"><span class="fa fa-times"></span></a></li>
+                                <li><a><button class="btn btn-success btn-block" (click)="addFormation()" data-toggle="modal"
+                                            data-target="#ModalFormation"><span class="fa fa-plus"></span></button></a></li>
+                                <li><a href="#" class="panel-fullscreen"><button class="btn btn-primary btn-block"><span
+                                                class="fa fa-expand"></span></button></a></li>
+
+                                <li><a href="#" class="panel-remove"><button class="btn btn-danger btn-block"><span
+                                                class="fa fa-times"></span></button></a></li>
                             </ul>
                         </div>
                         <div class="panel-body">
-                            <div class="task-warning" *ngFor="let formation of formations">
+                            <div class="task-warning" *ngFor="let formation of selectedFormations">
                                 <div class="task-header">
                                     <div class="pull-left">De {{formation.dateDebut}} à {{formation.dateFin}}</div>
                                 </div>
@@ -200,36 +195,23 @@
                         <div class="panel-heading">
                             <h3 class="panel-title">Expériences professionnelles</h3>
                             <ul class="panel-controls">
-                                <li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li>
-                                <li class="dropdown">
-                                    <button id="Mbtn">modal</button>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span>
-                                                Collapse</a></li>
-                                        <li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span>
-                                                Refresh</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#" class="panel-remove"><span class="fa fa-times"></span></a></li>
+                                <li><a><button class="btn btn-success btn-block" (click)="addExp()" data-toggle="modal"
+                                            data-target="#myModal"><span class="fa fa-plus"></span></button></a></li>
+                                <li><a href="#" class="panel-fullscreen"><button class="btn btn-primary btn-block"><span
+                                                class="fa fa-expand"></span></button></a></li>
+
+                                <li><a href="#" class="panel-remove"><button class="btn btn-danger btn-block"><span
+                                                class="fa fa-times"></span></button></a></li>
                             </ul>
                         </div>
                         <div class="panel-body">
-                            <div class="task-warning">
+                            <div class="task-warning" *ngFor="let exp of experiences">
                                 <div class="task-header">
-                                    <div class="pull-left">2015</div>
+                                    <div class="pull-left">De {{exp.dateDebut}} à {{exp.dateFin}}</div>
                                 </div>
-                                <div class="task-text">In mauris nunc, blandit a turpis in, vehicula viverra metus.
-                                    Quisque dictum purus lorem, in rhoncus justo dapibus eget. Aenean pretium non mauris
-                                    et porttitor.</div>
-
-                            </div>
-                            <div class="task-warning">
-                                <div class="task-header">
-                                    <div class="pull-left">Depuis 2015</div>
+                                <div class="task-text">
+                                    
                                 </div>
-                                <div class="task-text">In mauris nunc, blandit a turpis in, vehicula viverra metus.
-                                    Quisque dictum purus lorem, in rhoncus justo dapibus eget. Aenean pretium non mauris
-                                    et porttitor.</div>
 
                             </div>
                         </div>
@@ -298,8 +280,7 @@
 <!-- END CONTENT FRAME -->
 
 <!-- MODALS -->
-<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="taskEditModalHead"
-    aria-hidden="true">
+<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="taskEditModalHead" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -330,40 +311,88 @@
 </div>
 <!-- END MODALS -->
 
-<div id="Modal" class="modal">
+<!-- MODALS -->
+<div id="ModalFormation" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="taskEditModalHead" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                            class="sr-only">Fermer</span></button>
+                    <h4 class="modal-title" id="taskEditModalHead">Modifier Block Fromation</h4>
+                </div>
+                <form class="form-horizontal" #f="ngForm" (ngSubmit)="createFormation(f.value)">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <ng-multiselect-dropdown class="col-md-4"
+                            [placeholder]="'Choisir formation'"
+                            [data]="dlformation"
+                            name="formation"
+                            #role="ngModel"
+                            [(ngModel)]="sIformation"
+                            [settings]="dropdownSettings"
+                            (onSelect)="onIS($event)"
+                            (onDeSelect)="onIDS($event)"
+                        >
+                        </ng-multiselect-dropdown>
+                    </div>
+                    <tr></tr>
+                    <h3>Ajouter une nouvelle formation</h3>
+                    <tr></tr>
+                    <div class="col-md-12">
 
-        <!-- Modal content -->
-        <div class="modal-content">
-          <span class="close">&times;</span>
-          <p>Some text in the Modal..</p>
+                        
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Intitulé</label>
+                                <div class="col-md-10">
+                                    <input required ngModel  type="text" class="form-control" 
+                                    name="intitule" [(ngModel)]="formation.intitule"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Établissement</label>
+                                <div class="col-md-10">
+                                    <input required ngModel type="text" class="form-control" 
+                                    name="etablissement" [(ngModel)]="formation.etablissement" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Adresse</label>
+                                <div class="col-md-10">
+                                    <input required ngModel type="text" class="form-control"
+                                     name="lieu" [(ngModel)]="formation.lieu" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Date Début</label>
+                                <div class="col-md-5">
+                                    <input required ngModel type="text" class="form-control datepicker" value="2014-08-04"
+                                        name="dateDebut" [(ngModel)]="formation.dateDebut" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Date Fin</label>
+                                <div class="col-md-5">
+                                    <input required ngModel type="text" class="form-control datepicker" value="2014-08-04"
+                                        name="dateFin" [(ngModel)]="formation.dateFin"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label">Détail</label>
+                                <div class="col-md-10">
+                                    <textarea required ngModel class="form-control" rows="5"
+                                    name="details" [(ngModel)]="formation.details"></textarea>
+                                  
+                                </div>
+                            </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+            </div>
         </div>
-      
-      </div>
-
-<script>
-    // Get the modal
-var modal = document.getElementById("Modal");
-
-// Get the button that opens the modal
-var btn = document.getElementById("Mbtn");
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks on the button, open the modal 
-btn.onclick = function() {
-  modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
-</script>
+    </div>
+    <!-- END MODALS -->
+    

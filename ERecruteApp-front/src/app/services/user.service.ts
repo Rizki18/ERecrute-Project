@@ -96,7 +96,7 @@ export class Formation{
 	public  etablissement:string,
 	public  intitule:string,
 	public  lieu:string,
-  public  codeProfil:string
+  public  profil:string
   ){}
 }
 @Injectable({

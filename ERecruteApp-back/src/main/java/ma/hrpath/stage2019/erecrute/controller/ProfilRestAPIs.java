@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import ma.hrpath.stage2019.erecrute.message.request.FormationForm;
 import ma.hrpath.stage2019.erecrute.message.request.SignUpForm;
 import ma.hrpath.stage2019.erecrute.message.response.ResponseMessage;
 import ma.hrpath.stage2019.erecrute.model.CV;
@@ -43,12 +44,12 @@ public class ProfilRestAPIs {
 	public Profil saveProfil(@RequestBody Profil p) {
 		return profilService.saveProfil(p);	}
 	
-	@RequestMapping(value="/admin/saveProfilFormation",method = RequestMethod.POST)
+	@RequestMapping(value="/admin/saveFormationProfil",method = RequestMethod.POST)
 	@PreAuthorize("hasRole('ADMIN')")
-	public void saveProfilFormation(@RequestBody Profil p,@RequestBody Formation f) {
-		profilService.saveProfil(p);
-		f.setProfil(profilService.findProfilByMaxId());
-		profilService.saveFormation(f);
+	public void saveProfilFormation(@RequestBody FormationForm f) {
+		Formation formation = new Formation(f.getDateDebut(),f.getDateFin(),f.getDetails(),f.getEtablissement(),f.getIntitule(),f.getLieu());
+		formation.setProfil(profilService.findProfilById(Long.valueOf(f.getProfil())));
+		profilService.saveFormation(formation);
 	}
 	
 	@RequestMapping(value="/admin/deleteProfil/{id}",method = RequestMethod.DELETE)

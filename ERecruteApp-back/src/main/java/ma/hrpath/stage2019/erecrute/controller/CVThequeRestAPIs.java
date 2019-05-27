@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import ma.hrpath.stage2019.erecrute.message.request.CvForm;
 import ma.hrpath.stage2019.erecrute.model.CV;
+import ma.hrpath.stage2019.erecrute.model.Experience;
 import ma.hrpath.stage2019.erecrute.model.Formation;
 import ma.hrpath.stage2019.erecrute.model.Profil;
 import ma.hrpath.stage2019.erecrute.security.service.CVThequeService;
@@ -46,13 +47,17 @@ public class CVThequeRestAPIs {
 	@RequestMapping(value="/cv/{id}/profil")
 	public Profil getProfilCV(@PathVariable("id") Long id){
 		CV cv = cvThequeService.retreiveCvById(id);
-		System.out.println(cv.getProfil());
 		return cv.getProfil();
 	}
 	
 	@RequestMapping(value="/cv/{id}")
 	public CV getCV(@PathVariable("id") Long id){
 		return cvThequeService.retreiveCvById(id);
+	}
+	
+	@RequestMapping(value="/cv/{id}/experiences")
+	public List<Experience> listExpsCV(@PathVariable("id") Long id){
+		return cvThequeService.retreiveExpsCV(id);
 	}
 	
 	
