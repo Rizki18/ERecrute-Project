@@ -12,7 +12,7 @@ export class ProfilComponent implements OnInit {
 
   private Profil ;
   private Formation;
-
+  
   constructor( 
     private service: UserService, private router:Router ){}
     
@@ -56,15 +56,17 @@ export class ProfilComponent implements OnInit {
       console.log(err);
     });
   }  
-  /*
+  
   deleteProfil(profil:Profil): void {
   
     console.log("/admin/deleteProfil/"+ profil.codeProfil);
     this.service.deleteRessources("/admin/deleteProfil/"+ profil.codeProfil)
     .subscribe( data => {
       this.Profil = this.Profil.filter(u => u !== profil);
+      this.getProfil();
     });
   }
+  /*
   editProfil(p): void {
   
     this.mode = p.codeProfil;
