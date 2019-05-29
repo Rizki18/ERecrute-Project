@@ -18,7 +18,10 @@ public class CV_TP implements Serializable{
     @JoinColumn
     @JsonIgnore
     private CV cv;
+
     @Id
+    @ManyToOne
+    @JoinColumn
     @JsonIgnore
     private TypeProfil tp;
     
@@ -35,6 +38,7 @@ public class CV_TP implements Serializable{
 		this.dateDebut = dateDebut;
 		this.dateFin = dateFin;
 	}
+
 
 	public CV getCv() {
 		return cv;

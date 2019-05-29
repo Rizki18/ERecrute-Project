@@ -39,29 +39,36 @@ public class CV_TC implements Serializable{
 		this.dateFin = dateFin;
 	}
 
+
 	public CV getCv() {
 		return cv;
 	}
+
 
 	public void setCv(CV cv) {
 		this.cv = cv;
 	}
 
+
 	public TypeContrat getTc() {
 		return tc;
 	}
+
 
 	public void setTc(TypeContrat tc) {
 		this.tc = tc;
 	}
 
+
 	public Date getDateDebut() {
 		return dateDebut;
 	}
 
+
 	public void setDateDebut(Date dateDebut) {
 		this.dateDebut = dateDebut;
 	}
+
 
 	public Date getDateFin() {
 		return dateFin;

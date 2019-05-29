@@ -61,7 +61,7 @@ public class ProfilRestAPIs {
 		//System.getProperty("user.home")+"/erecrute/profils/x.png"/*+
 		return Files.readAllBytes(Paths.get(p.getPhoto()));
 	}
-	@RequestMapping(value="/admin/saveProfilFormation",method = RequestMethod.POST)
+	@RequestMapping(value="/admin/saveFormationProfil",method = RequestMethod.POST)
 	@PreAuthorize("hasRole('ADMIN')")
 	public void saveProfilFormation(@RequestBody FormationForm f) {
 		Formation formation = new Formation(f.getDateDebut(),f.getDateFin(),f.getDetails(),f.getEtablissement(),f.getIntitule(),f.getLieu());
