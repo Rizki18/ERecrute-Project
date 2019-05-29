@@ -37,7 +37,6 @@ public class CV implements Serializable{
 	private Set<CV_SA> m_secteurActivites;
 	
 	@OneToMany(mappedBy = "cv", cascade = CascadeType.ALL)
-	@JsonIgnore
 	private Set<CV_COMP> m_competences;
 	
 	@OneToMany(mappedBy = "cv", cascade = CascadeType.ALL)
@@ -64,22 +63,6 @@ public class CV implements Serializable{
 	private Set<Experience> exps = new HashSet<>();
 	
 	public CV() {
-		super();
-	}
-
-	public CV(String modele, String nomCV,String posteDesire) {
-		super();
-		this.modele = modele;
-		this.nomCV = nomCV;
-		this.posteDesire = posteDesire;
-		
-	}
-
-	public Long getCodeCV() {
-		return codeCV;
-	}
-
-	public void setCodeCV(Long codeCV) {
 		this.codeCV = codeCV;
 	}
 
@@ -126,6 +109,31 @@ public class CV implements Serializable{
 	public void setSecteurActivites(CV_SA ... secteurActivites) {
 		for(CV_SA secteurActivite : secteurActivites) secteurActivite.setCv(this);
         this.m_secteurActivites = Stream.of(secteurActivites).collect(Collectors.toSet());
+	}
+	 
+	public void setSituationFamiliale(CV_SF ... situationFamiliales) {
+		for(CV_SF situationFamiliale : situationFamiliales) situationFamiliale.setCv(this);
+        this.m_situationFamiliales = Stream.of(situationFamiliales).collect(Collectors.toSet());
+	}
+	
+	public void setLangues(CV_LAN ... langues) {
+		for(CV_LAN langue : langues) langue.setCv(this);
+        this.m_langues = Stream.of(langues).collect(Collectors.toSet());
+	}
+	
+	public void setCompetence(CV_COM ... competences) {
+		for(CV_COM competence : competences) competence.setCv(this);
+        this.m_competences = Stream.of(competences).collect(Collectors.toSet());
+	}
+
+	public void setTypeContrat(CV_TC ... typeContrats) {
+		for(CV_TC typeContrat : typeContrats) typeContrat.setCv(this);
+        this.m_typeContrat = Stream.of(typeContrats).collect(Collectors.toSet());
+	}
+	
+	public void setTypeProfil(CV_TP ... typeProfils) {
+		for(CV_TP typeProfil : typeProfils) typeProfil.setCv(this);
+        this.m_typeProfil = Stream.of(typeProfils).collect(Collectors.toSet());
 	}
 
 	public Set<CV_COMP> getM_competences() {

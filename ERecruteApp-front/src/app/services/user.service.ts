@@ -174,4 +174,11 @@ export class UserService {
   getter(){
     return this.user;
   }
+  /*public uploadImage(image: File) {
+    const formData = new FormData();
+
+    formData.append('image', image);
+
+    return this.http.post('/assets/image', formData);
+  }*/
 }

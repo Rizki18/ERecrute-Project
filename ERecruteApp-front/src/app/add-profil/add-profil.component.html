@@ -8,7 +8,7 @@
             <!-- END BREADCRUMB -->
   
             <div class="page-title">
-                <h2><span class="fa fa-arrow-circle-o-left"></span>Nouveau Profile</h2>
+                <h2><span class="fa fa-arrow-circle-o-left"></span>Nouveau Profil</h2>
             </div>
   <div class="page-content-wrap">
   
@@ -24,7 +24,7 @@
                             <li>
                                 <a href="#step-7">
                                     <span class="stepNumber">1</span>
-                                    <span class="stepDesc">Salarié<br /><small>Informations
+                                    <span class="stepDesc">Profil<br /><small>Informations
                                             personnel</small></span>
                                 </a>
                             </li>
@@ -41,152 +41,117 @@
                                   </a>
                               </li>
                         </ul>
-  
                         <div id="step-7">
-                          <!--    <form #f="ngForm" (ngSubmit)="createProfil(f.value)">-->
+                            
+                       <!-- <form #f="ngForm" (ngSubmit)="createProfil(f.value)">  -->
                             <div class="form-group">
-                                <label class="col-md-2 control-label">Nom</label>
-                                <div class="col-md-6">
-                                    <input required ngModel type="text" class="form-control" name="nom"
-                                        placeholder="Nom " [(ngModel)]="profil.nom"/>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-2 control-label">Prenom</label>
-                                <div class="col-md-6">
-                                    <input required ngModel type="text" class="form-control" name="prenom"
-                                        placeholder="Prénom " [(ngModel)]="profil.prenom"/>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-2 control-label">Email</label>
-                                <div class="col-md-6">
-                                    <input required ngModel type="email" class="form-control" name="email"
+                              <!--   <label class="col-md-2 control-label">Nom</label> -->
+                                <div class="col-md-2"></div>
+                                <div >
+                                      <input required ngModel type="text" class=" col-md-2" name="nom"
+                                        placeholder="Nom " [(ngModel)]="profil.nom"  pattern="[a-zA-ZÀ-ÿ]">
+                                       <span class="col-sm-1"></span>
+                                 <input required ngModel type="text" class=" col-md-2" name="prenom"
+                                        placeholder="Prénom " [(ngModel)]="profil.prenom" pattern="[a-zA-ZÀ-ÿ]"/>
+                                        <span class="col-md-1"></span>       
+                                 <input required ngModel type="email" class="col-md-3" name="email"
                                         placeholder="Email " [(ngModel)]="profil.email" />
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-2 control-label">Téléphone</label>
-                                <div class="col-md-6">
-                                    <input required ngModel type="number" class="form-control" name="tel"
-                                        placeholder="Téléphone " [(ngModel)]="profil.tel" />
-                                </div>
+                            <div class="col-md-2"></div>
+                            <div>
+                                <input required ngModel type="tel" class="col-md-2" name="tel"
+                                    placeholder="Téléphone " pattern="[0]{1}[6-7]{1}[0-9]{8}" [(ngModel)]="profil.tel" />
+                                    <span class="col-sm-1"></span> 
+                                    <input required ngModel type="text"  class="col-md-6" name="adresse"
+                                        placeholder="Adresse " [(ngModel)]="profil.adresse" />   
+                                    </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-2 control-label">CIN</label>
-                                <div class="col-md-6">
-                                    <input required ngModel type="text" class="form-control" name="cin"
+                            <div class="col-md-2"></div>
+                             <div>
+                                    <input required ngModel type="text" class="col-md-2" name="cin"
                                         placeholder="CIN" [(ngModel)]="profil.cin" />
-                                </div>
+                                    <span class="col-md-1"></span> 
+                                    <input required ngModel type="text" class="col-md-2" name="permisConduite"
+                                         placeholder="Premis A/B... " [(ngModel)]="profil.permisConduite" />
+                                         <span class="col-md-1"></span> 
+                                    <input required ngModel type="text" class="col-md-3 datepicker" value="1978-08-04"
+                                        name="dateNaissance"  placeholder="Date de Naissance" [(ngModel)]="profil.dateNaissance">
+                            </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-md-2 control-label">Adresse</label>
-                                <div class="col-md-6">
-                                    <input required ngModel type="text" class="form-control" name="adresse"
-                                        placeholder="Adresse " [(ngModel)]="profil.adresse" />
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label class="col-md-2 control-label">Date de naissance</label>
-                                <div class="col-md-5">
-                                    <input required ngModel type="text" class="form-control datepicker" value="2014-08-04"
-                                        name="dateNaissance" [(ngModel)]="profil.dateNaissance">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                  <label class="col-md-2 control-label">CNSS</label>
-                                  <div class="col-md-6">
-                                    <input required ngModel type="text" class="form-control" name="cnss"
+                            <div class="col-md-2"></div>
+                              <div >
+                                    <input required ngModel type="text" class="col-md-2" name="cnss"
                                          placeholder="N° CNSS " [(ngModel)]="profil.cnss" />
-                                  </div>
+                                    <span class="col-md-1"></span> 
+                                    <input required ngModel type="text" class="col-md-2" name="cimr"
+                                    placeholder="N° CIMR " [(ngModel)]="profil.cimr" />
+                                    <span class="col-sm-1"></span> 
+                                <input required ngModel type="text" class="col-md-2" name="civilite"
+                                    placeholder="Mr/Mme/Mlle " [(ngModel)]="profil.civilite" />
+                                 
                             </div>
-                            <div class="form-group">
-                                  <label class="col-md-2 control-label">CIMR</label>
-                                  <div class="col-md-6">
-                                    <input required ngModel type="text" class="form-control" name="cimr"
-                                         placeholder="N° CIMR " [(ngModel)]="profil.cimr" />
-                                  </div>
-                            </div>
-                            <div class="form-group">
-                                  <label class="col-md-2 control-label">Civilité</label>
-                                  <div class="col-md-6">
-                                    <input required ngModel type="text" class="form-control" name="civilite"
-                                         placeholder="Mr/Mme/Mlle " [(ngModel)]="profil.civilite" />
-                                  </div>
-                            </div>
-                            <div class="form-group">
-                                  <label class="col-md-2 control-label">Premis</label>
-                                  <div class="col-md-6">
-                                    <input required ngModel type="text" class="form-control" name="permisConduite"
-                                         placeholder="A/B... " [(ngModel)]="profil.permisConduite" />
-                                  </div>
-                            </div>
-                            <div class="form-group">
-                                  <label class="col-md-2 control-label">RIB</label>
-                                  <div class="col-md-6">
-                                    <input required ngModel type="text" class="form-control" name="rib"
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-2"></div>
+                           <div>
+                                         <input required ngModel type="text" class="col-md-6" name="rib"
                                          placeholder="N° identité bancaire " [(ngModel)]="profil.rib" />
-                                  </div>
+                                         <span class="col-md-1"></span> 
+                                         <input required ngModel type="file"   class="col-md-4" name="photo"
+                                              placeholder="photo"  [(ngModel)]="profil.photo" />
+                                  
                             </div>
-                            <div class="form-group">
-                                  <label class="col-md-2 control-label">Photo</label>
-                                  <div class="col-md-6">
-                                    <input required ngModel type="file" accept="image/*"  class="form-control" name="photo"
-                                         placeholder="photo " [(ngModel)]="profil.photo" />
-                                         
-                            <!--<button [disabled]="!f.valid" type="submit"  class="btn btn-success" >Create</button>-->
-                                  </div>
-                            </div>
+                        </div>
+                       
                        <!--  </form>-->
                         </div>
                         <div id="step-8">
   
                             <div class="form-group">
                                 <label class="col-md-2 control-label">Intitulé</label>
-                                <div class="col-md-10">
+                                <span class="col-md-3">
                                     <input required ngModel  type="text" class="form-control" 
                                     name="intitule" [(ngModel)]="formation.intitule"/>
-                                </div>
-                            </div>
-                            <div class="form-group">
+                                </span>
                                 <label class="col-md-2 control-label">Établissement</label>
-                                <div class="col-md-10">
+                                <span class="col-md-3">
                                     <input required ngModel type="text" class="form-control" 
                                     name="etablissement" [(ngModel)]="formation.etablissement" />
-                                </div>
+                                </span>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-2 control-label">Adresse</label>
-                                <div class="col-md-10">
+                                <div class="col-md-6">
                                     <input required ngModel type="text" class="form-control"
                                      name="lieu" [(ngModel)]="formation.lieu" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-2 control-label">Date Début</label>
-                                <div class="col-md-5">
+                                <span class="col-md-3">
                                     <input required ngModel type="text" class="form-control datepicker" value="2014-08-04"
                                         name="dateDebut" [(ngModel)]="formation.dateDebut" />
-                                </div>
-                            </div>
-                            <div class="form-group">
+                                </span>
                                 <label class="col-md-2 control-label">Date Fin</label>
-                                <div class="col-md-5">
+                                <span class="col-md-3">
                                     <input required ngModel type="text" class="form-control datepicker" value="2014-08-04"
                                         name="dateFin" [(ngModel)]="formation.dateFin"/>
-                                </div>
+                                </span>
                             </div>
+                            
                             <div class="form-group">
                                 <label class="col-md-2 control-label">Détail</label>
-                                <div class="col-md-10">
-                                    <textarea required ngModel class="form-control" rows="5"
+                                <span class="col-md-3">
+                                    <textarea required ngModel class="form-control" rows="3"
                                     name="details" [(ngModel)]="formation.details"></textarea>
-                                    <button [disabled]="!f.valid"  type="submit"  class="btn btn-success"  >Create</button>
-                                 
-                                </div>
-                            </div>
-                          
+                                </span>
+                            </div>                
                         </div>
+                   
                         <div id="step-9">
                                 <div class="form-group">
                                         <ng-multiselect-dropdown class="col-md-4"
@@ -223,6 +188,8 @@
                                       >
                                       </ng-multiselect-dropdown>
                                 </div>
+                                <div class="col-md-12"></div>
+                                <div class="col-md-12"></div>
                                 <div class="form-group">
                                       <ng-multiselect-dropdown class="col-md-4"
                                         [placeholder]="'Choisir Situation Familiale'"
@@ -240,7 +207,7 @@
                                         [data]="dltypeContrat"
                                         name="Type Contrat"
                                         #role="ngModel"
-                                        [(ngModel)]="sItypeContrat"
+                                        [(ngModel)]="sItypeContact"
                                         [settings]="dropdownSettings"
                                         (onSelect)="onIS($event)"
                                         (onSelectAll)="onSA($event)"
@@ -258,12 +225,13 @@
                                       >
                                       </ng-multiselect-dropdown>
                                 </div>
-                                <div class="form-group"><p></p></div>
-                                <div class="form-group"><p></p></div>
-                                <div class="form-group"><p></p></div>
-                                <div class="form-group"><p></p></div>
-                                <div class="form-group"><p></p></div>
-                                <div class="form-group"><p></p></div>
+                                <div class="col-md-12"></div>
+                                <div class="col-md-12"></div>
+                                <div class="col-md-9"></div>
+                                <div class="col-md-3">
+                                    <!--</button>[disabled]="!f.valid"-->
+                                    <button   type="submit"  class="btn btn-success"  >Create</button>
+                                </div>
                             </div>
                          </div>   
                    </form> 

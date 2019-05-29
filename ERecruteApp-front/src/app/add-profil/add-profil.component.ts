@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router'
+import { Router } from '@angular/router';
+import {HttpClient, HttpRequest, HttpEvent,HttpResponse} from '@angular/common/http';
 import { UserService, Profil, Formation } from '../services/user.service';
 @Component({
   selector: 'app-add-profil',
   templateUrl: './add-profil.component.html',
   styleUrls: ['./add-profil.component.css']
 })
+
 export class AddProfilComponent implements OnInit {
 
   private Profil ;
@@ -14,7 +16,7 @@ export class AddProfilComponent implements OnInit {
   langues ;dllangue ;sIlangue = [];
   secteurActivite ;dlsecteurActivite ;sIsecteurActivite = [];
   situationFamiliale ;dlsituationFamiliale ;sIsituationFamiliale = [];
-  TypeContact ;dltypeContact ;sItypeContact = [];
+  TypeContact ;dltypeContrat ;sItypeContact = [];
   TypeProfil ;dltypeProfil ;sItypeProfil = [];
   dropdownSettings = {};
 
@@ -39,7 +41,7 @@ export class AddProfilComponent implements OnInit {
     },err=>{
       console.log(err);
     });
-    this.service.getRessources("/Secteurame")
+    this.service.getRessources("/SecteurName")
     .subscribe(data=>{
           this.dlsecteurActivite = data;
     },err=>{
@@ -48,12 +50,13 @@ export class AddProfilComponent implements OnInit {
     this.service.getRessources("/SituationFamilialeName")
     .subscribe(data=>{
           this.dlsituationFamiliale = data;
+          console.log(this.dlsituationFamiliale);
     },err=>{
       console.log(err);
     });
-    this.service.getRessources("/TypeContractName")
+    this.service.getRessources("/TypeContratName")
     .subscribe(data=>{
-          this.dltypeContact = data;
+          this.dltypeContrat = data;
     },err=>{
       console.log(err);
     });    
@@ -70,9 +73,11 @@ export class AddProfilComponent implements OnInit {
   profil: AddProfilComponent["Profil"] = new Profil("","","","","","","","","","","","","","");
   
   createProfil(p): void {
+    
     this.service.createRessources("/admin/saveProfil",p)
         .subscribe( data => {
           alert("Profil added successfully.");
+         
         }); 
   };
   createProfilFormation(p)
@@ -83,6 +88,7 @@ export class AddProfilComponent implements OnInit {
           this.createFormation(p);
         });
   };
+  
   formation: AddProfilComponent["Formation"] = new Formation("","","","","","","","");
   
   createFormation(p): void {
@@ -93,6 +99,38 @@ export class AddProfilComponent implements OnInit {
         });
     
   };
+   /*SelectedFile = null;
+  onFileSelected(event)
+  {
+    this.SelectedFile=<File> event.traget.files[0];
+  }
+ onUpload()
+  {
+    const fd = new FormData();
+    fd.append('image',this.SelectedFile,this.SelectedFile.name);
+    this.service.post("savephoto",fd)
+        .subscribe(res => {
+          console.log(res);
+         } );
+  }
+  pushFileToStorage(file: File) {
+    let formdata: FormData = new FormData();
  
-  
+    formdata.append('file', file);
+ 
+    
+    return this.service.createRessources("/postfile",formdata);
+  }
+  currentFileUpload;
+  upload()
+  {
+    this.currentFileUpload = this.SelectedFile.item(0)
+    this.pushFileToStorage(this.currentFileUpload).subscribe(event => {
+      (event instanceof HttpResponse); {
+        console.log('File is completely uploaded!'),
+        alert("ilage added successfully");
+      }
+    });
+  }
+  */
 }
