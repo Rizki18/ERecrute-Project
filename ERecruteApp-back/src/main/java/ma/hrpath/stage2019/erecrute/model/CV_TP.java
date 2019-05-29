@@ -1,6 +1,7 @@
 package ma.hrpath.stage2019.erecrute.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -9,10 +10,8 @@ import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import java.util.Date;
-
 @Entity
-public class CV_SA implements Serializable{
+public class CV_TP implements Serializable{
 
 	@Id
     @ManyToOne
@@ -24,21 +23,22 @@ public class CV_SA implements Serializable{
     @ManyToOne
     @JoinColumn
     @JsonIgnore
-    private SecteurActivite sa;
+    private TypeProfil tp;
     
     private Date dateDebut;
 	private Date dateFin;
 	
-	public CV_SA() {
+	public CV_TP() {
 		super();
 	}
 
-	public CV_SA(SecteurActivite sa, Date dateDebut, Date dateFin) {
+	public CV_TP(TypeProfil tp, Date dateDebut, Date dateFin) {
 		super();
-		this.sa = sa;
+		this.tp = tp;
 		this.dateDebut = dateDebut;
 		this.dateFin = dateFin;
 	}
+
 
 	public CV getCv() {
 		return cv;
@@ -48,12 +48,12 @@ public class CV_SA implements Serializable{
 		this.cv = cv;
 	}
 
-	public SecteurActivite getSa() {
-		return sa;
+	public TypeProfil getTp() {
+		return tp;
 	}
 
-	public void setSa(SecteurActivite sa) {
-		this.sa = sa;
+	public void setTp(TypeProfil tp) {
+		this.tp = tp;
 	}
 
 	public Date getDateDebut() {
@@ -79,7 +79,7 @@ public class CV_SA implements Serializable{
 		result = prime * result + ((cv == null) ? 0 : cv.hashCode());
 		result = prime * result + ((dateDebut == null) ? 0 : dateDebut.hashCode());
 		result = prime * result + ((dateFin == null) ? 0 : dateFin.hashCode());
-		result = prime * result + ((sa == null) ? 0 : sa.hashCode());
+		result = prime * result + ((tp == null) ? 0 : tp.hashCode());
 		return result;
 	}
 
@@ -91,7 +91,7 @@ public class CV_SA implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		CV_SA other = (CV_SA) obj;
+		CV_TP other = (CV_TP) obj;
 		if (cv == null) {
 			if (other.cv != null)
 				return false;
@@ -107,17 +107,17 @@ public class CV_SA implements Serializable{
 				return false;
 		} else if (!dateFin.equals(other.dateFin))
 			return false;
-		if (sa == null) {
-			if (other.sa != null)
+		if (tp == null) {
+			if (other.tp != null)
 				return false;
-		} else if (!sa.equals(other.sa))
+		} else if (!tp.equals(other.tp))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "CV_SA [cv=" + cv + ", sa=" + sa + ", dateDebut=" + dateDebut + ", dateFin=" + dateFin + "]";
+		return "CV_TP [cv=" + cv + ", tp=" + tp + ", dateDebut=" + dateDebut + ", dateFin=" + dateFin + "]";
 	}
-	
+
 }

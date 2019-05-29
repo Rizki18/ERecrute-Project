@@ -1,6 +1,7 @@
 package ma.hrpath.stage2019.erecrute.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -9,10 +10,8 @@ import javax.persistence.ManyToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import java.util.Date;
-
 @Entity
-public class CV_SA implements Serializable{
+public class CV_SF implements Serializable{
 
 	@Id
     @ManyToOne
@@ -24,53 +23,64 @@ public class CV_SA implements Serializable{
     @ManyToOne
     @JoinColumn
     @JsonIgnore
-    private SecteurActivite sa;
+    private SituationFamiliale sf;
     
     private Date dateDebut;
 	private Date dateFin;
 	
-	public CV_SA() {
+	
+	public CV_SF() {
 		super();
 	}
 
-	public CV_SA(SecteurActivite sa, Date dateDebut, Date dateFin) {
+
+	public CV_SF(SituationFamiliale sf, Date dateDebut, Date dateFin) {
 		super();
-		this.sa = sa;
+		this.sf = sf;
 		this.dateDebut = dateDebut;
 		this.dateFin = dateFin;
 	}
+
 
 	public CV getCv() {
 		return cv;
 	}
 
+
 	public void setCv(CV cv) {
 		this.cv = cv;
 	}
 
-	public SecteurActivite getSa() {
-		return sa;
+
+	public SituationFamiliale getSf() {
+		return sf;
 	}
 
-	public void setSa(SecteurActivite sa) {
-		this.sa = sa;
+
+	public void setSf(SituationFamiliale sf) {
+		this.sf = sf;
 	}
+
 
 	public Date getDateDebut() {
 		return dateDebut;
 	}
 
+
 	public void setDateDebut(Date dateDebut) {
 		this.dateDebut = dateDebut;
 	}
+
 
 	public Date getDateFin() {
 		return dateFin;
 	}
 
+
 	public void setDateFin(Date dateFin) {
 		this.dateFin = dateFin;
 	}
+
 
 	@Override
 	public int hashCode() {
@@ -79,9 +89,10 @@ public class CV_SA implements Serializable{
 		result = prime * result + ((cv == null) ? 0 : cv.hashCode());
 		result = prime * result + ((dateDebut == null) ? 0 : dateDebut.hashCode());
 		result = prime * result + ((dateFin == null) ? 0 : dateFin.hashCode());
-		result = prime * result + ((sa == null) ? 0 : sa.hashCode());
+		result = prime * result + ((sf == null) ? 0 : sf.hashCode());
 		return result;
 	}
+
 
 	@Override
 	public boolean equals(Object obj) {
@@ -91,7 +102,7 @@ public class CV_SA implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		CV_SA other = (CV_SA) obj;
+		CV_SF other = (CV_SF) obj;
 		if (cv == null) {
 			if (other.cv != null)
 				return false;
@@ -107,17 +118,18 @@ public class CV_SA implements Serializable{
 				return false;
 		} else if (!dateFin.equals(other.dateFin))
 			return false;
-		if (sa == null) {
-			if (other.sa != null)
+		if (sf == null) {
+			if (other.sf != null)
 				return false;
-		} else if (!sa.equals(other.sa))
+		} else if (!sf.equals(other.sf))
 			return false;
 		return true;
 	}
 
+
 	@Override
 	public String toString() {
-		return "CV_SA [cv=" + cv + ", sa=" + sa + ", dateDebut=" + dateDebut + ", dateFin=" + dateFin + "]";
+		return "CV_SF [cv=" + cv + ", sf=" + sf + ", dateDebut=" + dateDebut + ", dateFin=" + dateFin + "]";
 	}
-	
+		
 }

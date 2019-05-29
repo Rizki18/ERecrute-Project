@@ -2,8 +2,10 @@ package ma.hrpath.stage2019.erecrute.security.service;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import javax.transaction.Transactional;
 
@@ -89,6 +91,17 @@ public class CVThequeServiceImpl implements CVThequeService{
 		for(Experience exp : cv.getExps())
 			exps.add(exp);
 			
+		return exps;
+	}
+
+	@Override
+	public Set<Experience> retreiveExpsProfil(Long id) {
+		List<CV> cvs = this.retreiveCVsProfil(id);
+		Set<Experience> exps = new HashSet<Experience>();
+		for(CV cv : cvs) {
+			exps.addAll(cv.getExps());
+		}
+		
 		return exps;
 	}
 

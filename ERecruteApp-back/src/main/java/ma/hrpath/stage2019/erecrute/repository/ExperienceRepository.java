@@ -9,5 +9,5 @@ import org.springframework.data.repository.query.Param;
 import ma.hrpath.stage2019.erecrute.model.Experience;
 
 public interface ExperienceRepository extends JpaRepository<Experience, Long> {
-
+	public Experience findByDescriptionRole(String s);
 }

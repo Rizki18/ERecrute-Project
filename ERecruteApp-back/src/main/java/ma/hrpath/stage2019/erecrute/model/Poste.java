@@ -68,7 +68,7 @@ public class Poste implements Serializable {
 	@Override
 	public String toString() {
 		return "Poste [codePost=" + codePost + ", descriptionPoste=" + descriptionPoste + ", libellePost=" + libellePost
-				+ ", m_Experience=" + m_Experience + "]";
+				+  "]";
 	}
 
 	public void finalize() throws Throwable {

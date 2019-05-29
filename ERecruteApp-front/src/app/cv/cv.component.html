@@ -169,8 +169,9 @@
                         <div class="panel-heading">
                             <h3 class="panel-title">Diplômes et Formations</h3>
                             <ul class="panel-controls">
-                                <li><a><button class="btn btn-success btn-block" (click)="addFormation()" data-toggle="modal"
-                                            data-target="#ModalFormation"><span class="fa fa-plus"></span></button></a></li>
+                                <li><a><button class="btn btn-success btn-block"
+                                            data-toggle="modal" data-target="#ModalFormation"><span
+                                                class="fa fa-plus"></span></button></a></li>
                                 <li><a href="#" class="panel-fullscreen"><button class="btn btn-primary btn-block"><span
                                                 class="fa fa-expand"></span></button></a></li>
 
@@ -195,8 +196,8 @@
                         <div class="panel-heading">
                             <h3 class="panel-title">Expériences professionnelles</h3>
                             <ul class="panel-controls">
-                                <li><a><button class="btn btn-success btn-block" (click)="addExp()" data-toggle="modal"
-                                            data-target="#myModal"><span class="fa fa-plus"></span></button></a></li>
+                                <li><a><button class="btn btn-success btn-block" data-toggle="modal"
+                                            data-target="#ModalExp"><span class="fa fa-plus"></span></button></a></li>
                                 <li><a href="#" class="panel-fullscreen"><button class="btn btn-primary btn-block"><span
                                                 class="fa fa-expand"></span></button></a></li>
 
@@ -205,12 +206,13 @@
                             </ul>
                         </div>
                         <div class="panel-body">
-                            <div class="task-warning" *ngFor="let exp of experiences">
+                            <div class="task-warning" *ngFor="let exp of selectedExps">
                                 <div class="task-header">
                                     <div class="pull-left">De {{exp.dateDebut}} à {{exp.dateFin}}</div>
                                 </div>
                                 <div class="task-text">
-                                    
+                                    {{exp.poste.libellePost}}, {{exp.societe.nomSociete}}<br>
+                                    {{exp.descriptionRole}} au département de {{exp.departement}}
                                 </div>
 
                             </div>
@@ -280,59 +282,21 @@
 <!-- END CONTENT FRAME -->
 
 <!-- MODALS -->
-<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="taskEditModalHead" aria-hidden="true">
+<div id="ModalFormation" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="taskEditModalHead"
+    aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
-                        class="sr-only">Close</span></button>
-                <h4 class="modal-title" id="taskEditModalHead">Edit Task</h4>
+                        class="sr-only">Fermer</span></button>
+                <h4 class="modal-title" id="taskEditModalHead">Modifier Block Fromation</h4>
             </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label>Task description</label>
-                    <textarea class="form-control" id="task-text" rows="4"></textarea>
-                </div>
-                <div class="form-group">
-                    <label>Task group</label>
-                    <select class="form-control select">
-                        <option>Work</option>
-                        <option>Home</option>
-                        <option>Friends</option>
-                    </select>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Save changes</button>
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- END MODALS -->
-
-<!-- MODALS -->
-<div id="ModalFormation" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="taskEditModalHead" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
-                            class="sr-only">Fermer</span></button>
-                    <h4 class="modal-title" id="taskEditModalHead">Modifier Block Fromation</h4>
-                </div>
-                <form class="form-horizontal" #f="ngForm" (ngSubmit)="createFormation(f.value)">
+            <form class="form-horizontal" #f="ngForm" (ngSubmit)="createFormation(f.value)">
                 <div class="modal-body">
                     <div class="form-group">
-                        <ng-multiselect-dropdown class="col-md-4"
-                            [placeholder]="'Choisir formation'"
-                            [data]="dlformation"
-                            name="formation"
-                            #role="ngModel"
-                            [(ngModel)]="sIformation"
-                            [settings]="dropdownSettings"
-                            (onSelect)="onIS($event)"
-                            (onDeSelect)="onIDS($event)"
-                        >
+                        <ng-multiselect-dropdown class="col-md-4" [placeholder]="'Choisir formation'"
+                            [data]="dlformation" name="formation" #role="ngModel" [(ngModel)]="sIformation"
+                            [settings]="dropdownSettings" (onSelect)="onIS($event)" (onDeSelect)="onIDS($event)">
                         </ng-multiselect-dropdown>
                     </div>
                     <tr></tr>
@@ -340,50 +304,50 @@
                     <tr></tr>
                     <div class="col-md-12">
 
-                        
-                            <div class="form-group">
-                                <label class="col-md-2 control-label">Intitulé</label>
-                                <div class="col-md-10">
-                                    <input required ngModel  type="text" class="form-control" 
-                                    name="intitule" [(ngModel)]="formation.intitule"/>
-                                </div>
+
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Intitulé</label>
+                            <div class="col-md-10">
+                                <input required ngModel type="text" class="form-control" name="intitule"
+                                    [(ngModel)]="formation.intitule" />
                             </div>
-                            <div class="form-group">
-                                <label class="col-md-2 control-label">Établissement</label>
-                                <div class="col-md-10">
-                                    <input required ngModel type="text" class="form-control" 
-                                    name="etablissement" [(ngModel)]="formation.etablissement" />
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Établissement</label>
+                            <div class="col-md-10">
+                                <input required ngModel type="text" class="form-control" name="etablissement"
+                                    [(ngModel)]="formation.etablissement" />
                             </div>
-                            <div class="form-group">
-                                <label class="col-md-2 control-label">Adresse</label>
-                                <div class="col-md-10">
-                                    <input required ngModel type="text" class="form-control"
-                                     name="lieu" [(ngModel)]="formation.lieu" />
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Adresse</label>
+                            <div class="col-md-10">
+                                <input required ngModel type="text" class="form-control" name="lieu"
+                                    [(ngModel)]="formation.lieu" />
                             </div>
-                            <div class="form-group">
-                                <label class="col-md-2 control-label">Date Début</label>
-                                <div class="col-md-5">
-                                    <input required ngModel type="text" class="form-control datepicker" value="2014-08-04"
-                                        name="dateDebut" [(ngModel)]="formation.dateDebut" />
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Date Début</label>
+                            <div class="col-md-5">
+                                <input required ngModel type="text" class="form-control datepicker" value="2014-08-04"
+                                    name="dateDebut" [(ngModel)]="formation.dateDebut" />
                             </div>
-                            <div class="form-group">
-                                <label class="col-md-2 control-label">Date Fin</label>
-                                <div class="col-md-5">
-                                    <input required ngModel type="text" class="form-control datepicker" value="2014-08-04"
-                                        name="dateFin" [(ngModel)]="formation.dateFin"/>
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Date Fin</label>
+                            <div class="col-md-5">
+                                <input required ngModel type="text" class="form-control datepicker" value="2014-08-04"
+                                    name="dateFin" [(ngModel)]="formation.dateFin" />
                             </div>
-                            <div class="form-group">
-                                <label class="col-md-2 control-label">Détail</label>
-                                <div class="col-md-10">
-                                    <textarea required ngModel class="form-control" rows="5"
-                                    name="details" [(ngModel)]="formation.details"></textarea>
-                                  
-                                </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-2 control-label">Détail</label>
+                            <div class="col-md-10">
+                                <textarea required ngModel class="form-control" rows="5" name="details"
+                                    [(ngModel)]="formation.details"></textarea>
+
                             </div>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -391,8 +355,76 @@
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
             </form>
-            </div>
         </div>
     </div>
-    <!-- END MODALS -->
-    
+</div>
+<!-- END MODALS -->
+
+<!-- MODALS -->
+<div id="ModalExp" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="taskEditModalHead"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Fermer</span></button>
+                <h4 class="modal-title" id="taskEditModalHead">Modifier Block Experience</h4>
+            </div>
+            <form class="form-horizontal" #fExp="ngForm" (ngSubmit)="createExp(fExp.value)">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <ng-multiselect-dropdown class="col-md-4" [placeholder]="'Choisir expérience'"
+                            [data]="dlexp" name="exp" #role="ngModel" [(ngModel)]="sIexp"
+                            [settings]="dropdownSettings" (onSelect)="onISexp($event)" (onDeSelect)="onIDSexp($event)">
+                        </ng-multiselect-dropdown>
+                    </div>
+                    <tr></tr>
+                    <h3>Ajouter une nouvelle expérience</h3>
+                    <tr></tr>
+                    <div class="col-md-12">
+
+
+                        <div class="form-group">
+                            <div class="col-md-6">
+                                <input required ngModel type="text" class="form-control" name="departement"
+                                    [(ngModel)]="exp.departement" placeholder="département" />
+                            </div>
+                            <div class="col-md-6">
+                                <input required ngModel type="text" class="form-control" name="descriptionRole"
+                                    [(ngModel)]="exp.descriptionRole" placeholder="description rôle"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-6">
+                                <label class="control-label">Date Début</label>
+                                <input required ngModel type="date" class="form-control"
+                                    name="dateDebut" [(ngModel)]="exp.dateDebut" />
+                            </div>
+                            <div class="col-md-6">
+                                <label class="control-label">Date Fin</label>
+                                <input required ngModel type="date" class="form-control"
+                                    name="dateFin" [(ngModel)]="exp.dateFin" />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                                <ng-multiselect-dropdown class="col-md-6" [placeholder]="'Choisir poste'"
+                                        [data]="dlposte" name="poste" #role="ngModel" [(ngModel)]="sIposte"
+                                        [settings]="dropdownSettingsSingle" (onSelect)="onISposte($event)" >
+                                    </ng-multiselect-dropdown>
+                                <ng-multiselect-dropdown class="col-md-6" [placeholder]="'Choisir societe'"
+                                    [data]="dlsociete" name="societe" #role="ngModel" [(ngModel)]="sIsociete"
+                                    [settings]="dropdownSettingsSingle" (onSelect)="onISsociete($event)" >
+                                </ng-multiselect-dropdown>
+                            </div>
+                        
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- END MODALS -->

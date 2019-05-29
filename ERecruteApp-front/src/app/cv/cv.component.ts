@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { UserService, Formation  } from '../services/user.service';
+import { UserService, Formation, Experience  } from '../services/user.service';
 
 import * as jspdf from 'jspdf';  
 import html2canvas from 'html2canvas';
@@ -17,10 +17,16 @@ export class CvComponent implements OnInit {
   Formation;
   formations;
   experiences;
-  tmp;selectedFormations = [];
+  postes; societes;
+  poste; societe;
+  tmp;selectedFormations = [];selectedExps = [];
 
   dlformation ;sIformation = [];
+  dlexp ;sIexp = [];
+  sIposte; sIsociete;
+  dlposte ;dlsociete ;
   dropdownSettings = {};
+  dropdownSettingsSingle = {};
 
   mode = -1;
 
@@ -40,6 +46,12 @@ export class CvComponent implements OnInit {
       allowSearchFilter: true
     };
 
+    this.dropdownSettingsSingle = {
+      singleSelection: true,
+      itemsShowLimit: 3,
+      allowSearchFilter: true
+    };
+
   }
 
   getCV(url) {
@@ -50,7 +62,10 @@ export class CvComponent implements OnInit {
 
       this.getFormations("/profil/"+this.cv.profil.codeProfil+"/formations");
 
-      this.getExperiences("/cv/"+this.cv.codeCV+"/experiences")
+      this.getExperiences("/cv/"+this.cv.codeCV+"/experiences");
+
+      this.getPostes("/postes");
+      this.getSocietes("/societes");
     },err=>{
       console.log(err);
     })
@@ -79,14 +94,44 @@ export class CvComponent implements OnInit {
     .subscribe(data=>{
       this.experiences = data;
       console.log(this.experiences);
-      //this.selectedFormations = this.formations;
+      this.selectedExps = this.experiences;
       
-      //this.dlformation = [];
-      //this.sIformation = [];
-      //for(let el of this.formations){
-      //  this.dlformation.push(el.intitule);
-      //  this.sIformation.push(el.intitule);
-      //}
+      this.dlexp = [];
+      this.sIexp = [];
+      for(let el of this.experiences){
+        this.dlexp.push(el.descriptionRole);
+        this.sIexp.push(el.descriptionRole);
+      }
+      
+    },err=>{
+      console.log(err);
+    })
+  }
+
+  getPostes(url) {
+    this.service.getRessources(url)
+    .subscribe(data=>{
+      this.postes = data;
+      
+      this.dlposte = [];
+      for(let p of this.postes){
+        this.dlposte.push(p.libellePost);
+      }
+      
+    },err=>{
+      console.log(err);
+    })
+  }
+
+  getSocietes(url) {
+    this.service.getRessources(url)
+    .subscribe(data=>{
+      this.societes = data;
+      
+      this.dlsociete = [];
+      for(let s of this.societes){
+        this.dlsociete.push(s.nomSociete);
+      }
       
     },err=>{
       console.log(err);
@@ -99,8 +144,11 @@ export class CvComponent implements OnInit {
       if(el.intitule == item)
         this.selectedFormations.push(el);
     }
+    this.sIformation = [];
+    for(let el of this.selectedFormations){
+        this.sIexp.push(el.intitule);
+    }
       
-    console.log(this.selectedFormations);
   }
 
   onIDS(item: any) {
@@ -113,6 +161,41 @@ export class CvComponent implements OnInit {
     this.selectedFormations = this.tmp;
       
     console.log(this.selectedFormations);
+  }
+
+  onISposte(item: any) {
+    for(let p of this.postes){
+      if(p.libellePost == item)
+        this.poste = p.codePost;
+    }
+  }
+
+  onISsociete(item: any) {
+    for(let s of this.societes){
+      if(s.nomSociete == item)
+        this.societe = s.codeSociete;
+    }
+  }
+
+
+  onISexp(item: any) {
+    for(let el of this.experiences){
+      if(el.descriptionRole == item)
+        this.selectedExps.push(el);
+    }
+    
+  }
+
+  onIDSexp(item: any) {
+    this.tmp = [];
+    for(let el of this.selectedExps){
+      if(el.descriptionRole != item)
+        this.tmp.push(el);
+    }
+
+    this.selectedExps = this.tmp;
+      
+    console.log(this.selectedExps);
   }
 
   formation: Formation = new Formation("","","","","","","","");
@@ -136,9 +219,30 @@ export class CvComponent implements OnInit {
         console.log(this.formations);
   };
 
-  addFormation(){
-    this.mode = 1;
-  }
+  exp: Experience = new Experience("","","","","","","","");
+  
+  createExp(exp): void {
+  
+    exp.cv = this.cv.codeCV;
+    exp.poste = this.poste;
+    exp.societe = this.societe;
+
+    console.log(exp);
+
+    this.service.createRessources("/admin/saveExperienceCV",exp)
+        .subscribe( data => {
+          
+          alert("Expérience est ajoutée avec succée");
+          this.experiences.push(exp);
+          this.dlexp = [];
+          for(let el of this.experiences){
+            this.dlexp.push(el.descriptionRole);
+          }
+          //this.router.navigate(['/cv/'+cv.codeCV]);
+          //this.getCompetence();
+        });
+
+  };
 
   public captureScreen()  
   {  

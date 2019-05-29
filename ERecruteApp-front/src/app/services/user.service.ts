@@ -99,6 +99,20 @@ export class Formation{
   public  profil:string
   ){}
 }
+
+export class Experience{
+  constructor(
+  public codeExperience:string,
+  public dateDebut:string,
+	public dateFin:string,
+	public departement:string,
+  public descriptionRole:string,
+  public societe:string,
+  public poste:string,
+  public cv:string
+  ){}
+}
+
 @Injectable({
   providedIn: 'root'
 })

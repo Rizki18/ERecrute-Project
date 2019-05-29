@@ -34,7 +34,7 @@ public class AuthentificationBackApplication{
 	
 	public static void main(String[] args) {
 		ApplicationContext ctx = SpringApplication.run(AuthentificationBackApplication.class, args);
-
+/*
 		//CV_SA
 		SecteurActiviteRepository saRepository = ctx.getBean(SecteurActiviteRepository.class);
 		CvRepository cvRepository = ctx.getBean(CvRepository.class);
@@ -77,7 +77,8 @@ public class AuthentificationBackApplication{
 		
 		System.out.println(cv.getExps());
 		
-		
+	*/	
+				
 	}
 
 }

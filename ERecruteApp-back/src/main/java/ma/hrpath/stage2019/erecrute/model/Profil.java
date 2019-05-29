@@ -203,7 +203,7 @@ public class Profil implements Serializable  {
 		return "Profil [codeProfil=" + codeProfil + ", adresse=" + adresse + ", cimr=" + cimr + ", cin=" + cin
 				+ ", civilite=" + civilite + ", cnss=" + cnss + ", dateNaissance=" + dateNaissance + ", email=" + email
 				+ ", nom=" + nom + ", permisConduite=" + permisConduite + ", photo=" + photo + ", prenom=" + prenom
-				+ ", rib=" + rib + ", tel=" + tel + ", m_Formation=" + m_Formation + "]";
+				+ ", rib=" + rib + ", tel=" + tel + "]";
 	}
 
 	public void finalize() throws Throwable {

@@ -1,7 +1,9 @@
 package ma.hrpath.stage2019.erecrute.controller;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -13,10 +15,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import ma.hrpath.stage2019.erecrute.message.request.CvForm;
+import ma.hrpath.stage2019.erecrute.message.request.ExperienceForm;
+import ma.hrpath.stage2019.erecrute.message.request.FormationForm;
 import ma.hrpath.stage2019.erecrute.model.CV;
 import ma.hrpath.stage2019.erecrute.model.Experience;
 import ma.hrpath.stage2019.erecrute.model.Formation;
+import ma.hrpath.stage2019.erecrute.model.Poste;
 import ma.hrpath.stage2019.erecrute.model.Profil;
+import ma.hrpath.stage2019.erecrute.model.Societe;
+import ma.hrpath.stage2019.erecrute.repository.ExperienceRepository;
+import ma.hrpath.stage2019.erecrute.repository.PosteRepository;
+import ma.hrpath.stage2019.erecrute.repository.SocieteRepository;
 import ma.hrpath.stage2019.erecrute.security.service.CVThequeService;
 import ma.hrpath.stage2019.erecrute.security.service.ProfilService;
 
@@ -25,9 +34,46 @@ import ma.hrpath.stage2019.erecrute.security.service.ProfilService;
 public class CVThequeRestAPIs {
 	@Autowired
 	private CVThequeService cvThequeService;
-	
+	@Autowired
+	private PosteRepository posteRepository;
+	@Autowired
+	private SocieteRepository steRepository;
 	@Autowired
 	private ProfilService profilService;
+	@Autowired
+	private ExperienceRepository expRepository;
+	
+	@RequestMapping(value="/admin/saveExperienceCV",method = RequestMethod.POST)
+	@PreAuthorize("hasRole('ADMIN')")
+	public void saveExperienceCV(@RequestBody ExperienceForm f) {
+		CV cv = cvThequeService.retreiveCvById(Long.valueOf(f.getCv()));
+		Set<Experience> exps;
+		
+		if(f.getDepartement()!="" && f.getDescriptionRole()!="") {
+			Experience exp = new Experience(f.getDateDebut(),f.getDateFin(),f.getDepartement(),f.getDescriptionRole());
+			exp.setPoste(posteRepository.findById(Long.valueOf(f.getPoste())).orElse(null));
+			exp.setSociete(steRepository.findById(Long.valueOf(f.getSociete())).orElse(null));
+			expRepository.save(exp);
+			System.out.println(exp);
+			
+			
+			exps = cv.getExps();
+
+			exps.add(exp);
+		}
+		else {
+			exps = new HashSet<Experience>();
+			
+			for(String e : f.getExp()) {
+				exps.add(expRepository.findByDescriptionRole(e));
+			}
+		}
+		
+		cv.setExps(exps);
+		
+		cvThequeService.saveCV(cv);
+		
+	}
 	
 	@RequestMapping(value="/admin/saveCv",method = RequestMethod.POST)
 	public CV saveCv(@RequestBody CvForm cv) {
@@ -58,6 +104,21 @@ public class CVThequeRestAPIs {
 	@RequestMapping(value="/cv/{id}/experiences")
 	public List<Experience> listExpsCV(@PathVariable("id") Long id){
 		return cvThequeService.retreiveExpsCV(id);
+	}
+	
+	@RequestMapping(value="/societes")
+	public List<Societe> listSocietes(){
+		return steRepository.findAll();
+	}
+	
+	@RequestMapping(value="/postes")
+	public List<Poste> listPostes(){
+		return posteRepository.findAll();
+	}
+	
+	@RequestMapping(value="/profil/{id}/experiences")
+	public Set<Experience> listExpsProfil(@PathVariable("id") Long id){
+		return cvThequeService.retreiveExpsProfil(id);
 	}
 	
 	

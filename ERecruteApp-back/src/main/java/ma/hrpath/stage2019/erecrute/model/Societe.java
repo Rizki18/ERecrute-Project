@@ -57,7 +57,7 @@ public class Societe implements Serializable{
 
 	@Override
 	public String toString() {
-		return "Societe [codeSociete=" + codeSociete + ", nomSociete=" + nomSociete + ", m_Experience=" + m_Experience
+		return "Societe [codeSociete=" + codeSociete + ", nomSociete=" + nomSociete
 				+ "]";
 	}
 

@@ -1,17 +1,24 @@
 package ma.hrpath.stage2019.erecrute.model;
 
 import java.io.Serializable;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Langues implements Serializable  {
 
-	@Id @GeneratedValue
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codeLangue;
 	private String langue;
+	
+	@OneToMany(mappedBy = "lng", cascade = CascadeType.ALL)
+	private Set<CV_LNG> m_cvs;
 
 	public Langues() {
 		super();
@@ -41,7 +48,7 @@ public class Langues implements Serializable  {
 
 	@Override
 	public String toString() {
-		return "Langues [codeLangue=" + codeLangue + ", langue=" + langue + "]";
+		return "Langues [codeLangue=" + codeLangue + ", langue=" + langue + ", m_cvs=" + m_cvs + "]";
 	}
 
 	public void finalize() throws Throwable {

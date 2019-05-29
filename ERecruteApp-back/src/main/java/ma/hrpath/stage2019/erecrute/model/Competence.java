@@ -1,16 +1,24 @@
 package ma.hrpath.stage2019.erecrute.model;
 
 import java.io.Serializable;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Competence implements Serializable{
-	@Id @GeneratedValue
+	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codeCompetance;
 	private String nomCompetence;
+	
+	@OneToMany(mappedBy = "comp", cascade = CascadeType.ALL)
+	private Set<CV_COMP> m_cvs;
+	
 	//public MotCLes m_MotCLes;
 
 	public Competence() {
