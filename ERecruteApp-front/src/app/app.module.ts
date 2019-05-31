@@ -21,7 +21,6 @@ import { AddUtilisateurComponent } from './add-utilisateur/add-utilisateur.compo
 
 import { CompetenceComponent } from './competence/competence.component';
 
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
 import { EditUtilisateurComponent } from './edit-utilisateur/edit-utilisateur.component';
@@ -35,6 +34,7 @@ import { TypeProfilComponent } from './type-profil/type-profil.component';
 import { TypeContratComponent } from './type-contrat/type-contrat.component';
 import { ProfilComponent } from './profil/profil.component';
 import { AddProfilComponent } from './add-profil/add-profil.component';
+import { PosteComponent } from './poste/poste.component';
 
 @NgModule({
   declarations: [
@@ -59,14 +59,15 @@ import { AddProfilComponent } from './add-profil/add-profil.component';
     TypeProfilComponent,
     TypeContratComponent,
     ProfilComponent,
-    AddProfilComponent
+    AddProfilComponent,
+    PosteComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    NgbModule,
+    //NgbModule,
     NgMultiSelectDropDownModule.forRoot(),
     ConfirmationPopoverModule.forRoot({
       confirmButtonType: 'danger' // set defaults here

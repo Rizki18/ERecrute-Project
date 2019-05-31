@@ -46,7 +46,14 @@ export class ProfilComponent implements OnInit {
         });
     
   };
- 
+   charger()
+  {
+    this.service.getRessources("/load")
+        .subscribe( data => {
+          alert("Profils  added successfully from CSV.");
+          this.getProfil();
+        });
+  };
     getProfil() {
     this.service.getRessources("/profil")
     .subscribe(data=>{

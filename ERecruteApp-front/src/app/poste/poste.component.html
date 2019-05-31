@@ -1,0 +1,50 @@
+ 
+<div class="col-md-6"></div>
+<table class="table table-striped">
+    <thead></thead>
+    <tr>
+      <th>code</th>
+      <th>libelle</th>
+      <th>description</th>  
+      <th>
+            <form #f="ngForm" (ngSubmit)="createPoste(f.value)">   
+                    <tr>
+                      <td>
+                        <input required ngModel placeholder="Libelle" name="libellePost" class="form-control" [(ngModel)]="poste.libellePost">
+                        </td>
+                        <td>
+                          <input required ngModel placeholder="Description" name="descriptionPoste" class="form-control" [(ngModel)]="poste.descriptionPoste">
+                        </td>
+                        <td>
+                        <button [disabled]="!f.valid" type="submit" class="btn btn-success" >Create</button>
+                        </td>
+                    </tr>
+            </form>
+      </th>      
+    </tr>
+    
+    <tbody>
+        <tr *ngFor="let poste of postes">
+            <td>{{poste.codePost}}</td>
+              <td *ngIf="mode==poste.codePost">
+              <input required ngModel value={{poste.libellePost}} name="libellePost" class="form-control" [(ngModel)]="poste.libellePost">
+              </td>
+              <td *ngIf="mode==poste.codePost">
+              <input required ngModel value={{poste.descriptionPoste}} name="descriptionPoste" class="form-control" [(ngModel)]="poste.descriptionPoste">
+              </td> 
+                    
+            <td *ngIf="mode!=poste.codePost">
+                  {{poste.libellePost}}
+              </td>
+              <td *ngIf="mode!=poste.codePost">
+                  {{poste.descriptionPoste}}
+              </td>
+           
+            <td>
+                    <button class="btn btn-danger" (click)="deletePoste(poste)"> Delete competence</button> 
+                    <button *ngIf="mode!=poste.codePost" class="btn btn-success" (click)="editPoste(poste)"> Edit poste</button>
+                    <button *ngIf="mode==poste.codePost" class="btn btn-success" (click)="updatePoste(poste)"> Update poste</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
