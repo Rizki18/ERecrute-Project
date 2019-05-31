@@ -25,9 +25,8 @@ public class Competence implements Serializable{
 		super();
 	}
 
-	public Competence(Long codeCompetance, String nomCompetence) {
+	public Competence(String nomCompetence) {
 		super();
-		this.codeCompetance = codeCompetance;
 		this.nomCompetence = nomCompetence;
 		//this.m_MotCLes = m_MotCLes;
 	}

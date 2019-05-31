@@ -32,12 +32,15 @@ public class CV_COMP implements Serializable{
 			super();
 		}
 
-		public CV_COMP(Competence comp, String detail, Double niveau) {
+
+		public CV_COMP(CV cv, Competence comp, String detail, Double niveau) {
 			super();
+			this.cv = cv;
 			this.comp = comp;
 			this.detail = detail;
 			this.niveau = niveau;
 		}
+
 
 		public CV getCv() {
 			return cv;

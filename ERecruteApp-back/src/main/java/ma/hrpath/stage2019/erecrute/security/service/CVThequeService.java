@@ -6,6 +6,8 @@ import java.util.Optional;
 import java.util.Set;
 
 import ma.hrpath.stage2019.erecrute.model.CV;
+import ma.hrpath.stage2019.erecrute.model.CV_COMP;
+import ma.hrpath.stage2019.erecrute.model.Competence;
 import ma.hrpath.stage2019.erecrute.model.Experience;
 
 public interface CVThequeService {
@@ -24,4 +26,6 @@ public interface CVThequeService {
 	public List<Experience> retreiveExpsCV(Long id);
 
 	public Set<Experience> retreiveExpsProfil(Long id);
+
+	public List<CV_COMP> retreiveCompsCV(Long id);
 }

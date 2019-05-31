@@ -13,13 +13,16 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import ma.hrpath.stage2019.erecrute.model.CV;
+import ma.hrpath.stage2019.erecrute.model.CV_COMP;
 import ma.hrpath.stage2019.erecrute.model.CV_SA;
+import ma.hrpath.stage2019.erecrute.model.Competence;
 import ma.hrpath.stage2019.erecrute.model.Experience;
 import ma.hrpath.stage2019.erecrute.model.Poste;
 import ma.hrpath.stage2019.erecrute.model.Profil;
 import ma.hrpath.stage2019.erecrute.model.Role;
 import ma.hrpath.stage2019.erecrute.model.SecteurActivite;
 import ma.hrpath.stage2019.erecrute.model.Societe;
+import ma.hrpath.stage2019.erecrute.repository.CompetenceRepository;
 import ma.hrpath.stage2019.erecrute.repository.CvRepository;
 import ma.hrpath.stage2019.erecrute.repository.ExperienceRepository;
 import ma.hrpath.stage2019.erecrute.repository.PosteRepository;
@@ -77,8 +80,25 @@ public class AuthentificationBackApplication{
 		
 		System.out.println(cv.getExps());
 		
-	*/	
+		
+		
+		//CV_COMP
+				CompetenceRepository compRepository = ctx.getBean(CompetenceRepository.class);
+				CvRepository cvRepository = ctx.getBean(CvRepository.class);
+				ProfilRepository profilRepository = ctx.getBean(ProfilRepository.class);
+
+		        Competence sa1 = compRepository.findById(Long.valueOf("1")).orElse(null);
+		        Competence sa2 = compRepository.findById(Long.valueOf("2")).orElse(null);
 				
+				CV cv = new CV("modele","nomCV","posteCV");
+				
+				Profil p = profilRepository.findById(Long.valueOf("1")).orElse(null);
+				cv.setProfil(p);
+				
+				cv.setCompetences(new CV_COMP(sa1,"aaaaa",Double.valueOf(758.0)),new CV_COMP(sa2,"bbbbb",Double.valueOf(15.0))); 
+				
+				cvRepository.save(cv);
+	*/
 	}
 
 }
