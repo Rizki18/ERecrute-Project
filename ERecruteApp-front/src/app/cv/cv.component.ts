@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { UserService, Formation, Experience  } from '../services/user.service';
+import { UserService, Formation, Experience, CompetenceCV  } from '../services/user.service';
 
 import * as jspdf from 'jspdf';  
 import html2canvas from 'html2canvas';
@@ -17,14 +17,14 @@ export class CvComponent implements OnInit {
   Formation;
   formations;
   experiences;
-  postes; societes;
+  postes; societes; comps;
   poste; societe;
-  tmp;selectedFormations = [];selectedExps = [];
+  tmp;selectedFormations = [];selectedExps;selectedComps;
 
   dlformation ;sIformation = [];
   dlexp ;sIexp = [];
-  sIposte; sIsociete;
-  dlposte ;dlsociete ;
+  sIposte; sIsociete; sIcomp;
+  dlposte ;dlsociete ; dlcomp;
   dropdownSettings = {};
   dropdownSettingsSingle = {};
 
@@ -61,11 +61,13 @@ export class CvComponent implements OnInit {
       console.log(this.cv);
 
       this.getFormations("/profil/"+this.cv.profil.codeProfil+"/formations");
-
       this.getExperiences("/cv/"+this.cv.codeCV+"/experiences");
+      this.getExperiencesProfil("/profil/"+this.cv.profil.codeProfil+"/experiences");
 
       this.getPostes("/postes");
       this.getSocietes("/societes");
+      this.getCompetences("/Competence");
+      this.getCompetencesCV("/cv/"+this.cv.codeCV+"/competences");
     },err=>{
       console.log(err);
     })
@@ -89,17 +91,30 @@ export class CvComponent implements OnInit {
     })
   }
 
-  getExperiences(url) {
+  getExperiencesProfil(url) {
     this.service.getRessources(url)
     .subscribe(data=>{
       this.experiences = data;
+
       console.log(this.experiences);
-      this.selectedExps = this.experiences;
-      
+            
       this.dlexp = [];
-      this.sIexp = [];
       for(let el of this.experiences){
         this.dlexp.push(el.descriptionRole);
+      }
+      
+    },err=>{
+      console.log(err);
+    })
+  }
+
+  getExperiences(url) {
+    this.service.getRessources(url)
+    .subscribe(data=>{
+      this.selectedExps = data;
+
+      this.sIexp = [];
+      for(let el of this.selectedExps){
         this.sIexp.push(el.descriptionRole);
       }
       
@@ -138,6 +153,30 @@ export class CvComponent implements OnInit {
     })
   }
 
+  getCompetences(url) {
+    this.service.getRessources(url)
+    .subscribe(data=>{
+      this.comps = data;
+      
+      this.dlcomp = [];
+      for(let s of this.comps){
+        this.dlcomp.push(s.nomCompetence);
+      }
+      
+    },err=>{
+      console.log(err);
+    })
+  }
+
+  getCompetencesCV(url) {
+    this.service.getRessources(url)
+    .subscribe(data=>{
+      this.selectedComps = data;
+      console.log(this.selectedComps);      
+    },err=>{
+      console.log(err);
+    })
+  }
  
   onIS(item: any) {
     for(let el of this.formations){
@@ -177,6 +216,12 @@ export class CvComponent implements OnInit {
     }
   }
 
+  onIScomp(item: any) {
+    for(let s of this.comps){
+      if(s.nomCompetence == item)
+        this.comp = s.codeCompetance;
+    }
+  }
 
   onISexp(item: any) {
     for(let el of this.experiences){
@@ -238,6 +283,27 @@ export class CvComponent implements OnInit {
           for(let el of this.experiences){
             this.dlexp.push(el.descriptionRole);
           }
+          //this.router.navigate(['/cv/'+cv.codeCV]);
+          //this.getCompetence();
+        });
+
+  };
+
+  comp: CompetenceCV = new CompetenceCV("","","","");
+  
+  createComp(comp): void {
+  
+    comp.cv = this.cv.codeCV;
+    comp.competence = this.comp;
+    
+    console.log(comp);
+
+    this.service.createRessources("/admin/saveCompetenceCV",comp)
+        .subscribe( data => {
+          
+          alert("Competence est ajoutée avec succée");
+          this.selectedComps.push(comp);
+          
           //this.router.navigate(['/cv/'+cv.codeCV]);
           //this.getCompetence();
         });

@@ -14,15 +14,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import ma.hrpath.stage2019.erecrute.message.request.CompetenceForm;
 import ma.hrpath.stage2019.erecrute.message.request.CvForm;
 import ma.hrpath.stage2019.erecrute.message.request.ExperienceForm;
 import ma.hrpath.stage2019.erecrute.message.request.FormationForm;
 import ma.hrpath.stage2019.erecrute.model.CV;
+import ma.hrpath.stage2019.erecrute.model.CV_COMP;
+import ma.hrpath.stage2019.erecrute.model.Competence;
 import ma.hrpath.stage2019.erecrute.model.Experience;
 import ma.hrpath.stage2019.erecrute.model.Formation;
 import ma.hrpath.stage2019.erecrute.model.Poste;
 import ma.hrpath.stage2019.erecrute.model.Profil;
 import ma.hrpath.stage2019.erecrute.model.Societe;
+import ma.hrpath.stage2019.erecrute.repository.CompetenceRepository;
 import ma.hrpath.stage2019.erecrute.repository.ExperienceRepository;
 import ma.hrpath.stage2019.erecrute.repository.PosteRepository;
 import ma.hrpath.stage2019.erecrute.repository.SocieteRepository;
@@ -38,6 +42,8 @@ public class CVThequeRestAPIs {
 	private PosteRepository posteRepository;
 	@Autowired
 	private SocieteRepository steRepository;
+	@Autowired
+	private CompetenceRepository compRepository;
 	@Autowired
 	private ProfilService profilService;
 	@Autowired
@@ -75,6 +81,33 @@ public class CVThequeRestAPIs {
 		
 	}
 	
+	@RequestMapping(value="/admin/saveCompetenceCV",method = RequestMethod.POST)
+	@PreAuthorize("hasRole('ADMIN')")
+	public void saveCompetenceCV(@RequestBody CompetenceForm f) {
+		System.out.println(f.getCompetence());
+		System.out.println(f.getCv());
+		System.out.println(f.getDetails());
+		System.out.println(f.getNiveau());
+		
+		CV cv = cvThequeService.retreiveCvById(Long.valueOf(f.getCv()));
+		
+		CV newCV = cv;
+		
+		Competence comp = compRepository.findById(Long.valueOf(f.getCompetence())).orElse(null);
+		CV_COMP compCV = new CV_COMP(cv,comp,f.getDetails(),Double.valueOf(f.getNiveau()));
+		System.out.println(compCV);
+		/*
+		Set<CV_COMP> compsCV = new HashSet<CV_COMP>();
+		compsCV.add(compCV);
+		System.out.println(compsCV);
+		*/
+		
+		newCV.getM_competences().add(compCV); 
+		
+		cvThequeService.saveCV(newCV);
+		
+	}
+	
 	@RequestMapping(value="/admin/saveCv",method = RequestMethod.POST)
 	public CV saveCv(@RequestBody CvForm cv) {
 		System.out.println(cv);
@@ -104,6 +137,11 @@ public class CVThequeRestAPIs {
 	@RequestMapping(value="/cv/{id}/experiences")
 	public List<Experience> listExpsCV(@PathVariable("id") Long id){
 		return cvThequeService.retreiveExpsCV(id);
+	}
+	
+	@RequestMapping(value="/cv/{id}/competences")
+	public List<CV_COMP> listCompsCV(@PathVariable("id") Long id){
+		return cvThequeService.retreiveCompsCV(id);
 	}
 	
 	@RequestMapping(value="/societes")

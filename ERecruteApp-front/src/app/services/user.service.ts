@@ -119,6 +119,15 @@ export class Experience{
   ){}
 }
 
+export class CompetenceCV{
+  constructor(
+  public competence:string,
+	public niveau:string,
+	public details:string,
+	public cv:string,
+  ){}
+}
+
 @Injectable({
   providedIn: 'root'
 })

@@ -72,7 +72,7 @@
     <div id="cv" class="content-frame-body">
 
         <div class="row push-up-10">
-            <div class="col-md-4">
+            <div class="col-md-5">
                 <div id="tasks" class="tasks profile">
 
                     <div>
@@ -163,7 +163,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-7">
                 <div class="tasks" id="tasks_progreess">
                     <div class="task-item panel panel-primary panel-hidden-controls">
                         <div class="panel-heading">
@@ -222,18 +222,13 @@
                         <div class="panel-heading">
                             <h3 class="panel-title">Compétences</h3>
                             <ul class="panel-controls">
-                                <li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span
-                                            class="fa fa-cog"></span></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span>
-                                                Collapse</a></li>
-                                        <li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span>
-                                                Refresh</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#" class="panel-remove"><span class="fa fa-times"></span></a></li>
+                                <li><a><button class="btn btn-success btn-block" data-toggle="modal"
+                                            data-target="#ModalComp"><span class="fa fa-plus"></span></button></a></li>
+                                <li><a href="#" class="panel-fullscreen"><button class="btn btn-primary btn-block"><span
+                                                class="fa fa-expand"></span></button></a></li>
+
+                                <li><a href="#" class="panel-remove"><button class="btn btn-danger btn-block"><span
+                                                class="fa fa-times"></span></button></a></li>
                             </ul>
                         </div>
                         <div class="panel-body">
@@ -418,6 +413,47 @@
                             </div>
                         
                     </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- END MODALS -->
+
+<!-- MODALS -->
+<div id="ModalComp" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="taskEditModalHead"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Fermer</span></button>
+                <h4 class="modal-title" id="taskEditModalHead">Modifier Block Competence</h4>
+            </div>
+            <form class="form-horizontal" #fComp="ngForm" (ngSubmit)="createComp(fComp.value)">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <ng-multiselect-dropdown class="col-md-5" [placeholder]="'Choisir competence'"
+                            [data]="dlcomp" name="comp" #role="ngModel" [(ngModel)]="sIcomp"
+                            [settings]="dropdownSettingsSingle" (onSelect)="onIScomp($event)">
+                        </ng-multiselect-dropdown>
+                            <div class="col-md-5">
+                                <label class="control-label">Niveau</label>
+                                <input type="range" class="defaultSlider"  data-min="20" data-max="180"
+                                required ngModel name="niveau" [(ngModel)]="comp.niveau">
+                            </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">Détail</label>
+                        <span class="col-md-8">
+                            <textarea required ngModel class="form-control" rows="3"
+                            name="details" [(ngModel)]="comp.details"></textarea>
+                        </span>
+                    </div>     
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary">Save changes</button>

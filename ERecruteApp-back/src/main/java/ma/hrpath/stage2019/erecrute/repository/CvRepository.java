@@ -8,6 +8,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import ma.hrpath.stage2019.erecrute.model.CV;
+import ma.hrpath.stage2019.erecrute.model.CV_COMP;
+import ma.hrpath.stage2019.erecrute.model.Competence;
 import ma.hrpath.stage2019.erecrute.model.Profil;
 
 public interface CvRepository extends JpaRepository<CV, Long> {

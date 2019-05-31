@@ -137,8 +137,12 @@ public class CV implements Serializable{
 	}
 	
 	public void setCompetences(CV_COMP ... competences) {
-		for(CV_COMP competence : competences) competence.setCv(this);
         this.m_competences = Stream.of(competences).collect(Collectors.toSet());
+	}
+	
+	public void addCompetence(Competence competence, Double niveau, String details) {
+        CV_COMP compCV = new CV_COMP(this,competence,details,niveau);
+        this.m_competences.add(compCV);
 	}
 	
 	public Set<CV_TP> getM_typeProfils() {

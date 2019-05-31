@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import ma.hrpath.stage2019.erecrute.model.CV;
+import ma.hrpath.stage2019.erecrute.model.CV_COMP;
+import ma.hrpath.stage2019.erecrute.model.Competence;
 import ma.hrpath.stage2019.erecrute.model.Experience;
 import ma.hrpath.stage2019.erecrute.model.Poste;
 import ma.hrpath.stage2019.erecrute.model.Profil;
@@ -103,6 +105,18 @@ public class CVThequeServiceImpl implements CVThequeService{
 		}
 		
 		return exps;
+	}
+
+	@Override
+	public List<CV_COMP> retreiveCompsCV(Long id) {
+		List<CV_COMP> comps = new ArrayList<CV_COMP>();
+		
+		CV cv = cvRepository.findById(id).orElse(null);
+		
+		for(CV_COMP comp : cv.getM_competences())
+			comps.add(comp);
+			
+		return comps;
 	}
 
 }
