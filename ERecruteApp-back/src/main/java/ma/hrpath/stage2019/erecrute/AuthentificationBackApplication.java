@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -33,75 +34,12 @@ import ma.hrpath.stage2019.erecrute.repository.SocieteRepository;
 @SpringBootApplication(scanBasePackages = "ma")
 @EntityScan("ma.*")
 @EnableJpaRepositories("ma.*")
+@EnableBatchProcessing()
 public class AuthentificationBackApplication{
 	
 	public static void main(String[] args) {
 		ApplicationContext ctx = SpringApplication.run(AuthentificationBackApplication.class, args);
-/*
-		//CV_SA
-		SecteurActiviteRepository saRepository = ctx.getBean(SecteurActiviteRepository.class);
-		CvRepository cvRepository = ctx.getBean(CvRepository.class);
-		ProfilRepository profilRepository = ctx.getBean(ProfilRepository.class);
-
-        SecteurActivite sa1 = new SecteurActivite("Comptabilite");
-        SecteurActivite sa2 = new SecteurActivite("developpment");
-		saRepository.saveAll(Arrays.asList(sa1,sa2));
-		
-		CV cv = new CV("modele","nomCV","posteCV");
-		
-		Profil p = profilRepository.findById(Long.valueOf("1")).orElse(null);
-		cv.setProfil(p);
-		
-		cv.setSecteurActivites(new CV_SA(sa1,new Date(),new Date()),new CV_SA(sa2,new Date(),new Date())); 
-		
-		 // cv_exps
-		PosteRepository posteRepository = ctx.getBean(PosteRepository.class);
-		SocieteRepository societeRepository = ctx.getBean(SocieteRepository.class);
-		ExperienceRepository expRepository = ctx.getBean(ExperienceRepository.class);
-		
-		Poste poste = new Poste("developpement des application web","developpeur");
-		posteRepository.save(poste);
-		
-		Societe ste = new Societe("HRPATH");
-		societeRepository.save(ste);
-		
-		Experience exp = new Experience(new Date(),new Date(),"marketing","consultant");
-		exp.setPoste(poste);
-		exp.setSociete(ste);
-		expRepository.save(exp);
-		
-		Set<Experience> exps = new HashSet<Experience>();
-		exps.add(exp);
-		cv.setExps(exps);
-		
-		cvRepository.save(cv);
-		
-		System.out.println(cv.getM_secteurActivites());
-		
-		System.out.println(cv.getExps());
-		
-		
-		
-		//CV_COMP
-		
-				CompetenceRepository compRepository = ctx.getBean(CompetenceRepository.class);
-				CvRepository cvRepository = ctx.getBean(CvRepository.class);
-				ProfilRepository profilRepository = ctx.getBean(ProfilRepository.class);
-
-		        Competence sa1 = compRepository.findById(Long.valueOf("1")).orElse(null);
-		        Competence sa2 = compRepository.findById(Long.valueOf("2")).orElse(null);
-		        
-				CV cv = cvRepository.findById(Long.valueOf("5")).orElse(null);
-				//
-				//CV_COMP comp1 = new CV_COMP(cv,sa1,"aaaaa",Double.valueOf(75.0));
-				//cv.getM_competences().clear();
-				//comp1.setCv(cv);
-				
-				cv.addCompetence(sa1, Double.valueOf(75.0), "aaaaa"); 
-				
-				System.out.println(cv.getM_competences());
-				cvRepository.save(cv);
-	*/
 	}
+	
 
 }

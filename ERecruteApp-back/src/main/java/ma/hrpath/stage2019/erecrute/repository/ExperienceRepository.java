@@ -7,7 +7,11 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import ma.hrpath.stage2019.erecrute.model.Experience;
+import ma.hrpath.stage2019.erecrute.model.Formation;
 
 public interface ExperienceRepository extends JpaRepository<Experience, Long> {
 	public Experience findByDescriptionRole(String s);
+	@Query("select f from Experience f where f.Poste.codePost=:x")
+	List<Experience> findByPoste(@Param("x")Long idPost);
+
 }

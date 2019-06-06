@@ -19,7 +19,19 @@ export class Role{
     public name:string
   ) {}
 }
-
+export class Motcles{
+  constructor(
+    public codeMotCle:string,
+    public libelleMotCle:string
+  ) {}
+}
+export class Poste{
+  constructor(
+    public codePost:string,
+    public descriptionPoste:string,
+    public libellePost:string
+  ) {}
+}
 export class Competence{
   constructor(
     public codeCompetance:string,

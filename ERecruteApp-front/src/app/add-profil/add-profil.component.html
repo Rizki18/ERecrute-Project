@@ -34,12 +34,14 @@
                                     <span class="stepDesc">Formation<br /><small>Détails</small></span>
                                 </a>
                             </li>
+                            <!--
                             <li>
                                   <a href="#step-9">
                                       <span class="stepNumber">3</span>
                                       <span class="stepDesc">Competence<br /><small>Détails</small></span>
                                   </a>
                               </li>
+                              -->
                         </ul>
                         <div id="step-7">
                             
@@ -149,10 +151,14 @@
                                     <textarea required ngModel class="form-control" rows="3"
                                     name="details" [(ngModel)]="formation.details"></textarea>
                                 </span>
-                            </div>                
+                            </div> 
+                            <div class="form-group">
+                                <button   type="submit"  class="btn btn-success"  >Create</button>
+                            </div> 
+                                      
                         </div>
-                   
-                        <div id="step-9">
+                   <!--
+                        <div id="step-9" *ngIf="!f.valid">
                                 <div class="form-group">
                                         <ng-multiselect-dropdown class="col-md-4"
                                         [placeholder]="'Choisir competence'"
@@ -228,13 +234,13 @@
                                 <div class="col-md-12"></div>
                                 <div class="col-md-12"></div>
                                 <div class="col-md-9"></div>
-                                <div class="col-md-3">
-                                    <!--</button>[disabled]="!f.valid"-->
+                                <div class="col-md-3"> -->
+                                    <!--</button>[disabled]="!f.valid"
                                     <button   type="submit"  class="btn btn-success"  >Create</button>
                                 </div>
-                            </div>
+                            </div>-->
                          </div>   
-                   </form> 
+                      </form> 
             </div>
             <!-- END WIZARD WITH VALIDATION -->
   

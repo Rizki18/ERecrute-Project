@@ -14,7 +14,9 @@ import { CriteresComponent } from './criteres/criteres.component';
 import { CvComponent } from './cv/cv.component';
 import { CvthequeComponent } from './cvtheque/cvtheque.component';
 import { ProfilComponent } from './profil/profil.component';
+import { PosteComponent } from './poste/poste.component';
 import { AddProfilComponent } from './add-profil/add-profil.component';
+import { MotClesComponent } from './mot-cles/mot-cles.component';
 
 const routes: Routes = [
   {
@@ -67,6 +69,10 @@ const routes: Routes = [
     component: AddProfilComponent
 },
 {
+    path: 'erecrute/motcles',
+    component: MotClesComponent
+},
+{
     path: 'erecrute/cv/:id',
     component: CvComponent
 },
@@ -78,6 +84,11 @@ const routes: Routes = [
 {
     path: 'erecrute/profil',
     component: ProfilComponent
+}
+,
+{
+    path: 'poste',
+    component: PosteComponent
 }
 ];
 
