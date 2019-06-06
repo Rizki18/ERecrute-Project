@@ -122,6 +122,51 @@ export class CompetenceCV{
   ){}
 }
 
+export class LngCV{
+  constructor(
+  public lng:string,
+	public niveau:string,
+	public details:string,
+	public cv:string,
+  ){}
+}
+
+export class SaCV{
+  constructor(
+  public sa:string,
+	public dd:string,
+	public df:string,
+	public cv:string,
+  ){}
+}
+
+export class SfCV{
+  constructor(
+  public sf:string,
+	public dd:string,
+	public df:string,
+	public cv:string,
+  ){}
+}
+
+export class TpCV{
+  constructor(
+  public tp:string,
+	public dd:string,
+	public df:string,
+	public cv:string,
+  ){}
+}
+
+export class TcCV{
+  constructor(
+  public tc:string,
+	public dd:string,
+	public df:string,
+	public cv:string,
+  ){}
+}
+
 @Injectable({
   providedIn: 'root'
 })

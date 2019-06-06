@@ -3,26 +3,30 @@ package ma.hrpath.stage2019.erecrute.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class CV_SF implements Serializable{
 
-	@Id
-    @ManyToOne
-    @JoinColumn
+	@EmbeddedId
+	private CV_SF_ID id_cvSf;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
+    @MapsId("codeCV")
     private CV cv;
 
-    @Id
-    @ManyToOne
-    @JoinColumn
+	@ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
+    @MapsId("codeSituationFamiliale")
     private SituationFamiliale sf;
     
     private Date dateDebut;
@@ -33,14 +37,14 @@ public class CV_SF implements Serializable{
 		super();
 	}
 
-
-	public CV_SF(SituationFamiliale sf, Date dateDebut, Date dateFin) {
+	public CV_SF(CV cv, SituationFamiliale sf, Date dateDebut, Date dateFin) {
 		super();
+		this.id_cvSf = new CV_SF_ID(cv.getCodeCV(),sf.getCodeSituationFamiliale());
+		this.cv = cv;
 		this.sf = sf;
 		this.dateDebut = dateDebut;
 		this.dateFin = dateFin;
 	}
-
 
 	public CV getCv() {
 		return cv;
@@ -79,51 +83,6 @@ public class CV_SF implements Serializable{
 
 	public void setDateFin(Date dateFin) {
 		this.dateFin = dateFin;
-	}
-
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((cv == null) ? 0 : cv.hashCode());
-		result = prime * result + ((dateDebut == null) ? 0 : dateDebut.hashCode());
-		result = prime * result + ((dateFin == null) ? 0 : dateFin.hashCode());
-		result = prime * result + ((sf == null) ? 0 : sf.hashCode());
-		return result;
-	}
-
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		CV_SF other = (CV_SF) obj;
-		if (cv == null) {
-			if (other.cv != null)
-				return false;
-		} else if (!cv.equals(other.cv))
-			return false;
-		if (dateDebut == null) {
-			if (other.dateDebut != null)
-				return false;
-		} else if (!dateDebut.equals(other.dateDebut))
-			return false;
-		if (dateFin == null) {
-			if (other.dateFin != null)
-				return false;
-		} else if (!dateFin.equals(other.dateFin))
-			return false;
-		if (sf == null) {
-			if (other.sf != null)
-				return false;
-		} else if (!sf.equals(other.sf))
-			return false;
-		return true;
 	}
 
 

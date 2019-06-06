@@ -18,39 +18,39 @@ import { AddProfilComponent } from './add-profil/add-profil.component';
 
 const routes: Routes = [
   {
-    path: 'home',
+    path: 'erecrute/home',
     component: HomeComponent
 },
 {
-    path: 'recruteur',
+    path: 'erecrute/recruteur',
     component: RecruteurComponent
 },
 {
-    path: 'responsable',
+    path: 'erecrute/responsable',
     component: ResponsableComponent
 },
 {
-    path: 'admin',
+    path: 'erecrute/admin',
     component: AdminComponent
 },
 {
-    path: 'auth/login',
+    path: 'erecrute/auth/login',
     component: LoginComponent
 },
 {
-    path: 'signup',
+    path: 'erecrute/signup',
     component: RegisterComponent
 },
 {
-    path: 'utilisateurs',
+    path: 'erecrute/utilisateurs',
     component: UtilisateursComponent
 },
 {
-    path: 'nv-user',
+    path: 'erecrute/nv-user',
     component: AddUtilisateurComponent
 },
 {
-    path: 'edit-user',
+    path: 'erecrute/edit-user',
     component: EditUtilisateurComponent
 },
 {
@@ -59,24 +59,24 @@ const routes: Routes = [
     pathMatch: 'full'
 },
 {
-    path: 'criteres',
+    path: 'erecrute/criteres',
     component: CriteresComponent
 },
 {
-    path: 'addProfil',
+    path: 'erecrute/addProfil',
     component: AddProfilComponent
 },
 {
-    path: 'cv/:id',
+    path: 'erecrute/cv/:id',
     component: CvComponent
 },
 {
-    path: 'cvtheque/:id',
+    path: 'erecrute/cvtheque/:id',
     component: CvthequeComponent
 }
 ,
 {
-    path: 'profil',
+    path: 'erecrute/profil',
     component: ProfilComponent
 }
 ];

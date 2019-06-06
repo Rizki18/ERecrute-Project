@@ -36,20 +36,24 @@
     </div>
     <div class="content-frame-left">
         <div class="form-group">
-            <h4>Ajouter nouveau block:</h4>
-            <textarea class="form-control push-down-10" id="new_task" rows="4"
-                placeholder="Your task text here..."></textarea>
-            <button class="btn btn-primary" id="add_new_task"><span class="fa fa-edit"></span> Add</button>
-        </div>
-        <div class="form-group">
             <h4>Blocks:</h4>
             <div class="list-group border-bottom">
-                <a href="#" class="list-group-item"><span class="fa fa-circle text-primary"></span> Langues</a>
-                <a href="#" class="list-group-item"><span class="fa fa-circle text-primary"></span> Diplômes et
-                    Formations</a>
-                <a href="#" class="list-group-item"><span class="fa fa-circle text-primary"></span> Expériences
-                    professionnelles</a>
-                <a href="#" class="list-group-item"><span class="fa fa-circle text-primary"></span> Compétences</a>
+                <a href="#" class="list-group-item" data-toggle="modal" data-target="#ModalFormation">
+                    <span class="fa fa-circle text-primary"></span> Diplômes et Formations</a>
+                <a href="#" class="list-group-item" data-toggle="modal" data-target="#ModalExp">
+                    <span class="fa fa-circle text-primary"></span> Expériences professionnelles</a>
+                <a href="#" class="list-group-item" data-toggle="modal" data-target="#ModalComp">
+                    <span class="fa fa-circle text-primary"></span> Compétences</a>
+                <a href="#" class="list-group-item" data-toggle="modal" data-target="#ModalLng">
+                    <span class="fa fa-circle text-primary"></span> Langues</a>
+                <a href="#" class="list-group-item" data-toggle="modal" data-target="#ModalSa">
+                    <span class="fa fa-circle text-primary"></span> Secteurs d'activités</a>
+                <a href="#" class="list-group-item" data-toggle="modal" data-target="#ModalSf">
+                    <span class="fa fa-circle text-primary"></span> Situations familiales</a>
+                <a href="#" class="list-group-item" data-toggle="modal" data-target="#ModalTp">
+                    <span class="fa fa-circle text-primary"></span> Types Profil</a>
+                <a href="#" class="list-group-item" data-toggle="modal" data-target="#ModalTc">
+                    <span class="fa fa-circle text-primary"></span> Types Contrats</a>
             </div>
         </div>
         <div class="form-group">
@@ -112,55 +116,31 @@
                         </div>
                     </div>
                     <div class="task-item panel panel-primary panel-hidden-controls">
-
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Langues</h3>
-                            <ul class="panel-controls">
-                                <li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li>
-                                <li class="dropdown">
-                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span
-                                            class="fa fa-cog"></span></a>
-                                    <ul class="dropdown-menu">
-                                        <li><a href="#" class="panel-collapse"><span class="fa fa-angle-down"></span>
-                                                Collapse</a></li>
-                                        <li><a href="#" class="panel-refresh"><span class="fa fa-refresh"></span>
-                                                Refresh</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="#" class="panel-remove"><span class="fa fa-times"></span></a></li>
-                            </ul>
-                        </div>
-                        <div class="panel-body">
-
-                            <div class="task-warning">
-                                <div class="task-header">
-                                    <div class="pull-left">Francais</div>
-                                </div>
-
-                                <div class="task-text">
-                                    <div class="progress progress-small">
-                                        <div class="progress-bar" role="progressbar" aria-valuenow="75"
-                                            aria-valuemin="0" aria-valuemax="100" style="width: 75%;">75%</div>
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Langues</h3>
+                                <ul class="panel-controls">
+                                    <li><a data-toggle="modal" data-target="#BlockLng"><span class="fa fa-plus"></span></a>
+                                    </li>
+                                    <li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li>
+    
+                                    <li><a href="#" class="panel-remove"><span class="fa fa-times"></span></a></li>
+                                </ul>
+                            </div>
+                            <div class="panel-body">
+                                <div class="task-warning" *ngFor="let lng of selectedLngs">
+                                    <div class="task-header">
+                                        <div class="pull-left">{{lng.nom}}</div>
                                     </div>
-                                    Niveau courant
+                                    <div class="task-text">
+                                        <div class="progress progress-small">
+                                            <div class="progress-bar" role="progressbar" aria-valuenow="75"
+                                                aria-valuemin="0" aria-valuemax="100" style="width: 75%;">{{lng.niveau}}</div>
+                                        </div>
+                                        {{lng.detail}}
+                                    </div>
                                 </div>
                             </div>
-                            <div class="task-warning">
-                                <div class="task-header">
-                                    <div class="pull-left">Anglais</div>
-                                </div>
-
-                                <div class="task-text">
-                                    <div class="progress progress-small">
-                                        <div class="progress-bar" role="progressbar" aria-valuenow="75"
-                                            aria-valuemin="0" aria-valuemax="100" style="width: 75%;">75%</div>
-                                    </div>
-                                    Niveau technique
-                                </div>
-
-                            </div>
                         </div>
-                    </div>
                 </div>
             </div>
             <div class="col-md-7">
@@ -169,14 +149,11 @@
                         <div class="panel-heading">
                             <h3 class="panel-title">Diplômes et Formations</h3>
                             <ul class="panel-controls">
-                                <li><a><button class="btn btn-success btn-block"
-                                            data-toggle="modal" data-target="#ModalFormation"><span
-                                                class="fa fa-plus"></span></button></a></li>
-                                <li><a href="#" class="panel-fullscreen"><button class="btn btn-primary btn-block"><span
-                                                class="fa fa-expand"></span></button></a></li>
+                                <li><a href="#" data-toggle="modal" data-target="#BlockFormation"><span
+                                            class="fa fa-plus"></span></a></li>
+                                <li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li>
 
-                                <li><a href="#" class="panel-remove"><button class="btn btn-danger btn-block"><span
-                                                class="fa fa-times"></span></button></a></li>
+                                <li><a href="#" class="panel-remove"><span class="fa fa-times"></span></a></li>
                             </ul>
                         </div>
                         <div class="panel-body">
@@ -196,13 +173,11 @@
                         <div class="panel-heading">
                             <h3 class="panel-title">Expériences professionnelles</h3>
                             <ul class="panel-controls">
-                                <li><a><button class="btn btn-success btn-block" data-toggle="modal"
-                                            data-target="#ModalExp"><span class="fa fa-plus"></span></button></a></li>
-                                <li><a href="#" class="panel-fullscreen"><button class="btn btn-primary btn-block"><span
-                                                class="fa fa-expand"></span></button></a></li>
+                                <li><a data-toggle="modal" data-target="#BlockExp"><span class="fa fa-plus"></span></a>
+                                </li>
+                                <li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li>
 
-                                <li><a href="#" class="panel-remove"><button class="btn btn-danger btn-block"><span
-                                                class="fa fa-times"></span></button></a></li>
+                                <li><a href="#" class="panel-remove"><span class="fa fa-times"></span></a></li>
                             </ul>
                         </div>
                         <div class="panel-body">
@@ -222,47 +197,25 @@
                         <div class="panel-heading">
                             <h3 class="panel-title">Compétences</h3>
                             <ul class="panel-controls">
-                                <li><a><button class="btn btn-success btn-block" data-toggle="modal"
-                                            data-target="#ModalComp"><span class="fa fa-plus"></span></button></a></li>
-                                <li><a href="#" class="panel-fullscreen"><button class="btn btn-primary btn-block"><span
-                                                class="fa fa-expand"></span></button></a></li>
+                                <li><a data-toggle="modal" data-target="#BlockComp"><span class="fa fa-plus"></span></a>
+                                </li>
+                                <li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li>
 
-                                <li><a href="#" class="panel-remove"><button class="btn btn-danger btn-block"><span
-                                                class="fa fa-times"></span></button></a></li>
+                                <li><a href="#" class="panel-remove"><span class="fa fa-times"></span></a></li>
                             </ul>
                         </div>
                         <div class="panel-body">
-                            <div class="task-warning">
+                            <div class="task-warning" *ngFor="let comp of selectedComps">
                                 <div class="task-header">
-                                    <div class="pull-left">une compéْtence</div>
+                                    <div class="pull-left">{{comp.nom}}</div>
                                 </div>
-
                                 <div class="task-text">
                                     <div class="progress progress-small">
                                         <div class="progress-bar" role="progressbar" aria-valuenow="75"
-                                            aria-valuemin="0" aria-valuemax="100" style="width: 75%;">75%</div>
+                                            aria-valuemin="0" aria-valuemax="100" style="width: 75%;">{{comp.niveau}}</div>
                                     </div>
-                                    In mauris nunc, blandit a turpis in, vehicula viverra metus.
-                                    Quisque dictum purus lorem, in rhoncus justo dapibus eget. Aenean pretium non mauris
-                                    et porttitor.
+                                    {{comp.detail}}
                                 </div>
-
-                            </div>
-                            <div class="task-warning">
-                                <div class="task-header">
-                                    <div class="pull-left">deuxième compétence</div>
-                                </div>
-
-                                <div class="task-text">
-                                    <div class="progress progress-small">
-                                        <div class="progress-bar" role="progressbar" aria-valuenow="75"
-                                            aria-valuemin="0" aria-valuemax="100" style="width: 75%;">75%</div>
-                                    </div>
-                                    In mauris nunc, blandit a turpis in, vehicula viverra metus.
-                                    Quisque dictum purus lorem, in rhoncus justo dapibus eget. Aenean pretium non mauris
-                                    et porttitor.
-                                </div>
-
                             </div>
                         </div>
                     </div>
@@ -277,7 +230,7 @@
 <!-- END CONTENT FRAME -->
 
 <!-- MODALS -->
-<div id="ModalFormation" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="taskEditModalHead"
+<div id="BlockFormation" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="taskEditModalHead"
     aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -294,6 +247,114 @@
                             [settings]="dropdownSettings" (onSelect)="onIS($event)" (onDeSelect)="onIDS($event)">
                         </ng-multiselect-dropdown>
                     </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- END MODALS -->
+
+<!-- MODALS -->
+<div id="BlockExp" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="taskEditModalHead"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Fermer</span></button>
+                <h4 class="modal-title" id="taskEditModalHead">Modifier Block Experience</h4>
+            </div>
+            <form class="form-horizontal" #fExps="ngForm" (ngSubmit)="addExpToCV(fExps.value)">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <ng-multiselect-dropdown class="col-md-8" [placeholder]="'Choisir expérience'" [data]="dlexp"
+                            name="exp" #role="ngModel" [(ngModel)]="sIexp" [settings]="dropdownSettings"
+                            (onSelect)="onISexp($event)" (onDeSelect)="onIDSexp($event)">
+                        </ng-multiselect-dropdown>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- END MODALS -->
+
+<!-- MODALS -->
+<div id="BlockComp" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="taskEditModalHead"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Fermer</span></button>
+                <h4 class="modal-title" id="taskEditModalHead">Modifier Block Compétence</h4>
+            </div>
+            <form class="form-horizontal" #fComps="ngForm" (ngSubmit)="addCompToCV(fComps.value)">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <ng-multiselect-dropdown class="col-md-8" [placeholder]="'Choisir competence'"
+                            [data]="dlcompetence" name="comp" #role="ngModel" [(ngModel)]="sIcompetence"
+                            [settings]="dropdownSettings" (onSelect)="onIScompetence($event)"
+                            (onDeSelect)="onIDScompetence($event)">
+                        </ng-multiselect-dropdown>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- END MODALS -->
+
+<!-- MODALS -->
+<div id="BlockComp" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="taskEditModalHead"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Fermer</span></button>
+                <h4 class="modal-title" id="taskEditModalHead">Modifier Block Competence</h4>
+            </div>
+            <form class="form-horizontal" #fComp="ngForm" (ngSubmit)="createComp(fComp.value)">
+                <div class="modal-body">
+
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- END MODALS -->
+
+
+<!-- MODALS -->
+<div id="ModalFormation" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="taskEditModalHead"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Fermer</span></button>
+                <h4 class="modal-title" id="taskEditModalHead">Fromations du CV</h4>
+            </div>
+            <form class="form-horizontal" #f="ngForm" (ngSubmit)="createFormation(f.value)">
+                <div class="modal-body">
+
                     <tr></tr>
                     <h3>Ajouter une nouvelle formation</h3>
                     <tr></tr>
@@ -363,56 +424,67 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
                         class="sr-only">Fermer</span></button>
-                <h4 class="modal-title" id="taskEditModalHead">Modifier Block Experience</h4>
+                <h4 class="modal-title" id="taskEditModalHead">Experiences du CV</h4>
             </div>
             <form class="form-horizontal" #fExp="ngForm" (ngSubmit)="createExp(fExp.value)">
                 <div class="modal-body">
-                    <div class="form-group">
-                        <ng-multiselect-dropdown class="col-md-4" [placeholder]="'Choisir expérience'"
-                            [data]="dlexp" name="exp" #role="ngModel" [(ngModel)]="sIexp"
-                            [settings]="dropdownSettings" (onSelect)="onISexp($event)" (onDeSelect)="onIDSexp($event)">
-                        </ng-multiselect-dropdown>
-                    </div>
-                    <tr></tr>
-                    <h3>Ajouter une nouvelle expérience</h3>
-                    <tr></tr>
-                    <div class="col-md-12">
-
-
-                        <div class="form-group">
-                            <div class="col-md-6">
-                                <input required ngModel type="text" class="form-control" name="departement"
-                                    [(ngModel)]="exp.departement" placeholder="département" />
-                            </div>
-                            <div class="col-md-6">
-                                <input required ngModel type="text" class="form-control" name="descriptionRole"
-                                    [(ngModel)]="exp.descriptionRole" placeholder="description rôle"/>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-6">
-                                <label class="control-label">Date Début</label>
-                                <input required ngModel type="date" class="form-control"
-                                    name="dateDebut" [(ngModel)]="exp.dateDebut" />
-                            </div>
-                            <div class="col-md-6">
-                                <label class="control-label">Date Fin</label>
-                                <input required ngModel type="date" class="form-control"
-                                    name="dateFin" [(ngModel)]="exp.dateFin" />
-                            </div>
-                        </div>
-                        <div class="form-group">
-                                <ng-multiselect-dropdown class="col-md-6" [placeholder]="'Choisir poste'"
-                                        [data]="dlposte" name="poste" #role="ngModel" [(ngModel)]="sIposte"
-                                        [settings]="dropdownSettingsSingle" (onSelect)="onISposte($event)" >
-                                    </ng-multiselect-dropdown>
-                                <ng-multiselect-dropdown class="col-md-6" [placeholder]="'Choisir societe'"
-                                    [data]="dlsociete" name="societe" #role="ngModel" [(ngModel)]="sIsociete"
-                                    [settings]="dropdownSettingsSingle" (onSelect)="onISsociete($event)" >
-                                </ng-multiselect-dropdown>
-                            </div>
-                        
-                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>
+                                    <h3>Experiences:</h3>
+                                </th>
+                                <th>
+                                    <h3>Ajouter une nouvelle expérience</h3>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="list-group border-bottom col-md-10">
+                                        <a href="#" class="list-group-item" *ngFor="let exp of experiences">
+                                            <span class="fa fa-circle text-primary"></span>{{exp.descriptionRole}}</a>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group">
+                                        <div class="col-md-6">
+                                            <input required ngModel type="text" class="form-control" name="departement"
+                                                [(ngModel)]="exp.departement" placeholder="département" />
+                                        </div>
+                                        <div class="col-md-6">
+                                            <input required ngModel type="text" class="form-control"
+                                                name="descriptionRole" [(ngModel)]="exp.descriptionRole"
+                                                placeholder="description rôle" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-6">
+                                            <label class="control-label">Date Début</label>
+                                            <input required ngModel type="date" class="form-control" name="dateDebut"
+                                                [(ngModel)]="exp.dateDebut" />
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="control-label">Date Fin</label>
+                                            <input required ngModel type="date" class="form-control" name="dateFin"
+                                                [(ngModel)]="exp.dateFin" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <ng-multiselect-dropdown class="col-md-6" [placeholder]="'Choisir poste'"
+                                            [data]="dlposte" name="poste" #role="ngModel" [(ngModel)]="sIposte"
+                                            [settings]="dropdownSettingsSingle" (onSelect)="onISposte($event)">
+                                        </ng-multiselect-dropdown>
+                                        <ng-multiselect-dropdown class="col-md-6" [placeholder]="'Choisir societe'"
+                                            [data]="dlsociete" name="societe" #role="ngModel" [(ngModel)]="sIsociete"
+                                            [settings]="dropdownSettingsSingle" (onSelect)="onISsociete($event)">
+                                        </ng-multiselect-dropdown>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary">Save changes</button>
@@ -432,28 +504,69 @@
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
                         class="sr-only">Fermer</span></button>
-                <h4 class="modal-title" id="taskEditModalHead">Modifier Block Competence</h4>
+                <h4 class="modal-title" id="taskEditModalHead">Competences du CV</h4>
             </div>
             <form class="form-horizontal" #fComp="ngForm" (ngSubmit)="createComp(fComp.value)">
                 <div class="modal-body">
                     <div class="form-group">
-                        <ng-multiselect-dropdown class="col-md-5" [placeholder]="'Choisir competence'"
-                            [data]="dlcomp" name="comp" #role="ngModel" [(ngModel)]="sIcomp"
-                            [settings]="dropdownSettingsSingle" (onSelect)="onIScomp($event)">
+                        <ng-multiselect-dropdown class="col-md-5" [placeholder]="'Choisir competence'" [data]="dlcomp"
+                            name="comp" #role="ngModel" [(ngModel)]="sIcomp" [settings]="dropdownSettingsSingle"
+                            (onSelect)="onIScomp($event)">
                         </ng-multiselect-dropdown>
-                            <div class="col-md-5">
-                                <label class="control-label">Niveau</label>
-                                <input type="range" class="defaultSlider"  data-min="20" data-max="180"
-                                required ngModel name="niveau" [(ngModel)]="comp.niveau">
-                            </div>
+                        <div class="col-md-5">
+                            <label class="control-label">Niveau</label>
+                            <input type="range" class="defaultSlider" data-min="20" data-max="180" required ngModel
+                                name="niveau" [(ngModel)]="comp.niveau">
+                        </div>
                     </div>
                     <div class="form-group">
                         <label class="col-md-2 control-label">Détail</label>
                         <span class="col-md-8">
-                            <textarea required ngModel class="form-control" rows="3"
-                            name="details" [(ngModel)]="comp.details"></textarea>
+                            <textarea required ngModel class="form-control" rows="3" name="details"
+                                [(ngModel)]="comp.details"></textarea>
                         </span>
-                    </div>     
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- END MODALS -->
+
+<!-- MODALS -->
+<div id="ModalLng" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="taskEditModalHead"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Fermer</span></button>
+                <h4 class="modal-title" id="taskEditModalHead">Langues du CV</h4>
+            </div>
+            <form class="form-horizontal" #fLng="ngForm" (ngSubmit)="createLng(fLng.value)">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <ng-multiselect-dropdown class="col-md-5" [placeholder]="'Choisir langue'" [data]="dllng"
+                            name="lng" #role="ngModel" [(ngModel)]="sIlng" [settings]="dropdownSettingsSingle"
+                            (onSelect)="onISlng($event)">
+                        </ng-multiselect-dropdown>
+                        <div class="col-md-5">
+                            <label class="control-label">Niveau</label>
+                            <input type="range" class="defaultSlider" data-min="20" data-max="180" required ngModel
+                                name="niveau" [(ngModel)]="lng.niveau">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">Détail</label>
+                        <span class="col-md-8">
+                            <textarea required ngModel class="form-control" rows="3" name="details"
+                                [(ngModel)]="lng.details"></textarea>
+                        </span>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary">Save changes</button>

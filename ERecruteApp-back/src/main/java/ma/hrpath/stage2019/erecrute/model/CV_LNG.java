@@ -3,26 +3,30 @@ package ma.hrpath.stage2019.erecrute.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class CV_LNG implements Serializable{
 
-	@Id
-    @ManyToOne
-    @JoinColumn
+	@EmbeddedId
+	private CV_LNG_ID id_cvLng;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
+    @MapsId("codeCV")
     private CV cv;
 
-    @Id
-    @ManyToOne
-    @JoinColumn
+	@ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnore
+    @MapsId("codeLangue")
     private Langues lng;
     
     private Double niveau;
@@ -32,8 +36,10 @@ public class CV_LNG implements Serializable{
 		super();
 	}
 
-	public CV_LNG(Langues lng, Double niveau, String details) {
+	public CV_LNG(CV cv, Langues lng, Double niveau, String details) {
 		super();
+		this.id_cvLng = new CV_LNG_ID(cv.getCodeCV(),lng.getCodeLangue());
+		this.cv = cv;
 		this.lng = lng;
 		this.niveau = niveau;
 		this.details = details;
@@ -69,49 +75,6 @@ public class CV_LNG implements Serializable{
 
 	public void setDetails(String details) {
 		this.details = details;
-	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((cv == null) ? 0 : cv.hashCode());
-		result = prime * result + ((details == null) ? 0 : details.hashCode());
-		result = prime * result + ((lng == null) ? 0 : lng.hashCode());
-		result = prime * result + ((niveau == null) ? 0 : niveau.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		CV_LNG other = (CV_LNG) obj;
-		if (cv == null) {
-			if (other.cv != null)
-				return false;
-		} else if (!cv.equals(other.cv))
-			return false;
-		if (details == null) {
-			if (other.details != null)
-				return false;
-		} else if (!details.equals(other.details))
-			return false;
-		if (lng == null) {
-			if (other.lng != null)
-				return false;
-		} else if (!lng.equals(other.lng))
-			return false;
-		if (niveau == null) {
-			if (other.niveau != null)
-				return false;
-		} else if (!niveau.equals(other.niveau))
-			return false;
-		return true;
 	}
 
 	@Override

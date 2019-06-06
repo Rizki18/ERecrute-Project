@@ -21,7 +21,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <button href="/addProfil" class="btn btn-success btn-block"><span class="fa fa-plus"></span> Add new profil</button>
+                                    <button [routerLink]="['/erecrute/addProfil']" class="btn btn-success btn-block"><span class="fa fa-plus"></span> Add new profil</button>
                                 </div>
                             </div>
                         </form>                                    
@@ -47,7 +47,7 @@
                             <div class="profile-data-title">Singer-Songwriter</div>
                         </div>
                         <div class="profile-controls">
-                            <a [routerLink]="['/cvtheque', profil.codeProfil]" class="profile-control-left">CV</a>
+                            <a [routerLink]="['/erecrute/cvtheque', profil.codeProfil]" class="profile-control-left">CV</a>
                             <a class="profile-control-right"><button class="fa fa-times btn-danger" (click)="deleteProfil(profil)"></button></a>
                         </div>
                     </div>                                

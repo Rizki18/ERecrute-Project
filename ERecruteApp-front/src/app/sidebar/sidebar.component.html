@@ -38,25 +38,25 @@
         </li>
         <li class="xn-title">Navigation</li>
         <li>
-            <a routerLink="/admin"><span class="fa fa-desktop"></span> <span class="xn-text">Tableau de bord</span></a>
+            <a routerLink="/erecrute/admin"><span class="fa fa-desktop"></span> <span class="xn-text">Tableau de bord</span></a>
         </li>
         <li *ngIf="authority === 'admin'" class="xn-openable">
             <a href="#"><span class="fa fa-files-o"></span> <span class="xn-text">Utilisateurs</span></a>
             <ul>
-                <li><a routerLink="/utilisateurs">Liste Utilisateurs</a></li>
-                <li><a routerLink="/nv-user">Nouveau Utilisateur</a></li>
+                <li><a routerLink="/erecrute/utilisateurs">Liste Utilisateurs</a></li>
+                <li><a routerLink="/erecrute/nv-user">Nouveau Utilisateur</a></li>
             </ul>
         </li>
         <li class="xn-openable">
                 <a href="#"><span class="fa fa-files-o"></span> <span class="xn-text">Profils</span></a>
                 <ul>
-                    <li><a routerLink="/profil">Liste Profils</a></li>
-                    <li><a href="/addProfil">Nouveau Profil</a></li>
+                    <li><a routerLink="/erecrute/profil">Liste Profils</a></li>
+                    <li><a href="/erecrute/addProfil">Nouveau Profil</a></li>
                     <li><a href="importer-profiles.html">Importer Profils</a></li>
                 </ul>
         </li>
         <li>
-            <a href="postes.html"><span class="fa fa-desktop"></span> <span class="xn-text">Postes</span></a>
+            <a href=""><span class="fa fa-desktop"></span> <span class="xn-text">Postes</span></a>
         </li>
         <li class="xn-openable">
             <a href="#"><span class="fa fa-file-text-o"></span> <span class="xn-text">Recrutements</span></a>
@@ -70,8 +70,8 @@
         <li class="xn-openable">
             <a href="#"><span class="fa fa-file-text-o"></span> <span class="xn-text">CVthèque</span></a>
             <ul>
-                <li><a routerLink="/cvtheque">Liste CVs</a></li>
-                <li><a routerLink="/cvtheque">Création CV</a></li>
+                <li><a routerLink="/erecrute/cvtheque">Liste CVs</a></li>
+                <li><a routerLink="/erecrute/cvtheque">Création CV</a></li>
             </ul>
         </li>
         

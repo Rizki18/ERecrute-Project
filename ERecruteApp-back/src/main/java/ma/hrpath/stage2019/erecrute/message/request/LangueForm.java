@@ -1,19 +1,16 @@
 package ma.hrpath.stage2019.erecrute.message.request;
 
-import java.util.Set;
-
-public class CompetenceForm {
-	private String competence;
+public class LangueForm {
+	private String lng;
 	private String niveau;
 	private String details;
 	private String Cv;
-	private Set<String> comp;
 	
-	public String getCompetence() {
-		return competence;
+	public String getLng() {
+		return lng;
 	}
-	public void setCompetence(String competence) {
-		this.competence = competence;
+	public void setLng(String lng) {
+		this.lng = lng;
 	}
 	public String getNiveau() {
 		return niveau;
@@ -33,11 +30,9 @@ public class CompetenceForm {
 	public void setCv(String cv) {
 		Cv = cv;
 	}
-	public Set<String> getComp() {
-		return comp;
-	}
-	public void setComp(Set<String> comp) {
-		this.comp = comp;
+	@Override
+	public String toString() {
+		return "LangueForm [lng=" + lng + ", niveau=" + niveau + ", details=" + details + ", Cv=" + Cv + "]";
 	}
 	
 	

@@ -1,6 +1,7 @@
 package ma.hrpath.stage2019.erecrute.model;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -32,29 +33,29 @@ public class CV implements Serializable{
 	@JsonIgnore
     private Profil Profil;
 	
-	@OneToMany(mappedBy = "cv", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "cv", cascade = CascadeType.ALL,fetch=FetchType.EAGER)
 	@JsonIgnore
 	private Set<CV_SA> m_secteurActivites;
 	
-	@OneToMany(mappedBy = "cv", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "cv", cascade = CascadeType.ALL,fetch=FetchType.EAGER)
 	@JsonIgnore
-	private Set<CV_COMP> m_competences;
+	private Set<CV_COMP> m_competences = new HashSet<>();
 	
-	@OneToMany(mappedBy = "cv", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "cv", cascade = CascadeType.ALL,fetch=FetchType.EAGER)
 	@JsonIgnore
-	private Set<CV_TP> m_typeProfils;
+	private Set<CV_TP> m_typeProfils = new HashSet<>();
 	
-	@OneToMany(mappedBy = "cv", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "cv", cascade = CascadeType.ALL,fetch=FetchType.EAGER)
 	@JsonIgnore
-	private Set<CV_TC> m_typeContrats;
+	private Set<CV_TC> m_typeContrats = new HashSet<>();
 	
-	@OneToMany(mappedBy = "sf", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "cv", cascade = CascadeType.ALL,fetch=FetchType.EAGER)
 	@JsonIgnore
-	private Set<CV_SF> m_situationFamiliales;
+	private Set<CV_SF> m_situationFamiliales = new HashSet<>();
 	
-	@OneToMany(mappedBy = "lng", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "cv", cascade = CascadeType.ALL,fetch=FetchType.EAGER)
 	@JsonIgnore
-	private Set<CV_LNG> m_langues;
+	private Set<CV_LNG> m_langues = new HashSet<>();
 	
 	@ManyToMany(fetch=FetchType.EAGER)
     @JoinTable(name = "cv_exps", 
@@ -73,6 +74,21 @@ public class CV implements Serializable{
 		this.nomCV = nomCV;
 		this.posteDesire = posteDesire;
 		
+	}
+	
+	public CV(CV cv) {
+		super();
+		this.modele = cv.modele;
+		this.nomCV = cv.nomCV;
+		this.posteDesire = cv.posteDesire;
+		this.Profil = cv.Profil;
+		this.m_secteurActivites = cv.m_secteurActivites;
+		this.m_competences = cv.m_competences;
+		this.m_typeProfils = cv.m_typeProfils;
+		this.m_typeContrats = cv.m_typeContrats;
+		this.m_situationFamiliales = cv.m_situationFamiliales;
+		this.m_langues = cv.m_langues;
+		this.exps = cv.exps;
 	}
 
 	public Long getCodeCV() {
@@ -124,10 +140,14 @@ public class CV implements Serializable{
 	}
 
 	public void setSecteurActivites(CV_SA ... secteurActivites) {
-		for(CV_SA secteurActivite : secteurActivites) secteurActivite.setCv(this);
         this.m_secteurActivites = Stream.of(secteurActivites).collect(Collectors.toSet());
 	}
 
+	public void addSecteurActivites(SecteurActivite sa, Date dd, Date df) {
+        CV_SA saCV = new CV_SA(this,sa,dd,df);
+        this.m_secteurActivites.add(saCV);
+	}
+	
 	public Set<CV_COMP> getM_competences() {
 		return m_competences;
 	}
@@ -154,8 +174,12 @@ public class CV implements Serializable{
 	}
 
 	public void setTypeProfils(CV_TP ... typeProfils) {
-		for(CV_TP typeProfil : typeProfils) typeProfil.setCv(this);
-        this.m_typeProfils = Stream.of(typeProfils).collect(Collectors.toSet());
+		this.m_typeProfils = Stream.of(typeProfils).collect(Collectors.toSet());
+	}
+	
+	public void addTypeProfils(TypeProfil tp, Date dd, Date df) {
+		CV_TP tpCV = new CV_TP(this,tp,dd,df);
+		this.m_typeProfils.add(tpCV);
 	}
 	
 	public Set<CV_TC> getM_typeContrats() {
@@ -167,8 +191,12 @@ public class CV implements Serializable{
 	}
 	
 	public void setTypeContarts(CV_TC ... TypeContrats) {
-		for(CV_TC typeContrat : TypeContrats) typeContrat.setCv(this);
-        this.m_typeContrats = Stream.of(TypeContrats).collect(Collectors.toSet());
+		this.m_typeContrats = Stream.of(TypeContrats).collect(Collectors.toSet());
+	}
+	
+	public void addTypeContrats(TypeContrat tc, Date dd, Date df) {
+		CV_TC tcCV = new CV_TC(this,tc,dd,df);
+		this.m_typeContrats.add(tcCV);
 	}
 
 	public Set<CV_SF> getM_situationFamiliales() {
@@ -180,8 +208,12 @@ public class CV implements Serializable{
 	}
 
 	public void setSituationFamiliales(CV_SF ... SituationFamiliales) {
-		for(CV_SF situationFamiliale : SituationFamiliales) situationFamiliale.setCv(this);
-        this.m_situationFamiliales = Stream.of(SituationFamiliales).collect(Collectors.toSet());
+		this.m_situationFamiliales = Stream.of(SituationFamiliales).collect(Collectors.toSet());
+	}
+	
+	public void addSituationFamiliales(SituationFamiliale sf, Date dd, Date df) {
+		CV_SF sfCV = new CV_SF(this,sf,dd,df);
+		this.m_situationFamiliales.add(sfCV);
 	}
 	
 	public Set<CV_LNG> getM_langues() {
@@ -193,8 +225,12 @@ public class CV implements Serializable{
 	}
 
 	public void setLangues(CV_LNG ... Langues) {
-		for(CV_LNG langue : Langues) langue.setCv(this);
-        this.m_langues = Stream.of(Langues).collect(Collectors.toSet());
+		this.m_langues = Stream.of(Langues).collect(Collectors.toSet());
+	}
+	
+	public void addLangues(Langues lng, Double niveau, String details) {
+		CV_LNG tpCV = new CV_LNG(this,lng,niveau,details);
+		this.m_langues.add(tpCV);
 	}
 	
 	public Set<Experience> getExps() {

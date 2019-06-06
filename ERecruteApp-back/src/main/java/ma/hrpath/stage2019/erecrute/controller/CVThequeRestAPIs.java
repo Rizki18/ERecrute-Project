@@ -18,6 +18,17 @@ import ma.hrpath.stage2019.erecrute.message.request.CompetenceForm;
 import ma.hrpath.stage2019.erecrute.message.request.CvForm;
 import ma.hrpath.stage2019.erecrute.message.request.ExperienceForm;
 import ma.hrpath.stage2019.erecrute.message.request.FormationForm;
+import ma.hrpath.stage2019.erecrute.message.request.LangueForm;
+import ma.hrpath.stage2019.erecrute.message.request.SaForm;
+import ma.hrpath.stage2019.erecrute.message.request.SfForm;
+import ma.hrpath.stage2019.erecrute.message.request.TcForm;
+import ma.hrpath.stage2019.erecrute.message.request.TpForm;
+import ma.hrpath.stage2019.erecrute.message.response.CV_COMP_RES;
+import ma.hrpath.stage2019.erecrute.message.response.CV_LNG_RES;
+import ma.hrpath.stage2019.erecrute.message.response.CV_SA_RES;
+import ma.hrpath.stage2019.erecrute.message.response.CV_SF_RES;
+import ma.hrpath.stage2019.erecrute.message.response.CV_TC_RES;
+import ma.hrpath.stage2019.erecrute.message.response.CV_TP_RES;
 import ma.hrpath.stage2019.erecrute.model.CV;
 import ma.hrpath.stage2019.erecrute.model.CV_COMP;
 import ma.hrpath.stage2019.erecrute.model.Competence;
@@ -42,80 +53,22 @@ public class CVThequeRestAPIs {
 	private PosteRepository posteRepository;
 	@Autowired
 	private SocieteRepository steRepository;
-	@Autowired
-	private CompetenceRepository compRepository;
-	@Autowired
-	private ProfilService profilService;
-	@Autowired
-	private ExperienceRepository expRepository;
 	
 	@RequestMapping(value="/admin/saveExperienceCV",method = RequestMethod.POST)
 	@PreAuthorize("hasRole('ADMIN')")
 	public void saveExperienceCV(@RequestBody ExperienceForm f) {
-		CV cv = cvThequeService.retreiveCvById(Long.valueOf(f.getCv()));
-		Set<Experience> exps;
-		
-		if(f.getDepartement()!="" && f.getDescriptionRole()!="") {
-			Experience exp = new Experience(f.getDateDebut(),f.getDateFin(),f.getDepartement(),f.getDescriptionRole());
-			exp.setPoste(posteRepository.findById(Long.valueOf(f.getPoste())).orElse(null));
-			exp.setSociete(steRepository.findById(Long.valueOf(f.getSociete())).orElse(null));
-			expRepository.save(exp);
-			System.out.println(exp);
-			
-			
-			exps = cv.getExps();
-
-			exps.add(exp);
-		}
-		else {
-			exps = new HashSet<Experience>();
-			
-			for(String e : f.getExp()) {
-				exps.add(expRepository.findByDescriptionRole(e));
-			}
-		}
-		
-		cv.setExps(exps);
-		
-		cvThequeService.saveCV(cv);
-		
+		cvThequeService.saveExperience(f);
 	}
 	
-	@RequestMapping(value="/admin/saveCompetenceCV",method = RequestMethod.POST)
+	@RequestMapping(value="/admin/addExperienceToCV",method = RequestMethod.POST)
 	@PreAuthorize("hasRole('ADMIN')")
-	public void saveCompetenceCV(@RequestBody CompetenceForm f) {
-		System.out.println(f.getCompetence());
-		System.out.println(f.getCv());
-		System.out.println(f.getDetails());
-		System.out.println(f.getNiveau());
-		
-		CV cv = cvThequeService.retreiveCvById(Long.valueOf(f.getCv()));
-		
-		CV newCV = cv;
-		
-		Competence comp = compRepository.findById(Long.valueOf(f.getCompetence())).orElse(null);
-		CV_COMP compCV = new CV_COMP(cv,comp,f.getDetails(),Double.valueOf(f.getNiveau()));
-		System.out.println(compCV);
-		/*
-		Set<CV_COMP> compsCV = new HashSet<CV_COMP>();
-		compsCV.add(compCV);
-		System.out.println(compsCV);
-		*/
-		
-		newCV.getM_competences().add(compCV); 
-		
-		cvThequeService.saveCV(newCV);
-		
+	public void addExperienceToCV(@RequestBody ExperienceForm f) {
+		cvThequeService.addExperienceToCV(f.getCv(),f.getExp());
 	}
 	
 	@RequestMapping(value="/admin/saveCv",method = RequestMethod.POST)
 	public CV saveCv(@RequestBody CvForm cv) {
-		System.out.println(cv);
-		CV newCV = new CV(cv.getModele(),cv.getNomCV(),cv.getPosteDesire());
-		Profil profil = profilService.findProfilById(Long.valueOf(cv.getProfil()));
-		newCV.setProfil(profil);
-		System.out.println(newCV);
-		return cvThequeService.saveCV(newCV);
+		return cvThequeService.saveCV(cv);
 	}
 	
 	@RequestMapping(value="/profil/{id}/cvs")
@@ -139,11 +92,6 @@ public class CVThequeRestAPIs {
 		return cvThequeService.retreiveExpsCV(id);
 	}
 	
-	@RequestMapping(value="/cv/{id}/competences")
-	public List<CV_COMP> listCompsCV(@PathVariable("id") Long id){
-		return cvThequeService.retreiveCompsCV(id);
-	}
-	
 	@RequestMapping(value="/societes")
 	public List<Societe> listSocietes(){
 		return steRepository.findAll();
@@ -157,6 +105,109 @@ public class CVThequeRestAPIs {
 	@RequestMapping(value="/profil/{id}/experiences")
 	public Set<Experience> listExpsProfil(@PathVariable("id") Long id){
 		return cvThequeService.retreiveExpsProfil(id);
+	}
+	
+	@RequestMapping(value="/admin/addCompetencesToCV",method = RequestMethod.POST)
+	@PreAuthorize("hasRole('ADMIN')")
+	public void addCompetencesToCV(@RequestBody CompetenceForm f) {
+		cvThequeService.addCompetencesToCV(f.getCv(),f.getComp());
+	}
+	
+	@RequestMapping(value="/admin/saveCompetenceCV",method = RequestMethod.POST)
+	@PreAuthorize("hasRole('ADMIN')")
+	public void saveCompetenceCV(@RequestBody CompetenceForm f) {
+		cvThequeService.addCompetenceToCV(f);
+	}
+	
+	@RequestMapping(value="/cv/{id}/competences")
+	public List<CV_COMP_RES> listCompsCV(@PathVariable("id") Long id){
+		return cvThequeService.retreiveCompsCV(id);
+	}
+	
+	@RequestMapping(value="/admin/addLanguesToCV",method = RequestMethod.POST)
+	@PreAuthorize("hasRole('ADMIN')")
+	public void addLanguesToCV(@RequestBody LangueForm f) {
+		cvThequeService.addLanguesToCV(f.getCv(),f.getLng());
+	}
+	
+	@RequestMapping(value="/admin/saveLangueCV",method = RequestMethod.POST)
+	@PreAuthorize("hasRole('ADMIN')")
+	public void saveLangueCV(@RequestBody LangueForm f) {
+		
+		cvThequeService.addLangueToCV(f);
+	}
+	
+	@RequestMapping(value="/cv/{id}/langues")
+	public List<CV_LNG_RES> listLanguesCV(@PathVariable("id") Long id){
+		return cvThequeService.retreiveLanguesCV(id);
+	}
+	
+	@RequestMapping(value="/admin/addSAsToCV",method = RequestMethod.POST)
+	@PreAuthorize("hasRole('ADMIN')")
+	public void addSAsToCV(@RequestBody SaForm f) {
+		cvThequeService.addSAsToCV(f.getCv(),f.getSa());
+	}
+	
+	@RequestMapping(value="/admin/saveSaCV",method = RequestMethod.POST)
+	@PreAuthorize("hasRole('ADMIN')")
+	public void saveSaCV(@RequestBody SaForm f) {
+		cvThequeService.addSaToCV(f);
+	}
+	
+	@RequestMapping(value="/cv/{id}/sas")
+	public List<CV_SA_RES> listSAsCV(@PathVariable("id") Long id){
+		return cvThequeService.retreiveSAsCV(id);
+	}
+	
+	@RequestMapping(value="/admin/addSFsToCV",method = RequestMethod.POST)
+	@PreAuthorize("hasRole('ADMIN')")
+	public void addSFsToCV(@RequestBody SfForm f) {
+		cvThequeService.addSFsToCV(f.getCv(),f.getSf());
+	}
+	
+	@RequestMapping(value="/admin/saveSfCV",method = RequestMethod.POST)
+	@PreAuthorize("hasRole('ADMIN')")
+	public void saveSfCV(@RequestBody SfForm f) {
+		cvThequeService.addSfToCV(f);
+	}
+	
+	@RequestMapping(value="/cv/{id}/sfs")
+	public List<CV_SF_RES> listSFsCV(@PathVariable("id") Long id){
+		return cvThequeService.retreiveSFsCV(id);
+	}
+	
+	@RequestMapping(value="/admin/addTPsToCV",method = RequestMethod.POST)
+	@PreAuthorize("hasRole('ADMIN')")
+	public void addTPsToCV(@RequestBody TpForm f) {
+		cvThequeService.addTPsToCV(f.getCv(),f.getTp());
+	}
+	
+	@RequestMapping(value="/admin/saveTpCV",method = RequestMethod.POST)
+	@PreAuthorize("hasRole('ADMIN')")
+	public void saveTpCV(@RequestBody TpForm f) {
+		cvThequeService.addTpToCV(f);
+	}
+	
+	@RequestMapping(value="/cv/{id}/tps")
+	public List<CV_TP_RES> listTPsCV(@PathVariable("id") Long id){
+		return cvThequeService.retreiveTPsCV(id);
+	}
+	
+	@RequestMapping(value="/admin/addTCsToCV",method = RequestMethod.POST)
+	@PreAuthorize("hasRole('ADMIN')")
+	public void addTCsToCV(@RequestBody TcForm f) {
+		cvThequeService.addTCsToCV(f.getCv(),f.getTc());
+	}
+	
+	@RequestMapping(value="/admin/saveTcCV",method = RequestMethod.POST)
+	@PreAuthorize("hasRole('ADMIN')")
+	public void saveTcCV(@RequestBody TcForm f) {
+		cvThequeService.addTcToCV(f);
+	}
+	
+	@RequestMapping(value="/cv/{id}/tcs")
+	public List<CV_TC_RES> listTCsCV(@PathVariable("id") Long id){
+		return cvThequeService.retreiveTCsCV(id);
 	}
 	
 	

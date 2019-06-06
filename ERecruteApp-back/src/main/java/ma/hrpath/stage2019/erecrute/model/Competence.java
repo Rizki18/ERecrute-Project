@@ -5,10 +5,13 @@ import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Competence implements Serializable{
@@ -17,6 +20,7 @@ public class Competence implements Serializable{
 	private String nomCompetence;
 	
 	@OneToMany(mappedBy = "comp", cascade = CascadeType.ALL)
+	@JsonIgnore
 	private Set<CV_COMP> m_cvs;
 	
 	//public MotCLes m_MotCLes;

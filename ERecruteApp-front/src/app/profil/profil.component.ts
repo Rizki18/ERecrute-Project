@@ -51,7 +51,7 @@ export class ProfilComponent implements OnInit {
     this.service.getRessources("/profil")
     .subscribe(data=>{
       this.Profil = data;
-      alert("test");
+     
     },err=>{
       console.log(err);
     });

@@ -64,8 +64,11 @@ public class ExperienceForm {
 	}
 	@Override
 	public String toString() {
-		return "ExperienceForm";
+		return "ExperienceForm [dateDebut=" + dateDebut + ", dateFin=" + dateFin + ", departement=" + departement
+				+ ", descriptionRole=" + descriptionRole + ", Poste=" + Poste + ", Societe=" + Societe + ", Cv=" + Cv
+				+ ", exp=" + exp + "]";
 	}
+	
 	
 	
 }

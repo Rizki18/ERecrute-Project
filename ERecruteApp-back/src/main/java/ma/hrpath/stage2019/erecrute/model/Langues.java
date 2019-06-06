@@ -10,6 +10,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Langues implements Serializable  {
 
@@ -18,15 +20,15 @@ public class Langues implements Serializable  {
 	private String langue;
 	
 	@OneToMany(mappedBy = "lng", cascade = CascadeType.ALL)
+	@JsonIgnore
 	private Set<CV_LNG> m_cvs;
 
 	public Langues() {
 		super();
 	}
 
-	public Langues(Long codeLangue, String langue) {
+	public Langues(String langue) {
 		super();
-		this.codeLangue = codeLangue;
 		this.langue = langue;
 	}
 

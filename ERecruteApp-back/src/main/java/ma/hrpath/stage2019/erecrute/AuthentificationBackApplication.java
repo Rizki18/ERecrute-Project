@@ -83,20 +83,23 @@ public class AuthentificationBackApplication{
 		
 		
 		//CV_COMP
+		
 				CompetenceRepository compRepository = ctx.getBean(CompetenceRepository.class);
 				CvRepository cvRepository = ctx.getBean(CvRepository.class);
 				ProfilRepository profilRepository = ctx.getBean(ProfilRepository.class);
 
 		        Competence sa1 = compRepository.findById(Long.valueOf("1")).orElse(null);
 		        Competence sa2 = compRepository.findById(Long.valueOf("2")).orElse(null);
+		        
+				CV cv = cvRepository.findById(Long.valueOf("5")).orElse(null);
+				//
+				//CV_COMP comp1 = new CV_COMP(cv,sa1,"aaaaa",Double.valueOf(75.0));
+				//cv.getM_competences().clear();
+				//comp1.setCv(cv);
 				
-				CV cv = new CV("modele","nomCV","posteCV");
+				cv.addCompetence(sa1, Double.valueOf(75.0), "aaaaa"); 
 				
-				Profil p = profilRepository.findById(Long.valueOf("1")).orElse(null);
-				cv.setProfil(p);
-				
-				cv.setCompetences(new CV_COMP(sa1,"aaaaa",Double.valueOf(758.0)),new CV_COMP(sa2,"bbbbb",Double.valueOf(15.0))); 
-				
+				System.out.println(cv.getM_competences());
 				cvRepository.save(cv);
 	*/
 	}

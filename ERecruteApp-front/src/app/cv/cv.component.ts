@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { UserService, Formation, Experience, CompetenceCV  } from '../services/user.service';
+import { UserService, Formation, Experience, CompetenceCV, LngCV, SaCV, SfCV, TpCV, TcCV  } 
+from '../services/user.service';
 
 import * as jspdf from 'jspdf';  
 import html2canvas from 'html2canvas';
@@ -17,18 +18,21 @@ export class CvComponent implements OnInit {
   Formation;
   formations;
   experiences;
-  postes; societes; comps;
+  postes; societes; 
+  comps;lngs;sas;sfs;tps;tcs;
   poste; societe;
-  tmp;selectedFormations = [];selectedExps;selectedComps;
-
+  tmp;selectedFormations = [];selectedExps;
+  selectedComps;selectedLngs;selectedSas;selectedSfs;selectedTps;selectedTcs;
   dlformation ;sIformation = [];
   dlexp ;sIexp = [];
-  sIposte; sIsociete; sIcomp;
-  dlposte ;dlsociete ; dlcomp;
+  dlcompetence ;sIcompetence = [];dlLNG ;siLNG = [];dlSA ;siSA = [];dlSF ;siSF = [];dlTP ;siTP = [];dlTC ;siTC = [];
+  sIposte; sIsociete; 
+  sIcomp;dlcomp;sIlng;dllng;sIsa;dlsa;sIsf;dlsf;sItp;dltp;sItc;dltc;
+  dlposte ;dlsociete ; 
   dropdownSettings = {};
   dropdownSettingsSingle = {};
 
-  mode = -1;
+  modeExp;
 
 
   constructor( private service: UserService, private route: ActivatedRoute) { }
@@ -67,7 +71,17 @@ export class CvComponent implements OnInit {
       this.getPostes("/postes");
       this.getSocietes("/societes");
       this.getCompetences("/Competence");
+      this.getLangues("/Langues");
+      this.getSecteurs("/Secteur");
+      this.getSituations("/SituationFamiliale");
+      this.getTypeContrats("/TypeContrat");
+      this.getTypeProfils("/TypeProfil");
       this.getCompetencesCV("/cv/"+this.cv.codeCV+"/competences");
+      this.getLanguesCV("/cv/"+this.cv.codeCV+"/langues");
+      this.getSecteursCV("/cv/"+this.cv.codeCV+"/sas");
+      this.getSituationsCV("/cv/"+this.cv.codeCV+"/sfs");
+      this.getTypeContratsCV("/cv/"+this.cv.codeCV+"/tps");
+      this.getTypeProfilsCV("/cv/"+this.cv.codeCV+"/tcs");
     },err=>{
       console.log(err);
     })
@@ -172,12 +186,163 @@ export class CvComponent implements OnInit {
     this.service.getRessources(url)
     .subscribe(data=>{
       this.selectedComps = data;
-      console.log(this.selectedComps);      
+      console.log("****** COMPETENCES");
+      console.log(this.selectedComps);
+      
+      this.sIcompetence = [];
+      for(let el of this.selectedComps){
+        this.sIcompetence.push(el.nom);
+      }
     },err=>{
       console.log(err);
     })
   }
- 
+
+  getLangues(url) {
+    this.service.getRessources(url)
+    .subscribe(data=>{
+      this.lngs = data;
+      
+      this.dllng = [];
+      for(let s of this.lngs){
+        this.dllng.push(s.langue);
+      }
+      
+    },err=>{
+      console.log(err);
+    })
+  }
+
+  getLanguesCV(url) {
+    this.service.getRessources(url)
+    .subscribe(data=>{
+      this.selectedLngs = data;
+      
+      this.siLNG = [];
+      for(let el of this.selectedLngs){
+        this.siLNG.push(el.nom);
+      }
+    },err=>{
+      console.log(err);
+    })
+  }
+
+  getSecteurs(url) {
+    this.service.getRessources(url)
+    .subscribe(data=>{
+      this.sas = data;
+      
+      this.dlsa = [];
+      for(let s of this.lngs){
+        this.dlsa.push(s.libelleSecteur);
+      }
+      
+    },err=>{
+      console.log(err);
+    })
+  }
+
+  getSecteursCV(url) {
+    this.service.getRessources(url)
+    .subscribe(data=>{
+      this.selectedSas = data;
+      
+      this.siSA = [];
+      for(let el of this.selectedSas){
+        this.siSA.push(el.nom);
+      }
+    },err=>{
+      console.log(err);
+    })
+  }
+
+  getSituations(url) {
+    this.service.getRessources(url)
+    .subscribe(data=>{
+      this.sfs = data;
+      
+      this.dlsf = [];
+      for(let s of this.sfs){
+        this.dlsf.push(s.civilite);
+      }
+      
+    },err=>{
+      console.log(err);
+    })
+  }
+
+  getSituationsCV(url) {
+    this.service.getRessources(url)
+    .subscribe(data=>{
+      this.selectedSfs = data;
+      
+      this.siSF = [];
+      for(let el of this.selectedSfs){
+        this.siSF.push(el.nom);
+      }
+    },err=>{
+      console.log(err);
+    })
+  }
+  
+  getTypeContrats(url) {
+    this.service.getRessources(url)
+    .subscribe(data=>{
+      this.tcs = data;
+      
+      this.dltc = [];
+      for(let s of this.tcs){
+        this.dltc.push(s.libelleContrat);
+      }
+      
+    },err=>{
+      console.log(err);
+    })
+  }
+
+  getTypeContratsCV(url) {
+    this.service.getRessources(url)
+    .subscribe(data=>{
+      this.selectedTcs = data;
+      
+      this.siTC = [];
+      for(let el of this.selectedTcs){
+        this.siTC.push(el.nom);
+      }
+    },err=>{
+      console.log(err);
+    })
+  }
+
+  getTypeProfils(url) {
+    this.service.getRessources(url)
+    .subscribe(data=>{
+      this.tps = data;
+      
+      this.dltp = [];
+      for(let s of this.tps){
+        this.dltp.push(s.libelleProfil);
+      }
+      
+    },err=>{
+      console.log(err);
+    })
+  }
+
+  getTypeProfilsCV(url) {
+    this.service.getRessources(url)
+    .subscribe(data=>{
+      this.selectedTps = data;
+      
+      this.siTP = [];
+      for(let el of this.selectedTps){
+        this.siTP.push(el.nom);
+      }
+    },err=>{
+      console.log(err);
+    })
+  }
+
   onIS(item: any) {
     for(let el of this.formations){
       if(el.intitule == item)
@@ -223,10 +388,65 @@ export class CvComponent implements OnInit {
     }
   }
 
+  onISlng(item: any) {
+    for(let s of this.lngs){
+      if(s.langue == item)
+        this.lng = s.codeLangue;
+    }
+  }
+
+  onISsa(item: any) {
+    for(let s of this.sas){
+      if(s.libelleSecteur == item)
+        this.sa = s.codeSecteur;
+    }
+  }
+
+  onISsf(item: any) {
+    for(let s of this.sfs){
+      if(s.civilite == item)
+        this.sf = s.codeSituationFamiliale;
+    }
+  }
+
+  onIStc(item: any) {
+    for(let s of this.tcs){
+      if(s.libelleContrat == item)
+        this.tc = s.codeTypeContrat;
+    }
+  }
+
+  onIStp(item: any) {
+    for(let s of this.tps){
+      if(s.libelleProfil == item)
+        this.tp = s.codeTypeProfil;
+    }
+  }
+
   onISexp(item: any) {
     for(let el of this.experiences){
       if(el.descriptionRole == item)
         this.selectedExps.push(el);
+    }
+    
+  }
+
+  onIDScompetence(item: any) {
+    this.tmp = [];
+    for(let el of this.selectedComps){
+      if(el.nom != item)
+        this.tmp.push(el);
+    }
+
+    this.selectedComps = this.tmp;
+      
+    console.log(this.selectedExps);
+  }
+
+  onIScompetence(item: any) {
+    for(let el of this.selectedComps){
+      if(el.nom == item)
+        this.selectedComps.push(el);
     }
     
   }
@@ -259,6 +479,13 @@ export class CvComponent implements OnInit {
           this.dlformation.push(formation.intitule);
           //this.router.navigate(['/cv/'+cv.codeCV]);
           //this.getCompetence();
+          this.formation.dateDebut = "";
+          this.formation.dateFin = "";
+          this.formation.details = "";
+          this.formation.etablissement = "";
+          this.formation.intitule = "";
+          this.formation.lieu = "";
+          this.formation.profil = "";
         });
 
         console.log(this.formations);
@@ -285,6 +512,58 @@ export class CvComponent implements OnInit {
           }
           //this.router.navigate(['/cv/'+cv.codeCV]);
           //this.getCompetence();
+          this.exp.dateDebut = "";
+          this.exp.dateFin = "";
+          this.exp.departement = "";
+          this.exp.descriptionRole = "";
+          this.exp.poste = "";
+          this.exp.societe = "";
+        });
+
+        this.getExperiences("/cv/"+this.cv.codeCV+"/experiences");
+
+  };
+
+  addExpToCV(exp): void {
+  
+    exp.cv = this.cv.codeCV;
+    exp.exp = [];
+    for(let el of this.selectedExps){
+      exp.exp.push(el.codeExperience)
+    }
+
+    console.log("************");
+    console.log(exp);
+
+    this.service.createRessources("/admin/addExperienceToCV",exp)
+        .subscribe( data => {
+          
+          alert("Expériences est ajoutée au CV avec succée");
+          
+          //this.router.navigate(['/cv/'+cv.codeCV]);
+          //this.getCompetence();
+        });
+
+  };
+
+  addCompToCV(comp): void {
+  
+    comp.cv = this.cv.codeCV;
+    comp.comp = [];
+    for(let el of this.selectedComps){
+      comp.comp.push(el.comp)
+    }
+
+    console.log("************");
+    console.log(comp);
+
+    this.service.createRessources("/admin/addCompetenceToCV",comp)
+        .subscribe( data => {
+          
+          alert("competences est ajoutée au CV avec succée");
+          
+          //this.router.navigate(['/cv/'+cv.codeCV]);
+          //this.getCompetence();
         });
 
   };
@@ -308,6 +587,117 @@ export class CvComponent implements OnInit {
           //this.getCompetence();
         });
 
+  };
+
+  lng: LngCV = new LngCV("","","","");
+  
+  createLng(lng): void {
+  
+    lng.cv = this.cv.codeCV;
+    lng.lng = this.lng;
+    
+    console.log(lng);
+
+    this.service.createRessources("/admin/saveLangueCV",lng)
+        .subscribe( data => {
+          
+          alert("Langue est ajoutée avec succée");
+          this.selectedLngs.push(lng);
+          
+        });
+
+  };
+
+  sa: SaCV = new SaCV("","","","");
+  
+  createSa(sa): void {
+  
+    sa.cv = this.cv.codeCV;
+    sa.sa = this.sa;
+    
+    console.log(sa);
+
+    this.service.createRessources("/admin/saveSaCV",sa)
+        .subscribe( data => {
+          
+          alert("Secteur d'activité est ajoutée avec succée");
+          this.selectedLngs.push(sa);
+          
+        });
+
+  };
+
+  sf: SfCV = new SfCV("","","","");
+  
+  createSf(sf): void {
+  
+    sf.cv = this.cv.codeCV;
+    sf.sf = this.sf;
+    
+    console.log(sf);
+
+    this.service.createRessources("/admin/saveSfCV",sf)
+        .subscribe( data => {
+          
+          alert("Situation familiale est ajoutée avec succée");
+          this.selectedSfs.push(sf);
+          
+        });
+
+  };
+
+  tc: TcCV = new TcCV("","","","");
+  
+  createTc(tc): void {
+  
+    tc.cv = this.cv.codeCV;
+    tc.tc = this.tc;
+    
+    console.log(tc);
+
+    this.service.createRessources("/admin/saveTcCV",tc)
+        .subscribe( data => {
+          
+          alert("Type de contrat est ajouté avec succée");
+          this.selectedSfs.push(tc);
+          
+        });
+
+  };
+
+  tp: TpCV = new TpCV("","","","");
+  
+  createTp(tp): void {
+  
+    tp.cv = this.cv.codeCV;
+    tp.tc = this.tp;
+    
+    console.log(tp);
+
+    this.service.createRessources("/admin/saveTpCV",tp)
+        .subscribe( data => {
+          
+          alert("Type de profil est ajouté avec succée");
+          this.selectedSfs.push(tp);
+          
+        });
+
+  };
+
+  editExp(exp:Experience): void {
+    this.modeExp = exp.codeExperience;
+  }
+
+  updateExp(exp): void {
+    
+    this.modeExp = -1;
+    console.log("Update Experience");
+    console.log(exp);
+  };
+
+  addExp(): void {
+    
+    this.modeExp = 0;
   };
 
   public captureScreen()  
