@@ -35,6 +35,7 @@ import { TypeContratComponent } from './type-contrat/type-contrat.component';
 import { ProfilComponent } from './profil/profil.component';
 import { AddProfilComponent } from './add-profil/add-profil.component';
 import { PosteComponent } from './poste/poste.component';
+import { MotClesComponent } from './mot-cles/mot-cles.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { PosteComponent } from './poste/poste.component';
     TypeContratComponent,
     ProfilComponent,
     AddProfilComponent,
-    PosteComponent
+    PosteComponent,
+    MotClesComponent
   ],
   imports: [
     BrowserModule,

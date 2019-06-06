@@ -17,7 +17,10 @@ public class DBWriter  implements ItemWriter<Profil>{
 
 	@Override
 	public void write(List<? extends Profil> profil) throws Exception {
-		 System.out.println("Data Saved for Profil: " + profil); 
+		 for (Profil item : profil) {
+	            System.out.println(item.getNom());
+	        } 
+		System.out.println("Data Saved for Profil: " + profil); 
 		 
 		 profilRespository.saveAll(profil);
 		

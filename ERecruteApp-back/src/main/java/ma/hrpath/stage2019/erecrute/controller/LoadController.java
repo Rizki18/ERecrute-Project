@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class LoadController {
-
+/*
     @Autowired
     JobLauncher jobLauncher;
 
@@ -34,9 +34,9 @@ public class LoadController {
 	public BatchStatus load() throws JobParametersInvalidException, JobExecutionAlreadyRunningException, JobRestartException, JobInstanceAlreadyCompleteException {
 
 
-        Map<String, JobParameter> maps = new HashMap<>();
-        maps.put("time", new JobParameter(System.currentTimeMillis()));
-        JobParameters parameters = new JobParameters(maps);
+        //maps.put("time", new JobParameter(System.currentTimeMillis()));
+        JobParameters parameters = new JobParametersBuilder().addString("time", String.valueOf(System.currentTimeMillis()))
+                .toJobParameters();
         JobExecution jobExecution = jobLauncher.run(job, parameters);
 
         System.out.println("JobExecution: " + jobExecution.getStatus());
@@ -48,5 +48,5 @@ public class LoadController {
 
         return jobExecution.getStatus();
     }
-	
+	*/
 }

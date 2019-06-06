@@ -1,4 +1,4 @@
-                
+
                 <!-- START BREADCRUMB -->
                 <ul class="breadcrumb">
                   <li><a href="#">Accueil</a></li>
@@ -15,31 +15,44 @@
               <!-- PAGE CONTENT WRAPPER -->
               <div class="page-content-wrap">
                   
-                  <div class="row">                        
-                      <div class="col-md-9">
-                          <div class="panel panel-default">
-                              <div class="panel-body">                            
-                                  <div class="tocify-content">
-                                    <h2>Compétences</h2>
-                                    <app-competence></app-competence> 
-                                    <h2>Langues</h2>
-                                    <app-langues></app-langues>
-                                    <h2>Secteur d'activitées</h2>
-                                   <app-secteur-activite></app-secteur-activite>
-                                   <h2>Situation Familiale</h2>
-                                  <app-situation-familiale></app-situation-familiale>
-                                  <h2>Type de Contrat</h2>
-                                 <app-type-contrat></app-type-contrat>
-                                 <h2>Type de Profil</h2>
+                <div class="col-md-12">
+                    <!-- START TABS -->                                
+                    <div class="panel panel-default tabs">                            
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="active"><a href="#tab-first" role="tab" data-toggle="tab">Compétences</a></li>
+                            <li><a href="#tab-second" role="tab" data-toggle="tab">Langues</a></li>
+                            <li><a href="#tab-third" role="tab" data-toggle="tab">Secteur d'activitées</a></li>
+                            <li><a href="#tab-fourth" role="tab" data-toggle="tab">Situation Familiale</a></li>
+                            <li><a href="#tab-five" role="tab" data-toggle="tab">Type de Contrat</a></li>
+                            <li><a href="#tab-six" role="tab" data-toggle="tab">Type de Profil</a></li>
+                            <li><a href="#tab-seven" role="tab" data-toggle="tab">Mots cles</a></li>
+                        </ul>                            
+                        <div class="panel-body tab-content">
+                            <div class="tab-pane active" id="tab-first">
+                                <app-competence></app-competence>
+                            </div>
+                            <div class="tab-pane" id="tab-second">
+                                <app-langues></app-langues>
+                            </div>
+                            <div class="tab-pane" id="tab-third">
+                               <app-secteur-activite></app-secteur-activite>
+                            </div>
+                            <div class="tab-pane" id="tab-fourth">
+                                <app-situation-familiale></app-situation-familiale>
+                            </div>
+                            <div class="tab-pane" id="tab-five">
+                                <app-type-contrat></app-type-contrat>
+                            </div>
+                            <div class="tab-pane" id="tab-six">
                                 <app-type-profil></app-type-profil>
-                                  </div> 
-                              </div>
-                          </div>
-                      </div>
-                      <div class="col-md-3" style="position: relative;">
-                          <div id="tocify"></div>
-                      </div>
-                  </div>
+                            </div> 
+                            <div class="tab-pane" id="tab-seven">
+                                <app-mot-cles></app-mot-cles>
+                            </div>
+                        </div>
+                    </div>                                                   
+                    <!-- END TABS -->                        
+                </div>
                   
                   
                   

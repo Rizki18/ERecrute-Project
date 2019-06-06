@@ -16,6 +16,7 @@ import { CvthequeComponent } from './cvtheque/cvtheque.component';
 import { ProfilComponent } from './profil/profil.component';
 import { PosteComponent } from './poste/poste.component';
 import { AddProfilComponent } from './add-profil/add-profil.component';
+import { MotClesComponent } from './mot-cles/mot-cles.component';
 
 const routes: Routes = [
   {
@@ -66,6 +67,10 @@ const routes: Routes = [
 {
     path: 'addProfil',
     component: AddProfilComponent
+},
+{
+    path: 'motcles',
+    component: MotClesComponent
 },
 {
     path: 'cv/:id',

@@ -5,29 +5,35 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class MotCLes implements Serializable {
+public class MotCles implements Serializable {
 	@Id @GeneratedValue
 	private Long codeMotCle;
 	private String libelleMotCle;
-	public CategorieMotcle m_CategorieMotcle;
-	//public Poste m_Poste;
-	//public Profil m_Profil;
-	public SecteurActivite m_SecteurActivite;
-	
-	public MotCLes() {
+	@ManyToOne
+    @JoinColumn(name = "m_CategorieMotcle")
+	@JsonIgnore
+    private CategorieMotcle m_CategorieMotcle;
+
+    public MotCles() {
 		super();
 	}
 
-	public MotCLes(Long codeMotCle, String libelleMotCle, CategorieMotcle m_CategorieMotcle, SecteurActivite m_SecteurActivite) {
+	public MotCles(Long codeMotCle, String libelleMotCle, CategorieMotcle m_CategorieMotcle, SecteurActivite m_SecteurActivite) {
 		super();
 		this.codeMotCle = codeMotCle;
 		this.libelleMotCle = libelleMotCle;
+		
 		this.m_CategorieMotcle = m_CategorieMotcle;
 		//this.m_Poste = m_Poste;
 		//this.m_Profil = m_Profil;
-		this.m_SecteurActivite = m_SecteurActivite;
+		//this.m_SecteurActivite = m_SecteurActivite;
 	}
 
 	public Long getCodeMotCle() {
@@ -68,7 +74,7 @@ public class MotCLes implements Serializable {
 
 	public void setM_Profil(Profil m_Profil) {
 		this.m_Profil = m_Profil;
-	}*/
+	}
 
 	public SecteurActivite getM_SecteurActivite() {
 		return m_SecteurActivite;
@@ -76,15 +82,14 @@ public class MotCLes implements Serializable {
 
 	public void setM_SecteurActivite(SecteurActivite m_SecteurActivite) {
 		this.m_SecteurActivite = m_SecteurActivite;
-	}
+	}*/
 	
 	
 
 	@Override
 	public String toString() {
 		return "MotCLes [codeMotCle=" + codeMotCle + ", libelleMotCle=" + libelleMotCle + ", m_CategorieMotcle="
-				+ m_CategorieMotcle + ",  m_SecteurActivite="
-				+ m_SecteurActivite + "]";
+				+ m_CategorieMotcle +  "]";
 	}
 
 	public void finalize() throws Throwable {
