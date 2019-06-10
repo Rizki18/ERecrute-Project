@@ -79,7 +79,7 @@ public class CV_LNG implements Serializable{
 
 	@Override
 	public String toString() {
-		return "CV_LNG [cv=" + cv + ", lng=" + lng + ", niveau=" + niveau + ", details=" + details + "]";
+		return "CV_LNG [niveau=" + niveau + ", details=" + details + "]";
 	}
 	
 	
