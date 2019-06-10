@@ -87,7 +87,7 @@ const routes: Routes = [
 }
 ,
 {
-    path: 'poste',
+    path: 'erecrute/poste',
     component: PosteComponent
 }
 ];
