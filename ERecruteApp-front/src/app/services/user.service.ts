@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpRequest, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export class User{
@@ -240,11 +240,17 @@ export class UserService {
   getter(){
     return this.user;
   }
-  /*public uploadImage(image: File) {
+  
+  public uploadPhotoProfil(file: File, idProfil): Observable<HttpEvent<{}>> {
     const formData = new FormData();
 
-    formData.append('image', image);
+    formData.append('file', file);
+    const req = new HttpRequest('POST',this.host+'/uploadPhoto/'+idProfil,formData,{
+      reportProgress: true,
+      responseType: 'text'
+    })
+    
+    return this.http.request(req);
+  }
 
-    return this.http.post('/assets/image', formData);
-  }*/
 }

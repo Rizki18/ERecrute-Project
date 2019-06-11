@@ -81,7 +81,17 @@
 
                     <div>
                         <div class="profile-image">
-                            <img src="../../assets/assets/images/users/user-profil.png" alt="User profil" />
+                            <button *ngIf="editPhoto == 1" (click)="onEditPhoto()">
+                                <img src="{{service.host+'/photoProfilCV/'+cv.profil.codeProfil}}" alt="User profil" />
+                            </button>
+                            <button *ngIf="editPhoto == 0" (click)="onEditPhoto()">
+                                <img src="{{service.host+'/photoProfilCV/'+cv.profil.codeProfil}}" alt="User profil" />
+                            </button>
+                            <p *ngIf="editPhoto == 1">
+                                <input type="file" (change)="onSelectFile($event)">
+                                <button class="btn btn-success" (click)="uploadPhoto()">Upload</button>
+                                {{progress}}
+                            </p>
                         </div>
 
                         <div class="profile-data">
@@ -107,7 +117,7 @@
                                     <div class="list-group-item"><span class="fa fa-sign-out"></span> {{cv.profil.tel}}
                                     </div>
                                     <div class="list-group-item"><span class="fa fa-sign-out"></span> situation
-                                        familiale</div>
+                                        familiale {{selectedSf.nom}}</div>
                                 </div>
 
 
@@ -115,37 +125,38 @@
                             </div>
                         </div>
                     </div>
-                    <div class="task-item panel panel-primary panel-hidden-controls">
-                            <div class="panel-heading">
-                                <h3 class="panel-title">Langues</h3>
-                                <ul class="panel-controls">
-                                    <li><a data-toggle="modal" data-target="#BlockLng"><span class="fa fa-plus"></span></a>
-                                    </li>
-                                    <li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li>
-    
-                                    <li><a href="#" class="panel-remove"><span class="fa fa-times"></span></a></li>
-                                </ul>
-                            </div>
-                            <div class="panel-body">
-                                <div class="task-warning" *ngFor="let lng of selectedLngs">
-                                    <div class="task-header">
-                                        <div class="pull-left">{{lng.nom}}</div>
-                                    </div>
-                                    <div class="task-text">
-                                        <div class="progress progress-small">
-                                            <div class="progress-bar" role="progressbar" aria-valuenow="75"
-                                                aria-valuemin="0" aria-valuemax="100" style="width: 75%;">{{lng.niveau}}</div>
+                    <div *ngIf="blockLng==1" class="task-item panel panel-primary panel-hidden-controls">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Langues</h3>
+                            <ul class="panel-controls">
+                                <li><a data-toggle="modal" data-target="#BlockLng"><span class="fa fa-plus"></span></a>
+                                </li>
+                                <li><a href="#" class="panel-fullscreen"><span class="fa fa-expand"></span></a></li>
+
+                                <li><a href="#" class="panel-remove"><span class="fa fa-times"></span></a></li>
+                            </ul>
+                        </div>
+                        <div class="panel-body">
+                            <div class="task-warning" *ngFor="let lng of selectedLngs">
+                                <div class="task-header">
+                                    <div class="pull-left">{{lng.nom}}</div>
+                                </div>
+                                <div class="task-text">
+                                    <div class="progress progress-small">
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="75"
+                                            aria-valuemin="0" aria-valuemax="100" style="width: 75%;">{{lng.niveau}}
                                         </div>
-                                        {{lng.detail}}
                                     </div>
+                                    {{lng.detail}}
                                 </div>
                             </div>
                         </div>
+                    </div>
                 </div>
             </div>
             <div class="col-md-7">
                 <div class="tasks" id="tasks_progreess">
-                    <div class="task-item panel panel-primary panel-hidden-controls">
+                    <div *ngIf="blockFormation==1" class="task-item panel panel-primary panel-hidden-controls">
                         <div class="panel-heading">
                             <h3 class="panel-title">Diplômes et Formations</h3>
                             <ul class="panel-controls">
@@ -169,7 +180,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="task-item panel panel-primary panel-hidden-controls">
+                    <div *ngIf="blockExp==1" class="task-item panel panel-primary panel-hidden-controls">
                         <div class="panel-heading">
                             <h3 class="panel-title">Expériences professionnelles</h3>
                             <ul class="panel-controls">
@@ -193,7 +204,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="task-item panel panel-primary panel-hidden-controls">
+                    <div *ngIf="blockComp==1" class="task-item panel panel-primary panel-hidden-controls">
                         <div class="panel-heading">
                             <h3 class="panel-title">Compétences</h3>
                             <ul class="panel-controls">
@@ -212,7 +223,8 @@
                                 <div class="task-text">
                                     <div class="progress progress-small">
                                         <div class="progress-bar" role="progressbar" aria-valuenow="75"
-                                            aria-valuemin="0" aria-valuemax="100" style="width: 75%;">{{comp.niveau}}</div>
+                                            aria-valuemin="0" aria-valuemax="100" style="width: 75%;">{{comp.niveau}}
+                                        </div>
                                     </div>
                                     {{comp.detail}}
                                 </div>
@@ -351,6 +363,10 @@
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
                         class="sr-only">Fermer</span></button>
                 <h4 class="modal-title" id="taskEditModalHead">Fromations du CV</h4>
+                <label class="switch">
+                    <input type="checkbox" checked (click)="activerBlock(1)" value="0" />
+                    <span></span>
+                </label>
             </div>
             <form class="form-horizontal" #f="ngForm" (ngSubmit)="createFormation(f.value)">
                 <div class="modal-body">
@@ -425,6 +441,10 @@
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
                         class="sr-only">Fermer</span></button>
                 <h4 class="modal-title" id="taskEditModalHead">Experiences du CV</h4>
+                <label class="switch">
+                    <input type="checkbox" checked (click)="activerBlock(2)" value="0" />
+                    <span></span>
+                </label>
             </div>
             <form class="form-horizontal" #fExp="ngForm" (ngSubmit)="createExp(fExp.value)">
                 <div class="modal-body">
@@ -505,6 +525,10 @@
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
                         class="sr-only">Fermer</span></button>
                 <h4 class="modal-title" id="taskEditModalHead">Competences du CV</h4>
+                <label class="switch">
+                    <input type="checkbox" checked (click)="activerBlock(3)" value="0" />
+                    <span></span>
+                </label>
             </div>
             <form class="form-horizontal" #fComp="ngForm" (ngSubmit)="createComp(fComp.value)">
                 <div class="modal-body">
@@ -546,6 +570,10 @@
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
                         class="sr-only">Fermer</span></button>
                 <h4 class="modal-title" id="taskEditModalHead">Langues du CV</h4>
+                <label class="switch">
+                    <input type="checkbox" checked (click)="activerBlock(4)" value="0" />
+                    <span></span>
+                </label>
             </div>
             <form class="form-horizontal" #fLng="ngForm" (ngSubmit)="createLng(fLng.value)">
                 <div class="modal-body">
@@ -566,6 +594,49 @@
                             <textarea required ngModel class="form-control" rows="3" name="details"
                                 [(ngModel)]="lng.details"></textarea>
                         </span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- END MODALS -->
+
+<!-- MODALS -->
+<div id="ModalSf" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="taskEditModalHead" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Fermer</span></button>
+                <h4 class="modal-title" id="taskEditModalHead">Situations Familiales</h4>
+                <label class="switch">
+                    <input type="checkbox" checked (click)="activerBlock(5)" value="0" />
+                    <span></span>
+                </label>
+            </div>
+            <form class="form-horizontal" #fSF="ngForm" (ngSubmit)="createSf(fSF.value)">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <ng-multiselect-dropdown class="col-md-8" [placeholder]="'Choisir situation familiale'"
+                            [data]="dlsf" name="sf" #role="ngModel" [(ngModel)]="sIsf"
+                            [settings]="dropdownSettingsSingle" (onSelect)="onISsf($event)">
+                        </ng-multiselect-dropdown>
+                        <div class="col-md-4"></div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label class="control-label">Date Début</label>
+                            <input required ngModel type="date" class="form-control" name="dd" [(ngModel)]="sf.dd" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="control-label">Date Fin</label>
+                            <input required ngModel type="date" class="form-control" name="df" [(ngModel)]="sf.df" />
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">

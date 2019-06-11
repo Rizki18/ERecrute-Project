@@ -1,18 +1,26 @@
 package ma.hrpath.stage2019.erecrute.controller;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import ma.hrpath.stage2019.erecrute.message.request.CompetenceForm;
 import ma.hrpath.stage2019.erecrute.message.request.CvForm;
@@ -40,6 +48,7 @@ import ma.hrpath.stage2019.erecrute.model.Societe;
 import ma.hrpath.stage2019.erecrute.repository.CompetenceRepository;
 import ma.hrpath.stage2019.erecrute.repository.ExperienceRepository;
 import ma.hrpath.stage2019.erecrute.repository.PosteRepository;
+import ma.hrpath.stage2019.erecrute.repository.ProfilRepository;
 import ma.hrpath.stage2019.erecrute.repository.SocieteRepository;
 import ma.hrpath.stage2019.erecrute.security.service.CVThequeService;
 import ma.hrpath.stage2019.erecrute.security.service.ProfilService;
@@ -51,6 +60,8 @@ public class CVThequeRestAPIs {
 	private CVThequeService cvThequeService;
 	@Autowired
 	private PosteRepository posteRepository;
+	@Autowired
+	private ProfilService profilService;
 	@Autowired
 	private SocieteRepository steRepository;
 	
@@ -208,6 +219,22 @@ public class CVThequeRestAPIs {
 	@RequestMapping(value="/cv/{id}/tcs")
 	public List<CV_TC_RES> listTCsCV(@PathVariable("id") Long id){
 		return cvThequeService.retreiveTCsCV(id);
+	}
+	
+	@GetMapping(path = "/photoProfilCV/{id}",produces = MediaType.IMAGE_PNG_VALUE)
+	public byte[] getPhoto(@PathVariable("id")Long id) throws IOException {
+		Profil p = profilService.findProfilById(id);
+		System.out.println("*******"+p.getPhoto());
+		return Files.readAllBytes(Paths.get(System.getProperty("user.home")+"/erecrute/profils/"+p.getPhoto()));
+	}
+	
+	@PostMapping(path = "/uploadPhoto/{id}")
+	public void uploadPhoto(MultipartFile file, @PathVariable Long id) throws IOException {
+		Profil p = profilService.findProfilById(id);
+		p.setPhoto(id+".png");
+		Files.write(Paths.get(System.getProperty("user.home")+"/erecrute/profils/"+p.getPhoto()), file.getBytes());
+		profilService.saveProfil(p);
+		System.out.println("*******"+p.getPhoto());
 	}
 	
 	
