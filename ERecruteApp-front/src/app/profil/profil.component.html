@@ -38,14 +38,14 @@
                 <div class="panel panel-default">
                     <div class="panel-body profile">
                         <div class="profile-image">
-                            <img src="{{profil.photo}}" alt="{{profil.nom}} {{profil.prenom}}"  />
+                            <img src="{{service.host+'/photoProfilCV/'+profil.codeProfil}}" alt="{{profil.nom}} {{profil.prenom}}"  />
                             <!--
                                 <img src="{{this.service.host+'/photoProfil/'+profil.codeProfil}}" alt="{{this.service.host+'/photoProfil/'+profil.codeProfil}}" />
                             -->
                         </div>
                         <div class="profile-data">
                             <div class="profile-data-name">{{profil.nom}} {{profil.prenom}}</div>
-                            <div class="profile-data-title">Singer-Songwriter</div>
+                          <!-- <div class="profile-data-title">Singer-Songwriter</div>-->  
                         </div>
                         <div class="profile-controls">
                             <a [routerLink]="['/erecrute/cvtheque', profil.codeProfil]" class="profile-control-left">CV</a>

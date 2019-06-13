@@ -102,9 +102,11 @@
                            <div>
                                          <input required ngModel type="text" class="col-md-6" name="rib"
                                          placeholder="N° identité bancaire " [(ngModel)]="profil.rib" />
-                                         <span class="col-md-1"></span> 
-                                         <input required ngModel type="file"   class="col-md-4" name="photo"
-                                              placeholder="photo"  [(ngModel)]="profil.photo" />
+                                         <span class="col-md-1"></span>
+                                        <input required ngModel type="file" (change)="onSelectFile($event)"
+                                        class="col-md-4" name="photo"
+                                        placeholder="photo"  [(ngModel)]="profil.photo" />
+                                              {{progress}}
                                   
                             </div>
                         </div>

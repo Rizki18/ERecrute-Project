@@ -120,6 +120,14 @@ public class ProfilRestAPIs {
 		p.setProfil(profilService.findProfilByMaxId());
 		return profilService.saveFormation(p);
 	}
+	@RequestMapping(value="/admin/savePhoto",method = RequestMethod.POST)
+	public void savePhoto(MultipartFile file) throws IOException {
+		Profil p = profilService.findProfilByMaxId();
+		p.setPhoto(p.getCodeProfil()+".png");
+		Files.write(Paths.get(System.getProperty("user.home")+"/erecrute/profils/"+p.getPhoto()), file.getBytes());
+		profilService.saveProfil(p);
+		System.out.println("*******"+p.getPhoto());
+	}
 	/*
 	@RequestMapping(value="/admin/updateFormation/{id}",method = RequestMethod.PUT)
 	public ResponseEntity<Object> updateStudent(@RequestBody SignUpForm signUpRequest, @PathVariable long id) {

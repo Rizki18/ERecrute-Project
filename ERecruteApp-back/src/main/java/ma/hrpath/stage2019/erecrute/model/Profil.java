@@ -50,8 +50,19 @@ public class Profil implements Serializable  {
 	@OneToMany(mappedBy = "Profil", cascade = CascadeType.ALL)
 	@JsonIgnore
     private Set<CV> m_CV;
+	
+	@OneToMany(mappedBy = "Profil", cascade = CascadeType.ALL)
+	@JsonIgnore
+    private Set<Experience> m_Experience;
+	
+	 public Set<Experience> getM_Experience() {
+		return m_Experience;
+	}
+	public void setM_Experience(Set<Experience> m_Experience) {
+		this.m_Experience = m_Experience;
+	}
 
-	 @ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.LAZY)
 	    @JoinTable(name = "Profil_MotCles", 
 	    	joinColumns = @JoinColumn(name = "profil_id"), 
 	    	inverseJoinColumns = @JoinColumn(name = "Motcles_id"))

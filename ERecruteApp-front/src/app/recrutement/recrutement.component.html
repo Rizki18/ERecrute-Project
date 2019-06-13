@@ -1,0 +1,145 @@
+ <!-- START BREADCRUMB -->
+ <ul class="breadcrumb push-down-0">
+  <li><a href="#">Accueil</a></li>
+  <li class="active">Recrutement</li>
+</ul>
+<!-- END BREADCRUMB -->
+
+<div class="page-title">
+  <h2><span class="fa fa-arrow-circle-o-left"></span> Recrutement </h2>
+</div>
+<!--
+<div class="page-content-wrap">
+
+  <div class="row">
+      <div class="col-md-12">
+
+          <-- START DEFAULT DATATABLE --
+          <div class="panel panel-default">
+              <div class="panel-heading">
+                  <h3 class="panel-title">Liste des recrutements</h3>
+                  <ul class="panel-controls">
+                      <li routerLink="/nv-user"><button type="button" class="btn btn-info">Ajouter recrutement
+                          </button></li>
+                  </ul>
+              </div>
+              <div class="panel-body">
+                  <table class="table datatable">
+                      <thead>
+                          <tr>
+                              <th>Nom</th>
+                              <th>Prénom</th>
+                              <th>Poste</th>
+                              <th>Date recrutement</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <tr *ngFor="let utilisateur of Profil">
+                              <td>{{utilisateur.nom}}</td>
+                              <td>{{utilisateur.preno}}</td>
+                              <td *ngIf="mode!=utilisateur.id">
+                                  <p *ngFor="let exp of utilisateur.experience">
+                                      {{role.experience}}
+                                  </p>
+                                </td>
+                              <td *ngIf="mode==utilisateur.id">
+                                    <ng-multiselect-dropdown
+                                    [placeholder]="'Choisir rôle'"
+                                    [data]="dropdownList"
+                                    name="role"
+                                    #role="ngModel"
+                                    [(ngModel)]="selectedItems"
+                                    [settings]="dropdownSettings"
+                                    (onSelect)="onItemSelect($event)"
+                                    (onSelectAll)="onSelectAll($event)"
+                                  >
+                                  </ng-multiselect-dropdown>
+                              </td>
+                              <td>
+                                  <button *ngIf="mode==utilisateur.id" class="btn btn-default btn-rounded btn-sm"
+                                  (click)="updateUser(utilisateur,selectedItems)">
+                                  <span class="fa fa-save"></span></button>
+                                  <button *ngIf="mode!=utilisateur.id" class="btn btn-default btn-rounded btn-sm"
+                                  (click)="editUser(utilisateur,utilisateur.roles)">
+                                  <span class="fa fa-pencil"></span></button>
+                                  <button class="btn btn-danger btn-rounded btn-sm"
+                                          mwlConfirmationPopover
+                                          [popoverTitle]="popoverTitle"
+                                          [popoverMessage]="popoverMessage"
+                                          placement="left"
+                                          (confirm)="deleteUser(utilisateur)"
+                                          (cancel)="cancelClicked = true">
+                                          <span class="fa fa-times"></span>
+                                        </button>
+                              </td>
+                          </tr>
+                          
+                      </tbody>
+                  </table>
+              </div>
+          </div>
+          <-- END DEFAULT DATATABLE --
+
+      </div>
+  </div>
+
+</div>
+-->
+<!-- PAGE CONTENT WRAPPER -->
+<form class="form-horizontal" #fExp="ngForm" (ngSubmit)="createExp(fExp.value)">
+  <div class="modal-body">
+      <table>
+          <thead>
+              <tr>
+                  <th>
+                      <h3>Experiences:</h3>
+                  </th>
+                  <th>
+                      <h3>Ajouter une nouvelle expérience</h3>
+                  </th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr>
+                    <td>
+                      <div class="form-group">
+                          <div class="col-md-6">
+                              <input required ngModel type="text" class="form-control" name="departement"
+                                  [(ngModel)]="exp.departement" placeholder="département" />
+                          </div>
+                          <div class="col-md-6">
+                              <input required ngModel type="text" class="form-control"
+                                  name="descriptionRole" [(ngModel)]="exp.descriptionRole"
+                                  placeholder="description rôle" />
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <div class="col-md-6">
+                              <label class="control-label">Date Début</label>
+                              <input required ngModel type="date" class="form-control" name="dateDebut"
+                                  [(ngModel)]="exp.dateDebut" />
+                          </div>
+                          <div class="col-md-6">
+                              <label class="control-label">Date Fin</label>
+                              <input required ngModel type="date" class="form-control" name="dateFin"
+                                  [(ngModel)]="exp.dateFin" />
+                          </div>
+                      </div>
+                      <div class="form-group">
+                          <ng-multiselect-dropdown class="col-md-6" [placeholder]="'Choisir poste'"
+                              [data]="dlposte" name="poste" #role="ngModel" [(ngModel)]="sIposte"
+                              [settings]="dropdownSettingsSingle" ></ng-multiselect-dropdown>
+                          
+                      </div>
+                      
+                  </td>
+                   
+              </tr>
+          </tbody>
+      </table>
+  </div>
+  <div class="modal-footer">
+      <button type="submit" class="btn btn-primary">Save changes</button>
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+  </div>
+</form>

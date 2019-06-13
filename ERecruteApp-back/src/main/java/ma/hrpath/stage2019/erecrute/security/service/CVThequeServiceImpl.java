@@ -64,6 +64,8 @@ public class CVThequeServiceImpl implements CVThequeService{
 	@Autowired
 	private ProfilService profilService;
 	@Autowired
+	private ProfilRepository profilRepository;
+	@Autowired
 	private ExperienceRepository expRepository;
 	@Autowired
 	private PosteRepository posteRepository;
@@ -148,22 +150,27 @@ public class CVThequeServiceImpl implements CVThequeService{
 	@Override
 	public void saveExperience(ExperienceForm f) {
 		CV cv = retreiveCvById(Long.valueOf(f.getCv()));
-		Set<Experience> exps;
+		Profil profil = profilRepository.findBycodeProfil(Long.valueOf(f.getProfil()));
+		Set<Experience> exps,exps2;
 		
 		Experience exp = new Experience(f.getDateDebut(),f.getDateFin(),f.getDepartement(),f.getDescriptionRole());
 		exp.setPoste(posteRepository.findById(Long.valueOf(f.getPoste())).orElse(null));
 		exp.setSociete(steRepository.findById(Long.valueOf(f.getSociete())).orElse(null));
+		exp.setProfil(profilRepository.findById(Long.valueOf(f.getProfil())).orElse(null));
 		expRepository.save(exp);
 		System.out.println(exp);
 		
-		
+
 		exps = cv.getExps();
+		exps2 = profil.getM_Experience();
 
 		exps.add(exp);
+		exps2.add(exp);
 		
 		cv.setExps(exps);
-		
+		profil.setM_Experience(exps2);
 		cvRepository.save(cv);
+		profilRepository.save(profil);
 	}
 
 

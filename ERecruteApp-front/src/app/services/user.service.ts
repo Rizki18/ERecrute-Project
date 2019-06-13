@@ -32,6 +32,12 @@ export class Poste{
     public libellePost:string
   ) {}
 }
+export class Societe{
+  constructor(
+    public codeSociete:string,
+    public nomSociete:string
+  ) {}
+}
 export class Competence{
   constructor(
     public codeCompetance:string,
@@ -121,7 +127,8 @@ export class Experience{
   public descriptionRole:string,
   public societe:string,
   public poste:string,
-  public cv:string
+  public cv:string,
+  public profil:string
   ){}
 }
 
