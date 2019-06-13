@@ -17,6 +17,7 @@ import { ProfilComponent } from './profil/profil.component';
 import { PosteComponent } from './poste/poste.component';
 import { AddProfilComponent } from './add-profil/add-profil.component';
 import { MotClesComponent } from './mot-cles/mot-cles.component';
+import { RecrutementComponent } from './recrutement/recrutement.component';
 
 const routes: Routes = [
   {
@@ -56,6 +57,10 @@ const routes: Routes = [
     component: EditUtilisateurComponent
 },
 {
+    path: 'erecrute/recrutement',
+    component: RecrutementComponent
+},
+{
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
@@ -87,7 +92,7 @@ const routes: Routes = [
 }
 ,
 {
-    path: 'poste',
+    path: 'erecrute/poste',
     component: PosteComponent
 }
 ];

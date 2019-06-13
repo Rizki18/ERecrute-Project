@@ -13,5 +13,7 @@ public interface ExperienceRepository extends JpaRepository<Experience, Long> {
 	public Experience findByDescriptionRole(String s);
 	@Query("select f from Experience f where f.Poste.codePost=:x")
 	List<Experience> findByPoste(@Param("x")Long idPost);
+	@Query("select f from Experience f where f.Profil.codeProfil=:x")
+	List<Experience> findByProfil(@Param("x")Long idProfil);
 
 }

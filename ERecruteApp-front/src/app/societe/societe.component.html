@@ -1,0 +1,43 @@
+ 
+<div class="col-md-6"></div>
+<table class="table table-striped">
+    <thead></thead>
+    <tr>
+      <th>code</th>
+      <th>Nom</th>
+      <th>
+            <form #f="ngForm" (ngSubmit)="createSociete(f.value)">   
+                    <tr>
+                      <td>
+                        <input required ngModel placeholder="Libelle" name="nomSociete" class="form-control" [(ngModel)]="societe.nomSociete">
+                        </td>
+                        
+                        <td>
+                        <button [disabled]="!f.valid" type="submit" class="btn btn-success" >Create</button>
+                        </td>
+                    </tr>
+            </form>
+      </th>      
+    </tr>
+    
+    <tbody>
+        <tr *ngFor="let societe of societes">
+            <td>{{societe.codeSociete}}</td>
+              <td *ngIf="mode==societe.codeSociete">
+              <input required ngModel value={{societe.codeSociete}} name="nomSociete" class="form-control" [(ngModel)]="societe.codeSociete">
+              </td>
+             
+                    
+            <td *ngIf="mode!=societe.codeSociete">
+                  {{societe.nomSociete}}
+              </td>
+              
+           
+            <td>
+                    <button class="btn btn-danger" (click)="deleteSociete(societe)"> Delete competence</button> 
+                    <button *ngIf="mode!=societe.codeSociete" class="btn btn-success" (click)="editSociete(societe)"> Edit poste</button>
+                    <button *ngIf="mode==societe.codeSociete" class="btn btn-success" (click)="updateSociete(societe)"> Update poste</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

@@ -523,13 +523,15 @@ export class CvComponent implements OnInit {
     console.log(this.formations);
   };
 
-  exp: Experience = new Experience("", "", "", "", "", "", "", "",[]);
+
+  exp: Experience = new Experience("", "", "", "", "", "", "", "","",[]);
 
   createExp(exp): void {
 
     exp.cv = this.cv.codeCV;
     exp.poste = this.poste;
     exp.societe = this.societe;
+    exp.profil= this.profil;
 
     console.log(exp);
 
@@ -550,6 +552,7 @@ export class CvComponent implements OnInit {
         this.exp.descriptionRole = "";
         this.exp.poste = "";
         this.exp.societe = "";
+        this.exp.profil = "";
       });
 
     this.getExperiences("/cv/" + this.cv.codeCV + "/experiences");

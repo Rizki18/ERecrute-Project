@@ -1,7 +1,9 @@
 package ma.hrpath.stage2019.erecrute.security.service;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import javax.transaction.Transactional;
 
@@ -10,6 +12,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import ma.hrpath.stage2019.erecrute.repository.ProfilRepository;
 import ma.hrpath.stage2019.erecrute.repository.FormationRepository;
+import ma.hrpath.stage2019.erecrute.repository.ExperienceRepository;
+import ma.hrpath.stage2019.erecrute.model.CV;
+import ma.hrpath.stage2019.erecrute.model.Experience;
 import ma.hrpath.stage2019.erecrute.model.Formation;
 import ma.hrpath.stage2019.erecrute.model.Profil;
 @Service
@@ -20,6 +25,8 @@ public class ProfilServiceImpl implements ProfilService {
 	private ProfilRepository ProfilRepository;
 	@Autowired
 	private FormationRepository FormationRepository;
+	@Autowired
+	private ExperienceRepository ExperienceRepository;
 	
 	@Override
 	public Profil saveProfil(Profil Profil) {
@@ -84,6 +91,48 @@ public class ProfilServiceImpl implements ProfilService {
 	public List<Formation> retreiveFormationsProfil(Long id) {
 		// TODO Auto-generated method stub
 		return FormationRepository.findByProfil(id);
+	}
+	public void addExperienceToCV(String id,Set<String> exp) {
+
+		Profil profil = ProfilRepository.findBycodeProfil(Long.valueOf(id));
+		Set<Experience> exps;
+		
+		exps = new HashSet<Experience>();
+		
+		for(String e : exp) {
+			exps.add(ExperienceRepository.findById(Long.valueOf(e)).orElse(null));
+		}
+		
+		profil.setM_Experience(exps);
+		ProfilRepository.save(profil);
+	}
+
+	@Override
+	public Experience saveExperience(Experience Experience) {
+		return ExperienceRepository.save(Experience);
+	}
+
+	@Override
+	public void deleteExperience(long id) {
+		ExperienceRepository.deleteById(id);
+		
+	}
+
+	@Override
+	public boolean findExperienceById(long id) {
+		if(ExperienceRepository.findById(id)!= null)
+			return true;
+		return false;
+	}
+
+	@Override
+	public List<Experience> retreiveExperience() {
+		return ExperienceRepository.findAll();
+	}
+
+	@Override
+	public List<Experience> retreiveExperiencesProfil(Long id) {
+		return ExperienceRepository.findByProfil(id);
 	}
 
 }

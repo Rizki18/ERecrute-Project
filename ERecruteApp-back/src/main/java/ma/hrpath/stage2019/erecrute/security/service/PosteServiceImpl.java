@@ -9,8 +9,10 @@ import org.springframework.stereotype.Service;
 
 import ma.hrpath.stage2019.erecrute.model.Experience;
 import ma.hrpath.stage2019.erecrute.model.Poste;
+import ma.hrpath.stage2019.erecrute.model.Societe;
 import ma.hrpath.stage2019.erecrute.repository.ExperienceRepository;
 import ma.hrpath.stage2019.erecrute.repository.PosteRepository;
+import ma.hrpath.stage2019.erecrute.repository.SocieteRepository;
 
 @Service
 @Transactional
@@ -19,6 +21,8 @@ public class PosteServiceImpl implements PosteService{
 	private PosteRepository posteRepository;
 	@Autowired
 	private ExperienceRepository experienceRepository;
+	@Autowired
+	private SocieteRepository societeRepository;
 	
 	@Override
 	public Poste savePoste(Poste Poste){
@@ -76,6 +80,29 @@ public class PosteServiceImpl implements PosteService{
 	public List<Experience> retreiveExperiencesPoste(Long id) {
 		// TODO Auto-generated method stub
 		return experienceRepository.findByPoste(id);
+	}
+
+	@Override
+	public Societe saveSociete(Societe Societe) {
+		return societeRepository.save(Societe);
+	}
+
+	@Override
+	public void deleteSociete(long id) {
+		societeRepository.deleteById(id);
+		
+	}
+
+	@Override
+	public boolean findSocieteById(long id) {
+		if(societeRepository.findById(id) != null)
+			return true;
+		return false;
+	}
+
+	@Override
+	public List<Societe> retreiveSociete() {
+		return societeRepository.findAll();
 	}
 
 }

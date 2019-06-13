@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import ma.hrpath.stage2019.erecrute.model.Poste;
+import ma.hrpath.stage2019.erecrute.model.Societe;
 import ma.hrpath.stage2019.erecrute.security.service.PosteService;
 
 @CrossOrigin("*")
@@ -35,5 +36,24 @@ public class PosteRestAPIs {
 	public List<Poste> listPoste(){
 		return PosteService.retreivePoste();
 	}
+	@Autowired
+	private PosteService SocieteService;
+	
+	//Societe
+	@RequestMapping(value="/admin/saveSociete",method = RequestMethod.POST)
+	@PreAuthorize("hasRole('ADMIN')")
+	public Societe saveSociete(@RequestBody Societe p) {
+		return SocieteService.saveSociete(p);
+	}
+	@RequestMapping(value="/admin/deleteSociete/{codePost}",method = RequestMethod.DELETE)
+	@PreAuthorize("hasRole('ADMIN')")
+	public void deleteSociete(@PathVariable("codePost") Long codePost) {
+		SocieteService.deleteSociete(codePost);
+	}
+	@RequestMapping(value="/Societe")
+	public List<Societe> listSociete(){
+		return SocieteService.retreiveSociete();
+	}
+
 	
 }

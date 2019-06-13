@@ -35,12 +35,25 @@ public class Experience implements Serializable {
     @JoinColumn(name = "Societe")
 	@JsonIgnore
 	public Societe Societe;
-	
+
+	@ManyToOne
+    @JoinColumn(name = "Profil")
+	@JsonIgnore
+    private Profil Profil;
+ 
+	 public Profil getProfil() {
+		return Profil;
+	}
+
+	public void setProfil(Profil profil) {
+		Profil = profil;
+	}
+
 	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "Exp_MotCles", 
-	joinColumns = @JoinColumn(name = "exp_id"), 
-	inverseJoinColumns = @JoinColumn(name = "Motcles_id"))
-	private Set<MotCles> Motcles = new HashSet<>();
+	    @JoinTable(name = "Exp_MotCles", 
+	    	joinColumns = @JoinColumn(name = "exp_id"), 
+	    	inverseJoinColumns = @JoinColumn(name = "Motcles_id"))
+	    private Set<MotCles> Motcles = new HashSet<>();
 
 
 	public Set<MotCles> getMotcles() {

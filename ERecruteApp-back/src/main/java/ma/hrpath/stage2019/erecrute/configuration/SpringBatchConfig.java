@@ -1,5 +1,8 @@
 package ma.hrpath.stage2019.erecrute.configuration;
+import java.beans.PropertyEditor;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.HashMap;
 import java.util.Set;
 
 import org.springframework.batch.core.Job;
@@ -17,6 +20,7 @@ import org.springframework.batch.item.file.mapping.BeanWrapperFieldSetMapper;
 import org.springframework.batch.item.file.mapping.DefaultLineMapper;
 import org.springframework.batch.item.file.transform.DelimitedLineTokenizer;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
@@ -73,7 +77,13 @@ public class SpringBatchConfig {
         "adresse" ,"cimr" ,"cin" ,"civilite" ,"cnss", "dateNaissance","email" ,"nom" ,"permisConduite" 
         ,"photo", "prenom","rib" ,"tel"});
 
+        CustomDateEditor customDateEditor = new CustomDateEditor(new SimpleDateFormat("yyyy-MM-dd"),true);
+        HashMap<Class, PropertyEditor> customEditors = new HashMap<>();
+        customEditors.put(Date.class, customDateEditor);
         BeanWrapperFieldSetMapper<Profil> fieldSetMapper = new BeanWrapperFieldSetMapper<>();
+        fieldSetMapper.setCustomEditors(customEditors);
+       
+        //BeanWrapperFieldSetMapper<Profil> fieldSetMapper = new BeanWrapperFieldSetMapper<>();
         fieldSetMapper.setTargetType(Profil.class);
 
         defaultLineMapper.setLineTokenizer(lineTokenizer);

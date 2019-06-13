@@ -2,6 +2,8 @@ package ma.hrpath.stage2019.erecrute.model;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
@@ -48,8 +50,19 @@ public class Profil implements Serializable  {
 	@OneToMany(mappedBy = "Profil", cascade = CascadeType.ALL)
 	@JsonIgnore
     private Set<CV> m_CV;
+	
+	@OneToMany(mappedBy = "Profil", cascade = CascadeType.ALL)
+	@JsonIgnore
+    private Set<Experience> m_Experience;
+	
+	 public Set<Experience> getM_Experience() {
+		return m_Experience;
+	}
+	public void setM_Experience(Set<Experience> m_Experience) {
+		this.m_Experience = m_Experience;
+	}
 
-	 @ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.LAZY)
 	    @JoinTable(name = "Profil_MotCles", 
 	    	joinColumns = @JoinColumn(name = "profil_id"), 
 	    	inverseJoinColumns = @JoinColumn(name = "Motcles_id"))
@@ -86,7 +99,26 @@ public class Profil implements Serializable  {
 		this.m_Formation = m_Formation;
 		this.Motcles = new HashSet<MotCles>();
 	}
-
+	public Profil(Long codeProfil, String adresse, String cimr, String cin, String civilite, String cnss,
+			String dateNaissance, String email, String nom, String permisConduite, String photo, String prenom,
+			String rib, String tel, Set<Formation> m_Formation) throws Exception {
+		super();
+		this.codeProfil = codeProfil;
+		this.adresse = adresse;
+		this.cimr = cimr;
+		this.cin = cin;
+		this.civilite = civilite;
+		this.cnss = cnss;
+		this.dateNaissance = (Date) new SimpleDateFormat("yyyy-MM-dd").parse(dateNaissance);
+		this.email = email;
+		this.nom = nom;
+		this.permisConduite = permisConduite;
+		this.photo = photo;
+		this.prenom = prenom;
+		this.rib = rib;
+		this.tel = tel;
+		this.m_Formation = m_Formation;
+	}
 	public Long getCodeProfil() {
 		return codeProfil;
 	}

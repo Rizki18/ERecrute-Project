@@ -10,5 +10,6 @@ public interface ProfilRepository extends JpaRepository<Profil,Long> {
 	Profil findBycin(String cin);
 	@Query("from Profil as p where codeProfil in ( select MAX(codeProfil)  FROM Profil) ")
 	Profil MaxID();
+	Profil findBycodeProfil(Long id);
 	
 }

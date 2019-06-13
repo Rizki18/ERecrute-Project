@@ -11,6 +11,7 @@ public class ExperienceForm {
 	private String Poste;
 	private String Societe;
 	private String Cv;
+	private String Profil;
 	private Set<String> exp;
 	private Set<String> mc_exp;
 	
@@ -63,6 +64,12 @@ public class ExperienceForm {
 		Cv = cv;
 	}
 	
+	public String getProfil() {
+		return Profil;
+	}
+	public void setProfil(String profil) {
+		Profil = profil;
+	}
 	public Set<String> getExp() {
 		return exp;
 	}

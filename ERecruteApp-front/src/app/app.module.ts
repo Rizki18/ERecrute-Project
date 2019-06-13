@@ -36,6 +36,8 @@ import { ProfilComponent } from './profil/profil.component';
 import { AddProfilComponent } from './add-profil/add-profil.component';
 import { PosteComponent } from './poste/poste.component';
 import { MotClesComponent } from './mot-cles/mot-cles.component';
+import { RecrutementComponent } from './recrutement/recrutement.component';
+import { SocieteComponent } from './societe/societe.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +64,9 @@ import { MotClesComponent } from './mot-cles/mot-cles.component';
     ProfilComponent,
     AddProfilComponent,
     PosteComponent,
-    MotClesComponent
+    MotClesComponent,
+    RecrutementComponent,
+    SocieteComponent
   ],
   imports: [
     BrowserModule,

@@ -122,8 +122,9 @@
                                             placeholder="N° identité bancaire " [(ngModel)]="profil.rib" />
                                     </div>
                                     <div class="col-md-4">
-                                        <input required ngModel type="file" class="form-control" name="photo"
-                                            placeholder="photo" [(ngModel)]="profil.photo" />
+                                            <input required ngModel type="file" (change)="onSelectFile($event)"
+                                            class="form-control" name="photo"
+                                            placeholder="photo"  [(ngModel)]="profil.photo" />
                                     </div>
                                 </div>
                             </div>

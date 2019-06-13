@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {HttpClient, HttpRequest, HttpEvent,HttpResponse} from '@angular/common/http';
+import {HttpEventType,HttpClient, HttpRequest, HttpEvent,HttpResponse} from '@angular/common/http';
 import { UserService, Profil, Formation, CV } from '../services/user.service';
 @Component({
   selector: 'app-add-profil',
@@ -81,9 +81,36 @@ export class AddProfilComponent implements OnInit {
         .subscribe( data => {
           alert("Profil  added successfully.");
           this.getCurrentProfil();
+          this.uploadPhoto(p);
           
         });
   };
+
+  selectedFiles;
+  progress = 0;
+  currentFileUpload;
+  onSelectFile(event)
+  {
+    this.selectedFiles = event.target.files;
+  }
+  uploadPhoto(p)
+  {
+  
+    this.currentFileUpload = this.selectedFiles.item(0);
+    const formData = new FormData();
+
+    formData.append('file', this.currentFileUpload );
+    this.service.createRessources("/admin/savePhoto",formData)
+        .subscribe( data => {
+        alert("Fin de téléchargement");
+        
+      
+    },err=>{
+      alert("Probleme de chargement");
+    })
+
+    this.selectedFiles = undefined
+  }
 
 
   getCurrentProfil(): void {
@@ -110,7 +137,7 @@ export class AddProfilComponent implements OnInit {
 
   cv:CV = new CV("","","","","");
   createCv(cv): void {
-    
+
     cv.profil = this.codeProfil;
     cv.nomCV = "base"+this.codeProfil;
     console.log(cv);
