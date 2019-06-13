@@ -13,7 +13,14 @@ public class ExperienceForm {
 	private String Cv;
 	private String Profil;
 	private Set<String> exp;
+	private Set<String> mc_exp;
 	
+	public Set<String> getMc_exp() {
+		return mc_exp;
+	}
+	public void setMc_exp(Set<String> motsCle) {
+		this.mc_exp = motsCle;
+	}
 	public Date getDateDebut() {
 		return dateDebut;
 	}

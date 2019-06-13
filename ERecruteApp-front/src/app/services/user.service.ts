@@ -128,7 +128,8 @@ export class Experience{
   public societe:string,
   public poste:string,
   public cv:string,
-  public profil:string
+  public profil:string,
+  public mcs:string[]
   ){}
 }
 

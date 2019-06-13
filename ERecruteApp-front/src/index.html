@@ -1,115 +1,118 @@
 <!doctype html>
 <html lang="en">
-    <head>        
+
+<head>
         <!-- META SECTION -->
-        <title>E-Recrute</title>        
-        <meta charset="utf-8">    
+        <title>E-Recrute</title>
+        <meta charset="utf-8">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
         <base href="/">
-        
+
         <link rel="icon" href="favicon.ico" type="assets/image/x-icon" />
         <!-- END META SECTION -->
-        
-        <!-- CSS INCLUDE -->        
-        <link rel="stylesheet" type="text/css" id="theme" href="assets/css/theme-default.css"/>
-        <!-- EOF CSS INCLUDE -->                                    
-    </head>
 
-    <body>
-      <app-root></app-root>
-<!-- START SCRIPTS -->
-<!-- START PLUGINS -->
-<script type="text/javascript" src="assets/js/plugins/jquery/jquery.min.js"></script>
-<script type="text/javascript" src="assets/js/plugins/jquery/jquery-ui.min.js"></script>
-<script type="text/javascript" src="assets/js/plugins/bootstrap/bootstrap.min.js"></script>  
+        <!-- CSS INCLUDE -->
+        <link rel="stylesheet" type="text/css" id="theme" href="assets/css/theme-white.css" />
+        <!-- EOF CSS INCLUDE -->
+</head>
 
-<script type="text/javascript" src="assets/js/plugins/datatables/jquery.dataTables.min.js"></script>
-<!-- END PLUGINS -->
+<body>
+        <app-root></app-root>
+        <!-- START SCRIPTS -->
+        <!-- START PLUGINS -->
+        <script type="text/javascript" src="assets/js/plugins/jquery/jquery.min.js"></script>
+        <script type="text/javascript" src="assets/js/plugins/jquery/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="assets/js/plugins/bootstrap/bootstrap.min.js"></script>
 
-<!-- THIS PAGE PLUGINS -->
-<script type='text/javascript' src='assets/js/plugins/icheck/icheck.min.js'></script>
-<script type="text/javascript" src="assets/js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js"></script>
-<script type="text/javascript" src="assets/js/plugins/tocify/jquery.tocify.min.js"></script>
+        <script type="text/javascript" src="assets/js/plugins/datatables/jquery.dataTables.min.js"></script>
+        <!-- END PLUGINS -->
 
-<script type='text/javascript' src='assets/js/plugins/bootstrap/bootstrap-datepicker.js'></script>        
-        <script type='text/javascript' src='assets/js/plugins/bootstrap/bootstrap-select.js'></script>        
+        <!-- THIS PAGE PLUGINS -->
+        <script type='text/javascript' src='assets/js/plugins/icheck/icheck.min.js'></script>
+        <script type="text/javascript" src="assets/js/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js"></script>
+        <script type="text/javascript" src="assets/js/plugins/tocify/jquery.tocify.min.js"></script>
 
-        <script type='text/javascript' src='assets/js/plugins/validationengine/languages/jquery.validationEngine-en.js'></script>
-        <script type='text/javascript' src='assets/js/plugins/validationengine/jquery.validationEngine.js'></script>        
+        <script type='text/javascript' src='assets/js/plugins/bootstrap/bootstrap-datepicker.js'></script>
+        <script type='text/javascript' src='assets/js/plugins/bootstrap/bootstrap-select.js'></script>
 
-        <script type='text/javascript' src='assets/js/plugins/jquery-validation/jquery.validate.js'></script>                
+        <script type='text/javascript'
+                src='assets/js/plugins/validationengine/languages/jquery.validationEngine-en.js'></script>
+        <script type='text/javascript' src='assets/js/plugins/validationengine/jquery.validationEngine.js'></script>
+
+        <script type='text/javascript' src='assets/js/plugins/jquery-validation/jquery.validate.js'></script>
 
         <script type='text/javascript' src='assets/js/plugins/maskedinput/jquery.maskedinput.min.js'></script>
-<!-- END PAGE PLUGINS --> 
+        <!-- END PAGE PLUGINS -->
 
-<script type="text/javascript" src="assets/js/plugins/rangeslider/jQAllRangeSliders-min.js"></script>
-<script type="text/javascript" src="assets/js/plugins/knob/jquery.knob.min.js"></script> 
-<script type="text/javascript" src="assets/js/plugins/bootstrap/bootstrap-datepicker.js"></script>
-<script type="text/javascript" src="assets/js/plugins/smartwizard/jquery.smartWizard-2.0.min.js"></script>
-<script type="text/javascript" src="assets/js/plugins/jquery-validation/jquery.validate.js"></script>
+        <script type="text/javascript" src="assets/js/plugins/rangeslider/jQAllRangeSliders-min.js"></script>
+        <script type="text/javascript" src="assets/js/plugins/knob/jquery.knob.min.js"></script>
+        <script type="text/javascript" src="assets/js/plugins/bootstrap/bootstrap-datepicker.js"></script>
+        <script type="text/javascript" src="assets/js/plugins/smartwizard/jquery.smartWizard-2.0.min.js"></script>
+        <script type="text/javascript" src="assets/js/plugins/jquery-validation/jquery.validate.js"></script>
 
 
-<!-- START TEMPLATE--> 
-<script type="text/javascript" src="assets/js/settings.js"></script>
-<script type="text/javascript" src="assets/js/demo_tasks.js"></script>
-<script type="text/javascript" src="assets/js/plugins.js"></script>        
-<script type="text/javascript" src="assets/js/actions.js"></script>        
-<!-- END TEMPLATE -->  
+        <!-- START TEMPLATE-->
+        <script type="text/javascript" src="assets/js/settings.js"></script>
+        <script type="text/javascript" src="assets/js/demo_tasks.js"></script>
+        <script type="text/javascript" src="assets/js/plugins.js"></script>
+        <script type="text/javascript" src="assets/js/actions.js"></script>
+        <!-- END TEMPLATE -->
 
-<script type="text/javascript">
-    var jvalidate = $("#jvalidate").validate({
-        ignore: [],
-        rules: {                                            
-                login: {
-                        required: true,
-                        minlength: 2,
-                        maxlength: 8
-                },
-                password: {
-                        required: true,
-                        minlength: 5,
-                        maxlength: 10
-                },
-                're-password': {
-                        required: true,
-                        minlength: 5,
-                        maxlength: 10,
-                        equalTo: "#password2"
-                },
-                age: {
-                        required: true,
-                        min: 18,
-                        max: 100
-                },
-                email: {
-                        required: true,
-                        email: true
-                },
-                date: {
-                        required: true,
-                        date: true
-                },
-                credit: {
-                        required: true,
-                        creditcard: true
-                },
-                site: {
-                        required: true,
-                        url: true
-                }
-            }                                        
-        });                                    
+        <script type="text/javascript">
+                var jvalidate = $("#jvalidate").validate({
+                        ignore: [],
+                        rules: {
+                                login: {
+                                        required: true,
+                                        minlength: 2,
+                                        maxlength: 8
+                                },
+                                password: {
+                                        required: true,
+                                        minlength: 5,
+                                        maxlength: 10
+                                },
+                                're-password': {
+                                        required: true,
+                                        minlength: 5,
+                                        maxlength: 10,
+                                        equalTo: "#password2"
+                                },
+                                age: {
+                                        required: true,
+                                        min: 18,
+                                        max: 100
+                                },
+                                email: {
+                                        required: true,
+                                        email: true
+                                },
+                                date: {
+                                        required: true,
+                                        date: true
+                                },
+                                credit: {
+                                        required: true,
+                                        creditcard: true
+                                },
+                                site: {
+                                        required: true,
+                                        url: true
+                                }
+                        }
+                });
 
-</script>
+        </script>
 
-<script>
-    $(function() {
-        var toc = $("#tocify").tocify({context: ".tocify-content", showEffect: "fadeIn",extendPage:false,selectors: "h2, h3, h4" });
-    });
-</script>
-<!-- END SCRIPTS -->
-    </body>
+        <script>
+                $(function () {
+                        var toc = $("#tocify").tocify({ context: ".tocify-content", showEffect: "fadeIn", extendPage: false, selectors: "h2, h3, h4" });
+                });
+        </script>
+        <!-- END SCRIPTS -->
+</body>
+
 </html>

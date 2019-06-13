@@ -1,12 +1,22 @@
 package ma.hrpath.stage2019.erecrute.message.request;
 
 import java.util.Date;
+import java.util.Set;
 
 public class SaForm {
 	private String sa;
 	private Date dd;
 	private Date df;
 	private String Cv;
+	private Set<String> mc_sa;
+	
+	
+	public Set<String> getMc_sa() {
+		return mc_sa;
+	}
+	public void setMc_sa(Set<String> mc_sa) {
+		this.mc_sa = mc_sa;
+	}
 	public String getSa() {
 		return sa;
 	}

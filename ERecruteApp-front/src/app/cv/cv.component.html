@@ -117,7 +117,7 @@
                                     <div class="list-group-item"><span class="fa fa-sign-out"></span> {{cv.profil.tel}}
                                     </div>
                                     <div class="list-group-item"><span class="fa fa-sign-out"></span> situation
-                                        familiale {{selectedSf.nom}}</div>
+                                        familiale</div>
                                 </div>
 
 
@@ -500,6 +500,16 @@
                                             [data]="dlsociete" name="societe" #role="ngModel" [(ngModel)]="sIsociete"
                                             [settings]="dropdownSettingsSingle" (onSelect)="onISsociete($event)">
                                         </ng-multiselect-dropdown>
+                                    </div>
+                                    <h4>Mots clés</h4>
+                                    <div class="form-group">
+                                        <div class="col-md-12">
+                                            <ng-multiselect-dropdown [placeholder]="'Choisir mots clés'"
+                                                [data]="dlmc" name="mc_exp" #role="ngModel"
+                                                [(ngModel)]="sImc_exp" [settings]="dropdownSettings"
+                                                (onSelect)="onISmc_exp($event)">
+                                            </ng-multiselect-dropdown>
+                                        </div>
                                     </div>
                                 </td>
                             </tr>

@@ -56,6 +56,7 @@ public class Competence implements Serializable{
 	public Competence(String nomCompetence) {
 		super();
 		this.nomCompetence = nomCompetence;
+		this.Motcles = new HashSet<MotCles>();
 		//this.m_MotCLes = m_MotCLes;
 	}
 
@@ -75,13 +76,6 @@ public class Competence implements Serializable{
 		this.nomCompetence = nomCompetence;
 	}
 
-	/*public MotCLes getM_MotCLes() {
-		return m_MotCLes;
-	}
-
-	public void setM_MotCLes(MotCLes m_MotCLes) {
-		this.m_MotCLes = m_MotCLes;
-	}*/
 
 	@Override
 	public String toString() {

@@ -97,6 +97,7 @@ public class Profil implements Serializable  {
 		this.rib = rib;
 		this.tel = tel;
 		this.m_Formation = m_Formation;
+		this.Motcles = new HashSet<MotCles>();
 	}
 	public Profil(Long codeProfil, String adresse, String cimr, String cin, String civilite, String cnss,
 			String dateNaissance, String email, String nom, String permisConduite, String photo, String prenom,

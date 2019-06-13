@@ -17,7 +17,7 @@ export class UtilisateursComponent implements OnInit {
   form: any = {};
   userInfo: UserInfo;
 
-  mode;
+  mode = "-1";
 
   dropdownList = [];
   selectedItems = [];
@@ -83,7 +83,7 @@ export class UtilisateursComponent implements OnInit {
 
   updateUser(user,roles): void {
     
-    this.mode = -1;
+    this.mode = "-1";
     console.log(user);
     console.log(roles);
     this.userInfo = new UserInfo(
@@ -93,9 +93,11 @@ export class UtilisateursComponent implements OnInit {
       user.password,
       roles);
 
+
     this.userService.updateRessources("/admin/updateUser/"+user.id,this.userInfo)
         .subscribe( data => {
           console.log(data);
+          this.getUtilisateurs();
         },
         error => {
           console.log(error);

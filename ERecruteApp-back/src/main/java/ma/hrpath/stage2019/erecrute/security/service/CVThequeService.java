@@ -64,5 +64,7 @@ public interface CVThequeService {
 	public void addTCsToCV(String cv, String tc);
 	public void addTcToCV(TcForm f);
 	public List<CV_TC_RES> retreiveTCsCV(Long id);
+
+	void addMCToExperience(String descRole, Set<String> strMCs);
 	
 }

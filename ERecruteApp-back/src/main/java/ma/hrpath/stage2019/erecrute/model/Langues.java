@@ -28,12 +28,6 @@ public class Langues implements Serializable  {
 	@JsonIgnore
 	private Set<CV_LNG> m_cvs;
 
-	 @ManyToMany(fetch = FetchType.LAZY)
-	    @JoinTable(name = "Lng_MotCles", 
-	    	joinColumns = @JoinColumn(name = "lng_id"), 
-	    	inverseJoinColumns = @JoinColumn(name = "Motcles_id"))
-	    private Set<MotCles> Motcles = new HashSet<>();
-
 	 
 	public Set<CV_LNG> getM_cvs() {
 		return m_cvs;
@@ -43,13 +37,6 @@ public class Langues implements Serializable  {
 		this.m_cvs = m_cvs;
 	}
 
-	public Set<MotCles> getMotcles() {
-		return Motcles;
-	}
-
-	public void setMotcles(Set<MotCles> motcles) {
-		Motcles = motcles;
-	}
 
 	public Langues() {
 		super();

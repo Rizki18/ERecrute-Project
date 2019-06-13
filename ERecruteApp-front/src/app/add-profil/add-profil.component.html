@@ -1,25 +1,24 @@
+<!-- START BREADCRUMB -->
+<ul class="breadcrumb push-down-0">
+    <li><a href="#">Accueil</a></li>
+    <li><a href="#">Profiles</a></li>
+    <li class="active">Nouveau profil</li>
+</ul>
+<!-- END BREADCRUMB -->
 
-            <!-- START BREADCRUMB -->
-            <ul class="breadcrumb push-down-0">
-                <li><a href="#">Accueil</a></li>
-                <li><a href="#">Profiles</a></li>
-                <li class="active">Nouveau profil</li>
-            </ul>
-            <!-- END BREADCRUMB -->
-  
-            <div class="page-title">
-                <h2><span class="fa fa-arrow-circle-o-left"></span>Nouveau Profil</h2>
-            </div>
-  <div class="page-content-wrap">
-  
+<div class="page-title">
+    <h2><span class="fa fa-arrow-circle-o-left"></span>Nouveau Profil</h2>
+</div>
+<div class="page-content-wrap">
+
     <div class="row">
         <div class="col-md-12">
-  
+
             <!-- START WIZARD WITH VALIDATION -->
             <div class="block">
-                <form #f="ngForm"  (ngSubmit)="createProfilFormation(f.value)" role="form" class="form-horizontal"
+                <form #f="ngForm" (ngSubmit)="createProfilFormation(f.value)" role="form" class="form-horizontal"
                     id="wizard-validation">
-                    <div class="wizard ">
+                    <div class="wizard wizard-validation">
                         <ul>
                             <li>
                                 <a href="#step-7">
@@ -44,58 +43,79 @@
                               -->
                         </ul>
                         <div id="step-7">
-                            
-                       <!-- <form #f="ngForm" (ngSubmit)="createProfil(f.value)">  -->
+
+                            <!-- <form #f="ngForm" (ngSubmit)="createProfil(f.value)">  -->
                             <div class="form-group">
-                              <!--   <label class="col-md-2 control-label">Nom</label> -->
-                                <div class="col-md-2"></div>
-                                <div >
-                                      <input required ngModel type="text" class=" col-md-2" name="nom"
-                                        placeholder="Nom " [(ngModel)]="profil.nom"  pattern="[a-zA-ZÀ-ÿ]">
-                                       <span class="col-sm-1"></span>
-                                 <input required ngModel type="text" class=" col-md-2" name="prenom"
-                                        placeholder="Prénom " [(ngModel)]="profil.prenom" pattern="[a-zA-ZÀ-ÿ]"/>
-                                        <span class="col-md-1"></span>       
-                                 <input required ngModel type="email" class="col-md-3" name="email"
-                                        placeholder="Email " [(ngModel)]="profil.email" />
+                                <!--   <label class="col-md-2 control-label">Nom</label> -->
+
+                                <div class=" col-md-12">
+                                    <div class=" col-md-4">
+                                        <input required ngModel type="text" class="form-control" name="nom"
+                                            placeholder="Nom " [(ngModel)]="profil.nom" pattern="[a-zA-ZÀ-ÿ]">
+                                    </div>
+                                    <div class=" col-md-4">
+                                        <input required ngModel type="text" class="form-control" name="prenom"
+                                            placeholder="Prénom " [(ngModel)]="profil.prenom" pattern="[a-zA-ZÀ-ÿ]" />
+                                    </div>
+                                    <div class=" col-md-4">
+                                        <input required ngModel type="email" class="form-control" name="email"
+                                            placeholder="Email " [(ngModel)]="profil.email" />
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group">
-                            <div class="col-md-2"></div>
-                            <div>
-                                <input required ngModel type="tel" class="col-md-2" name="tel"
-                                    placeholder="Téléphone " pattern="[0]{1}[6-7]{1}[0-9]{8}" [(ngModel)]="profil.tel" />
-                                    <span class="col-sm-1"></span> 
-                                    <input required ngModel type="text"  class="col-md-6" name="adresse"
-                                        placeholder="Adresse " [(ngModel)]="profil.adresse" />   
+                                <div class="col-md-12">
+                                    <div class=" col-md-4">
+                                        <input required ngModel type="tel" class="form-control" name="tel"
+                                            placeholder="Téléphone " pattern="[0]{1}[6-7]{1}[0-9]{8}"
+                                            [(ngModel)]="profil.tel" />
                                     </div>
+                                    <div class=" col-md-8">
+                                        <input required ngModel type="text" class="form-control" name="adresse"
+                                            placeholder="Adresse " [(ngModel)]="profil.adresse" />
+                                    </div>
+                                </div>
                             </div>
                             <div class="form-group">
-                            <div class="col-md-2"></div>
-                             <div>
-                                    <input required ngModel type="text" class="col-md-2" name="cin"
-                                        placeholder="CIN" [(ngModel)]="profil.cin" />
-                                    <span class="col-md-1"></span> 
-                                    <input required ngModel type="text" class="col-md-2" name="permisConduite"
-                                         placeholder="Premis A/B... " [(ngModel)]="profil.permisConduite" />
-                                         <span class="col-md-1"></span> 
-                                    <input required ngModel type="text" class="col-md-3 datepicker" value="1978-08-04"
-                                        name="dateNaissance"  placeholder="Date de Naissance" [(ngModel)]="profil.dateNaissance">
-                            </div>
+                                <div class="col-md-12">
+                                    <div class="col-md-4">
+                                        <input required ngModel type="text" class="form-control" name="cin"
+                                            placeholder="CIN" [(ngModel)]="profil.cin" />
+
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input required ngModel type="text" class="form-control" name="permisConduite"
+                                            placeholder="Premis A/B... " [(ngModel)]="profil.permisConduite" />
+
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input required ngModel type="text" class="form-control datepicker"
+                                            value="1978-08-04" name="dateNaissance" placeholder="Date de Naissance"
+                                            [(ngModel)]="profil.dateNaissance">
+
+                                    </div>
+
+
+                                </div>
                             </div>
                             <div class="form-group">
-                            <div class="col-md-2"></div>
-                              <div >
-                                    <input required ngModel type="text" class="col-md-2" name="cnss"
-                                         placeholder="N° CNSS " [(ngModel)]="profil.cnss" />
-                                    <span class="col-md-1"></span> 
-                                    <input required ngModel type="text" class="col-md-2" name="cimr"
-                                    placeholder="N° CIMR " [(ngModel)]="profil.cimr" />
-                                    <span class="col-sm-1"></span> 
-                                <input required ngModel type="text" class="col-md-2" name="civilite"
-                                    placeholder="Mr/Mme/Mlle " [(ngModel)]="profil.civilite" />
-                                 
+                                <div class="col-md-12">
+                                    <div class="col-md-4">
+                                        <input required ngModel type="text" class="form-control" name="cnss"
+                                            placeholder="N° CNSS " [(ngModel)]="profil.cnss" />
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input required ngModel type="text" class="form-control " name="cimr"
+                                            placeholder="N° CIMR " [(ngModel)]="profil.cimr" />
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input required ngModel type="text" class="form-control " name="civilite"
+                                            placeholder="Mr/Mme/Mlle " [(ngModel)]="profil.civilite" />
+                                    </div>
+
+                                </div>
                             </div>
+
                         </div>
                         <div class="form-group">
                             <div class="col-md-2"></div>
@@ -108,58 +128,57 @@
                                         placeholder="photo"  [(ngModel)]="profil.photo" />
                                               {{progress}}
                                   
-                            </div>
                         </div>
-                       
-                       <!--  </form>-->
+
+                            <!--  </form>-->
                         </div>
                         <div id="step-8">
-  
+
                             <div class="form-group">
                                 <label class="col-md-2 control-label">Intitulé</label>
                                 <span class="col-md-3">
-                                    <input required ngModel  type="text" class="form-control" 
-                                    name="intitule" [(ngModel)]="formation.intitule"/>
+                                    <input required ngModel type="text" class="form-control" name="intitule"
+                                        [(ngModel)]="formation.intitule" />
                                 </span>
                                 <label class="col-md-2 control-label">Établissement</label>
                                 <span class="col-md-3">
-                                    <input required ngModel type="text" class="form-control" 
-                                    name="etablissement" [(ngModel)]="formation.etablissement" />
+                                    <input required ngModel type="text" class="form-control" name="etablissement"
+                                        [(ngModel)]="formation.etablissement" />
                                 </span>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-2 control-label">Adresse</label>
                                 <div class="col-md-6">
-                                    <input required ngModel type="text" class="form-control"
-                                     name="lieu" [(ngModel)]="formation.lieu" />
+                                    <input required ngModel type="text" class="form-control" name="lieu"
+                                        [(ngModel)]="formation.lieu" />
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label class="col-md-2 control-label">Date Début</label>
                                 <span class="col-md-3">
-                                    <input required ngModel type="text" class="form-control datepicker" value="2014-08-04"
-                                        name="dateDebut" [(ngModel)]="formation.dateDebut" />
+                                    <input required ngModel type="text" class="form-control datepicker"
+                                        value="2014-08-04" name="dateDebut" [(ngModel)]="formation.dateDebut" />
                                 </span>
                                 <label class="col-md-2 control-label">Date Fin</label>
                                 <span class="col-md-3">
-                                    <input required ngModel type="text" class="form-control datepicker" value="2014-08-04"
-                                        name="dateFin" [(ngModel)]="formation.dateFin"/>
+                                    <input required ngModel type="text" class="form-control datepicker"
+                                        value="2014-08-04" name="dateFin" [(ngModel)]="formation.dateFin" />
                                 </span>
                             </div>
-                            
+
                             <div class="form-group">
                                 <label class="col-md-2 control-label">Détail</label>
                                 <span class="col-md-3">
-                                    <textarea required ngModel class="form-control" rows="3"
-                                    name="details" [(ngModel)]="formation.details"></textarea>
+                                    <textarea required ngModel class="form-control" rows="3" name="details"
+                                        [(ngModel)]="formation.details"></textarea>
                                 </span>
-                            </div> 
+                            </div>
                             <div class="form-group">
-                                <button   type="submit"  class="btn btn-success"  >Create</button>
-                            </div> 
-                                      
+                                <button type="submit" class="btn btn-success">Create</button>
+                            </div>
+
                         </div>
-                   <!--
+                        <!--
                         <div id="step-9" *ngIf="!f.valid">
                                 <div class="form-group">
                                         <ng-multiselect-dropdown class="col-md-4"
@@ -237,20 +256,18 @@
                                 <div class="col-md-12"></div>
                                 <div class="col-md-9"></div>
                                 <div class="col-md-3"> -->
-                                    <!--</button>[disabled]="!f.valid"
+                        <!--</button>[disabled]="!f.valid"
                                     <button   type="submit"  class="btn btn-success"  >Create</button>
                                 </div>
                             </div>-->
-                         </div>   
-                      </form> 
+                    </div>
+                </form>
             </div>
             <!-- END WIZARD WITH VALIDATION -->
-  
+
         </div>
-  
+
     </div>
-  
-  </div>
-  <!-- PAGE CONTENT WRAPPER -->
-  
-  
+
+</div>
+<!-- PAGE CONTENT WRAPPER -->

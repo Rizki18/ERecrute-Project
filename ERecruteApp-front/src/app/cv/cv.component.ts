@@ -24,18 +24,18 @@ export class CvComponent implements OnInit {
   Formation;
   formations;
   experiences;
-  postes; societes;
+  postes; societes; mcs;
   comps; lngs; sas; sfs; tps; tcs;
-  poste; societe;
+  poste; societe;mcs_exp;
   tmp; selectedFormations = []; selectedExps;
   selectedComps; selectedLngs; selectedSas; selectedSfs; selectedTps; selectedTcs;
   selectedSf;
   dlformation; sIformation = [];
   dlexp; sIexp = [];
   dlcompetence; sIcompetence = []; dlLNG; siLNG = []; dlSA; siSA = []; dlSF; siSF = []; dlTP; siTP = []; dlTC; siTC = [];
-  sIposte; sIsociete;
+  sIposte; sIsociete; sImc_exp;
   sIcomp; dlcomp; sIlng; dllng; sIsa; dlsa; sIsf; dlsf; sItp; dltp; sItc; dltc;
-  dlposte; dlsociete;
+  dlposte; dlsociete; dlmc;
   dropdownSettings = {};
   dropdownSettingsSingle = {};
 
@@ -77,6 +77,7 @@ export class CvComponent implements OnInit {
 
         this.getPostes("/postes");
         this.getSocietes("/societes");
+        this.getMCs("/MotclesName");
         this.getCompetences("/Competence");
         this.getLangues("/Langues");
         this.getSecteurs("/Secteur");
@@ -167,6 +168,21 @@ export class CvComponent implements OnInit {
         this.dlsociete = [];
         for (let s of this.societes) {
           this.dlsociete.push(s.nomSociete);
+        }
+
+      }, err => {
+        console.log(err);
+      })
+  }
+
+  getMCs(url) {
+    this.service.getRessources(url)
+      .subscribe(data => {
+        this.mcs = data;
+
+        this.dlmc = [];
+        for (let s of this.mcs) {
+          this.dlmc.push(s);
         }
 
       }, err => {
@@ -391,6 +407,12 @@ export class CvComponent implements OnInit {
     }
   }
 
+  onISmc_exp(item: any) {
+    for (let s of this.mcs) {
+      console.log(s);
+    }
+  }
+
   onIScomp(item: any) {
     for (let s of this.comps) {
       if (s.nomCompetence == item)
@@ -501,7 +523,8 @@ export class CvComponent implements OnInit {
     console.log(this.formations);
   };
 
-  exp: Experience = new Experience("", "", "", "", "", "", "", "","");
+
+  exp: Experience = new Experience("", "", "", "", "", "", "", "","",[]);
 
   createExp(exp): void {
 

@@ -8,7 +8,15 @@ public class CompetenceForm {
 	private String details;
 	private String Cv;
 	private Set<String> comp;
+	private Set<String> mc_comp;
 	
+	
+	public Set<String> getMc_comp() {
+		return mc_comp;
+	}
+	public void setMc_comp(Set<String> mc_comp) {
+		this.mc_comp = mc_comp;
+	}
 	public String getCompetence() {
 		return competence;
 	}

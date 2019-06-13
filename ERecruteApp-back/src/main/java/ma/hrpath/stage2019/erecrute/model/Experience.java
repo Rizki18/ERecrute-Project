@@ -35,6 +35,7 @@ public class Experience implements Serializable {
     @JoinColumn(name = "Societe")
 	@JsonIgnore
 	public Societe Societe;
+
 	@ManyToOne
     @JoinColumn(name = "Profil")
 	@JsonIgnore
@@ -69,6 +70,7 @@ public class Experience implements Serializable {
 
 	public Experience(Date dateDebut, Date dateFin, String departement, String descriptionRole) {
 		super();
+		this.Motcles = new HashSet<MotCles>();
 		this.dateDebut = dateDebut;
 		this.dateFin = dateFin;
 		this.departement = departement;
