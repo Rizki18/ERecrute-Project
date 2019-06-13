@@ -84,6 +84,7 @@ public class Profil implements Serializable  {
 		this.rib = rib;
 		this.tel = tel;
 		this.m_Formation = m_Formation;
+		this.Motcles = new HashSet<MotCles>();
 	}
 
 	public Long getCodeProfil() {

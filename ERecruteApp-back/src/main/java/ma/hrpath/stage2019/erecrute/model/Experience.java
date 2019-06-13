@@ -35,11 +35,12 @@ public class Experience implements Serializable {
     @JoinColumn(name = "Societe")
 	@JsonIgnore
 	public Societe Societe;
-	 @ManyToMany(fetch = FetchType.LAZY)
-	    @JoinTable(name = "Exp_MotCles", 
-	    	joinColumns = @JoinColumn(name = "exp_id"), 
-	    	inverseJoinColumns = @JoinColumn(name = "Motcles_id"))
-	    private Set<MotCles> Motcles = new HashSet<>();
+	
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "Exp_MotCles", 
+	joinColumns = @JoinColumn(name = "exp_id"), 
+	inverseJoinColumns = @JoinColumn(name = "Motcles_id"))
+	private Set<MotCles> Motcles = new HashSet<>();
 
 
 	public Set<MotCles> getMotcles() {
@@ -56,6 +57,7 @@ public class Experience implements Serializable {
 
 	public Experience(Date dateDebut, Date dateFin, String departement, String descriptionRole) {
 		super();
+		this.Motcles = new HashSet<MotCles>();
 		this.dateDebut = dateDebut;
 		this.dateFin = dateFin;
 		this.departement = departement;

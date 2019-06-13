@@ -69,6 +69,7 @@ public class CVThequeRestAPIs {
 	@PreAuthorize("hasRole('ADMIN')")
 	public void saveExperienceCV(@RequestBody ExperienceForm f) {
 		cvThequeService.saveExperience(f);
+		cvThequeService.addMCToExperience(f.getDescriptionRole(), f.getMc_exp());
 	}
 	
 	@RequestMapping(value="/admin/addExperienceToCV",method = RequestMethod.POST)

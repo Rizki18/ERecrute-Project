@@ -2,6 +2,7 @@ package ma.hrpath.stage2019.erecrute.security.service;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -36,17 +37,22 @@ import ma.hrpath.stage2019.erecrute.model.CV_TP;
 import ma.hrpath.stage2019.erecrute.model.Competence;
 import ma.hrpath.stage2019.erecrute.model.Experience;
 import ma.hrpath.stage2019.erecrute.model.Langues;
+import ma.hrpath.stage2019.erecrute.model.MotCles;
 import ma.hrpath.stage2019.erecrute.model.Poste;
 import ma.hrpath.stage2019.erecrute.model.Profil;
+import ma.hrpath.stage2019.erecrute.model.Role;
+import ma.hrpath.stage2019.erecrute.model.RoleName;
 import ma.hrpath.stage2019.erecrute.model.SecteurActivite;
 import ma.hrpath.stage2019.erecrute.model.SituationFamiliale;
 import ma.hrpath.stage2019.erecrute.model.Societe;
 import ma.hrpath.stage2019.erecrute.model.TypeContrat;
 import ma.hrpath.stage2019.erecrute.model.TypeProfil;
+import ma.hrpath.stage2019.erecrute.model.User;
 import ma.hrpath.stage2019.erecrute.repository.CompetenceRepository;
 import ma.hrpath.stage2019.erecrute.repository.CvRepository;
 import ma.hrpath.stage2019.erecrute.repository.ExperienceRepository;
 import ma.hrpath.stage2019.erecrute.repository.LanguesRepository;
+import ma.hrpath.stage2019.erecrute.repository.MotclesRepository;
 import ma.hrpath.stage2019.erecrute.repository.PosteRepository;
 import ma.hrpath.stage2019.erecrute.repository.ProfilRepository;
 import ma.hrpath.stage2019.erecrute.repository.SecteurActiviteRepository;
@@ -58,7 +64,7 @@ import ma.hrpath.stage2019.erecrute.repository.TypeProfilRepository;
 @Service
 @Transactional
 public class CVThequeServiceImpl implements CVThequeService{
-
+	
 	@Autowired
 	private CvRepository cvRepository;
 	@Autowired
@@ -81,6 +87,8 @@ public class CVThequeServiceImpl implements CVThequeService{
 	private TypeProfilRepository tpRepository;
 	@Autowired
 	private TypeContratRepository tcRepository;
+	@Autowired
+	private MotclesRepository mcRepository;
 	
 	@Override
 	public CV saveCV(CvForm cv) {
@@ -149,13 +157,17 @@ public class CVThequeServiceImpl implements CVThequeService{
 	public void saveExperience(ExperienceForm f) {
 		CV cv = retreiveCvById(Long.valueOf(f.getCv()));
 		Set<Experience> exps;
-		
-		Experience exp = new Experience(f.getDateDebut(),f.getDateFin(),f.getDepartement(),f.getDescriptionRole());
+		GregorianCalendar calendar = new GregorianCalendar(); 
+		calendar.setTime(f.getDateDebut()); 
+		String descRole = f.getDescriptionRole() + "_" +
+				calendar.get(GregorianCalendar.DAY_OF_MONTH) + "_" +
+				(calendar.get(GregorianCalendar.MONTH) + 1);
+				
+		Experience exp = new Experience(f.getDateDebut(),f.getDateFin(),f.getDepartement(),descRole);
 		exp.setPoste(posteRepository.findById(Long.valueOf(f.getPoste())).orElse(null));
 		exp.setSociete(steRepository.findById(Long.valueOf(f.getSociete())).orElse(null));
 		expRepository.save(exp);
 		System.out.println(exp);
-		
 		
 		exps = cv.getExps();
 
@@ -181,6 +193,25 @@ public class CVThequeServiceImpl implements CVThequeService{
 		cv.setExps(exps);
 		cvRepository.save(cv);
 	}
+	
+	@Override
+	public void addMCToExperience(String descRole, Set<String> strMCs) {
+		Experience exp = expRepository.findByDescriptionRole(descRole);
+		
+		Set<MotCles> mcs = new HashSet<>();
+
+		strMCs.forEach(mc -> {
+			MotCles recMC = mcRepository.findBylibelleMotCle(mc);
+			mcs.add(recMC);
+		});
+		
+		System.out.println(mcs);
+	
+		exp.setMotcles(mcs);
+		
+		
+
+	}
 
 	@Override
 	public void addCompetencesToCV(String idCV,Set<String> comp) {
@@ -200,6 +231,7 @@ public class CVThequeServiceImpl implements CVThequeService{
 		cvRepository.save(cv);
 		
 	}
+	
 
 	@Override
 	public void addLanguesToCV(String cv, String langue) {

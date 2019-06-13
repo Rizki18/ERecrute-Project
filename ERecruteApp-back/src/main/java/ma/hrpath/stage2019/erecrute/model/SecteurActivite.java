@@ -54,6 +54,7 @@ public class SecteurActivite implements Serializable {
 	public SecteurActivite(String libelleSecteur) {
 		super();
 		this.libelleSecteur = libelleSecteur;
+		this.Motcles = new HashSet<MotCles>();
 	}
 
 	public Long getCodeSecteur() {
