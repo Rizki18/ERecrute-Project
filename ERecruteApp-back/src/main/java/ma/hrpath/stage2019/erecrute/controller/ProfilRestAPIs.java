@@ -120,6 +120,11 @@ public class ProfilRestAPIs {
 		p.setProfil(profilService.findProfilByMaxId());
 		return profilService.saveFormation(p);
 	}
+	
+	@RequestMapping(value="/profilEnregistrer")
+	public Long getCodeProfil(){
+		return profilService.findProfilByMaxId().getCodeProfil();
+	}
 	/*
 	@RequestMapping(value="/admin/updateFormation/{id}",method = RequestMethod.PUT)
 	public ResponseEntity<Object> updateStudent(@RequestBody SignUpForm signUpRequest, @PathVariable long id) {

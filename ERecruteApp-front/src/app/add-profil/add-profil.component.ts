@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import {HttpClient, HttpRequest, HttpEvent,HttpResponse} from '@angular/common/http';
-import { UserService, Profil, Formation } from '../services/user.service';
+import { UserService, Profil, Formation, CV } from '../services/user.service';
 @Component({
   selector: 'app-add-profil',
   templateUrl: './add-profil.component.html',
@@ -19,6 +19,9 @@ export class AddProfilComponent implements OnInit {
   TypeContact ;dltypeContrat ;sItypeContact = [];
   TypeProfil ;dltypeProfil ;sItypeProfil = [];
   dropdownSettings = {};
+
+  formations;
+  codeProfil;
 
   constructor( 
     private service: UserService, private router:Router ){}
@@ -71,33 +74,78 @@ export class AddProfilComponent implements OnInit {
       //this.authority = item;
     }
   profil: AddProfilComponent["Profil"] = new Profil("","","","","","","","","","","","","","");
-  
-  createProfil(p): void {
-    
-    this.service.createRessources("/admin/saveProfil",p)
-        .subscribe( data => {
-          alert("Profil added successfully.");
-         
-        }); 
-  };
+ 
   createProfilFormation(p)
   {
     this.service.createRessources("/admin/saveProfil",p)
         .subscribe( data => {
           alert("Profil  added successfully.");
-          this.createFormation(p);
+          this.getCurrentProfil();
+          
         });
   };
-  
-  formation: AddProfilComponent["Formation"] = new Formation("","","","","","","","");
-  
-  createFormation(p): void {
-      this.service.createRessources("/admin/saveFormation",p)
-        .subscribe( data => {
-          alert("formation added successfully.");
-         // this.getFormation();
-        });
+
+
+  getCurrentProfil(): void {
+    this.service.getRessources("/profilEnregistrer")
+    .subscribe(data=>{
+          this.codeProfil = data;
+          console.log(this.codeProfil);
+          this.getFormations("/profil/" + this.codeProfil + "/formations");
+          this.createCv(new CV("","","","",""));
+    },err=>{
+      console.log(err);
+    });
+  };
+
+  getFormations(url) {
+    this.service.getRessources(url)
+      .subscribe(data => {
+        this.formations = data;
+
+      }, err => {
+        console.log(err);
+      })
+  }
+
+  cv:CV = new CV("","","","","");
+  createCv(cv): void {
     
+    cv.profil = this.codeProfil;
+    cv.nomCV = "base"+this.codeProfil;
+    console.log(cv);
+    
+    this.service.createRessources("/admin/saveCv",cv)
+        .subscribe( data => {   
+          alert("CV added successfully.");
+        });
+  };
+
+  formation: Formation = new Formation("", "", "", "", "", "", "", "");
+
+  createFormation(formation): void {
+
+    formation.profil = this.codeProfil;
+
+    console.log(formation);
+
+    this.service.createRessources("/admin/saveFormationProfil", formation)
+      .subscribe(data => {
+
+        alert("Formation est ajoutée avec succée");
+        this.formations.push(formation);
+        //this.router.navigate(['/cv/'+cv.codeCV]);
+        //this.getCompetence();
+        this.formation.dateDebut = "";
+        this.formation.dateFin = "";
+        this.formation.details = "";
+        this.formation.etablissement = "";
+        this.formation.intitule = "";
+        this.formation.lieu = "";
+        this.formation.profil = "";
+      });
+
+    console.log(this.formations);
   };
    /*SelectedFile = null;
   onFileSelected(event)
