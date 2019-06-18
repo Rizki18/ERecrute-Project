@@ -1,59 +1,63 @@
-<div *ngIf="isLoggedIn; else loggedOut">
-  Logged in as {{roles}}.
+<div class="login-container lightmode">
+    <div *ngIf="isLoggedIn; else loggedOut">
+        Logged in as {{roles}}.
+    </div>
+
+    <ng-template #loggedOut>
+        <div class="login-box animated fadeInDown">
+            <div class="login-logo"></div>
+            <div class="login-body">
+                <div class="login-title"><strong>S'authentifier</strong> à votre compte</div>
+                <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" class="form-horizontal"
+                    novalidate>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input type="text" class="form-control" placeholder="Nom d'utilisateur" name="username"
+                                [(ngModel)]="form.username" #username="ngModel" required />
+                            <div *ngIf="f.submitted && username.invalid">
+                                <div *ngIf="username.errors.required">Nom d'utilisateur est obligatoire</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input type="password" class="form-control" placeholder="Mot de passe" name="password"
+                                [(ngModel)]="form.password" #password="ngModel" required minlength="6" />
+                            <div *ngIf="f.submitted && password.invalid">
+                                <div *ngIf="password.errors.required">Mot de passe est obligatoire</div>
+                                <div *ngIf="password.errors.minlength">au moins 6 caractères</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <a href="#" class="btn btn-link btn-block">mot de passe oublié?</a>
+                        </div>
+                        <div class="col-md-6">
+                            <button class="btn btn-info btn-block">S'authentifier</button>
+                            <div *ngIf="f.submitted && isLoginFailed" class="alert alert-danger">
+                                Authentification échoué!
+                            </div>
+                        </div>
+                    </div>
+                    <div class="login-subtitle">
+                        <p>Vous n'avez pas un compte? <a href="erecrute/signup">S'inscrir</a></p>
+
+                    </div>
+                </form>
+            </div>
+            <div class="login-footer">
+                <div class="pull-left">
+                    &copy; 2019 ERecrute-HRPath
+                </div>
+                <div class="pull-right">
+                    <a href="#">About</a> |
+                    <a href="#">Privacy</a> |
+                    <a href="#">Contact Us</a>
+                </div>
+            </div>
+
+        </div>
+
+    </ng-template>
 </div>
- 
-<ng-template #loggedOut>
-  <div class="login-box animated fadeInDown">
-      <!--div class="login-logo"></div-->
-      <div class="login-body">
-          <div class="login-title"><strong>S'authentifier</strong> à votre compte</div>
-          <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" class="form-horizontal" novalidate>
-            <div class="form-group">
-              <div class="col-md-12">
-                  <input type="text" class="form-control" placeholder="Nom d'utilisateur" name="username" [(ngModel)]="form.username" #username="ngModel" required/>
-                  <div *ngIf="f.submitted && username.invalid">
-                      <div *ngIf="username.errors.required">Nom d'utilisateur est obligatoire</div>
-                    </div>
-              </div>
-          </div>
-          <div class="form-group">
-              <div class="col-md-12">
-                  <input type="password" class="form-control" placeholder="Mot de passe" name="password" [(ngModel)]="form.password" #password="ngModel"
-                  required minlength="6"/>
-                  <div *ngIf="f.submitted && password.invalid">
-                      <div *ngIf="password.errors.required">Mot de passe est obligatoire</div>
-                      <div *ngIf="password.errors.minlength">au moins 6 caractères</div>
-                  </div>
-              </div>
-          </div>
-          <div class="form-group">
-              <div class="col-md-6">
-                  <a href="#" class="btn btn-link btn-block">mot de passe oublié?</a>
-              </div>
-              <div class="col-md-6">
-                  <button class="btn btn-info btn-block">S'authentifier</button>
-                  <div *ngIf="f.submitted && isLoginFailed" class="alert alert-danger">
-                      Login failed: {{errorMessage}}
-                    </div>
-              </div>
-          </div>
-          <div class="login-subtitle">
-              <p>Vous n'avez pas un compte?</p>
-              <a href="signup">S'inscrir</a>
-          </div>
-          </form>
-      </div>
-      <div class="login-footer">
-          <div class="pull-left">
-              &copy; 2019 ERecrute-HRPath
-          </div>
-          <div class="pull-right">
-              <a href="#">About</a> |
-              <a href="#">Privacy</a> |
-              <a href="#">Contact Us</a>
-          </div>
-      </div>
-         
-  </div>
-  
-</ng-template>

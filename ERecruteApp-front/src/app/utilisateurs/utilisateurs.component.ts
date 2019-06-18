@@ -10,12 +10,17 @@ import { UserInfo } from '../add-utilisateur/user-info';
 })
 export class UtilisateursComponent implements OnInit {
 
-  public popoverTitle: string = 'Supprimer utilisateur';
-  public popoverMessage: string = 'êtes-vous sûr de vouloire supprimer ce utilisateur';
-
-  private utilisateurs;
   form: any = {};
   userInfo: UserInfo;
+  isSignedUp = false;
+  isSignUpFailed = false;
+  errorMessage = '';
+
+  public popoverTitle: string = 'Supprimer utilisateur';
+  public popoverMessage: string = 'êtes-vous sûr de vouloir supprimer cet utilisateur';
+
+  private utilisateurs;
+
 
   mode = "-1";
 
@@ -34,6 +39,15 @@ export class UtilisateursComponent implements OnInit {
 
   ngOnInit() {
     this.getUtilisateurs();
+    this.dropdownList = ["admin","responsable","recruteur"];
+    this.dropdownSettings = {
+      singleSelection: false,
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 3,
+      allowSearchFilter: true
+    };
+
     
   }
 
@@ -52,6 +66,30 @@ export class UtilisateursComponent implements OnInit {
       this.utilisateurs = this.utilisateurs.filter(u => u !== user);
     });
   }
+
+  createUser(): void {
+    console.log(this.form);
+    this.userInfo = new UserInfo(
+      this.form.name,
+      this.form.username,
+      this.form.email,
+      this.form.password,
+      this.form.role);
+
+    this.userService.createRessources("/admin/saveUser",this.userInfo)
+        .subscribe( data => {
+          console.log(data);
+          this.isSignedUp = true;
+          this.isSignUpFailed = false;
+          this.getUtilisateurs();
+        },
+        error => {
+          console.log(error);
+          this.errorMessage = error.error.message;
+          this.isSignUpFailed = true;
+        });
+
+  };
 
   editUser(user:User,roles): void {
     this.mode = user.id;

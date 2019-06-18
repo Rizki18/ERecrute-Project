@@ -1,3 +1,4 @@
+
 <!-- START BREADCRUMB -->
 <ul id="impression" class="breadcrumb push-down-0">
     <li><a href="#">Accueil</a></li>
@@ -34,46 +35,11 @@
         </div>
 
     </div>
-    <div class="content-frame-left">
-        <div class="form-group">
-            <h4>Blocks:</h4>
-            <div class="list-group border-bottom">
-                <a href="#" class="list-group-item" data-toggle="modal" data-target="#ModalFormation">
-                    <span class="fa fa-circle text-primary"></span> Diplômes et Formations</a>
-                <a href="#" class="list-group-item" data-toggle="modal" data-target="#ModalExp">
-                    <span class="fa fa-circle text-primary"></span> Expériences professionnelles</a>
-                <a href="#" class="list-group-item" data-toggle="modal" data-target="#ModalComp">
-                    <span class="fa fa-circle text-primary"></span> Compétences</a>
-                <a href="#" class="list-group-item" data-toggle="modal" data-target="#ModalLng">
-                    <span class="fa fa-circle text-primary"></span> Langues</a>
-                <a href="#" class="list-group-item" data-toggle="modal" data-target="#ModalSa">
-                    <span class="fa fa-circle text-primary"></span> Secteurs d'activités</a>
-                <a href="#" class="list-group-item" data-toggle="modal" data-target="#ModalSf">
-                    <span class="fa fa-circle text-primary"></span> Situations familiales</a>
-                <a href="#" class="list-group-item" data-toggle="modal" data-target="#ModalTp">
-                    <span class="fa fa-circle text-primary"></span> Types Profil</a>
-                <a href="#" class="list-group-item" data-toggle="modal" data-target="#ModalTc">
-                    <span class="fa fa-circle text-primary"></span> Types Contrats</a>
-            </div>
-        </div>
-        <div class="form-group">
-            <h4>Tags:</h4>
-            <ul class="list-tags">
-                <li><a href="#"><span class="fa fa-tag"></span> amet</a></li>
-                <li><a href="#"><span class="fa fa-tag"></span> rutrum</a></li>
-                <li><a href="#"><span class="fa fa-tag"></span> nunc</a></li>
-                <li><a href="#"><span class="fa fa-tag"></span> tempor</a></li>
-                <li><a href="#"><span class="fa fa-tag"></span> eros</a></li>
-                <li><a href="#"><span class="fa fa-tag"></span> suspendisse</a></li>
-                <li><a href="#"><span class="fa fa-tag"></span> dolor</a></li>
-            </ul>
-        </div>
-
-    </div>
+    
     <!-- END CONTENT FRAME TOP -->
 
     <!-- START CONTENT FRAME BODY -->
-    <div id="cv" class="content-frame-body">
+    <div id="cv">
 
         <div class="row push-up-10">
             <div class="col-md-5">
@@ -106,18 +72,16 @@
                             <div class="task-warning">
 
                                 <div class="panel-body list-group">
-                                    <div class="list-group-item"><span class="fa fa-user"></span>{{cv.profil.email}}
+                                    <div class="list-group-item">{{cv.profil.email}}
                                     </div>
-                                    <div class="list-group-item"><span class="fa fa-cog"></span>Né le
-                                        {{cv.profil.dateNaissance}} </div>
-                                    <div class="list-group-item"><span class="fa fa-bar-chart-o"></span> Pérmis de
+                                    <div class="list-group-item">Né le {{cv.profil.dateNaissance}}
+                                         </div>
+                                    <div class="list-group-item"> Pérmis de
                                         conduire {{cv.profil.permisConduite}} </div>
-                                    <div class="list-group-item"><span
-                                            class="fa fa-sign-out"></span>{{cv.profil.adresse}}</div>
-                                    <div class="list-group-item"><span class="fa fa-sign-out"></span> {{cv.profil.tel}}
+                                    <div class="list-group-item">{{cv.profil.adresse}}</div>
+                                    <div class="list-group-item">{{cv.profil.tel}}
                                     </div>
-                                    <div class="list-group-item"><span class="fa fa-sign-out"></span> situation
-                                        familiale</div>
+                                    
                                 </div>
 
 
@@ -137,17 +101,17 @@
                             </ul>
                         </div>
                         <div class="panel-body">
-                            <div class="task-warning" *ngFor="let lng of selectedLngs">
+                            <div class="task-warning">
                                 <div class="task-header">
-                                    <div class="pull-left">{{lng.nom}}</div>
+                                    <div class="pull-left">Francais</div>
                                 </div>
                                 <div class="task-text">
                                     <div class="progress progress-small">
-                                        <div class="progress-bar" role="progressbar" aria-valuenow="75"
-                                            aria-valuemin="0" aria-valuemax="100" style="width: 75%;">{{lng.niveau}}
+                                        <div class="progress-bar" role="progressbar" aria-valuenow="79"
+                                            aria-valuemin="0" aria-valuemax="100" style="width: 79%;">79
                                         </div>
                                     </div>
-                                    {{lng.detail}}
+                                    Niveau courant
                                 </div>
                             </div>
                         </div>
@@ -192,13 +156,23 @@
                             </ul>
                         </div>
                         <div class="panel-body">
-                            <div class="task-warning" *ngFor="let exp of selectedExps">
+                            <div class="task-warning" >
                                 <div class="task-header">
-                                    <div class="pull-left">De {{exp.dateDebut}} à {{exp.dateFin}}</div>
+                                    <div class="pull-left">De 10/06/2020 à 07/06/2023</div>
                                 </div>
                                 <div class="task-text">
-                                    {{exp.poste.libellePost}}, {{exp.societe.nomSociete}}<br>
-                                    {{exp.descriptionRole}} au département de {{exp.departement}}
+                                    développeur, Ciment<br>
+                                    développement des applications web au département de informatique
+                                </div>
+
+                            </div>
+                            <div class="task-warning" >
+                                <div class="task-header">
+                                    <div class="pull-left">De 05/06/2024 à 12/05/2026</div>
+                                </div>
+                                <div class="task-text">
+                                    développeur, Ciment<br>
+                                    développement des applications web au département de informatique
                                 </div>
 
                             </div>
@@ -216,19 +190,58 @@
                             </ul>
                         </div>
                         <div class="panel-body">
-                            <div class="task-warning" *ngFor="let comp of selectedComps">
+                            <div class="task-warning">
                                 <div class="task-header">
-                                    <div class="pull-left">{{comp.nom}}</div>
+                                    <div class="pull-left">Framework Spring</div>
                                 </div>
                                 <div class="task-text">
                                     <div class="progress progress-small">
                                         <div class="progress-bar" role="progressbar" aria-valuenow="75"
-                                            aria-valuemin="0" aria-valuemax="100" style="width: 75%;">{{comp.niveau}}
+                                            aria-valuemin="0" aria-valuemax="100" style="width: 75%;">75
                                         </div>
                                     </div>
-                                    {{comp.detail}}
+                                    Langage de développement web
                                 </div>
                             </div>
+                            <div class="task-warning">
+                                    <div class="task-header">
+                                        <div class="pull-left">Angular</div>
+                                    </div>
+                                    <div class="task-text">
+                                        <div class="progress progress-small">
+                                            <div class="progress-bar" role="progressbar" aria-valuenow="75"
+                                                aria-valuemin="0" aria-valuemax="100" style="width: 75%;">75
+                                            </div>
+                                        </div>
+                                        Langage de développement web
+                                    </div>
+                                </div>
+                                <div class="task-warning">
+                                        <div class="task-header">
+                                            <div class="pull-left">Informatique</div>
+                                        </div>
+                                        <div class="task-text">
+                                            <div class="progress progress-small">
+                                                <div class="progress-bar" role="progressbar" aria-valuenow="75"
+                                                    aria-valuemin="0" aria-valuemax="100" style="width: 75%;">75
+                                                </div>
+                                            </div>
+                                            Langage de développement web
+                                        </div>
+                                    </div>
+                                    <div class="task-warning">
+                                            <div class="task-header">
+                                                <div class="pull-left">JEE</div>
+                                            </div>
+                                            <div class="task-text">
+                                                <div class="progress progress-small">
+                                                    <div class="progress-bar" role="progressbar" aria-valuenow="75"
+                                                        aria-valuemin="0" aria-valuemax="100" style="width: 75%;">75
+                                                    </div>
+                                                </div>
+                                                Langage de développement web
+                                            </div>
+                                        </div>
                         </div>
                     </div>
                 </div>

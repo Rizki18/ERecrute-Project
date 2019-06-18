@@ -33,20 +33,29 @@
                                     <span class="stepDesc">Formation<br /><small>Détails</small></span>
                                 </a>
                             </li>
-                            <!--
                             <li>
-                                  <a href="#step-9">
-                                      <span class="stepNumber">3</span>
-                                      <span class="stepDesc">Competence<br /><small>Détails</small></span>
-                                  </a>
-                              </li>
-                              -->
+                                <a href="#step-3">
+                                    <span class="stepNumber">3</span>
+                                    <span class="stepDesc">Experience<br /><small>Détails</small></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#step-4">
+                                    <span class="stepNumber">4</span>
+                                    <span class="stepDesc">Compétence<br /><small>Niveau</small></span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#step-5">
+                                    <span class="stepNumber">5</span>
+                                    <span class="stepDesc">Langue<br /><small>Niveau</small></span>
+                                </a>
+                            </li>
+
                         </ul>
                         <div id="step-7">
 
-                            <!-- <form #f="ngForm" (ngSubmit)="createProfil(f.value)">  -->
                             <div class="form-group">
-                                <!--   <label class="col-md-2 control-label">Nom</label> -->
 
                                 <div class=" col-md-12">
                                     <div class=" col-md-4">
@@ -122,138 +131,172 @@
                                             placeholder="N° identité bancaire " [(ngModel)]="profil.rib" />
                                     </div>
                                     <div class="col-md-4">
-                                            <input required ngModel type="file" (change)="onSelectFile($event)"
-                                            class="form-control" name="photo"
-                                            placeholder="photo"  [(ngModel)]="profil.photo" />
+                                        <input required ngModel type="file" (change)="onSelectFile($event)"
+                                            class="form-control" name="photo" placeholder="photo"
+                                            [(ngModel)]="profil.photo" />
                                     </div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                    <button type="submit" class="btn btn-success">Create</button>
-                                </div>
-                            <!--  </form>-->
+                                <button type="submit" class="btn btn-success">Create</button>
+                            </div>
                         </div>
                         <div id="step-8">
                             <!-- START DEFAULT DATATABLE -->
-          <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Liste des formation</h3>
-                    <ul class="panel-controls">
-                        <li><button type="button" data-toggle="modal" data-target="#ModalFormation" class="btn btn-info">Ajouter Formation
-                            </button></li>
-                    </ul>
-                </div>
-                <div class="panel-body">
-                    <table class="table datatable">
-                        <thead>
-                            <tr>
-                                <th>Intitulé</th>
-                                <th>Établissement</th>
-                                <th>Adresse</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr *ngFor="let formation of formations">
-                                <td>{{formation.intitule}}</td>
-                                <td>{{formation.etablissement}}</td>
-                                <td>{{formation.lieu}}</td>
-                                <td>
-                                  
-                                </td>
-                            </tr>
-                            
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <!-- END DEFAULT DATATABLE -->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Liste des formation</h3>
+                                    <ul class="panel-controls">
+                                        <li><button type="button" data-toggle="modal" data-target="#ModalFormation"
+                                                class="btn btn-info">Ajouter Formation
+                                            </button></li>
+                                    </ul>
+                                </div>
+                                <div class="panel-body">
+                                    <table class="table datatable">
+                                        <thead>
+                                            <tr>
+                                                <th>Intitulé</th>
+                                                <th>Établissement</th>
+                                                <th>Adresse</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr *ngFor="let formation of formations">
+                                                <td>{{formation.intitule}}</td>
+                                                <td>{{formation.etablissement}}</td>
+                                                <td>{{formation.lieu}}</td>
+                                                <td>
 
-                            
+                                                </td>
+                                            </tr>
 
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!-- END DEFAULT DATATABLE -->
                         </div>
-                        <!--
-                        <div id="step-9" *ngIf="!f.valid">
-                                <div class="form-group">
-                                        <ng-multiselect-dropdown class="col-md-4"
-                                        [placeholder]="'Choisir competence'"
-                                        [data]="dlcompetence"
-                                        name="competence"
-                                        #role="ngModel"
-                                        [(ngModel)]="sIcompetence"
-                                        [settings]="dropdownSettings"
-                                        (onSelect)="onIS($event)"
-                                        (onSelectAll)="onSA($event)"
-                                      >
-                                      </ng-multiselect-dropdown>
-                                      <ng-multiselect-dropdown class="col-md-4"
-                                        [placeholder]="'Choisir langues'"
-                                        [data]="dllangue"
-                                        name="langues"
-                                        #role="ngModel"
-                                        [(ngModel)]="sIlangue"
-                                        [settings]="dropdownSettings"
-                                        (onSelect)="onIS($event)"
-                                        (onSelectAll)="onSA($event)"
-                                      >
-                                      </ng-multiselect-dropdown>
-                                      <ng-multiselect-dropdown class="col-md-4"
-                                        [placeholder]="'Choisir Secteur Activite'"
-                                        [data]="dlsecteurActivite"
-                                        name="Secteur Activite"
-                                        #role="ngModel"
-                                        [(ngModel)]="sIsecteurActivite"
-                                        [settings]="dropdownSettings"
-                                        (onSelect)="onIS($event)"
-                                        (onSelectAll)="onSA($event)"
-                                      >
-                                      </ng-multiselect-dropdown>
+                        <div id="step-3">
+                            <!-- START DEFAULT DATATABLE -->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Liste des experiences</h3>
+                                    <ul class="panel-controls">
+                                        <li><button type="button" data-toggle="modal" data-target="#ModalExp"
+                                                class="btn btn-info">Ajouter Experience
+                                            </button></li>
+                                    </ul>
                                 </div>
-                                <div class="col-md-12"></div>
-                                <div class="col-md-12"></div>
-                                <div class="form-group">
-                                      <ng-multiselect-dropdown class="col-md-4"
-                                        [placeholder]="'Choisir Situation Familiale'"
-                                        [data]="dlsituationFamiliale"
-                                        name="Situation Familiale"
-                                        #role="ngModel"
-                                        [(ngModel)]="sIsituationFamiliale"
-                                        [settings]="dropdownSettings"
-                                        (onSelect)="onIS($event)"
-                                        (onSelectAll)="onSA($event)"
-                                      >
-                                      </ng-multiselect-dropdown>
-                                      <ng-multiselect-dropdown class="col-md-4"
-                                        [placeholder]="'Choisir Type Contrat'"
-                                        [data]="dltypeContrat"
-                                        name="Type Contrat"
-                                        #role="ngModel"
-                                        [(ngModel)]="sItypeContact"
-                                        [settings]="dropdownSettings"
-                                        (onSelect)="onIS($event)"
-                                        (onSelectAll)="onSA($event)"
-                                      >
-                                      </ng-multiselect-dropdown>
-                                      <ng-multiselect-dropdown class="col-md-4"
-                                        [placeholder]="'Choisir Type Profil'"
-                                        [data]="dltypeProfil"
-                                        name="Type Profil"
-                                        #role="ngModel"
-                                        [(ngModel)]="sItypeProfil"
-                                        [settings]="dropdownSettings"
-                                        (onSelect)="onIS($event)"
-                                        (onSelectAll)="onSA($event)"
-                                      >
-                                      </ng-multiselect-dropdown>
+                                <div class="panel-body">
+                                    <table class="table datatable">
+                                        <thead>
+                                            <tr>
+                                                <th>Rôle</th>
+                                                <th>département</th>
+                                                <th>date Début</th>
+                                                <th>date Fin</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>développement des applications web</td>
+                                                <td>informatique</td>
+                                                <td>10/06/2020</td>
+                                                <td>
+                                                    07/06/2023
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
                                 </div>
-                                <div class="col-md-12"></div>
-                                <div class="col-md-12"></div>
-                                <div class="col-md-9"></div>
-                                <div class="col-md-3"> -->
-                        <!--</button>[disabled]="!f.valid"
-                                    <button   type="submit"  class="btn btn-success"  >Create</button>
+                            </div>
+                            <!-- END DEFAULT DATATABLE -->
+                        </div>
+                        <div id="step-4">
+                            <!-- START DEFAULT DATATABLE -->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Liste des compétences</h3>
+                                    <ul class="panel-controls">
+                                        <li><button type="button" data-toggle="modal" data-target="#ModalComp"
+                                                class="btn btn-info">Ajouter Compétence
+                                            </button></li>
+                                    </ul>
                                 </div>
-                            </div>-->
+                                <div class="panel-body">
+                                    <table class="table datatable">
+                                        <thead>
+                                            <tr>
+                                                <th>Competence</th>
+                                                <th>Niveau</th>
+                                                <th>Détails</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Framework Spring</td>
+                                                <td>75</td>
+                                                <td>Langage de développement web</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Angular</td>
+                                                <td>75</td>
+                                                <td>Langage de développement web</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Informatique</td>
+                                                <td>75</td>
+                                                <td>Langage de développement web</td>
+                                            </tr>
+                                            <tr>
+                                                <td>JEE</td>
+                                                <td>75</td>
+                                                <td>Langage de développement web</td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!-- END DEFAULT DATATABLE -->
+                        </div>
+                        <div id="step-5">
+                            <!-- START DEFAULT DATATABLE -->
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Liste des Langues</h3>
+                                    <ul class="panel-controls">
+                                        <li><button type="button" data-toggle="modal" data-target="#ModalLng"
+                                                class="btn btn-info">Ajouter Langue
+                                            </button></li>
+                                    </ul>
+                                </div>
+                                <div class="panel-body">
+                                    <table class="table datatable">
+                                        <thead>
+                                            <tr>
+                                                <th>Langue</th>
+                                                <th>Niveau</th>
+                                                <th>Détails</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr >
+                                                <td>Francais</td>
+                                                <td>79</td>
+                                                <td>Niveau courant</td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <!-- END DEFAULT DATATABLE -->
+                        </div>
+
                     </div>
                 </form>
             </div>
@@ -275,7 +318,7 @@
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
                         class="sr-only">Fermer</span></button>
                 <h4 class="modal-title" id="taskEditModalHead">Fromations du CV</h4>
-              
+
             </div>
             <form class="form-horizontal" #f_formation="ngForm" (ngSubmit)="createFormation(f_formation.value)">
                 <div class="modal-body">
@@ -329,6 +372,155 @@
 
                             </div>
                         </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- END MODALS -->
+
+<!-- MODALS -->
+<div id="ModalExp" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="taskEditModalHead"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Fermer</span></button>
+                <h4 class="modal-title" id="taskEditModalHead">Experiences du CV</h4>
+            </div>
+            <form class="form-horizontal" #fExp="ngForm" (ngSubmit)="createExp(fExp.value)">
+                <div class="modal-body">
+                    <h3>Ajouter une nouvelle expérience</h3>
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <input required ngModel type="text" class="form-control" name="departement"
+                                [(ngModel)]="exp.departement" placeholder="département" />
+                        </div>
+                        <div class="col-md-6">
+                            <input required ngModel type="text" class="form-control" name="descriptionRole"
+                                [(ngModel)]="exp.descriptionRole" placeholder="description rôle" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-6">
+                            <label class="control-label">Date Début</label>
+                            <input required ngModel type="date" class="form-control" name="dateDebut"
+                                [(ngModel)]="exp.dateDebut" />
+                        </div>
+                        <div class="col-md-6">
+                            <label class="control-label">Date Fin</label>
+                            <input required ngModel type="date" class="form-control" name="dateFin"
+                                [(ngModel)]="exp.dateFin" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <ng-multiselect-dropdown class="col-md-6" [placeholder]="'Choisir poste'" [data]="dlposte"
+                            name="poste" #role="ngModel" [(ngModel)]="sIposte" [settings]="dropdownSettingsSingle"
+                            (onSelect)="onISposte($event)">
+                        </ng-multiselect-dropdown>
+                        <ng-multiselect-dropdown class="col-md-6" [placeholder]="'Choisir societe'" [data]="dlsociete"
+                            name="societe" #role="ngModel" [(ngModel)]="sIsociete" [settings]="dropdownSettingsSingle"
+                            (onSelect)="onISsociete($event)">
+                        </ng-multiselect-dropdown>
+                    </div>
+                    <h4>Mots clés</h4>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <ng-multiselect-dropdown [placeholder]="'Choisir mots clés'" [data]="dlmc" name="mc_exp"
+                                #role="ngModel" [(ngModel)]="sImc_exp" [settings]="dropdownSettings"
+                                (onSelect)="onISmc_exp($event)">
+                            </ng-multiselect-dropdown>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Enregistrer</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- END MODALS -->
+
+<!-- MODALS -->
+<div id="ModalComp" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="taskEditModalHead"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Fermer</span></button>
+                <h4 class="modal-title" id="taskEditModalHead">Competences du CV</h4>
+
+            </div>
+            <form class="form-horizontal" #fComp="ngForm" (ngSubmit)="createComp(fComp.value)">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <ng-multiselect-dropdown class="col-md-5" [placeholder]="'Choisir competence'" [data]="dlcomp"
+                            name="comp" #role="ngModel" [(ngModel)]="sIcomp" [settings]="dropdownSettingsSingle"
+                            (onSelect)="onIScomp($event)">
+                        </ng-multiselect-dropdown>
+                        <div class="col-md-5">
+                            <label class="control-label">Niveau</label>
+                            <input type="range" class="defaultSlider" data-min="20" data-max="180" required ngModel
+                                name="niveau" [(ngModel)]="comp.niveau">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">Détail</label>
+                        <span class="col-md-8">
+                            <textarea required ngModel class="form-control" rows="3" name="details"
+                                [(ngModel)]="comp.details"></textarea>
+                        </span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- END MODALS -->
+
+<!-- MODALS -->
+<div id="ModalLng" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="taskEditModalHead"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Fermer</span></button>
+                <h4 class="modal-title" id="taskEditModalHead">Langues du CV</h4>
+
+            </div>
+            <form class="form-horizontal" #fLng="ngForm" (ngSubmit)="createLng(fLng.value)">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <ng-multiselect-dropdown class="col-md-5" [placeholder]="'Choisir langue'" [data]="dllng"
+                            name="lng" #role="ngModel" [(ngModel)]="sIlng" [settings]="dropdownSettingsSingle"
+                            (onSelect)="onISlng($event)">
+                        </ng-multiselect-dropdown>
+                        <div class="col-md-5">
+                            <label class="control-label">Niveau</label>
+                            <input type="range" class="defaultSlider" data-min="20" data-max="180" required ngModel
+                                name="niveau" [(ngModel)]="lng.niveau">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">Détail</label>
+                        <span class="col-md-8">
+                            <textarea required ngModel class="form-control" rows="3" name="details"
+                                [(ngModel)]="lng.details"></textarea>
+                        </span>
                     </div>
                 </div>
                 <div class="modal-footer">

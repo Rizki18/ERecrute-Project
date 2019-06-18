@@ -23,16 +23,17 @@ public class PosteRestAPIs {
 	
 	//Poste
 	@RequestMapping(value="/admin/savePoste",method = RequestMethod.POST)
-	@PreAuthorize("hasRole('ADMIN')")
+
 	public Poste savePoste(@RequestBody Poste p) {
 		return PosteService.savePoste(p);
 	}
 	@RequestMapping(value="/admin/deletePoste/{codePost}",method = RequestMethod.DELETE)
-	@PreAuthorize("hasRole('ADMIN')")
+
 	public void deletePoste(@PathVariable("codePost") Long codePost) {
 		PosteService.deletePoste(codePost);
 	}
 	@RequestMapping(value="/Poste")
+
 	public List<Poste> listPoste(){
 		return PosteService.retreivePoste();
 	}
@@ -41,16 +42,17 @@ public class PosteRestAPIs {
 	
 	//Societe
 	@RequestMapping(value="/admin/saveSociete",method = RequestMethod.POST)
-	@PreAuthorize("hasRole('ADMIN')")
+
 	public Societe saveSociete(@RequestBody Societe p) {
 		return SocieteService.saveSociete(p);
 	}
 	@RequestMapping(value="/admin/deleteSociete/{codePost}",method = RequestMethod.DELETE)
-	@PreAuthorize("hasRole('ADMIN')")
+
 	public void deleteSociete(@PathVariable("codePost") Long codePost) {
 		SocieteService.deleteSociete(codePost);
 	}
 	@RequestMapping(value="/Societe")
+
 	public List<Societe> listSociete(){
 		return SocieteService.retreiveSociete();
 	}

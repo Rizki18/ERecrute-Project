@@ -10,7 +10,7 @@ import { TokenStorageService } from '../auth/token-storage.service';
 export class HomeComponent implements OnInit {
 
   info: any;
-  
+  authority: string;
  
   constructor(private token: TokenStorageService) { }
  
@@ -20,6 +20,18 @@ export class HomeComponent implements OnInit {
       username: this.token.getUsername(),
       authorities: this.token.getAuthorities()
     };
+
+    this.info.authorities.every(role => {
+      if (role === 'ROLE_ADMIN') {
+        this.authority = 'admin';
+        return false;
+      } else if (role === 'ROLE_RESPONSABLE') {
+        this.authority = 'responsable';
+        return false;
+      }
+      this.authority = 'recruteur';
+      return true;
+    });
     
   }
 

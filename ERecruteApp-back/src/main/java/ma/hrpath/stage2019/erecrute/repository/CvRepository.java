@@ -17,4 +17,6 @@ public interface CvRepository extends JpaRepository<CV, Long> {
 	@Query("select cv from CV cv where cv.Profil.codeProfil=:x")
 	List<CV> findByProfil(@Param("x")Long idProfil);
 	CV findBycodeCV(Long id);
+	@Query("from CV as cv where codeCV in ( select MAX(codeCV)  FROM CV) ")
+	CV MaxID();
 }

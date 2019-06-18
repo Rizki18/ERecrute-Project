@@ -1,86 +1,81 @@
-<!-- START BREADCRUMB -->
-<ul class="breadcrumb push-down-0">
-  <li><a href="#">Accueil</a></li>
-  <li><a href="#">Utilisateurs</a></li>
-  <li class="active">Nouveau utilisateur</li>
-</ul>
-<!-- END BREADCRUMB -->
 
-<div class="page-title">
-  <h2><span class="fa fa-arrow-circle-o-left"></span>Nouveau Utilisateur</h2>
-</div>
+    <!-- START BREADCRUMB -->
+    <ul class="breadcrumb push-down-0">
+      <li><a href="#">Accueil</a></li>
+      <li><a href="#">Utilisateurs</a></li>
+      <li class="active">Nouveau utilisateur</li>
+    </ul>
+    <!-- END BREADCRUMB -->
 
-<div *ngIf="isSignedUp; else signupForm">
-    Utilisateur est ajouté avec succée!
-  </div>
+    <div class="page-title">
+      <h2><span class="fa fa-arrow-circle-o-left"></span>Nouveau Utilisateur</h2>
+    </div>
 
-<ng-template #signupForm>
-<!-- PAGE CONTENT WRAPPER -->
-<div class="page-content-wrap">
+    <div *ngIf="isSignedUp; else signupForm">
+      Utilisateur est ajouté avec succée!
+    </div>
 
-  <div class="row">
-      <div class="col-md-12">
-          <form name="form" (ngSubmit)="f.form.valid && createUser()" #f="ngForm" novalidate>
-                  <div class="form-group">
-                    <label for="name">Your name</label>
-                    <input type="text" class="form-control" name="name" [(ngModel)]="form.name" #name="ngModel" required />
-                    <div *ngIf="f.submitted && name.invalid">
-                      <div *ngIf="name.errors.required">Name is required</div>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" class="form-control" name="username" [(ngModel)]="form.username" #username="ngModel"
-                      required />
-                    <div *ngIf="f.submitted && username.invalid">
-                      <div *ngIf="username.errors.required">Username is required</div>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="text" class="form-control" name="email" [(ngModel)]="form.email" #email="ngModel" required email />
-                    <div *ngIf="f.submitted && email.invalid">
-                      <div *ngIf="email.errors.required">Email is required</div>
-                      <div *ngIf="email.errors.email">Email must be a valid email address</div>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" class="form-control" name="password" [(ngModel)]="form.password" #password="ngModel"
-                      required minlength="6" />
-                    <div *ngIf="f.submitted && password.invalid">
-                      <div *ngIf="password.errors.required">Password is required</div>
-                      <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
-                    </div>
-                  </div>
-                  <h4>Rôles</h4>
-                  <div class="form-group">
-                    <div class="col-md-4">                                    
-                      <ng-multiselect-dropdown
-                        [placeholder]="'Choisir rôle'"
-                        [data]="dropdownList"
-                        name="role"
-                        #role="ngModel"
-                        [(ngModel)]="form.role"
-                        [settings]="dropdownSettings"
-                        (onSelect)="onItemSelect($event)"
-                        (onSelectAll)="onSelectAll($event)"
-                      >
-                      </ng-multiselect-dropdown>
-                    </div>
+    <ng-template #signupForm>
+      <!-- PAGE CONTENT WRAPPER -->
+      <div class="page-content-wrap">
+
+        <div class="row">
+          <div class="col-md-12">
+            <form name="form" (ngSubmit)="f.form.valid && createUser()" #f="ngForm" novalidate>
+              <div class="form-group">
+                <label for="name">Your name</label>
+                <input type="text" class="form-control" name="name" [(ngModel)]="form.name" #name="ngModel" required />
+                <div *ngIf="f.submitted && name.invalid">
+                  <div *ngIf="name.errors.required">Name is required</div>
                 </div>
-                <div class="form-group">
-                    <button class="btn btn-success">Ajouter</button>
-                    <div *ngIf="f.submitted && isSignUpFailed" class="btn btn-success">
-                      Ajout echoué!<br/>{{errorMessage}}
-                    </div>
-                  </div>
-                 
+              </div>
+              <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" name="username" [(ngModel)]="form.username" #username="ngModel"
+                  required />
+                <div *ngIf="f.submitted && username.invalid">
+                  <div *ngIf="username.errors.required">Username is required</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="text" class="form-control" name="email" [(ngModel)]="form.email" #email="ngModel" required
+                  email />
+                <div *ngIf="f.submitted && email.invalid">
+                  <div *ngIf="email.errors.required">Email is required</div>
+                  <div *ngIf="email.errors.email">Email must be a valid email address</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" name="password" [(ngModel)]="form.password"
+                  #password="ngModel" required minlength="6" />
+                <div *ngIf="f.submitted && password.invalid">
+                  <div *ngIf="password.errors.required">Password is required</div>
+                  <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
+                </div>
+              </div>
+              <h4>Rôles</h4>
+              <div class="form-group">
+                <div class="col-md-4">
+                  <ng-multiselect-dropdown [placeholder]="'Choisir rôle'" [data]="dropdownList" name="role"
+                    #role="ngModel" [(ngModel)]="form.role" [settings]="dropdownSettings"
+                    (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
+                  </ng-multiselect-dropdown>
+                </div>
+              </div>
+              <div class="form-group">
+                <button class="btn btn-success">Ajouter</button>
+                <div *ngIf="f.submitted && isSignUpFailed" class="btn btn-success">
+                  Ajout echoué!<br />{{errorMessage}}
+                </div>
+              </div>
+
             </form>
+          </div>
+
+        </div>
+
       </div>
-
-  </div>
-
-</div>
-<!-- PAGE CONTENT WRAPPER -->
-</ng-template>
+      <!-- PAGE CONTENT WRAPPER -->
+    </ng-template>

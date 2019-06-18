@@ -1,38 +1,164 @@
- <div *ngIf="info.token; else loggedOut">
+<!-- START BREADCRUMB -->
+<ul class="breadcrumb push-down-0">
+    <li><a href="#">Accueil</a></li>
+    <li class="active">Tableau de bord</li>
+</ul>
+<!-- END BREADCRUMB -->
+<div class="page-title">
+    <h2><span class="fa fa-arrow-circle-o-left"></span> Tableau de bord</h2>
+</div>
 
-    <!-- START BREADCRUMB -->
-    <ul class="breadcrumb push-down-0">
-        <li><a href="#">Home</a></li>
-        <li><a href="#">Layouts</a></li>
-        <li class="active">Frame Left Column</li>
-    </ul>
-    <!-- END BREADCRUMB --> 
-    <div class="page-title">                    
-        <h2><span class="fa fa-arrow-circle-o-left"></span> Page Title</h2>
-    </div>                   
-    
-    <!-- PAGE CONTENT WRAPPER -->
-    <div class="page-content-wrap">
-    
-        <div class="row">
-            <div class="col-md-12">
+<!-- PAGE CONTENT WRAPPER -->
+<div class="page-content-wrap">
 
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Panel Title</h3>
-                    </div>
-                    <div class="panel-body">
-                        Panel body
+    <div class="row">
+        <div class="col-md-9" *ngIf="authority == 'admin'">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Gestion des Utilisateurs</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <button [routerLink]="['/erecrute/utilisateurs']" type="button" class="btn btn-link">
+                            <span class="fa fa-bars"></span>Liste Utilisateurs
+
+                        </button>
                     </div>
                 </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Paramétrage de l'application</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <button [routerLink]="['/erecrute/criteres']" type="button" class="btn btn-link">
+                            <span class="fa fa-bars"></span>Liste Compétences
 
+                        </button>
+                    </div>
+                    <div class="form-group">
+                        <button [routerLink]="['/erecrute/criteres']" type="button" class="btn btn-link">
+                            <span class="fa fa-bars"></span>Liste Langues
+
+                        </button>
+                    </div>
+                    <div class="form-group">
+                        <button [routerLink]="['/erecrute/criteres']" type="button" class="btn btn-link">
+                            <span class="fa fa-bars"></span>Liste Secteurs d'activités
+
+                        </button>
+                    </div>
+                    <div class="form-group">
+                        <button [routerLink]="['/erecrute/criteres']" type="button" class="btn btn-link">
+                            <span class="fa fa-bars"></span>Liste Situations Familiales
+
+                        </button>
+                    </div>
+                    <div class="form-group">
+                        <button [routerLink]="['/erecrute/criteres']" type="button" class="btn btn-link">
+                            <span class="fa fa-bars"></span>Liste Type des contrats
+
+                        </button>
+                    </div>
+                    <div class="form-group">
+                        <button [routerLink]="['/erecrute/criteres']" type="button" class="btn btn-link">
+                            <span class="fa fa-bars"></span>Liste Type des profils
+
+                        </button>
+                    </div>
+                    <div class="form-group">
+                        <button [routerLink]="['/erecrute/criteres']" type="button" class="btn btn-link">
+                            <span class="fa fa-bars"></span>Liste Type des mots clés
+
+                        </button>
+                    </div>
+                    <div class="form-group">
+                        <button [routerLink]="['/erecrute/criteres']" type="button" class="btn btn-link">
+                            <span class="fa fa-bars"></span>Liste des sociétés
+
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
-    
-    </div>
-    <!-- END PAGE CONTENT WRAPPER -->
+        <div class="col-md-9" *ngIf="authority == 'responsable'">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Gestion des Profils</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <button [routerLink]="['/erecrute/profil']" type="button" class="btn btn-link">
+                            <span class="fa fa-bars"></span>Liste Profils
+                        </button>
+                    </div>
+                    <div class="form-group">
+                        <button [routerLink]="['/erecrute/addProfil']" type="button" class="btn btn-link">
+                            <span class="fa fa-plus"></span>Nouveau Profil
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Gestion des Postes</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="form-group">
+                        <button [routerLink]="['/erecrute/poste']" type="button" class="btn btn-link">
+                            <span class="fa fa-bars"></span>Liste Postes
 
-                
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9" *ngIf="authority == 'recruteur'">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Gestion des Recrutements</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <button [routerLink]="['/erecrute/recrutement']" type="button" class="btn btn-link">
+                                <span class="fa fa-bars"></span>Liste Recrutements
+                            </button>
+                        </div>
+                        <div class="form-group">
+                            <button [routerLink]="['/erecrute/nvRecrutement']" type="button" class="btn btn-link">
+                                <span class="fa fa-plus"></span>Nouveau Recrutement
+                            </button>
+                        </div>
+                        <div class="form-group">
+                                <button [routerLink]="['/erecrute/changementPoste']" type="button" class="btn btn-link">
+                                    <span class="fa fa-plus"></span>Nouveau Départ
+                                </button>
+                            </div>
+                            <div class="form-group">
+                                    <button [routerLink]="['/erecrute/changementPoste']" type="button" class="btn btn-link">
+                                        <span class="fa fa-plus"></span>Changement de Poste
+                                    </button>
+                                </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Gestion des CVThèques</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <button [routerLink]="['/erecrute/profil']" type="button" class="btn btn-link">
+                                <span class="fa fa-bars"></span>Liste des CVs
+    
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+
 
 
 </div>
+<!-- END PAGE CONTENT WRAPPER -->

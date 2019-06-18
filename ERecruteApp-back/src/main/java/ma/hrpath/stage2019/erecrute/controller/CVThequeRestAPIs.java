@@ -65,15 +65,20 @@ public class CVThequeRestAPIs {
 	@Autowired
 	private SocieteRepository steRepository;
 	
+	@RequestMapping(value="/cvEnregistrer")
+	public Long getCodeCV(){
+		return cvThequeService.findCVByMaxId().getCodeCV();
+	}
+	
 	@RequestMapping(value="/admin/saveExperienceCV",method = RequestMethod.POST)
-	@PreAuthorize("hasRole('ADMIN')")
+	
 	public void saveExperienceCV(@RequestBody ExperienceForm f) {
 		cvThequeService.saveExperience(f);
 		cvThequeService.addMCToExperience(f.getDescriptionRole(), f.getMc_exp());
 	}
 	
 	@RequestMapping(value="/admin/addExperienceToCV",method = RequestMethod.POST)
-	@PreAuthorize("hasRole('ADMIN')")
+	
 	public void addExperienceToCV(@RequestBody ExperienceForm f) {
 		cvThequeService.addExperienceToCV(f.getCv(),f.getExp());
 	}
@@ -120,13 +125,13 @@ public class CVThequeRestAPIs {
 	}
 	
 	@RequestMapping(value="/admin/addCompetencesToCV",method = RequestMethod.POST)
-	@PreAuthorize("hasRole('ADMIN')")
+	
 	public void addCompetencesToCV(@RequestBody CompetenceForm f) {
 		cvThequeService.addCompetencesToCV(f.getCv(),f.getComp());
 	}
 	
 	@RequestMapping(value="/admin/saveCompetenceCV",method = RequestMethod.POST)
-	@PreAuthorize("hasRole('ADMIN')")
+	
 	public void saveCompetenceCV(@RequestBody CompetenceForm f) {
 		cvThequeService.addCompetenceToCV(f);
 	}
@@ -137,13 +142,13 @@ public class CVThequeRestAPIs {
 	}
 	
 	@RequestMapping(value="/admin/addLanguesToCV",method = RequestMethod.POST)
-	@PreAuthorize("hasRole('ADMIN')")
+	
 	public void addLanguesToCV(@RequestBody LangueForm f) {
 		cvThequeService.addLanguesToCV(f.getCv(),f.getLng());
 	}
 	
 	@RequestMapping(value="/admin/saveLangueCV",method = RequestMethod.POST)
-	@PreAuthorize("hasRole('ADMIN')")
+	
 	public void saveLangueCV(@RequestBody LangueForm f) {
 		
 		cvThequeService.addLangueToCV(f);
@@ -155,13 +160,13 @@ public class CVThequeRestAPIs {
 	}
 	
 	@RequestMapping(value="/admin/addSAsToCV",method = RequestMethod.POST)
-	@PreAuthorize("hasRole('ADMIN')")
+	
 	public void addSAsToCV(@RequestBody SaForm f) {
 		cvThequeService.addSAsToCV(f.getCv(),f.getSa());
 	}
 	
 	@RequestMapping(value="/admin/saveSaCV",method = RequestMethod.POST)
-	@PreAuthorize("hasRole('ADMIN')")
+
 	public void saveSaCV(@RequestBody SaForm f) {
 		cvThequeService.addSaToCV(f);
 	}
@@ -172,13 +177,13 @@ public class CVThequeRestAPIs {
 	}
 	
 	@RequestMapping(value="/admin/addSFsToCV",method = RequestMethod.POST)
-	@PreAuthorize("hasRole('ADMIN')")
+
 	public void addSFsToCV(@RequestBody SfForm f) {
 		cvThequeService.addSFsToCV(f.getCv(),f.getSf());
 	}
 	
 	@RequestMapping(value="/admin/saveSfCV",method = RequestMethod.POST)
-	@PreAuthorize("hasRole('ADMIN')")
+
 	public void saveSfCV(@RequestBody SfForm f) {
 		cvThequeService.addSfToCV(f);
 	}
@@ -189,13 +194,13 @@ public class CVThequeRestAPIs {
 	}
 	
 	@RequestMapping(value="/admin/addTPsToCV",method = RequestMethod.POST)
-	@PreAuthorize("hasRole('ADMIN')")
+
 	public void addTPsToCV(@RequestBody TpForm f) {
 		cvThequeService.addTPsToCV(f.getCv(),f.getTp());
 	}
 	
 	@RequestMapping(value="/admin/saveTpCV",method = RequestMethod.POST)
-	@PreAuthorize("hasRole('ADMIN')")
+
 	public void saveTpCV(@RequestBody TpForm f) {
 		cvThequeService.addTpToCV(f);
 	}
@@ -206,13 +211,13 @@ public class CVThequeRestAPIs {
 	}
 	
 	@RequestMapping(value="/admin/addTCsToCV",method = RequestMethod.POST)
-	@PreAuthorize("hasRole('ADMIN')")
+
 	public void addTCsToCV(@RequestBody TcForm f) {
 		cvThequeService.addTCsToCV(f.getCv(),f.getTc());
 	}
 	
 	@RequestMapping(value="/admin/saveTcCV",method = RequestMethod.POST)
-	@PreAuthorize("hasRole('ADMIN')")
+
 	public void saveTcCV(@RequestBody TcForm f) {
 		cvThequeService.addTcToCV(f);
 	}

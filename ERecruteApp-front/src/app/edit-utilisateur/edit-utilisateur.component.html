@@ -1,75 +1,64 @@
-<<<<<<< HEAD
-<!-- START BREADCRUMB -->
-<ul class="breadcrumb push-down-0">
-  <li><a href="#">Accueil</a></li>
-  <li><a href="#">Utilisateurs</a></li>
-  <li class="active">Modifier utilisateur</li>
-</ul>
-<!-- END BREADCRUMB -->
 
-<div class="page-title">
-  <h2><span class="fa fa-arrow-circle-o-left"></span>Modifier Utilisateur</h2>
-</div>
+    <!-- START BREADCRUMB -->
+    <ul class="breadcrumb push-down-0">
+      <li><a href="#">Accueil</a></li>
+      <li><a href="#">Utilisateurs</a></li>
+      <li class="active">Modifier utilisateur</li>
+    </ul>
+    <!-- END BREADCRUMB -->
 
-<!-- PAGE CONTENT WRAPPER -->
-<div class="page-content-wrap">
+    <div class="page-title">
+      <h2><span class="fa fa-arrow-circle-o-left"></span>Modifier Utilisateur</h2>
+    </div>
 
-  <div class="row">
-      <div class="col-md-12">
+    <!-- PAGE CONTENT WRAPPER -->
+    <div class="page-content-wrap">
+
+      <div class="row">
+        <div class="col-md-12">
           <form name="form" (ngSubmit)="f.form.valid && updateUser()" #f="ngForm" novalidate>
-                  <div class="form-group">
-                    <label for="name">Your name</label>
-                    <input type="text" class="form-control" name="name" [(ngModel)]="user.name" #name="ngModel" required />
-                    <div *ngIf="f.submitted && name.invalid">
-                      <div *ngIf="name.errors.required">Name is required</div>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" class="form-control" name="username" [(ngModel)]="user.username" #username="ngModel"
-                      required />
-                    <div *ngIf="f.submitted && username.invalid">
-                      <div *ngIf="username.errors.required">Username is required</div>
-                    </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="text" class="form-control" name="email" [(ngModel)]="user.email" #email="ngModel" required email />
-                    <div *ngIf="f.submitted && email.invalid">
-                      <div *ngIf="email.errors.required">Email is required</div>
-                      <div *ngIf="email.errors.email">Email must be a valid email address</div>
-                    </div>
-                  </div>
-                  <h4>Rôles</h4>
-                  <div class="form-group">
-                    <div class="col-md-4">                                    
-                      <ng-multiselect-dropdown
-                        [placeholder]="'Choisir rôle'"
-                        [data]="dropdownList"
-                        name="role"
-                        #role="ngModel"
-                        [(ngModel)]="selectedItems"
-                        [settings]="dropdownSettings"
-                        (onSelect)="onItemSelect($event)"
-                        (onSelectAll)="onSelectAll($event)"
-                      >
-                      </ng-multiselect-dropdown>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <button class="btn btn-primary">Modifier</button>
-                  
-                  </div>
-                 
-            </form>
+            <div class="form-group">
+              <label for="name">Your name</label>
+              <input type="text" class="form-control" name="name" [(ngModel)]="user.name" #name="ngModel" required />
+              <div *ngIf="f.submitted && name.invalid">
+                <div *ngIf="name.errors.required">Name is required</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="username">Username</label>
+              <input type="text" class="form-control" name="username" [(ngModel)]="user.username" #username="ngModel"
+                required />
+              <div *ngIf="f.submitted && username.invalid">
+                <div *ngIf="username.errors.required">Username is required</div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="text" class="form-control" name="email" [(ngModel)]="user.email" #email="ngModel" required
+                email />
+              <div *ngIf="f.submitted && email.invalid">
+                <div *ngIf="email.errors.required">Email is required</div>
+                <div *ngIf="email.errors.email">Email must be a valid email address</div>
+              </div>
+            </div>
+            <h4>Rôles</h4>
+            <div class="form-group">
+              <div class="col-md-4">
+                <ng-multiselect-dropdown [placeholder]="'Choisir rôle'" [data]="dropdownList" name="role"
+                  #role="ngModel" [(ngModel)]="selectedItems" [settings]="dropdownSettings"
+                  (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
+                </ng-multiselect-dropdown>
+              </div>
+            </div>
+            <div class="form-group">
+              <button class="btn btn-primary">Modifier</button>
+
+            </div>
+
+          </form>
+        </div>
+
       </div>
 
-  </div>
-
-</div>
-<!-- PAGE CONTENT WRAPPER -->
-=======
-<p>
-  edit-utilisateur works!
-</p>
->>>>>>> 9329eeca1c67666855b833434876047bfc34fab6
+    </div>
+    <!-- PAGE CONTENT WRAPPER -->
