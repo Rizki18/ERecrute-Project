@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AuthGaurdService } from './auth/auth-gaurd.service';
 
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
@@ -18,23 +19,30 @@ import { PosteComponent } from './poste/poste.component';
 import { AddProfilComponent } from './add-profil/add-profil.component';
 import { MotClesComponent } from './mot-cles/mot-cles.component';
 import { RecrutementComponent } from './recrutement/recrutement.component';
+import { NvRecrutementComponent } from './nv-recrutement/nv-recrutement.component';
+import { ChangementPosteComponent } from './changement-poste/changement-poste.component';
+import { AccesRefuseComponent } from './errors/acces-refuse/acces-refuse.component';
 
 const routes: Routes = [
   {
     path: 'erecrute/home',
-    component: HomeComponent
+    component: HomeComponent,
+    canActivate:[AuthGaurdService]
 },
 {
     path: 'erecrute/recruteur',
-    component: RecruteurComponent
+    component: RecruteurComponent,
+    canActivate:[AuthGaurdService]
 },
 {
     path: 'erecrute/responsable',
-    component: ResponsableComponent
+    component: ResponsableComponent,
+    canActivate:[AuthGaurdService]
 },
 {
     path: 'erecrute/admin',
-    component: AdminComponent
+    component: AdminComponent,
+    canActivate:[AuthGaurdService]
 },
 {
     path: 'erecrute/auth/login',
@@ -46,54 +54,71 @@ const routes: Routes = [
 },
 {
     path: 'erecrute/utilisateurs',
-    component: UtilisateursComponent
-},
-{
-    path: 'erecrute/nv-user',
-    component: AddUtilisateurComponent
-},
-{
-    path: 'erecrute/edit-user',
-    component: EditUtilisateurComponent
+    component: UtilisateursComponent,
+    canActivate:[AuthGaurdService]
 },
 {
     path: 'erecrute/recrutement',
-    component: RecrutementComponent
+    component: NvRecrutementComponent,
+    canActivate:[AuthGaurdService]
+},
+{
+    path: 'erecrute/changementPoste',
+    component: ChangementPosteComponent,
+    canActivate:[AuthGaurdService]
+},
+{
+    path: 'erecrute/nvRecrutement',
+    component: RecrutementComponent,
+    canActivate:[AuthGaurdService]
 },
 {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'erecrute/home',
     pathMatch: 'full'
 },
 {
     path: 'erecrute/criteres',
-    component: CriteresComponent
+    component: CriteresComponent,
+    canActivate:[AuthGaurdService]
 },
 {
     path: 'erecrute/addProfil',
-    component: AddProfilComponent
+    component: AddProfilComponent,
+    canActivate:[AuthGaurdService]
 },
 {
     path: 'erecrute/motcles',
-    component: MotClesComponent
+    component: MotClesComponent,
+    canActivate:[AuthGaurdService]
 },
 {
     path: 'erecrute/cv/:id',
-    component: CvComponent
+    component: CvComponent,
+    canActivate:[AuthGaurdService]
 },
 {
     path: 'erecrute/cvtheque/:id',
-    component: CvthequeComponent
+    component: CvthequeComponent,
+    canActivate:[AuthGaurdService]
 }
 ,
 {
     path: 'erecrute/profil',
-    component: ProfilComponent
+    component: ProfilComponent,
+    canActivate:[AuthGaurdService]
 }
 ,
 {
     path: 'erecrute/poste',
-    component: PosteComponent
+    component: PosteComponent,
+    canActivate:[AuthGaurdService],
+}
+,
+{
+    path: 'erecrute/error-acces-refuse',
+    component: AccesRefuseComponent,
+    canActivate:[AuthGaurdService],
 }
 ];
 

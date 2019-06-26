@@ -49,4 +49,10 @@ export class TokenStorageService {
 
     return this.roles;
   }
+
+  isUserLoggedIn() {
+    let user = this.getUsername();
+    console.log(!(user === null))
+    return !(user === null)
+  }
 }

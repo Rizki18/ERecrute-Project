@@ -66,5 +66,7 @@ public interface CVThequeService {
 	public List<CV_TC_RES> retreiveTCsCV(Long id);
 
 	void addMCToExperience(String descRole, Set<String> strMCs);
+
+	public CV findCVByMaxId();
 	
 }

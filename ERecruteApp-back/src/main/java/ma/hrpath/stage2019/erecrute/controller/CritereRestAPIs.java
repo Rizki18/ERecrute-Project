@@ -82,10 +82,12 @@ public class CritereRestAPIs {
 	}
 	//SecteurActivite
 	@RequestMapping(value="/admin/saveSecteur",method = RequestMethod.POST)
+	@PreAuthorize("hasRole('ADMIN')")
 	public SecteurActivite saveSecteurActivite(@RequestBody SecteurActivite p) {
 		return CritereService.saveSecteurActivite(p);
 	}
 	@RequestMapping(value="/admin/deleteSecteur/{codeSecteur}",method = RequestMethod.DELETE)
+	@PreAuthorize("hasRole('ADMIN')")
 	public void deleteSecteur(@PathVariable("codeSecteur") Long id) {
 		CritereService.deleteSecteurActivite(id);
 	}
@@ -104,10 +106,12 @@ public class CritereRestAPIs {
 	}
 	//SituationFamiliale
 	@RequestMapping(value="/admin/saveSituationFamiliale",method = RequestMethod.POST)
+	@PreAuthorize("hasRole('ADMIN')")
 	public SituationFamiliale saveSituationFamiliale(@RequestBody SituationFamiliale p) {
 		return CritereService.saveSituationFamiliale(p);
 	}
 	@RequestMapping(value="/admin/deleteSituationFamiliale/{id}",method = RequestMethod.DELETE)
+	@PreAuthorize("hasRole('ADMIN')")
 	public void deleteSituationFamiliale(@PathVariable("id") Long id) {
 		CritereService.deleteSituationFamiliale(id);
 	}
@@ -126,10 +130,12 @@ public class CritereRestAPIs {
 	}
 	//TypeContrat
 	@RequestMapping(value="/admin/saveTypeContrat",method = RequestMethod.POST)
+	@PreAuthorize("hasRole('ADMIN')")
 	public TypeContrat saveTypeContrat(@RequestBody TypeContrat p) {
 		return CritereService.saveTypeContrat(p);
 	}
 	@RequestMapping(value="/admin/deleteTypeContrat/{id}",method = RequestMethod.DELETE)
+	@PreAuthorize("hasRole('ADMIN')")
 	public void deleteTypeContrat(@PathVariable("id") Long id) {
 		CritereService.deleteTypeContrat(id);
 	}
@@ -148,10 +154,12 @@ public class CritereRestAPIs {
 	}
 	//TypeProfil
 	@RequestMapping(value="/admin/saveTypeProfil",method = RequestMethod.POST)
+	@PreAuthorize("hasRole('ADMIN')")
 	public TypeProfil saveTypeProfil(@RequestBody TypeProfil p) {
 		return CritereService.saveTypeProfil(p);
 	}
 	@RequestMapping(value="/admin/deleteTypeProfil/{id}",method = RequestMethod.DELETE)
+	@PreAuthorize("hasRole('ADMIN')")
 	public void deleteTypeProfil(@PathVariable("id") Long id) {
 		CritereService.deleteTypeProfil(id);
 	}

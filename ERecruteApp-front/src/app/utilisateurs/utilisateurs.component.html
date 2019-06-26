@@ -1,87 +1,148 @@
- <!-- START BREADCRUMB -->
- <ul class="breadcrumb push-down-0">
-  <li><a href="#">Accueil</a></li>
-  <li class="active">Utilisateurs</li>
+<!-- START BREADCRUMB -->
+<ul class="breadcrumb push-down-0">
+    <li><a href="#">Accueil</a></li>
+    <li class="active">Utilisateurs</li>
 </ul>
 <!-- END BREADCRUMB -->
 
 <div class="page-title">
-  <h2><span class="fa fa-arrow-circle-o-left"></span> Utilisateurs </h2>
+    <h2><span class="fa fa-arrow-circle-o-left"></span> Utilisateurs </h2>
 </div>
+
 
 <div class="page-content-wrap">
 
-  <div class="row">
-      <div class="col-md-12">
+    <div class="row">
+        <div class="col-md-12">
 
-          <!-- START DEFAULT DATATABLE -->
-          <div class="panel panel-default">
-              <div class="panel-heading">
-                  <h3 class="panel-title">Liste des utilisateurs</h3>
-                  <ul class="panel-controls">
-                      <li routerLink="/nv-user"><button type="button" class="btn btn-info">Ajouter Utilisateur
-                          </button></li>
-                  </ul>
-              </div>
-              <div class="panel-body">
-                  <table class="table datatable">
-                      <thead>
-                          <tr>
-                              <th>Nom</th>
-                              <th>email</th>
-                              <th>Rôle</th>
-                              <th>Actions</th>
-                          </tr>
-                      </thead>
-                      <tbody>
-                          <tr *ngFor="let utilisateur of utilisateurs">
-                              <td>{{utilisateur.name}}</td>
-                              <td>{{utilisateur.email}}</td>
-                              <td *ngIf="mode!=utilisateur.id">
-                                  <p *ngFor="let role of utilisateur.roles">
-                                      {{role.name}}
-                                  </p>
+            <!-- START DEFAULT DATATABLE -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Liste des utilisateurs</h3>
+                    <ul class="panel-controls">
+                        <li><button type="button" class="btn btn-info" data-toggle="modal" data-target="#nvUser">
+                                Ajouter Utilisateur
+                            </button></li>
+                    </ul>
+                </div>
+                <div class="panel-body">
+                    <table class="table datatable">
+                        <thead>
+                            <tr>
+                                <th>Nom</th>
+                                <th>email</th>
+                                <th>Rôle</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let utilisateur of utilisateurs">
+                                <td>{{utilisateur.name}}</td>
+                                <td>{{utilisateur.email}}</td>
+                                <td *ngIf="mode!=utilisateur.id">
+                                    <p *ngFor="let role of utilisateur.roles">
+                                        {{role.name}}
+                                    </p>
                                 </td>
-                              <td *ngIf="mode==utilisateur.id">
-                                    <ng-multiselect-dropdown
-                                    [placeholder]="'Choisir rôle'"
-                                    [data]="dropdownList"
-                                    name="role"
-                                    #role="ngModel"
-                                    [(ngModel)]="selectedItems"
-                                    [settings]="dropdownSettings"
-                                    (onSelect)="onItemSelect($event)"
-                                    (onSelectAll)="onSelectAll($event)"
-                                  >
-                                  </ng-multiselect-dropdown>
-                              </td>
-                              <td>
-                                  <button *ngIf="mode==utilisateur.id" class="btn btn-default btn-rounded btn-sm"
-                                  (click)="updateUser(utilisateur,selectedItems)">
-                                  <span class="fa fa-save"></span></button>
-                                  <button *ngIf="mode!=utilisateur.id" class="btn btn-default btn-rounded btn-sm"
-                                  (click)="editUser(utilisateur,utilisateur.roles)">
-                                  <span class="fa fa-pencil"></span></button>
-                                  <button class="btn btn-danger btn-rounded btn-sm"
-                                          mwlConfirmationPopover
-                                          [popoverTitle]="popoverTitle"
-                                          [popoverMessage]="popoverMessage"
-                                          placement="left"
-                                          (confirm)="deleteUser(utilisateur)"
-                                          (cancel)="cancelClicked = true">
-                                          <span class="fa fa-times"></span>
-                                        </button>
-                              </td>
-                          </tr>
-                          
-                      </tbody>
-                  </table>
-              </div>
-          </div>
-          <!-- END DEFAULT DATATABLE -->
+                                <td *ngIf="mode==utilisateur.id">
+                                    <ng-multiselect-dropdown [placeholder]="'Choisir rôle'" [data]="dropdownList"
+                                        name="role" #role="ngModel" [(ngModel)]="selectedItems"
+                                        [settings]="dropdownSettings" (onSelect)="onItemSelect($event)"
+                                        (onSelectAll)="onSelectAll($event)">
+                                    </ng-multiselect-dropdown>
+                                </td>
+                                <td>
+                                    <button *ngIf="mode==utilisateur.id" class="btn btn-default btn-rounded btn-sm"
+                                        (click)="updateUser(utilisateur,selectedItems)">
+                                        <span class="fa fa-save"></span></button>
+                                    <button *ngIf="mode!=utilisateur.id" class="btn btn-default btn-rounded btn-sm"
+                                        (click)="editUser(utilisateur,utilisateur.roles)">
+                                        <span class="fa fa-pencil"></span></button>
+                                    <button class="btn btn-danger btn-rounded btn-sm" mwlConfirmationPopover
+                                        [popoverTitle]="popoverTitle" [popoverMessage]="popoverMessage" placement="left"
+                                        (confirm)="deleteUser(utilisateur)" (cancel)="cancelClicked = true">
+                                        <span class="fa fa-times"></span>
+                                    </button>
+                                </td>
+                            </tr>
 
-      </div>
-  </div>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- END DEFAULT DATATABLE -->
+
+        </div>
+    </div>
 
 </div>
 <!-- PAGE CONTENT WRAPPER -->
+
+<!-- MODALS -->
+<div id="nvUser" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="taskEditModalHead" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Fermer</span></button>
+                <h4 class="modal-title" id="taskEditModalHead">Noveau Utilisateur</h4>
+            </div>
+            <form name="form" (ngSubmit)="f.form.valid && createUser()" #f="ngForm" novalidate>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="name">Nom complet</label>
+                        <input type="text" class="form-control" name="name" [(ngModel)]="form.name" #name="ngModel"
+                            required />
+                        <div *ngIf="f.submitted && name.invalid">
+                            <div *ngIf="name.errors.required">Le nom est obligatoire</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Nom d'utilisateur</label>
+                        <input type="text" class="form-control" name="username" [(ngModel)]="form.username"
+                            #username="ngModel" required />
+                        <div *ngIf="f.submitted && username.invalid">
+                            <div *ngIf="username.errors.required">Nom d'utilisateur est obligatoire</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="text" class="form-control" name="email" [(ngModel)]="form.email" #email="ngModel"
+                            required email />
+                        <div *ngIf="f.submitted && email.invalid">
+                            <div *ngIf="email.errors.required">Email est obligatoire</div>
+                            <div *ngIf="email.errors.email">Email n'est pas valide</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Mot de passe</label>
+                        <input type="password" class="form-control" name="password" [(ngModel)]="form.password"
+                            #password="ngModel" required minlength="6" />
+                        <div *ngIf="f.submitted && password.invalid">
+                            <div *ngIf="password.errors.required">Mot de passe est obligatoire</div>
+                            <div *ngIf="password.errors.minlength">Mot de passe est très court</div>
+                        </div>
+                    </div>
+                    <h4>Rôles</h4>
+                    <div class="form-group">
+                        <div class="col-md-4">
+                            <ng-multiselect-dropdown [placeholder]="'Choisir rôle'" [data]="dropdownList" name="role"
+                                #role="ngModel" [(ngModel)]="form.role" [settings]="dropdownSettings"
+                                (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
+                            </ng-multiselect-dropdown>
+                        </div>
+                    </div>
+                    <div *ngIf="f.submitted && isSignUpFailed" class="btn btn-danger">
+                        Ajout echoué!<br />{{errorMessage}}
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Ajouter</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+<!-- END MODALS -->

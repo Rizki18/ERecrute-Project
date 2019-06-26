@@ -1,39 +1,41 @@
- 
-<div class="col-md-6"></div>
-<table class="table table-striped">
-    <thead></thead>
-    <tr>
-      <th>code</th>
-      <th>Mot cle</th>  
-      <th>
-          <form #f="ngForm" (ngSubmit)="createMotcles(f.value)">   
-                    <tr>
-                        <td>
-                        <input required ngModel placeholder="Mot Cle" name="libelleMotCle" class="form-control" [(ngModel)]="motcle.libelleMotCle">
-                        </td>
-                        <td>
-                        <button [disabled]="!f.valid" type="submit"  class="btn btn-success" >Create</button>
-                        </td>
-                    </tr>
+        <div class="col-md-6"></div>
+        <table class="table table-striped">
+            <thead></thead>
+            <tr>
+                <th>code</th>
+                <th>Mot cle</th>
+                <th>
+                    <form #f="ngForm" (ngSubmit)="createMotcles(f.value)">
+            <tr>
+                <td>
+                    <input required ngModel placeholder="Mot Cle" name="libelleMotCle" class="form-control"
+                        [(ngModel)]="motcle.libelleMotCle">
+                </td>
+                <td>
+                    <button [disabled]="!f.valid" type="submit" class="btn btn-success">Create</button>
+                </td>
+            </tr>
             </form>
-      </th>      
-    </tr>
-    
-    <tbody>
-        <tr *ngFor="let mc of motcles ">
-            <td>{{mc.codeMotCle}}</td>
-            <td *ngIf="mode==mc.codeMotCle">
-            <input required ngModel value={{mc.libelleMotCles}} name="libelleMotCle" class="form-control" [(ngModel)]="mc.libelleMotCle">
-            </td>            
-            <td *ngIf="mode!=mc.codeMotCle">
-                {{mc.libelleMotCle}}
-            </td>
-            <td>
-                    <button class="btn btn-danger" (click)="deleteMotcles(mc)"> Delete Mot cles</button> 
-                    <button *ngIf="mode!=mc.codeMotCle" class="btn btn-success" (click)="editMotcles(mc)"> Edit Mot cles</button>
-                    <button *ngIf="mode==mc.codeMotCle" class="btn btn-success" (click)="updateMotcles(mc)"> Update Mot cles</button>
-            </td> 
-        </tr>
-    </tbody>
-</table>
+            </th>
+            </tr>
 
+            <tbody>
+                <tr *ngFor="let mc of motcles ">
+                    <td>{{mc.codeMotCle}}</td>
+                    <td *ngIf="mode==mc.codeMotCle">
+                        <input required ngModel value={{mc.libelleMotCles}} name="libelleMotCle" class="form-control"
+                            [(ngModel)]="mc.libelleMotCle">
+                    </td>
+                    <td *ngIf="mode!=mc.codeMotCle">
+                        {{mc.libelleMotCle}}
+                    </td>
+                    <td>
+                        <button class="btn btn-danger" (click)="deleteMotcles(mc)"> Delete Mot cles</button>
+                        <button *ngIf="mode!=mc.codeMotCle" class="btn btn-success" (click)="editMotcles(mc)"> Edit Mot
+                            cles</button>
+                        <button *ngIf="mode==mc.codeMotCle" class="btn btn-success" (click)="updateMotcles(mc)"> Update
+                            Mot cles</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>

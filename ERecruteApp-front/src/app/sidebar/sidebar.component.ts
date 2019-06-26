@@ -10,7 +10,7 @@ import { TokenStorageService } from '../auth/token-storage.service';
 export class SidebarComponent implements OnInit {
 
   info: any;
-  private authority: string;
+  authority: string;
 
   dropdownList = [];
   selectedItems = [];
@@ -57,6 +57,11 @@ export class SidebarComponent implements OnInit {
       this.authority = 'recruteur';
       return true;
     });
+  }
+
+  onChange(roleValue) {
+    console.log(roleValue);
+    this.authority = roleValue;
   }
 
   onItemSelect(item: any) {

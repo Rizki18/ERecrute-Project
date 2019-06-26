@@ -4,83 +4,70 @@
     <ul class="x-navigation">
         <li class="xn-logo">
             <div>
-                <a href="index.html"><img style="display: block;
+                <a href="/"><img style="display: block;
                     margin-left: auto;
                     margin-right: auto;
                     width: 50%;" height="50" src="assets/img/hr-path-logo.png" /></a>
             </div>
-            <a href="#" class="x-navigation-control"></a>
+            <a class="x-navigation-control"></a>
         </li>
         <li class="xn-profile">
-            <a href="#" class="profile-mini">
-                <img src="assets/assets/images/users/user-profil.png" alt="User profil"/>
+            <a href="" class="profile-mini">
+                <img src="assets/assets/images/users/user-profil.png" alt="User profil" />
             </a>
             <div class="profile">
                 <div class="profile-image">
-                    <img src="assets/assets/images/users/user-profil.png" alt="User profil"/>
+                    <a href=""><img src="assets/assets/images/users/user-profil.png" alt="User profil" /></a>
                 </div>
                 <div class="profile-data">
                     <div class="profile-data-name">{{info.username}}</div>
                     <div class="profile-data-title">
-                            <ng-multiselect-dropdown
-                            [placeholder]="'Choisir rôle'"
-                            [data]="dropdownList"
-                            name="role"
-                            #role="ngModel"
-                            [(ngModel)]="selectedItems"
-                            [settings]="dropdownSettings"
-                            (onSelect)="onItemSelect($event)"
-                            (onSelectAll)="onSelectAll($event)"
-                          >
-                          </ng-multiselect-dropdown>
+                        <select (change)="onChange($event.target.value)" class="form-control" data-style="btn-primary">
+                            <option *ngFor="let role of dropdownList">{{role}}</option>
+                        </select>
                     </div>
                 </div>
-                <div class="profile-controls">
-                    <a href="pages-profile.html" class="profile-control-left"><span class="fa fa-info"></span></a>
-                    <a href="pages-messages.html" class="profile-control-right"><span class="fa fa-envelope"></span></a>
-                </div>
-            </div>                                                                        
+            </div>
         </li>
         <li class="xn-title">Navigation</li>
         <li>
-            <a routerLink="/erecrute/criteres"><span class="fa fa-desktop"></span> <span class="xn-text">Tableau de bord</span></a>
+            <a routerLink="/erecrute/home"><span class="fa fa-desktop"></span> <span class="xn-text">Tableau de
+                    bord</span></a>
         </li>
-        <li *ngIf="authority === 'admin'" class="xn-openable">
-            <a href="#"><span class="fa fa-files-o"></span> <span class="xn-text">Utilisateurs</span></a>
+        <li *ngIf="authority == 'admin'">
+            <a routerLink="/erecrute/criteres"><span class="fa fa-cogs"></span> <span
+                    class="xn-text">Paramétrage</span></a>
+        </li>
+        <li *ngIf="authority == 'admin'">
+                <a routerLink="/erecrute/utilisateurs"><span class="fa fa-users"></span> <span
+                        class="xn-text">Utilisateurs</span></a>
+            </li>
+        <li *ngIf="authority == 'recruteur' || authority === 'responsable'" class="xn-openable">
+            <a><span class="fa fa-users"></span> <span class="xn-text">Profils</span></a>
             <ul>
-                <li><a routerLink="/erecrute/utilisateurs">Liste Utilisateurs</a></li>
-                <li><a routerLink="/erecrute/nv-user">Nouveau Utilisateur</a></li>
+                <li><a routerLink="/erecrute/profil">Liste Profils</a></li>
+                <li *ngIf="authority == 'responsable'"><a routerLink="/erecrute/addProfil">Nouveau Profil</a></li>
+                <li *ngIf="authority == 'responsable'"><a routerLink="/erecrute/profil">Importer Profils</a></li>
             </ul>
         </li>
-        <li class="xn-openable">
-                <a href="#"><span class="fa fa-files-o"></span> <span class="xn-text">Profils</span></a>
-                <ul>
-                    <li><a routerLink="/erecrute/profil">Liste Profils</a></li>
-                    <li><a href="/erecrute/addProfil">Nouveau Profil</a></li>
-                    <li><a href="importer-profiles.html">Importer Profils</a></li>
-                </ul>
+        <li *ngIf="authority == 'recruteur' || authority == 'responsable'">
+            <a routerLink="erecrute/poste"><span class="fa fa-list-alt"></span> <span class="xn-text">Postes</span></a>
         </li>
-        <li>
-            <a href="erecrute/poste"><span class="fa fa-desktop"></span> <span class="xn-text">Postes</span></a>
-        </li>
-        <li class="xn-openable">
-            <a href="#"><span class="fa fa-file-text-o"></span> <span class="xn-text">Recrutements</span></a>
+        <li *ngIf="authority == 'recruteur'" class="xn-openable">
+            <a><span class="fa fa-arrow-right"></span> <span class="xn-text">Recrutements</span></a>
             <ul>
-                <li><a href="recrutements.html">Liste Recrutements</a></li>
-                <li><a href="nv-recrutement.html">Nouveau Recrutement</a></li>
-                <li><a href="changer-poste.html">Changement Poste</a></li>
-                <li><a href="nv-depart.html">Nouvau Départ</a></li>
+                <li><a routerLink="erecrute/recrutement">Liste Recrutements</a></li>
+                <li><a routerLink="erecrute/nvRecrutement">Nouveau Recrutement</a></li>
+                <li><a routerLink="erecrute/changementPoste">Changement Poste</a></li>
+                <li><a routerLink="erecrute/changementPoste">Nouvau Départ</a></li>
             </ul>
         </li>
-        <li class="xn-openable">
-            <a href="#"><span class="fa fa-file-text-o"></span> <span class="xn-text">CVthèque</span></a>
-            <ul>
-                <li><a routerLink="/erecrute/cvtheque">Liste CVs</a></li>
-                <li><a routerLink="/erecrute/cvtheque">Création CV</a></li>
-            </ul>
+        <li *ngIf="authority == 'recruteur' || authority == 'responsable'">
+            <a routerLink="/erecrute/cvtheque"><span class="fa fa-files-o"></span> <span
+                    class="xn-text">CVthèque</span></a>
         </li>
-        
     </ul>
     <!-- END X-NAVIGATION -->
+
 </div>
 <!-- END PAGE SIDEBAR -->

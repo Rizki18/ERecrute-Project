@@ -1,38 +1,42 @@
- 
-<div class="col-md-6"></div>
-<table class="table table-striped">
-    <thead></thead>
-    <tr>
-      <th>code</th>
-      <th>Langue</th>  
-      <th>
-            <form #f="ngForm" (ngSubmit)="createLangues(f.value)">   
-                    <tr>
-                        <td>
-                        <input required ngModel placeholder="Langues" name="langue" class="form-control" [(ngModel)]="langue.langue">
-                        </td>
-                        <td>
-                        <button [disabled]="!f.valid" type="submit"  class="btn btn-success" >Create</button>
-                        </td>
-                    </tr>
+
+        <div class="col-md-6"></div>
+        <table class="table table-striped">
+            <thead></thead>
+            <tr>
+                <th>code</th>
+                <th>Langue</th>
+                <th>
+                    <form #f="ngForm" (ngSubmit)="createLangues(f.value)">
+            <tr>
+                <td>
+                    <input required ngModel placeholder="Langues" name="langue" class="form-control"
+                        [(ngModel)]="langue.langue">
+                </td>
+                <td>
+                    <button [disabled]="!f.valid" type="submit" class="btn btn-success">Create</button>
+                </td>
+            </tr>
             </form>
-      </th>      
-    </tr>
-    
-    <tbody>
-        <tr *ngFor="let langue of langues">
-            <td>{{langue.codeLangue}}</td>
-            <td *ngIf="mode==langue.codeLangue">
-            <input required ngModel value={{langue.langue}} name="langue" class="form-control" [(ngModel)]="langue.langue">
-            </td>            
-            <td *ngIf="mode!=langue.codeLangue">
-                {{langue.langue}}
-            </td>
-            <td>
-                    <button class="btn btn-danger" (click)="deleteLangues(langue)"> Delete langue</button> 
-                    <button *ngIf="mode!=langue.codeLangue" class="btn btn-success" (click)="editLangues(langue)"> Edit langue</button>
-                    <button *ngIf="mode==langue.codeLangue" class="btn btn-success" (click)="updateLangues(langue)"> Update langue</button>
-            </td>
-        </tr>
-    </tbody>
-</table>
+            </th>
+            </tr>
+
+            <tbody>
+                <tr *ngFor="let langue of langues">
+                    <td>{{langue.codeLangue}}</td>
+                    <td *ngIf="mode==langue.codeLangue">
+                        <input required ngModel value={{langue.langue}} name="langue" class="form-control"
+                            [(ngModel)]="langue.langue">
+                    </td>
+                    <td *ngIf="mode!=langue.codeLangue">
+                        {{langue.langue}}
+                    </td>
+                    <td>
+                        <button class="btn btn-danger" (click)="deleteLangues(langue)"> Delete langue</button>
+                        <button *ngIf="mode!=langue.codeLangue" class="btn btn-success" (click)="editLangues(langue)">
+                            Edit langue</button>
+                        <button *ngIf="mode==langue.codeLangue" class="btn btn-success" (click)="updateLangues(langue)">
+                            Update langue</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>

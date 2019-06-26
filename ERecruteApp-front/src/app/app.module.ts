@@ -38,6 +38,9 @@ import { PosteComponent } from './poste/poste.component';
 import { MotClesComponent } from './mot-cles/mot-cles.component';
 import { RecrutementComponent } from './recrutement/recrutement.component';
 import { SocieteComponent } from './societe/societe.component';
+import { AccesRefuseComponent } from './errors/acces-refuse/acces-refuse.component';
+import { NvRecrutementComponent } from './nv-recrutement/nv-recrutement.component';
+import { ChangementPosteComponent } from './changement-poste/changement-poste.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +69,10 @@ import { SocieteComponent } from './societe/societe.component';
     PosteComponent,
     MotClesComponent,
     RecrutementComponent,
-    SocieteComponent
+    SocieteComponent,
+    AccesRefuseComponent,
+    NvRecrutementComponent,
+    ChangementPosteComponent
   ],
   imports: [
     BrowserModule,

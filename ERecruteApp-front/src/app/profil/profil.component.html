@@ -1,80 +1,229 @@
+<!-- START BREADCRUMB -->
+<ul class="breadcrumb">
+        <li><a href="/">Accueil</a></li>
+            <li class="active">Profil</li>
+    </ul>
+    <!-- END BREADCRUMB -->                                                
+    
+    <!-- PAGE TITLE -->
+    <div class="page-title">                    
+        
+        <div class="col-md-12">
+                <div class="col-md-8">
+                        <h2><span class="fa fa-users"></span>Liste de Profils </h2>
+                </div>
+                <div class="col-md-4">
+                    <button [routerLink]="['/erecrute/addProfil']" class="btn btn-success btn-block"><span
+                            class="fa fa-plus"></span> Nouveau profil</button>
+                    <button (click)="charger()" class="btn btn-success btn-block"><span class="fa fa-plus"></span> charger
+                        CSV</button>
+                </div>
+            </div>
+    </div>
+    <!-- END PAGE TITLE -->   
+
 <!-- PAGE CONTENT WRAPPER -->
 <div class="page-content-wrap">
-                    
-        <div class="row">
-            <div class="col-md-12">
-                
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <p>Use search to find contacts. You can search by: name, address, phone. Or use the advanced search.</p>
-                        <form class="form-horizontal">
-                            <div class="form-group">
-                                <div class="col-md-8">
-                                    <div class="input-group">
-                                        <div class="input-group-addon">
-                                            <span class="fa fa-search"></span>
-                                        </div>
-                                        <input type="text" class="form-control" placeholder="Who are you looking for?"/>
-                                        <div class="input-group-btn">
-                                            <button class="btn btn-primary">Search</button>
-                                        </div>
+
+    <div class="row">
+        <div class="col-md-12">
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <p>
+                        Utilisez la recherche pour trouver des profils. Vous pouvez rechercher par: nom, adresse,
+                        téléphone.<button class="btn btn-primary" *ngIf="recherche==1" (click)="rechercher()">
+                                Recherche Standard</button>
+                    </p>
+                    <form class="form-horizontal" *ngIf="recherche==-1" (ngSubmit)="effectuerRechercheS()">
+                        <div class="form-group">
+                            <div class="col-md-8">
+                                <div class="input-group">
+                                    <div class="input-group-addon">
+                                        <span class="fa fa-search"></span>
+                                    </div>
+                                    <input type="text" class="form-control" placeholder="Qui cherchez-vous?" />
+                                    <div class="input-group-btn">
+                                        <button type="submit" class="btn btn-primary">Rechercher</button>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <button [routerLink]="['/erecrute/addProfil']" class="btn btn-success btn-block"><span class="fa fa-plus"></span> Add new profil</button>
-                                    <button (click)="charger()" class="btn btn-success btn-block"><span class="fa fa-plus"></span> charger de CSV</button>
-                                </div>
                             </div>
-                        </form>                                    
+                            
+                        </div>
+                    </form>
+                    <p></p>
+                    <p>Ou utilisez la recherche avancée <button class="btn btn-primary" *ngIf="recherche==-1" (click)="rechercher()">
+                            Recherche Avancée</button></p>
+                    <div class="row" *ngIf="recherche==1">
+                        <div class="col-md-12">
+                            <form class="form-horizontal" #f="ngForm" (ngSubmit)="effectuerRechercheA(f.value)">
+                                <div class="panel panel-colorful">
+                                    <div class="panel-body">
+                                        <h2>Recherche Avancée</h2>
+                                        <p>Vous pouvez effectuer une recherche multicritère.
+                                        </p>
+                                        <div class="form-group">
+                                                <ng-multiselect-dropdown class="col-md-4"
+                                                [placeholder]="'Choisir competence'"
+                                                [data]="dlcompetence"
+                                                name="competence"
+                                                #role="ngModel"
+                                                [(ngModel)]="sIcompetence"
+                                                [settings]="dropdownSettings"
+                                                (onSelect)="onIS($event)"
+                                                (onSelectAll)="onSA($event)"
+                                              >
+                                              </ng-multiselect-dropdown>
+                                              <ng-multiselect-dropdown class="col-md-4"
+                                                [placeholder]="'Choisir langues'"
+                                                [data]="dllangue"
+                                                name="langues"
+                                                #role="ngModel"
+                                                [(ngModel)]="sIlangue"
+                                                [settings]="dropdownSettings"
+                                                (onSelect)="onIS($event)"
+                                                (onSelectAll)="onSA($event)"
+                                              >
+                                              </ng-multiselect-dropdown>
+                                              <ng-multiselect-dropdown class="col-md-4"
+                                                [placeholder]="'Choisir Secteur Activite'"
+                                                [data]="dlsecteurActivite"
+                                                name="Secteur Activite"
+                                                #role="ngModel"
+                                                [(ngModel)]="sIsecteurActivite"
+                                                [settings]="dropdownSettings"
+                                                (onSelect)="onIS($event)"
+                                                (onSelectAll)="onSA($event)"
+                                              >
+                                              </ng-multiselect-dropdown>
+                                        </div>
+                                        <div class="col-md-12"></div>
+                                        <div class="col-md-12"></div>
+                                        <div class="form-group">
+                                              <ng-multiselect-dropdown class="col-md-4"
+                                                [placeholder]="'Choisir Situation Familiale'"
+                                                [data]="dlsituationFamiliale"
+                                                name="Situation Familiale"
+                                                #role="ngModel"
+                                                [(ngModel)]="sIsituationFamiliale"
+                                                [settings]="dropdownSettings"
+                                                (onSelect)="onIS($event)"
+                                                (onSelectAll)="onSA($event)"
+                                              >
+                                              </ng-multiselect-dropdown>
+                                              <ng-multiselect-dropdown class="col-md-4"
+                                                [placeholder]="'Choisir Type Contrat'"
+                                                [data]="dltypeContrat"
+                                                name="Type Contrat"
+                                                #role="ngModel"
+                                                [(ngModel)]="sItypeContact"
+                                                [settings]="dropdownSettings"
+                                                (onSelect)="onIS($event)"
+                                                (onSelectAll)="onSA($event)"
+                                              >
+                                              </ng-multiselect-dropdown>
+                                              <ng-multiselect-dropdown class="col-md-4"
+                                                [placeholder]="'Choisir Type Profil'"
+                                                [data]="dltypeProfil"
+                                                name="Type Profil"
+                                                #role="ngModel"
+                                                [(ngModel)]="sItypeProfil"
+                                                [settings]="dropdownSettings"
+                                                (onSelect)="onIS($event)"
+                                                (onSelectAll)="onSA($event)"
+                                              >
+                                              </ng-multiselect-dropdown>
+                                        </div>
+                                    </div>
+                                    <div class="panel-footer">
+                                        <button [disabled]="!f.valid" type="submit"
+                                            class="btn btn-success pull-right">Rechercher</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row">
+        
+        <div class="col-md-3"  *ngFor="let profil of Profil" >
+            <!-- CONTACT ITEM -->
+            <div *ngIf="rechercheRes!=2 && rechercheRes!=3" class="panel panel-default">
+                <div class="panel-body profile">
+                    <div class="profile-image">
+                        <img src="{{service.host+'/photoProfilCV/'+profil.codeProfil}}"
+                            alt="{{profil.nom}} {{profil.prenom}}" />
+                        <!--
+                                <img src="{{this.service.host+'/photoProfil/'+profil.codeProfil}}" alt="{{this.service.host+'/photoProfil/'+profil.codeProfil}}" />
+                            -->
+                    </div>
+                    <div class="profile-data">
+                        <div class="profile-data-name">{{profil.nom}} {{profil.prenom}}</div>
+                        <!-- <div class="profile-data-title">Singer-Songwriter</div>-->
+                    </div>
+                    <div class="profile-controls">
+                        <a [routerLink]="['/erecrute/cvtheque', profil.codeProfil]" class="profile-control-left">CV</a>
+                        <a class="profile-control-right"><button class="fa fa-times btn-danger"
+                                (click)="deleteProfil(profil)"></button></a>
                     </div>
                 </div>
-                
+                <div class="panel-body">
+                    <div class="contact-info">
+                        <p><small>Mobile</small><br />{{profil.tel}}</p>
+                        <p><small>Email</small><br />{{profil.email}}</p>
+                        <p><small>Address</small><br />{{profil.adresse}}</p>
+                    </div>
+                </div>
             </div>
+            <!-- END CONTACT ITEM -->
         </div>
-        
-        <div class="row" > 
-            <div class="col-md-3" *ngFor="let profil of Profil">
+        <div class="col-md-3" *ngIf="rechercheRes==2">
                 <!-- CONTACT ITEM -->
                 <div class="panel panel-default">
                     <div class="panel-body profile">
                         <div class="profile-image">
-                            <img src="{{service.host+'/photoProfilCV/'+profil.codeProfil}}" alt="{{profil.nom}} {{profil.prenom}}"  />
+                            <img src="{{service.host+'/photoProfilCV/'+1}}"
+                                alt="Azedine KABA" />
                             <!--
-                                <img src="{{this.service.host+'/photoProfil/'+profil.codeProfil}}" alt="{{this.service.host+'/photoProfil/'+profil.codeProfil}}" />
-                            -->
+                                    <img src="{{this.service.host+'/photoProfil/'+profil.codeProfil}}" alt="{{this.service.host+'/photoProfil/'+profil.codeProfil}}" />
+                                -->
                         </div>
                         <div class="profile-data">
-                            <div class="profile-data-name">{{profil.nom}} {{profil.prenom}}</div>
-                          <!-- <div class="profile-data-title">Singer-Songwriter</div>-->  
+                            <div class="profile-data-name">Azedine KABA</div>
+                            <!-- <div class="profile-data-title">Singer-Songwriter</div>-->
                         </div>
                         <div class="profile-controls">
-                            <a [routerLink]="['/erecrute/cvtheque', profil.codeProfil]" class="profile-control-left">CV</a>
-                            <a class="profile-control-right"><button class="fa fa-times btn-danger" (click)="deleteProfil(profil)"></button></a>
+                            <a [routerLink]="['/erecrute/cvtheque', 1]" class="profile-control-left">CV</a>
+                            <a class="profile-control-right"><button class="fa fa-times btn-danger"
+                                    ></button></a>
                         </div>
-                    </div>                                
-                    <div class="panel-body">                                    
+                    </div>
+                    <div class="panel-body">
                         <div class="contact-info">
-                            <p><small>Mobile</small><br/>{{profil.tel}}</p>
-                            <p><small>Email</small><br/>{{profil.email}}</p>
-                            <p><small>Address</small><br/>{{profil.adresse}}</p>                                   
+                            <p><small>Mobile</small><br />0653696887</p>
+                            <p><small>Email</small><br />sren.kaba@gmail.com</p>
+                            <p><small>Address</small><br />casablanca</p>
                         </div>
-                    </div>                                
+                    </div>
                 </div>
                 <!-- END CONTACT ITEM -->
-            </div>                 
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <ul class="pagination pagination-sm pull-right push-down-10 push-up-10">
-                    <li class="disabled"><a href="#">«</a></li>
-                    <li class="active"><a href="#">1</a></li>
-                    <li><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                    <li><a href="#">4</a></li>                                    
-                    <li><a href="#">»</a></li>
-                </ul>                            
             </div>
-        </div>
-
     </div>
-    <!-- END PAGE CONTENT WRAPPER -->                                                 
+    <div class="row">
+        <div class="col-md-12">
+            <ul class="pagination pagination-sm pull-right push-down-10 push-up-10">
+                <li class="disabled"><a href="#">«</a></li>
+                <li class="active"><a href="#">1</a></li>
+                <li><a href="#">»</a></li>
+            </ul>
+        </div>
+    </div>
+
+</div>
+<!-- END PAGE CONTENT WRAPPER -->

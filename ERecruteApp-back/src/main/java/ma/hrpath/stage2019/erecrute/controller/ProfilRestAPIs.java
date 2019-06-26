@@ -61,7 +61,7 @@ public class ProfilRestAPIs {
 	}
 	
 	@RequestMapping(value="/admin/saveProfil",method = RequestMethod.POST)
-	@PreAuthorize("hasRole('ADMIN')")
+
 	public Profil saveProfil(@RequestBody Profil p) {
 		return profilService.saveProfil(p);	}
 	
@@ -82,7 +82,7 @@ public class ProfilRestAPIs {
 		return Files.readAllBytes(Paths.get(p.getPhoto()));
 	}
 	@RequestMapping(value="/admin/saveFormationProfil",method = RequestMethod.POST)
-	@PreAuthorize("hasRole('ADMIN')")
+
 	public void saveProfilFormation(@RequestBody FormationForm f) {
 		Formation formation = new Formation(f.getDateDebut(),f.getDateFin(),f.getDetails(),f.getEtablissement(),f.getIntitule(),f.getLieu());
 		formation.setProfil(profilService.findProfilById(Long.valueOf(f.getProfil())));
@@ -110,25 +110,34 @@ public class ProfilRestAPIs {
 	 */
 	 
 	@RequestMapping(value="/admin/deleteProfil/{id}",method = RequestMethod.DELETE)
+
 	public void deleteProfile(@PathVariable("id") Long id) {
 		profilService.deleteProfil(id);
 	}
 	//Formation
 	@RequestMapping(value="/formation")
+
 	public List<Formation> listFormation(){
 		return profilService.retreiveFormation();
 	}
 	
 	@RequestMapping(value="/profil/{id}/formations")
+
 	public List<Formation> listFormations(@PathVariable("id") Long id){
 		return profilService.retreiveFormationsProfil(id);
 	}
 		
 	@RequestMapping(value="/admin/saveFormation",method = RequestMethod.POST)
-	@PreAuthorize("hasRole('ADMIN')")
+
 	public Formation saveFomation(@RequestBody Formation p) {
 		p.setProfil(profilService.findProfilByMaxId());
 		return profilService.saveFormation(p);
+	}
+	
+	@RequestMapping(value="/profilEnregistrer")
+
+	public Long getCodeProfil(){
+		return profilService.findProfilByMaxId().getCodeProfil();
 	}
 	@RequestMapping(value="/admin/savePhoto",method = RequestMethod.POST)
 	public void savePhoto(MultipartFile file) throws IOException {
@@ -155,6 +164,7 @@ public class ProfilRestAPIs {
 	}*/
 	
 	@RequestMapping(value="/admin/deleteFormation/{id}",method = RequestMethod.DELETE)
+
 	public void deleteFormation(@PathVariable("id") Long id) {
 		profilService.deleteFormation(id);
 	}

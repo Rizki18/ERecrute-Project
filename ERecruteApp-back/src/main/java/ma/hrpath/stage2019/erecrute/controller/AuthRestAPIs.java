@@ -66,12 +66,12 @@ public class AuthRestAPIs {
 		String userName = signUpRequest.getUsername();
 		
 		if (accountService.existsByUsername(userName)) {
-			return new ResponseEntity<>(new ResponseMessage("Fail -> Username is already taken!"),
+			return new ResponseEntity<>(new ResponseMessage("Nom d'utilisateur déja existe!"),
 					HttpStatus.BAD_REQUEST);
 		}
 
 		if (accountService.existsByEmail(signUpRequest.getEmail())) {
-			return new ResponseEntity<>(new ResponseMessage("Fail -> Email is already in use!"),
+			return new ResponseEntity<>(new ResponseMessage("Email déja existe!"),
 					HttpStatus.BAD_REQUEST);
 		}
 		
@@ -79,7 +79,7 @@ public class AuthRestAPIs {
 				signUpRequest.getEmail(),signUpRequest.getPassword()));
 		accountService.addRoleToUser(userName, signUpRequest.getRole());
 		
-		return new ResponseEntity<>(new ResponseMessage("User registered successfully!"), HttpStatus.OK);
+		return new ResponseEntity<>(new ResponseMessage("Compte créé avec succée!"), HttpStatus.OK);
 	}
 	
 	

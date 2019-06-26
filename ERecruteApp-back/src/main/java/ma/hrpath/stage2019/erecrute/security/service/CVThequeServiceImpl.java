@@ -395,4 +395,9 @@ public class CVThequeServiceImpl implements CVThequeService{
 		return tcs;
 	}
 
+	@Override
+	public CV findCVByMaxId() {
+		return cvRepository.MaxID();
+	}
+
 }
