@@ -1,0 +1,59 @@
+Afin d'adopter la méthodologie SCRUM dans notre projet,
+nous avons  commencer par découper 
+nôtres temps notre plannings en plusieurs
+blocs de temps
+applés itérations ou sprints chaque
+itération va compter entre 2 à 4
+semaines en fonction de la taille de
+notre équipe de la nature de notre
+produit ou tout simplement de notre
+contexte à la fin du sprint on livre un
+incrément de produits qui va être certes
+partielle mais qui reste fonctionnel et
+opérationnel
+
+on passe aux besoins ce dernier va être
+découpée en dessous besoin appelé user
+story, dans notre projet ils sont présenter globalement dans 4 modules
+
+Scrum défini pour l'essentiel trois
+rôles premièrement le product owner
+alors le producteur c'est celui qui va
+porter la vision du
+produit à réaliser généralement c'est le
+représentant du client 
+
+deuxièmement le scrum master alors celui
+là c'est le garant de l'application des
+paradis SRUM il veille à ce que chacun
+puisse travailler au maximum de ses
+capacités
+en protégeant l'équipe des
+perturbations extérieures 
+
+troisièmement l'équipe de développement
+qui est mandatée pour réaliser le
+produit 
+
+planification du sprint c'est là où on a planifier notre titre action il
+suffit généralement en deux temps une
+première phase pour présenter la liste
+des users story préalablement préparé
+par le producteur et un deuxième temps
+pour décomposer les stories entachent le
+scr amateurs doivent veiller à ce que
+l'équipe de réalisation a bien compris
+le besoin
+deuxième type de réunion c'est les
+réunions quotidiennes en effet l'équipe scram se réunit
+chaque jour pendant 15 minutes environs
+pour faire état de notre avancement
+en effet chaque membre de l'équipe doit
+répondre aux questions suivantes qu'est
+ce que j'ai fait hier qu'est ce que je
+compte faire pour aujourd'hui
+est-ce que j'ai des obstacles qui
+m'empêche de travailler
+
+troisième à réunion c'est la revue de
+sprint 
