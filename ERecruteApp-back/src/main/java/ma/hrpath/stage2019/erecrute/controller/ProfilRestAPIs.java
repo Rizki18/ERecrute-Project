@@ -1,5 +1,6 @@
 package ma.hrpath.stage2019.erecrute.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -62,6 +63,15 @@ public class ProfilRestAPIs {
 	@RequestMapping(value="/admin/saveProfil",method = RequestMethod.POST)
 	@PreAuthorize("hasRole('ADMIN')")
 	public Profil saveProfil(@RequestBody Profil p) {
+		return profilService.saveProfil(p);	}
+	
+	@RequestMapping(value="/admin/saveProfilCSV",method = RequestMethod.POST)
+	@PreAuthorize("hasRole('ADMIN')")
+	public Profil saveProfilCSV(@RequestBody Profil p) throws Exception {
+		
+		p.setPhoto(p.getCodeProfil()+".png");
+		byte[] file = Files.readAllBytes(Paths.get(p.getPhoto()));
+		Files.write(Paths.get(System.getProperty("user.home")+"/erecrute/profils/"+p.getPhoto()),file );
 		return profilService.saveProfil(p);	}
 	
 	@GetMapping(path="photoProfil/{id}",produces = MediaType.IMAGE_PNG_VALUE)

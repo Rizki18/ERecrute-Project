@@ -17,7 +17,7 @@ export class RecrutementComponent implements OnInit {
   constructor( 
     private service: UserService, private router:Router ){}
     
-    postes;dlposte; sIposte=[];
+    postes;dlposte; sIposte;
   dlsociete;dlprofil;  societes;
   comps; Exp;
   dropdownSettings = {};
