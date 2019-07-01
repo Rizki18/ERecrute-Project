@@ -25,7 +25,7 @@ export class AddProfilComponent implements OnInit {
   dropdownSettingsSingle = {};
   sIcomp; dlcomp; sIlng; dllng; sIsa; dlsa; sIsf; dlsf; sItp; dltp; sItc; dltc;
   comps; lngs; sas; sfs; tps; tcs;
-  selectedComps; selectedLngs; selectedSas; selectedSfs; selectedTps; selectedTcs;
+  selectedComps=[]; selectedLngs=[]; selectedSas; selectedSfs; selectedTps; selectedTcs;
 
   formations;
   codeProfil; codeCV;
@@ -300,11 +300,12 @@ export class AddProfilComponent implements OnInit {
       });
   };
 
+  
   comp: CompetenceCV = new CompetenceCV("", "", "", "");
 
   createComp(comp): void {
 
-    comp.cv = this.cv.codeCV;
+    comp.cv = this.codeCV;
     comp.competence = this.comp;
 
     console.log(comp);
@@ -314,6 +315,8 @@ export class AddProfilComponent implements OnInit {
 
         alert("Competence est ajoutée avec succée");
         this.selectedComps.push(comp);
+        console.log("this.selectedComps");
+        console.log(this.selectedComps);
 
         //this.router.navigate(['/cv/'+cv.codeCV]);
         //this.getCompetence();
@@ -325,7 +328,7 @@ export class AddProfilComponent implements OnInit {
 
   createLng(lng): void {
 
-    lng.cv = this.cv.codeCV;
+    lng.cv = this.codeCV;
     lng.lng = this.lng;
 
     console.log(lng);

@@ -531,8 +531,8 @@ export class CvComponent implements OnInit {
     exp.cv = this.cv.codeCV;
     exp.poste = this.poste;
     exp.societe = this.societe;
-    exp.profil= this.profil;
-
+    exp.profil= this.cv.profil.codeProfil;
+    console.log("exp :");
     console.log(exp);
 
     this.service.createRessources("/admin/saveExperienceCV", exp)

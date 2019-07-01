@@ -160,14 +160,8 @@ public class CVThequeServiceImpl implements CVThequeService{
 		CV cv = retreiveCvById(Long.valueOf(f.getCv()));
 		Profil profil = profilRepository.findBycodeProfil(Long.valueOf(f.getProfil()));
 		Set<Experience> exps,exps2;
-		
-		GregorianCalendar calendar = new GregorianCalendar(); 
-		calendar.setTime(f.getDateDebut()); 
-		String descRole = f.getDescriptionRole() + "_" +
-				calendar.get(GregorianCalendar.DAY_OF_MONTH) + "_" +
-				(calendar.get(GregorianCalendar.MONTH) + 1);
 				
-		Experience exp = new Experience(f.getDateDebut(),f.getDateFin(),f.getDepartement(),descRole);
+		Experience exp = new Experience(f.getDateDebut(),f.getDateFin(),f.getDepartement(),f.getDescriptionRole());
 
 		exp.setPoste(posteRepository.findById(Long.valueOf(f.getPoste())).orElse(null));
 		exp.setSociete(steRepository.findById(Long.valueOf(f.getSociete())).orElse(null));

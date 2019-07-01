@@ -31,8 +31,8 @@ export class RecrutementComponent implements OnInit {
   TypeProfil; dltypeProfil; sItypeProfil = [];
   dropdownSettings = {};
 
-  dlposte; dlsociete; dlmc;
-  postes; societes;  poste; societe; mcs; sImc_exp; sIposte; sIsociete;
+  dlmc;
+  poste; societe; mcs; sImc_exp; sIsociete;
   dropdownSettingsSingle = {};
 
   constructor(

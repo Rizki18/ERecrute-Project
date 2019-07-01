@@ -200,12 +200,12 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>développement des applications web</td>
-                                                <td>informatique</td>
-                                                <td>10/06/2020</td>
+                                            <tr *ngFor="let exp of experiences">
+                                                <td>{{exp.descriptionRole}}</td>
+                                                <td>{{exp.departement}}</td>
+                                                <td>{{exp.dateDebut}}</td>
                                                 <td>
-                                                    07/06/2023
+                                                    {{exp.dateFin}}
                                                 </td>
                                             </tr>
 
@@ -236,27 +236,11 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>Framework Spring</td>
-                                                <td>75</td>
-                                                <td>Langage de développement web</td>
+                                            <tr *ngFor="let comp of selectedComps">
+                                                <td>{{comp.competence}}</td>
+                                                <td>{{comp.niveau}}</td>
+                                                <td>{{comp.details}}</td>
                                             </tr>
-                                            <tr>
-                                                <td>Angular</td>
-                                                <td>75</td>
-                                                <td>Langage de développement web</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Informatique</td>
-                                                <td>75</td>
-                                                <td>Langage de développement web</td>
-                                            </tr>
-                                            <tr>
-                                                <td>JEE</td>
-                                                <td>75</td>
-                                                <td>Langage de développement web</td>
-                                            </tr>
-
                                         </tbody>
                                     </table>
                                 </div>
@@ -284,10 +268,10 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr >
-                                                <td>Francais</td>
-                                                <td>79</td>
-                                                <td>Niveau courant</td>
+                                            <tr *ngFor="let lng of selectedLngs">
+                                                <td>{{lng.lng}}</td>
+                                                <td>{{lng.niveau}}</td>
+                                                <td>{{lng.details}}</td>
                                             </tr>
 
                                         </tbody>
@@ -410,12 +394,12 @@
                     <div class="form-group">
                         <div class="col-md-6">
                             <label class="control-label">Date Début</label>
-                            <input required ngModel type="date" class="form-control" name="dateDebut"
+                            <input required ngModel type="text" class="form-control datepicker" name="dateDebut"
                                 [(ngModel)]="exp.dateDebut" />
                         </div>
                         <div class="col-md-6">
                             <label class="control-label">Date Fin</label>
-                            <input required ngModel type="date" class="form-control" name="dateFin"
+                            <input required ngModel type="text" class="form-control datepicker" name="dateFin"
                                 [(ngModel)]="exp.dateFin" />
                         </div>
                     </div>
